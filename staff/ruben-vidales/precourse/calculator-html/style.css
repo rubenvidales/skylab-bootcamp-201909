@@ -1,0 +1,155 @@
+.contenedor {
+    width: 300px;
+    height: 420px;
+    margin: 20px auto;
+    display: grid;
+    grid-template-areas:
+        "result result result result"
+        "btn-ac btn-ac btn-back btn-dividir"
+        "btn-siete btn-ocho btn-nueve btn-multiplicar"
+        "btn-cuatro btn-cinco btn-seis btn-restar"
+        "btn-uno btn-dos btn-tres btn-sumar"
+        "btn-cero btn-cero btn-decimal btn-igual";
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 120px repeat(5, 60px);
+}
+
+.boton,
+.boton-especial {
+    cursor: pointer;
+    border: 1px solid #999999;
+    font-family: 'Roboto',sans-serif;
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 60px;
+}
+
+.boton-especial > span {
+    padding-left: 30px;
+}
+
+.centrado {
+    text-align: center;
+}
+
+.gris{
+    background-color: #dddddd;
+    color: #333333;
+}
+
+.gris:hover{
+    background-color: #999999;
+}
+
+.gris:active{
+    background-color: #ffffff;
+}
+
+.operaciones {
+    background-color: #F08E33;
+    color: white;
+}
+
+.operaciones:hover{
+    background-color: #CF7A2B;
+}
+
+.operaciones:active{
+    background-color: #ffffff;
+    color: #333333;
+}
+
+.result {
+    border-radius: 10px 10px 0 0;
+    position: relative;
+    grid-area: result;
+    font-family: 'Roboto',sans-serif;
+    font-weight: 300;
+    font-size: 50px;
+    color: white;
+    background-color: #333333;
+    text-align: right;
+}
+
+#result-value{
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    width: 290px;
+    overflow: auto;
+}
+
+.btn-ac {
+    grid-area: btn-ac;
+}
+
+.btn-back {
+    grid-area: btn-back;
+}
+
+.btn-dividir {
+    grid-area: btn-dividir;
+}
+
+.btn-siete {
+    grid-area: btn-siete;
+}
+
+.btn-ocho {
+    grid-area: btn-ocho;
+}
+
+.btn-nueve {
+    grid-area: btn-nueve;
+}
+
+.btn-multiplicar {
+    grid-area: btn-multiplicar;
+}
+
+.btn-cuatro {
+    grid-area: btn-cuatro;
+}
+
+.btn-cinco {
+    grid-area: btn-cinco;
+}
+
+.btn-seis {
+    grid-area: btn-seis;
+}
+
+.btn-restar {
+    grid-area: btn-restar;
+}
+
+.btn-uno {
+    grid-area: btn-uno;
+}
+
+.btn-dos {
+    grid-area: btn-dos;
+}
+
+.btn-tres {
+    grid-area: btn-tres;
+}
+
+.btn-sumar {
+    grid-area: btn-sumar;
+}
+
+.btn-cero {
+    padding-left: 30px;
+    grid-area: btn-cero;
+    border-radius: 0 0 0 10px;
+}
+
+.btn-decimal {
+    grid-area: btn-decimal;
+}
+
+.btn-igual {
+    grid-area: btn-igual;
+    border-radius: 0 0 10px 0;
+}

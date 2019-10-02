@@ -12,8 +12,7 @@ function generateScore(turns) {
     //Perfect score
     if (turns == 15) {
         score = 1000;
-    }
-    else {
+    } else {
         score = (MAX_TURNS - turns) * 10;
     }
     return score;
@@ -42,10 +41,7 @@ function printRanking() {
         ranking.sort(compareRanking);
         console.log('RANKING');
         console.log('---');
-        for (result of ranking) {
-            console.log('Name: ' + result.name + ' Points: ' + result.points);
-        }
-        console.log('--------');
+        console.table(ranking);
     }
 }
 

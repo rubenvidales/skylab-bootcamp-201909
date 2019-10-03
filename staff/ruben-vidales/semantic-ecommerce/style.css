@@ -1,5 +1,10 @@
 html {
   font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+ul {
+  padding-inline-start: 0px;
 }
 
 li {
@@ -8,6 +13,19 @@ li {
 
 a {
   text-decoration: none;
+}
+
+
+h1{
+  font-size: 3em;
+}
+
+h2{
+  font-size: 2em;
+}
+
+h3{
+  font-size: 1.5em;
 }
 
 /********* header ***********/
@@ -49,8 +67,101 @@ section.best-seller-products,
 section.discount-products {
   display: flex;
   text-align: center;
+  flex-wrap: wrap;
+  width: 70%;
+    margin: 20px auto;
+    justify-content: center;
 }
 
+section.best-seller-products > h2,
+section.best-seller-products > nav,
+section.discount-products > h2,
+section.discount-products > nav{
+  width: 100%;
+}
+
+section.discount-products > article > figure > img,
+section.best-seller-products > article > figure > img {
+  max-width: 150px;
+}
+
+nav>ul.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+nav>ul.pagination>li {
+  padding: 20px;
+}
+
+.product-bloc{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-bloc > h1 {
+  width: 100%;
+}
+
+.product-bloc > figure {
+  width: 40%;
+}
+
+.product-bloc > figure > img {
+  width: 100%;
+}
+
+.product-options {
+  width: 50%;
+}
+
+.secundary-images{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.sec-image{
+  max-width: 80px;
+}
+
+.opinions{
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.opinions > h3 {
+  width: 100%;
+  margin-top: 60px;
+}
+
+.opinions > ul {
+  width: 50%;
+}
+
+aside.related-products{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+aside.related-products > h3 {
+  width: 100%;
+}
+
+aside.related-products > ul {
+  display: flex;
+  justify-content: center;
+}
+
+aside.related-products > ul > li {
+  width: 30%;
+}
+
+aside.related-products > ul > li > article > figure > img {
+  max-height: 150px;
+}
 
 /********* footer ***********/
 ul.socials {

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SkyLab Pasapalabra HTML</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="style.css" />
+    <script type="text/javascript" src="gamedata.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.3.0/handlebars.min.js">
+    </script>
+    <script type="text/javascript" src="https://kit.fontawesome.com/3471153d51.js" crossorigin="anonymous"></script>
+    <script id="abecedario" type="text/x-handlebars-template">
+        <div class="contenedor-circulo">
+        {{#each letters}}
+        <div class="circulo letra-{{this.name}}">{{this.name}}</div>
+        {{/each}}
+        <div class="info-jugador">
+            <div class="tituloNombreJugador">Nombre:</div>
+            <div class="nombre-jugador">...</div>
+            <div class="info-partida">
+                    <div class="info-time">
+                        <div class="titulo-time">Tiempo:</div>
+                        <div class="dato-time">.</div>
+                    </div>
+                    <div class="info-aciertos">
+                            <div class="titulo-aciertos">Aciertos:</div>
+                            <div class="dato-aciertos">0</div>
+                    </div>
+            </div>
+        </div>
+        </div>
+    </script>
+</head>
+
+<body>
+    <div class="contenedor">
+        <div id="bl-izq" class="bloque izquierdo">
+        </div>
+        <div id="bl-der" class="bloque derecho">
+            <div class="titulo">
+                <h1>SKYLAB PASAPALABRA</h1>
+            </div>
+            <div id="bl-intro">
+                <div class="instrucciones">Bienvenidos al juego de Pasapalabra de Skylab, para continuar por favor
+                    introduzca su nombre y pulse "Guardar"</div>
+                <div class="nombreText">Tu nombre es:</div>
+                <input type="text" name="userNameInput" id="userNameInput" placeholder="Introduce tu nombre">
+                <div class="btn btnNombre" id="btnNombre">Guardar</div>
+            </div>
+            <div id="bl-pregunta">
+                <div class="question">.....</div>
+                <input type="text" name="answerInput" id="answerInput">
+                <div class="">
+                    <div id="btnResponder" class="btn btn2 btnResponder">Responder</div>
+                    <div id="btnPasapalabra" class="btn btn2 btnPasapalabra">Pasapalabra</div>
+                    <div id="btnEndGame" class="btn btn2 btnEndGame">Parar partida</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="script.js"></script>
+
+</html>

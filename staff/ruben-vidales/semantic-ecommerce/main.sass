@@ -1,0 +1,60 @@
+.main
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+
+    &__title
+        width: 100%
+
+    &__section
+        border: 1px solid black
+        width: 100%
+
+.best-sellers,
+.discount-products,
+.results 
+    display: flex
+    text-align: center
+    flex-wrap: wrap
+    width: 80%
+    margin: 20px auto
+    justify-content: center
+    border-radius: 15px
+    background-color: #eee
+
+    &__title,
+    &__navigation
+        width: 100%
+
+    &__product-figure
+        min-height: 120px
+
+    &__product-image
+        max-width: 150px 
+
+    &__navigation-list
+        display: flex
+        justify-content: center
+
+    &__navigation-item
+        padding: 20px
+
+.product   
+    border: 1px solid black
+    border-radius: 5px
+    background-color: #ccc
+    width: 20%
+    margin: 1%
+
+    &--fullwidth
+        width: 70%
+        margin: 1% 15%
+
+    &__image
+        width: 100%
+
+@media (max-width: 420px)
+    .product 
+        width: 80%
+        margin: 1% 10%
+        

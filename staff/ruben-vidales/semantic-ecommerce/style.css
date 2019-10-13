@@ -1,6 +1,7 @@
-html {
+body {
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
+  box-sizing: border-box;
 }
 
 ul {
@@ -15,163 +16,141 @@ a {
   text-decoration: none;
 }
 
-
-h1{
+h1 {
   font-size: 3em;
 }
 
-h2{
+h2 {
   font-size: 2em;
 }
 
-h3{
+h3 {
   font-size: 1.5em;
 }
 
 /********* header ***********/
-.navigation {
+.header__navigation-list {
   list-style: none;
   margin: 0;
   background: darkslateblue;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
-
-.navigation a {
+.header__navigation-item {
   text-decoration: none;
   display: block;
   padding: 1em;
+  background: darkslateblue;
+}
+.header__navigation-item:hover {
+  background: darkslategrey;
+}
+.header__navigation-link {
   color: white;
 }
 
-.navigation a:hover {
-  background: darkslategrey;
-}
-
 /********* end header ***********/
-
+/********* banner ***********/
 .banner {
   width: 100%;
   height: 600px;
-  background-image: url('https://assets.hardwarezone.com/img/2017/05/IMG_0380_0.jpg');
+  background-image: url("https://assets.hardwarezone.com/img/2017/05/IMG_0380_0.jpg");
 }
-
-.banner>p {
+.banner__text {
   position: relative;
   top: 150px;
-  left: 50px;
-  font-size: 60px;
+  font-size: 50px;
 }
 
-section.best-seller-products,
-section.discount-products {
+/********* end banner ***********/
+/********* main ***********/
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.main__title {
+  width: 100%;
+}
+.main__section {
+  border: 1px solid black;
+  width: 100%;
+}
+
+.best-sellers,
+.discount-products,
+.results {
   display: flex;
   text-align: center;
   flex-wrap: wrap;
-  width: 70%;
-    margin: 20px auto;
-    justify-content: center;
+  width: 80%;
+  margin: 20px auto;
+  justify-content: center;
+  border-radius: 15px;
+  background-color: #eee;
 }
-
-section.best-seller-products > h2,
-section.best-seller-products > nav,
-section.discount-products > h2,
-section.discount-products > nav{
+.best-sellers__title, .best-sellers__navigation,
+.discount-products__title,
+.discount-products__navigation,
+.results__title,
+.results__navigation {
   width: 100%;
 }
-
-section.discount-products > article > figure > img,
-section.best-seller-products > article > figure > img {
+.best-sellers__product-figure,
+.discount-products__product-figure,
+.results__product-figure {
+  min-height: 120px;
+}
+.best-sellers__product-image,
+.discount-products__product-image,
+.results__product-image {
   max-width: 150px;
 }
-
-nav>ul.pagination {
+.best-sellers__navigation-list,
+.discount-products__navigation-list,
+.results__navigation-list {
   display: flex;
   justify-content: center;
 }
-
-nav>ul.pagination>li {
+.best-sellers__navigation-item,
+.discount-products__navigation-item,
+.results__navigation-item {
   padding: 20px;
 }
 
-.product-bloc{
-  display: flex;
-  flex-wrap: wrap;
+.product {
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #ccc;
+  width: 20%;
+  margin: 1%;
 }
-
-.product-bloc > h1 {
+.product--fullwidth {
+  width: 70%;
+  margin: 1% 15%;
+}
+.product__image {
   width: 100%;
 }
 
-.product-bloc > figure {
-  width: 40%;
+@media (max-width: 420px) {
+  .product {
+    width: 80%;
+    margin: 1% 10%;
+  }
 }
-
-.product-bloc > figure > img {
-  width: 100%;
-}
-
-.product-options {
-  width: 50%;
-}
-
-.secundary-images{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.sec-image{
-  max-width: 80px;
-}
-
-.opinions{
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-}
-
-.opinions > h3 {
-  width: 100%;
-  margin-top: 60px;
-}
-
-.opinions > ul {
-  width: 50%;
-}
-
-aside.related-products{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-aside.related-products > h3 {
-  width: 100%;
-}
-
-aside.related-products > ul {
-  display: flex;
-  justify-content: center;
-}
-
-aside.related-products > ul > li {
-  width: 30%;
-}
-
-aside.related-products > ul > li > article > figure > img {
-  max-height: 150px;
-}
-
+/********* end main ***********/
 /********* footer ***********/
-ul.socials {
+.footer__navigation-list {
   list-style: none;
   display: flex;
   justify-content: center;
 }
-
-ul.socials>li {
+.footer__navigation-item {
   margin: 10px;
 }
 
 /********* end footer ***********/
+
+/*# sourceMappingURL=style.css.map */

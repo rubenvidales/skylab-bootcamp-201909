@@ -5,111 +5,190 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Skylab Shop</title>
+    <title>Skylab Shop - Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header>
-        <img class="logo" src="https://via.placeholder.com/400x100/9932CC/FFFFFF/?text=SKYLAB Shop"
+    <header class="header">
+        <img class="header__logo" src="https://via.placeholder.com/400x100/9932CC/FFFFFF/?text=SKYLAB Shop"
             alt="skylab cooking blog logo">
-        <nav>
-            <ul class="navigation">
-                <li><a href="#">Electronics</a></li>
-                <li><a href="#">Videogames</a></li>
-                <li><a href="#">Food</a></li>
-                <li><a href="#">Contact</a></li>
+        <nav class="header__navigation">
+            <ul class="header__navigation-list">
+                <li class="header__navigation-item">
+                    <a class="header__navigation-link" href="#">Electronics</a>
+                </li>
+                <li class="header__navigation-item">
+                    <a class="header__navigation-link" href="#">Videogames</a>
+                </li>
+                <li class="header__navigation-item">
+                    <a class="header__navigation-link" href="#">Food</a>
+                </li>
+                <li class="header__navigation-item">
+                    <a class="header__navigation-link" href="#">Contact</a>
+                </li>
             </ul>
         </nav>
     </header>
-    <main>
-        <h1 class="welcome-message">Welcome to Skylab's Shop</h1>
-        <section class="banner">
-            <p>All your favorite products are here!</p>
+    <main class="main">
+        <h1 class="main__title">Welcome to Skylab's Shop</h1>
+        <section class="main__section banner">
+            <p class="banner__text">All your favorite products are here!</p>
         </section>
-        <section class="best-seller-products">
-            <h2>Best seller products</h2>
-            <article>
-                <h3>Title Product 1</h3>
-                <figure><img src="https://images-na.ssl-images-amazon.com/images/I/61HPw9sVJmL._SL1200_.jpg" alt=""></figure>
-                <h4>Price</h4>
+        <section class="main__section best-sellers">
+            <h2 class="best-sellers__title">Best seller products</h2>
+            <article class="best-sellers__product">
+                <h3 class="best-sellers__product-title">Title Product 1</h3>
+                <figure class="best-sellers__product-figure">
+                    <img class="best-sellers__product-image"
+                        src="https://images-na.ssl-images-amazon.com/images/I/61HPw9sVJmL._SL1200_.jpg"
+                        alt="phone image">
+                </figure>
+                <h4 class="best-sellers__product-price">100,00€</h4>
             </article>
-            <article>
-                <h3>Title Product 2</h3>
-                <figure><img src="https://media.gq-magazine.co.uk/photos/5d13997541f50eb14b8c4739/master/w_1920,c_limit/5510-GQ-19May16_pr_b.jpg" alt=""></figure>
-                <h4>Price</h4>
+            <article class="best-sellers__product">
+                <h3 class="best-sellers__product-title">Title Product 2</h3>
+                <figure class="best-sellers__product-figure">
+                    <img class="best-sellers__product-image"
+                        src="https://media.gq-magazine.co.uk/photos/5d13997541f50eb14b8c4739/master/w_1920,c_limit/5510-GQ-19May16_pr_b.jpg"
+                        alt="phone image">
+                </figure>
+                <h4 class="best-sellers__product-price">120,00€</h4>
             </article>
-            <article>
-                <h3>TitleProduct 3</h3>
-                <figure><img src="https://images-na.ssl-images-amazon.com/images/I/61HPw9sVJmL._SL1200_.jpg" alt=""></figure>
-                <h4>Price</h4>
+            <article class="best-sellers__product">
+                <h3 class="best-sellers__product-title">Title Product 3</h3>
+                <figure class="best-sellers__product-figure">
+                    <img class="best-sellers__product-image"
+                        src="https://images-na.ssl-images-amazon.com/images/I/61HPw9sVJmL._SL1200_.jpg"
+                        alt="phone image">
+                </figure>
+                <h4 class="best-sellers__product-price">99,99€</h4>
             </article>
-            <article>
-                <h3>TitleProduct 4</h3>
-                <figure><img src="https://s3-ap-southeast-1.amazonaws.com/a2.datacaciques.com/00/tmp/95d565ef66e7dff9/d5ca215e2f604dd1/fae263c0099e3927.JPG" alt=""></figure>
-                <h4>Price</h4>
+            <article class="best-sellers__product">
+                <h3 class="best-sellers__product-title">Title Product 4</h3>
+                <figure class="best-sellers__product-figure">
+                    <img class="best-sellers__product-image"
+                        src="https://s3-ap-southeast-1.amazonaws.com/a2.datacaciques.com/00/tmp/95d565ef66e7dff9/d5ca215e2f604dd1/fae263c0099e3927.JPG"
+                        alt="phone image">
+                </figure>
+                <h4 class="best-sellers__product-price">199,99€</h4>
             </article>
-            <nav>
-                <ul class="pagination">
-                    <li><a href="#">
-                            <</a> </li> <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">></a></li>
+            <nav class="best-sellers__navigation">
+                <ul class="best-sellers__navigation-list">
+                    <li class="best-sellers__navigation-item">
+                        <a class="best-sellers__navigation-link" href="#">
+                            <</a> </li> <li class="best-sellers__navigation-item">
+                                <a class="best-sellers__navigation-link" href="#">1</a>
+                    </li>
+                    <li class="best-sellers__navigation-item">
+                        <a class="best-sellers__navigation-link" href="#">2</a>
+                    </li>
+                    <li class="best-sellers__navigation-item">
+                        <a class="best-sellers__navigation-link" href="#">3</a>
+                    </li>
+                    <li class="best-sellers__navigation-item">
+                        <a class="best-sellers__navigation-link" href="#">4</a>
+                    </li>
+                    <li class="best-sellers__navigation-item">
+                        <a class="best-sellers__navigation-link" href="#">></a>
+                    </li>
                 </ul>
             </nav>
         </section>
-        <section class="discount-products">
-            <h2>Products with discount</h2>
-            <article>
-                <h3>Title Product 1</h3>
-                <figure><img src="https://media.gq-magazine.co.uk/photos/5d13997541f50eb14b8c4739/master/w_1920,c_limit/5510-GQ-19May16_pr_b.jpg" alt=""></figure>
-                <h4>Price</h4>
+        <section class="main__section discount-products">
+            <h2 class="discount-products__title">Best seller products</h2>
+            <article class="discount-products__product">
+                <h3 class="discount-products__product-title">Title Product 1</h3>
+                <figure class="discount-products__product-figure">
+                    <img class="discount-products__product-image"
+                        src="https://images-na.ssl-images-amazon.com/images/I/61HPw9sVJmL._SL1200_.jpg"
+                        alt="phone image">
+                </figure>
+                <h4 class="discount-products__product-price">100,00€</h4>
             </article>
-            <article>
-                <h3>Title Product 2</h3>
-                <figure><img src="https://images-na.ssl-images-amazon.com/images/I/61HPw9sVJmL._SL1200_.jpg" alt=""></figure>
-                <h4>Price</h4>
+            <article class="discount-products__product">
+                <h3 class="discount-products__product-title">Title Product 2</h3>
+                <figure class="discount-products__product-figure">
+                    <img class="discount-products__product-image"
+                        src="https://media.gq-magazine.co.uk/photos/5d13997541f50eb14b8c4739/master/w_1920,c_limit/5510-GQ-19May16_pr_b.jpg"
+                        alt="phone image">
+                </figure>
+                <h4 class="discount-products__product-price">120,00€</h4>
             </article>
-            <article>
-                <h3>TitleProduct 3</h3>
-                <figure><img src="https://s3-ap-southeast-1.amazonaws.com/a2.datacaciques.com/00/tmp/95d565ef66e7dff9/d5ca215e2f604dd1/fae263c0099e3927.JPG" alt=""></figure>
-                <h4>Price</h4>
+            <article class="discount-products__product">
+                <h3 class="discount-products__product-title">Title Product 3</h3>
+                <figure class="discount-products__product-figure">
+                    <img class="discount-products__product-image"
+                        src="https://images-na.ssl-images-amazon.com/images/I/61HPw9sVJmL._SL1200_.jpg"
+                        alt="phone image">
+                </figure>
+                <h4 class="discount-products__product-price">99,99€</h4>
             </article>
-            <article>
-                <h3>TitleProduct 4</h3>
-                <figure><img src="https://images-na.ssl-images-amazon.com/images/I/61HPw9sVJmL._SL1200_.jpg" alt=""></figure>
-                <h4>Price</h4>
+            <article class="discount-products__product">
+                <h3 class="discount-products__product-title">Title Product 4</h3>
+                <figure class="discount-products__product-figure">
+                    <img class="discount-products__product-image"
+                        src="https://s3-ap-southeast-1.amazonaws.com/a2.datacaciques.com/00/tmp/95d565ef66e7dff9/d5ca215e2f604dd1/fae263c0099e3927.JPG"
+                        alt="phone image">
+                </figure>
+                <h4 class="discount-products__product-price">199,99€</h4>
             </article>
-            <nav>
-                <ul class="pagination">
-                    <li><a href="#">
-                            <</a> </li> <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">></a></li>
+            <nav class="discount-products__navigation">
+                <ul class="discount-products__navigation-list">
+                    <li class="discount-products__navigation-item">
+                        <a class="discount-products__navigation-link" href="#">
+                            <</a> </li> <li class="discount-products__navigation-item">
+                                <a class="discount-products__navigation-link" href="#">1</a>
+                    </li>
+                    <li class="discount-products__navigation-item">
+                        <a class="discount-products__navigation-link" href="#">2</a>
+                    </li>
+                    <li class="discount-products__navigation-item">
+                        <a class="discount-products__navigation-link" href="#">3</a>
+                    </li>
+                    <li class="discount-products__navigation-item">
+                        <a class="discount-products__navigation-link" href="#">4</a>
+                    </li>
+                    <li class="discount-products__navigation-item">
+                        <a class="discount-products__navigation-link" href="#">></a>
+                    </li>
                 </ul>
             </nav>
         </section>
     </main>
-    <footer>
-        <h4 class="author-copyright">Skylab Coders - 2019</h4>
-        <nav>
-            <ul class="socials">
-                <li><a href="#"><img
+    <footer class="footer">
+        <h4 class="footer__author-text">Ruben Vidales for Skylab Coders - 2019</h4>
+        <nav class="footer__navigation">
+            <ul class="footer__navigation-list">
+                <li class="footer__navigation-item">
+                    <a class="footer__navigation-link" href="#">
+                        <img class="footer__navigation-image"
                             src="http://icons.iconarchive.com/icons/limav/flat-gradient-social/48/Twitter-icon.png"
-                            alt="social1"></a></li>
-                <li><a href="#"><img
+                            alt="social1">
+                    </a>
+                </li>
+                <li class="footer__navigation-item">
+                    <a class="footer__navigation-link" href="#">
+                        <img class="footer__navigation-image"
                             src="http://icons.iconarchive.com/icons/limav/flat-gradient-social/48/Twitter-icon.png"
-                            alt="social2"></a></li>
-                <li><a href="#"><img
+                            alt="social1">
+                    </a>
+                </li>
+                <li class="footer__navigation-item">
+                    <a class="footer__navigation-link" href="#">
+                        <img class="footer__navigation-image"
                             src="http://icons.iconarchive.com/icons/limav/flat-gradient-social/48/Twitter-icon.png"
-                            alt="social3"></a></li>
-                <li><a href="#"><img
+                            alt="social1">
+                    </a>
+                </li>
+                <li class="footer__navigation-item">
+                    <a class="footer__navigation-link" href="#">
+                        <img class="footer__navigation-image"
                             src="http://icons.iconarchive.com/icons/limav/flat-gradient-social/48/Twitter-icon.png"
-                            alt="social4"></a></li>
+                            alt="social1">
+                    </a>
+                </li>
             </ul>
         </nav>
     </footer>

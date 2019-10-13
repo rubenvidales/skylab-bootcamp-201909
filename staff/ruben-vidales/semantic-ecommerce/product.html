@@ -5,145 +5,212 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Skylab Shop</title>
+    <title>Skylab Shop - Product</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header>
-        <img class="logo" src="https://via.placeholder.com/400x100/9932CC/FFFFFF/?text=SKYLAB Shop"
+    <header class="header">
+        <img class="header__logo" src="https://via.placeholder.com/400x100/9932CC/FFFFFF/?text=SKYLAB Shop"
             alt="skylab cooking blog logo">
-        <nav>
-            <ul class="navigation">
-                <li><a href="#">Electronics</a></li>
-                <li><a href="#">Videogames</a></li>
-                <li><a href="#">Food</a></li>
-                <li><a href="#">Contact</a></li>
+        <nav class="header__navigation">
+            <ul class="header__navigation-list">
+                <li class="header__navigation-item">
+                    <a class="header__navigation-link" href="#">Electronics</a>
+                </li>
+                <li class="header__navigation-item">
+                    <a class="header__navigation-link" href="#">Videogames</a>
+                </li>
+                <li class="header__navigation-item">
+                    <a class="header__navigation-link" href="#">Food</a>
+                </li>
+                <li class="header__navigation-item">
+                    <a class="header__navigation-link" href="#">Contact</a>
+                </li>
             </ul>
         </nav>
     </header>
-    <main>
-        <section>
-            <article class="product-bloc">
-                <h1>Product title</h1>
-                <figure><img src="https://images-na.ssl-images-amazon.com/images/I/61HPw9sVJmL._SL1200_.jpg" alt="product image"></figure>
-                <section class="product-options">
-                        <p class="product-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. In itaque enim saepe quam consectetur
-                                repellat, minima expedita, velit voluptate quod hic ipsam, aperiam voluptates temporibus impedit
-                                asperiores accusamus eos possimus.
-                                
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. In itaque enim saepe quam consectetur
-                                repellat, minima expedita, velit voluptate quod hic ipsam, aperiam voluptates temporibus impedit
-                                asperiores accusamus eos possimus.
-                            </p>
-                    <article class="product-option">
-                        <h3>Color: </h3>
-                        <ul>
-                                <li><figure><img src="https://via.placeholder.com/20/00aaff" alt="color product image"></figure></li>
-                            <li><figure><img src="https://via.placeholder.com/20/aa00ff" alt="color product image"></figure></li>
+    <main class="main">
+        <section class="main__section">
+            <article class="product product--fullwidth">
+                <h1 class="product__title">Product title</h1>
+                <figure class="product__figure">
+                    <img class="product__image"
+                        src="https://images-na.ssl-images-amazon.com/images/I/61HPw9sVJmL._SL1200_.jpg"
+                        alt="product image"></figure>
+                <section class="product__options">
+                    <p class="product__option-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. In
+                        itaque
+                        enim saepe quam consectetur
+                        repellat, minima expedita, velit voluptate quod hic ipsam, aperiam voluptates temporibus impedit
+                        asperiores accusamus eos possimus.
+
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. In itaque enim saepe quam consectetur
+                        repellat, minima expedita, velit voluptate quod hic ipsam, aperiam voluptates temporibus impedit
+                        asperiores accusamus eos possimus.
+                    </p>
+                    <article class="product__option colors">
+                        <h3 class="colors__title">Color: </h3>
+                        <ul class="colors__list">
+                            <li class="colors_item">
+                                <figure class="colors-figure">
+                                    <img class="colors-image" src="https://via.placeholder.com/20/00aaff"
+                                        alt="color product image">
+                                </figure>
+                            </li>
+                            <li>
+                            <li class="colors_item">
+                                <figure class="colors-figure">
+                                    <img class="colors-image" src="https://via.placeholder.com/20/aa00ff"
+                                        alt="color product image">
+                                </figure>
+                            </li>
                         </ul>
                     </article>
-                    <article class="product-option">
-                            <h3>Quantity: </h3>
-                            <input type="text" placeholder="quantity">
-                        </article>
-                
-                <ul class="secundary-images">
-                    <li>
-                        <figure><img class="sec-image" src="https://images-na.ssl-images-amazon.com/images/I/61HPw9sVJmL._SL1200_.jpg" alt="secundary product image"></figure>
-                    </li>
-                    <li>
-                        <figure><img class="sec-image" src="https://images-na.ssl-images-amazon.com/images/I/61HPw9sVJmL._SL1200_.jpg" alt="secundary product image"></figure>
-                    </li>
-                    <li>
-                        <figure><img class="sec-image" src="https://images-na.ssl-images-amazon.com/images/I/61HPw9sVJmL._SL1200_.jpg" alt="secundary product image"></figure>
-                    </li>
-                </ul>
-                <h3>Buying options</h3>
-                <p>Price: 35,47€</p>
-                <button class="addCart">Add to cart</button>
-            </section>
-                <section class="opinions">
-                    <h3>Costumer opinions</h3>
-                    <ul>
-                        <li>
+                    <article class="product__option quantity">
+                        <h3 class="quantity__title">Quantity: </h3>
+                        <input class="quantity_input" type="text" placeholder="quantity">
+                    </article>
+                    <article class="product__option gallery">
+                        <ul class="gallery-list">
+                            <li class="gallery-item">
+                                <figure class="gallery-figure">
+                                    <img class="gallery-image"
+                                        src="https://images-na.ssl-images-amazon.com/images/I/61HPw9sVJmL._SL1200_.jpg"
+                                        alt="secundary product image">
+                                </figure>
+                            </li>
+                            <li class="gallery-item">
+                                <figure class="gallery-figure">
+                                    <img class="gallery-image"
+                                        src="https://images-na.ssl-images-amazon.com/images/I/61HPw9sVJmL._SL1200_.jpg"
+                                        alt="secundary product image">
+                                </figure>
+                            </li>
+                            <li class="gallery-item">
+                                <figure class="gallery-figure">
+                                    <img class="gallery-image"
+                                        src="https://images-na.ssl-images-amazon.com/images/I/61HPw9sVJmL._SL1200_.jpg"
+                                        alt="secundary product image">
+                                </figure>
+                            </li>
+                        </ul>
+                    </article>
+                    <article class="product__option buying-option">
+                        <h3 class="buying-option__title">Buying options</h3>
+                        <p class="buying-option__price">Price: 35,47€</p>
+                        <button class="buying-option__button">Add to cart</button>
+                    </article>
+                </section>
+
+                <section class="product__opinions">
+                    <h3 class="product__opinions-title">Costumer opinions</h3>
+                    <ul class="product__opinions-list">
+                        <li class="product__opinions-item">
                             <article class="opinion">
-                                <h5>title opinion 1</h5>
-                                <h6>Author & Date</h6>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis perferendis
-                                    neque, ea eos temporibus est officiis, recusandae dolorem voluptates quasi ipsam
-                                    veniam id minus harum accusantium voluptate laboriosam. Obcaecati, et?</p>
+                                <h5 class="opinion__title">title opinion 1</h5>
+                                <h6 class="opinion__author">Author & Date</h6>
+                                <p class="opinion__text">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                                    Blanditiis perferendis neque, ea eos temporibus est officiis, recusandae dolorem
+                                    voluptates quasi ipsam veniam id minus harum accusantium voluptate laboriosam.
+                                    Obcaecati, et?</p>
                             </article>
                         </li>
-                        <article class="opinion">
-                                <h5>title opinion 2</h5>
-                                <h6>Author & Date</h6>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis perferendis
-                                    neque, ea eos temporibus est officiis, recusandae dolorem voluptates quasi ipsam
-                                    veniam id minus harum accusantium voluptate laboriosam. Obcaecati, et?</p>
+                        <li class="product__opinions-item">
+                            <article class="opinion">
+                                <h5 class="opinion__title">title opinion 2</h5>
+                                <h6 class="opinion__author">Author & Date</h6>
+                                <p class="opinion__text">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                                    Blanditiis perferendis neque, ea eos temporibus est officiis, recusandae dolorem
+                                    voluptates quasi ipsam veniam id minus harum accusantium voluptate laboriosam.
+                                    Obcaecati, et?</p>
                             </article>
                         </li>
-                        <article class="opinion">
-                                <h5>title opinion 3</h5>
-                                <h6>Author & Date</h6>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis perferendis
-                                    neque, ea eos temporibus est officiis, recusandae dolorem voluptates quasi ipsam
-                                    veniam id minus harum accusantium voluptate laboriosam. Obcaecati, et?</p>
+                        <li class="product__opinions-item">
+                            <article class="opinion">
+                                <h5 class="opinion__title">title opinion 3</h5>
+                                <h6 class="opinion__author">Author & Date</h6>
+                                <p class="opinion__text">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                                    Blanditiis perferendis neque, ea eos temporibus est officiis, recusandae dolorem
+                                    voluptates quasi ipsam veniam id minus harum accusantium voluptate laboriosam.
+                                    Obcaecati, et?</p>
                             </article>
                         </li>
                     </ul>
                 </section>
             </article>
-            <aside class="related-products">
-                <h3>Related products</h3>
-                <ul>
-                    <li>
-                        <article>
-                            <h5>Related product 1</h5>
-                            <figure><img src="https://images-na.ssl-images-amazon.com/images/I/61HPw9sVJmL._SL1200_.jpg" alt=""></figure>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            <p>price</p>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <h5>Related product 2</h5>
-                            <figure><img src="https://media.gq-magazine.co.uk/photos/5d13997541f50eb14b8c4739/master/w_1920,c_limit/5510-GQ-19May16_pr_b.jpg" alt=""></figure>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            <p>price</p>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <h5>Related product 3</h5>
-                            <figure><img src="https://s3-ap-southeast-1.amazonaws.com/a2.datacaciques.com/00/tmp/95d565ef66e7dff9/d5ca215e2f604dd1/fae263c0099e3927.JPG" alt=""></figure>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            <p>price</p>
-                        </article>
-                    </li>
-                </ul>
-            </aside>
         </section>
+        <aside class="related-products">
+            <h3>Related products</h3>
+            <ul>
+                <li>
+                    <article>
+                        <h5>Related product 1</h5>
+                        <figure><img src="https://images-na.ssl-images-amazon.com/images/I/61HPw9sVJmL._SL1200_.jpg"
+                                alt=""></figure>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <p>price</p>
+                    </article>
+                </li>
+                <li>
+                    <article>
+                        <h5>Related product 2</h5>
+                        <figure><img
+                                src="https://media.gq-magazine.co.uk/photos/5d13997541f50eb14b8c4739/master/w_1920,c_limit/5510-GQ-19May16_pr_b.jpg"
+                                alt=""></figure>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <p>price</p>
+                    </article>
+                </li>
+                <li>
+                    <article>
+                        <h5>Related product 3</h5>
+                        <figure><img
+                                src="https://s3-ap-southeast-1.amazonaws.com/a2.datacaciques.com/00/tmp/95d565ef66e7dff9/d5ca215e2f604dd1/fae263c0099e3927.JPG"
+                                alt=""></figure>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <p>price</p>
+                    </article>
+                </li>
+            </ul>
+        </aside>
+
 
     </main>
-    <footer>
-        <h4 class="author-copyright">Skylab Coders - 2019</h4>
-        <nav>
-                <ul class="socials">
-                        <li><a href="#"><img
-                                    src="http://icons.iconarchive.com/icons/limav/flat-gradient-social/48/Twitter-icon.png"
-                                    alt="social1"></a></li>
-                        <li><a href="#"><img
-                                    src="http://icons.iconarchive.com/icons/limav/flat-gradient-social/48/Twitter-icon.png"
-                                    alt="social2"></a></li>
-                        <li><a href="#"><img
-                                    src="http://icons.iconarchive.com/icons/limav/flat-gradient-social/48/Twitter-icon.png"
-                                    alt="social3"></a></li>
-                        <li><a href="#"><img
-                                    src="http://icons.iconarchive.com/icons/limav/flat-gradient-social/48/Twitter-icon.png"
-                                    alt="social4"></a></li>
-                    </ul>
+    <footer class="footer">
+        <h4 class="footer__author-text">Ruben Vidales for Skylab Coders - 2019</h4>
+        <nav class="footer__navigation">
+            <ul class="footer__navigation-list">
+                <li class="footer__navigation-item">
+                    <a class="footer__navigation-link" href="#">
+                        <img class="footer__navigation-image"
+                            src="http://icons.iconarchive.com/icons/limav/flat-gradient-social/48/Twitter-icon.png"
+                            alt="social1">
+                    </a>
+                </li>
+                <li class="footer__navigation-item">
+                    <a class="footer__navigation-link" href="#">
+                        <img class="footer__navigation-image"
+                            src="http://icons.iconarchive.com/icons/limav/flat-gradient-social/48/Twitter-icon.png"
+                            alt="social1">
+                    </a>
+                </li>
+                <li class="footer__navigation-item">
+                    <a class="footer__navigation-link" href="#">
+                        <img class="footer__navigation-image"
+                            src="http://icons.iconarchive.com/icons/limav/flat-gradient-social/48/Twitter-icon.png"
+                            alt="social1">
+                    </a>
+                </li>
+                <li class="footer__navigation-item">
+                    <a class="footer__navigation-link" href="#">
+                        <img class="footer__navigation-image"
+                            src="http://icons.iconarchive.com/icons/limav/flat-gradient-social/48/Twitter-icon.png"
+                            alt="social1">
+                    </a>
+                </li>
+            </ul>
         </nav>
     </footer>
 </body>

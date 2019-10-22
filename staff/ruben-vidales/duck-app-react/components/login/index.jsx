@@ -1,4 +1,4 @@
-function Login({ onLogin }) {
+function Login({ onLogin, onBack }) {
     return <section className="view login">
         <form className="login__form" onSubmit={function (event) {
             event.preventDefault()
@@ -11,7 +11,11 @@ function Login({ onLogin }) {
             <input className="login__field" type="email" name="email" placeholder="e-mail" />
             <input className="login__field" type="password" name="password" placeholder="password" />
             <button className="login__submit">📨</button>
-            <a className="login__back" href="">Go back</a>
+            <a className="login__back" href="" onClick={event => {
+                event.preventDefault()
+
+                onBack()
+            }}>Go back</a>
         </form>
 
         <section className="feedback hide">

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Duck-App</title>
+    <script src="https://kit.fontawesome.com/b7c4da1ddd.js" crossorigin="anonymous"></script>
+    <link href="style/index.css" type="text/css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="https://www.favicon.cc/logo3d/75350.png"/>
+</head>
+<body>
+    
+        <header class="header">
+                <h1 class="header__title">DUCK APP</h1>
+                <img class="header__image" src="https://www.favicon.cc/logo3d/75350.png" alt="duck image">
+
+        </header>
+        <main>
+            <section class="view hello hide">
+                <p class="hello__user"></p>
+                <button class="hello__button">Sign Out</button>
+            </section>
+            
+            <section class="view login">
+                <div class="login__div">
+                    <form class="login__form">               
+                        <input type="text" name="email" placeholder="email" class="login__input">
+                        <input type="password" name="password" placeholder="password" class="login__input">
+                        <button class="login__button"> Login</button>
+                        
+                    </form>
+                    <button class="login__goregistrer"> Go to Register</button>
+                </div>
+                <section class="view feedback hide">
+                    <span class="feedback__icon">🤡</span>
+                    <p class="feedback__message">Come with me...</p>
+                    <span class="feedback__icon">🎈</span>
+                </section>       
+            </section>
+
+            <section class=" view register hide">
+                <div class="register__div">
+                    <form class="register__form">
+                        <input type="text" name="name" placeholder="name" class="register__input" autofocus required>
+                        <input type="text" name="surname" placeholder="surname" class="register__input" required>               
+                        <input type="email" name="email" placeholder="email" class="register__input" required>
+                        <input type="password" name="password" placeholder="password" class="register__input" required>
+                        <button class="register__button"> Register</button>
+                            
+                    </form>
+                    <button class="register__gologin"> Go to Login</button>
+                </div>
+                <section class="view feedback hide">
+                    <span class="feedback__icon">🤡</span>
+                    <p class="feedback__message">Come with me...</p>
+                    <span class="feedback__icon">🎈</span>
+                </section>       
+            </section>
+    
+            <section class=" view search hide">
+                <div>
+                    <form class="search__form">               
+                        <input type="search" name="query" id="search__formitem" class="search__input">
+                        <button class="search__button"><i class="fas fa-search"></i>  Search</button>
+                    </form>
+                </div> 
+                <section class="view feedback hide">
+                    <span class="feedback__icon">🤡</span>
+                    <p class="feedback__message">Come with me...</p>
+                    <span class="feedback__icon">🎈</span>
+                </section>      
+            </section>
+       
+         
+            <section class="view ducks">
+                <ul class="item-list view hide"></ul>
+            </section>
+
+            <div class="view detail hide">
+                <section class = "result view">
+                    <div class="detail-list">
+                        <h2 class="detail-list__title"></h2>
+                        <img class="detail-list__image" src="">
+                        <p class="detail-list__description"></p>
+                        <a href="" class="detail-list__store">Go to Store</a>
+                        <p class="detail-list__price"></p>
+                        <button class="detail-list__button">Back</button>
+                    </div>
+                </section>
+            </div>
+
+            <section class="global-feedback feedback hide">
+                <span class="feedback__icon">🤡</span>
+                <p class="feedback__message">Come with me...</p>
+                <span class="feedback__icon">🎈</span>
+            </section>
+        
+    </main>
+    <footer class="footer"> 
+        <h2 class="footer__title"> Made with Love - M</h2>
+    </footer>
+    <script src="scripts/utils/array-shuffle.js"></script>
+    <script src="scripts/utils/fetch.js"></script>
+    <script src="scripts/utils/function-extend.js"></script>
+    <script src="scripts/logic/retrieve-duck/index.js"></script>
+    <script src="scripts/logic/search-ducks/index.js"></script>
+    <script src="scripts/logic/register-user/index.js"></script>
+    <script src="scripts/logic/authenticate-user/index.js"></script>
+    <script src="scripts/logic/retrieve-user/index.js"></script>
+    <script src="scripts/helpers/call.js"></script>
+    <script src="scripts/components/component.js"></script>
+    <script src="scripts/components/register-user.js"></script>
+    <script src="scripts/components/login.js"></script>
+    <script src="scripts/components/hello.js"></script>
+    <script src="scripts/components/search.js"></script>
+    <script src="scripts/components/results.js"></script>
+    <script src="scripts/components/result-item.js"></script>
+    <script src="scripts/components/detail.js"></script>
+    <script src="scripts/components/feedback.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
+
+
+

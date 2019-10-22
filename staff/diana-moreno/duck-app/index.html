@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Quack</title>
+  <link rel="stylesheet" href="./stylesheets/css/style.css">
+  <script src="https://kit.fontawesome.com/c0a664ee11.js"></script>
+</head>
+
+<body>
+  <header class='header view__header hide'>
+    <h1 class='header__title'>Duck Store</h1>
+    <form class='header__form form'>
+      <input class='form__input' type="text" name="query" placeholder="search...">
+      <button class='form__button'>
+        <i class="fas fa-search"></i>
+      </button>
+    </form>
+    <p class='header__greeting'></p>
+  </header>
+  <main>
+
+    <section class='view view__register hide'>
+      <img class='view__register--image' src="./images/pato-goma-amarillo-plano-brillante_23-2148275403.jpg" alt="">
+      <h2 class='view__register--title'>Please, introduce your details</h2>
+      <form class="form form--login" method="POST">
+        <input class='form__input' type="text" name="name"
+          placeholder="name">
+        <input class='form__input' type="text" name="surname"
+          placeholder="surname">
+        <input class='form__input' type="text" name="email"
+          placeholder="email">
+        <input class='form__input' type="password" name="password"
+          placeholder="password">
+        <button class='form__button form__button--register'>Create account</button>
+      </form>
+      <button class='form__button form__button--register-back'>Back to login</button>
+      <br><br>
+      <div class='form__confirmation'></div>
+    </section>
+
+    <section class='view view__registerSuccess hide'>
+      <img class='view__registerSuccess--image' src="./images/pato-madre-plana-sentirse-feliz-patitos_23-2148281518.jpg" alt="">
+      <h2  class='view__registerSuccess--title' >You have successfully registered!</h2>
+      <button class='form__button form__button--register-back'>Back to login</button>
+    </section>
+
+    <section class='view view__login'>
+      <h1 class='view__login--title'>Duck Store</h1>
+      <form class="form form--login" method="POST">
+        <input class='form__input' type="text" name="username"
+          placeholder="email">
+        <input class='form__input' type="password" name="password"
+          placeholder="password">
+        <button class='form__button form__button--login'>Login</button>
+      </form>
+      <button class='form__button form__button--register'>Create account</button>
+      <br>
+      <div class='form__confirmation'></div>
+      <img  class='view__login--image' src="./images/pato-madre-plano-patitos_23-2148282441.jpg" alt="family-ducks">
+    </section>
+
+    <section class='view view__list hide'>
+      <ul class='duck__list'>
+      </ul>
+    </section>
+
+    <section class='view view__single hide'>
+      <div class='duck duck--litle'>
+      </div>
+    </section>
+
+    <section class="view view__feedback hide">
+      <div class='feedback'>
+        <div class='feedback__icon'>
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <p class="feedback__message"></p>
+      </div>
+    </section>
+
+  </main>
+</body>
+  <script src="scripts/utils/array-shuffle.js"></script>
+  <script src="scripts/utils/fetch.js"></script>
+  <script src="scripts/utils/errors.js"></script>
+  <script src="scripts/logic/register-user/index.js"></script>
+  <script src="scripts/logic/authenticate-user/index.js"></script>
+  <script src="scripts/logic/retrieve-user/index.js"></script>
+  <script src="scripts/logic/retrieve-duck/index.js"></script>
+  <script src="scripts/logic/search-ducks/index.js"></script>
+  <script src="scripts/helpers/call.js"></script>
+  <script src="scripts/components/component.js"></script>
+  <script src="scripts/components/register.js"></script>
+  <script src="scripts/components/login.js"></script>
+  <script src="scripts/components/search.js"></script>
+  <script src="scripts/components/results.js"></script>
+  <script src="scripts/components/result-item.js"></script>
+  <script src="scripts/components/detail.js"></script>
+  <script src="scripts/components/feedback.js"></script>
+  <script src="scripts/components/view.js"></script>
+  <script src="scripts/main.js"></script>
+</html>

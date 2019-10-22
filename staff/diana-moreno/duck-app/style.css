@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: #00BCD4;
+  padding: 0.5rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+.header__title {
+  text-align: center;
+  color: white;
+  background-color: #00BCD4;
+  margin-top: 0;
+}
+
+.form {
+  text-align: center;
+}
+
+.form__input {
+  font-size: 1.2rem;
+  width: 11rem;
+  border: 3px solid #00BCD4;
+  border-radius: 7px;
+  color: #566369;
+  padding: 0.2rem 1rem;
+}
+
+.form__input:hover,
+.form__button:hover {
+  outline: 0;
+}
+
+.form__button {
+  font-size: 1.2rem;
+  border-radius: 7px;
+  border: 3px solid #00BCD4;
+  background-color: #00BCD4;
+  color: white;
+  cursor: pointer;
+}
+
+.view {
+  margin-top: 7rem;
+}
+
+.view--hide {
+  display: none;
+}
+
+.duck__list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  justify-content: center;
+}
+
+.duck {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 1rem;
+}
+
+.duck--litle {
+  margin: 0;
+}
+
+.duck__description--litle {
+  text-align: justify;
+  padding: 0 1rem;
+  margin: 0.2rem;
+}
+
+.duck__title {
+  color: #566369;
+  text-align: center;
+}
+
+.duck__image {
+  width: 10rem;
+}
+
+.duck__container-buttons {
+  display: flex;
+  align-items: baseline;
+  width: 7rem;
+  justify-content: space-between;
+}
+
+.duck__button {
+  background-color: #00BCD4;
+  color: white;
+  padding: 0.2rem 0.3rem;
+  border-radius: 7px;
+  border: 0;
+}
+
+.duck__button--back {
+  background-color: #d26464;
+  padding: 0.25rem 01rem;
+}

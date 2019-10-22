@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Duck App</title>
+    <link rel="shortcut icon" href="https://cdn0.iconfinder.com/data/icons/baby-child-children-kids-colored/100/baby-19-512.png" type="image/x-icon">
+    <link rel="stylesheet" href="style/index.css">
+    <script src="https://kit.fontawesome.com/80c46885ed.js"></script>  
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header__container header">
+            <div class="header__logo">
+                <img src="" class="img logo" alt="Skater duck">
+            </div>
+            <div class="header__company-name">
+                <h1 class="title">*DUCKSTAR*</h1>
+            </div>
+            <div class="header__home">
+                <p class="user"></p>
+            </div>
+            <div class="header__search search">
+                <form action="" id="duck-search" class="search__form hidden">
+                    <input type="search" class="search__input" name="search" placeholder="Search">
+                </form>
+            </div>
+        </header>
+        <section class="register__container register hidden">
+            <form class="register__form form">
+                <h1 class="form__title">Register</h1>
+                <input type="text" placeholder="Name" class="form__pasword input" name="name" autofocus required>
+                <input type="text" placeholder="Surname" class="form__pasword input" name="surname"required>
+                <input type="email" placeholder="Email" class="form__email input" name="email" required>
+                <input type="password" placeholder="Password" class="form__pasword input" name="password" required>
+                <button type="submit">Registrarse</button>
+            </form>
+            <a href="#" class="btn btn__login">DuckIn</a>
+        </section>
+        <section class="login__container login">
+            <form class="login__form form">
+                <h1 class="form__title">DuckIn</h1>
+                <input type="text" placeholder="Username" class="form__username input" name="email" autofocus>
+                <input type="password" placeholder="Password" class="form__pasword input" name="password">
+                <button type="submit">Entrar</button>
+            </form>
+            <a href="#" class="btn btn__new-account">Crear cuenta nueva</a>
+        </section>
+        <main class="main__container main view hidden" id="main">
+            <ul class="results" id="duck-list"></ul>
+        </main>
+        <section class="details__container details view hidden">
+            <h1 class="details__title"></h1>
+            <img src="" alt="" class="details__img img">
+            <p class="details__description"></p>
+            <a href="#" class="go-home">Go back</a>
+            <p class="details__price"><span class="details__price-tag"></span></p> 
+        </section>
+        <section class="feedback hidden">
+            <a class="feedback__cross">X</a>
+            <div class="feedback__container">
+                <span class="feedback__icon">🤡</span>
+                <p class="feedback__message">Come with me...</p>
+                <span class="feedback__icon">🎈</span>
+            </div>
+        </section>
+        <footer class="footer__container footer">
+            <p class="copyright">© DUCK APP S.A.</p>
+        </footer>
+    </div>
+    <script src="scripts/utils/function-extend.js"></script>
+    <script src="scripts/utils/fetch.js"></script>
+    <script src="scripts/logic/register-user/index.js"></script>
+    <script src="scripts/logic/authenticate-user/index.js"></script>
+    <script src="scripts/logic/retrieve-duck/index.js"></script>
+    <script src="scripts/logic/retrieve-user/index.js"></script>
+    <script src="scripts/logic/search-ducks/index.js"></script>
+    <script src="scripts/helpers/call.js"></script>
+    <script src="scripts/components/component.js"></script>
+    <script src="scripts/components/login.js"></script>
+    <script src="scripts/components/register.js"></script>
+    <script src="scripts/components/search.js"></script>
+    <script src="scripts/components/detail.js"></script>
+    <script src="scripts/components/result-item.js"></script>
+    <script src="scripts/components/results.js"></script>
+    <script src="scripts/components/feedback.js"></script>
+    <script src="scripts/components/view.js"></script>
+    <script src="scripts/index.js"></script>
+</body>
+</html>

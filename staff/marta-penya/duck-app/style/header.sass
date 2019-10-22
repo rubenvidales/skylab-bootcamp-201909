@@ -1,0 +1,21 @@
+.header
+    display: flex
+    background-image: url(https://www.desktopbackground.org/t/2015/12/10/1055168_rubber-ducks-illustration-vector-art-graphics_1024x1325_h.jpg)
+    background-size: contain
+    width: 100%
+    justify-items: center
+    justify-content: space-evenly
+    &__title
+        color: white 
+        align-self: center
+        font-size: 2.5em   
+    &__image
+        width: 20%
+
+@media (min-width: 768px)
+    .header
+        width: 100%
+
+@media (min-width: 1024px)
+    .header__title
+        font-size: 5em

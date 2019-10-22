@@ -1,0 +1,42 @@
+@import config
+
+.header
+  background-color: $headerBackgroundColor
+  padding: 0.5rem
+  position: fixed
+  width: 100%
+  top: 0
+
+  &__title
+    text-align: center
+    color: $headerColor
+    margin: 0.6rem
+    letter-spacing: 0.2rem
+
+  &__greeting
+    position: absolute
+    color: white
+    top: -0.8rem
+    right: 1.2rem
+    font-size: 1rem
+
+  &__form
+    flex-direction: row !important
+    justify-content: center
+
+@media only screen and (min-width: $screen-sm-min)
+
+  .header
+    &__greeting
+      top: 1rem
+      right: 4rem
+      font-size: 1.3rem
+
+    &__title
+      font-size: 3.5rem
+      padding: 1.5rem
+      letter-spacing: 0.8rem
+      margin-top: 0
+
+@import form
+

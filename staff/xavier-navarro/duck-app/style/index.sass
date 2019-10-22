@@ -1,0 +1,82 @@
+@import flex-center
+@import header
+@import inputs
+@import register
+*
+    box-sizing: border-box
+body
+    font-family: 'Roboto Condensed', sans-serif
+@import login
+.results
+    list-style: none
+    padding: 0
+    .duck
+        display: grid
+        grid-template-areas: "title price" "img img"
+        &__title
+            grid-area: title
+            text-decoration: none
+            color: #000
+            cursor: pointer
+        &__price
+            grid-area: price
+            color: #01664e
+            font-weight: bold
+            @extend %flex-center
+        &__img
+            grid-area: img
+            width: 100%
+            max-width: 250px
+            margin: 0 auto
+.details
+    display: grid
+    grid-template-areas: "title" "img" "description" "price" "back"
+    &__title
+        grid-area: title
+    &__img
+        grid-area: img
+    &__description
+        grid-area: description
+    .go-home
+        grid-area: back
+    &__price
+        grid-area: price
+        &-tag
+            background-color:#ffff71
+            padding: .5rem
+            border-radius: 0.4rem
+.footer
+    @extend %flex-center
+.img
+    width: 100%
+    max-width: 250px
+.price-tag
+    background-color:#ffff71
+    padding: .5rem
+    border-radius: 0.4rem
+.btn
+    border: 1px solid
+    margin: 11px
+    padding: .5rem 1rem
+    border-radius: 10px
+    text-decoration: none
+    color: #000
+
+@import feedback
+.hidden
+    display: none
+@media (min-width: 768px)
+    .results
+        display: grid
+        grid-template-columns: repeat(3,1fr)
+        grid-gap: 1rem
+        .duck
+            grid-template-areas: "title" "img" "price"
+            grid-auto-rows: 85px auto 60px
+            &__img
+                border-radius: 50%
+                border: 1px solid #f2ac00
+            &__price
+                text-align: left
+    .details
+        grid-template-areas: "title price" "img description" ". back"

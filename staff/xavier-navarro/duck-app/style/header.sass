@@ -1,0 +1,35 @@
+.header
+    display: grid
+    grid-template-areas: "logo company-name company-name" "logo home search"
+    grid-template-columns: 1fr 1fr 2fr
+    border-bottom: 2px solid
+    padding-bottom: 25px
+    grid-gap: 15px
+    &__logo
+        grid-area: logo
+    &__company-name
+        grid-area: company-name
+        @extend %flex-center
+    &__home
+        grid-area: home
+        display: flex
+        align-items: center
+        justify-content: flex-end
+    &__search
+        grid-area: search
+        display: flex
+        align-items: center
+        justify-content: flex-start
+        .search__input
+            border: none
+            border-bottom: 2px solid
+
+@media (min-width: 768px)
+    .header
+        grid-template-areas: "logo company-name home search"
+        grid-template-columns: 1fr 3fr 1fr 1fr
+        &__logo
+            width: 100px
+            margin: 0 auto
+        &__company-name
+            // margin-right: auto

@@ -1,0 +1,38 @@
+@import config
+
+.feedback
+  border: 1px solid red
+  min-width: 34rem
+  text-align: center
+
+  &__icon
+    background-color: $feedbackBackground
+    height: 5rem
+    font-size: 3rem
+    display: flex
+    justify-content: center
+    align-items: center
+    color: white
+    width: 100%
+
+  &__message
+    border: 2px solid $feedbackBackground
+    padding: 2rem 0
+    font-size: 1.5rem
+    margin: 0
+    width: 100%
+    box-sizing: border-box
+    color: $feedbackMessageColor
+
+@media only screen and (min-width: $screen-sm-min)
+.feedback
+  min-width: 0rem
+  font-size: 1rem
+
+  &__icon
+    font-size: 1.5rem
+    height: 3rem
+
+  &__message
+    padding: 1rem
+    font-size: 1.3rem

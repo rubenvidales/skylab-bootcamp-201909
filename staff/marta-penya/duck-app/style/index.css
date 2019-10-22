@@ -1,0 +1,393 @@
+body {
+  font-family: "Mansalva", cursive;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  background-color: Lavender;
+  margin-bottom: 20%;
+}
+
+li {
+  list-style: none;
+}
+
+.result {
+  display: flex;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  background-image: url(https://www.desktopbackground.org/t/2015/12/10/1055168_rubber-ducks-illustration-vector-art-graphics_1024x1325_h.jpg);
+  background-size: contain;
+  width: 100%;
+  justify-items: center;
+  justify-content: space-evenly;
+}
+.header__title {
+  color: white;
+  align-self: center;
+  font-size: 2.5em;
+}
+.header__image {
+  width: 20%;
+}
+
+@media (min-width: 768px) {
+  .header {
+    width: 100%;
+  }
+}
+@media (min-width: 1024px) {
+  .header__title {
+    font-size: 5em;
+  }
+}
+.login {
+  display: flex;
+  height: 40vh;
+  justify-content: center;
+  align-items: center;
+}
+.login__div {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.login__form {
+  flex-direction: column;
+  display: flex;
+  width: 60%;
+  height: 15vh;
+  justify-content: space-between;
+}
+.login__input {
+  border-radius: 20px;
+}
+.login__button {
+  border-radius: 20px;
+  background: MintCream;
+  border: 2px solid black;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+.login__goregistrer {
+  border-radius: 20px;
+  background: MintCream;
+  border: 2px solid black;
+  font-size: 1.25em;
+  font-weight: bold;
+  width: 50%;
+  margin-top: 1rem;
+  background-color: LightSteelBlue;
+}
+
+.hello {
+  background-color: #CDDCE3;
+  display: flex;
+  justify-content: space-around;
+}
+.hello__user {
+  color: white;
+  font-size: 2em;
+}
+.hello__button {
+  border-radius: 20px;
+  background: MintCream;
+  border: 2px solid black;
+  font-size: 1.25em;
+  font-weight: bold;
+  height: 2rem;
+  margin-top: 2em;
+}
+
+.register {
+  display: flex;
+  height: 40vh;
+  justify-content: center;
+  align-items: center;
+}
+.register__div {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.register__form {
+  flex-direction: column;
+  display: flex;
+  width: 60%;
+  height: 15vh;
+  justify-content: space-between;
+}
+.register__input {
+  border-radius: 20px;
+}
+.register__button {
+  border-radius: 20px;
+  background: MintCream;
+  border: 2px solid black;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+.register__gologin {
+  border-radius: 20px;
+  background: MintCream;
+  border: 2px solid black;
+  font-size: 1.25em;
+  font-weight: bold;
+  width: 50%;
+  margin-top: 1rem;
+  background-color: LightSteelBlue;
+}
+
+.search {
+  display: flex;
+  height: 10vh;
+  justify-content: center;
+  align-items: center;
+}
+.search__form {
+  display: flex;
+}
+.search__input {
+  border-radius: 20px;
+}
+.search__button {
+  border-radius: 20px;
+  background: MintCream;
+  border: 2px solid black;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.item-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+.item-list__item {
+  display: flex;
+  border-radius: 20px;
+}
+.item-list__link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3%;
+}
+.item-list__title {
+  color: white;
+  background-color: LightSteelBlue;
+  border: 2px dotted black;
+  border-radius: 0.9em;
+  font-size: 1.2em;
+  padding: 0 2%;
+}
+.item-list__image {
+  width: 60%;
+  border-radius: 60px;
+}
+.item-list__description {
+  padding: 0 2%;
+}
+.item-list__price {
+  color: black;
+  font-weight: bold;
+  border-bottom: 2px solid black;
+  align-self: center;
+  font-size: 1.2em;
+}
+.item-list__button {
+  border-radius: 20px;
+  background: MintCream;
+  border: 2px solid black;
+  font-size: 1.2em;
+  font-weight: bold;
+  align-self: center;
+}
+
+@media (min-width: 768px) {
+  .items {
+    display: flex;
+    justify-content: center;
+  }
+
+  .item-list {
+    flex-flow: row wrap;
+    justify-content: space-around;
+    max-width: 90%;
+  }
+  .item-list__image {
+    max-width: 19em;
+    background-size: cover;
+  }
+}
+@media (min-width: 1024px) {
+  .item-list {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .item-list__image {
+    background-size: cover;
+  }
+  .item-list__title {
+    font-size: 0.9em;
+    text-align: center;
+  }
+  .item-list__image {
+    max-width: 30em;
+  }
+  .item-list__description {
+    font-size: 1.2em;
+  }
+  .item-list__title {
+    font-size: 1.8em;
+  }
+  .item-list__price {
+    font-size: 1.8em;
+  }
+  .item-list__button {
+    font-size: 1.8em;
+  }
+}
+.detail-list {
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 3%;
+  width: 50%;
+}
+.detail-list__detail {
+  display: flex;
+  border-radius: 20px;
+}
+.detail-list__title {
+  color: white;
+  background-color: LightSteelBlue;
+  border: 2px dotted black;
+  border-radius: 0.9em;
+  font-size: 1.2em;
+  padding: 0 2%;
+}
+.detail-list__image {
+  width: 40%;
+  border-radius: 60px;
+}
+.detail-list__description {
+  padding: 0 2%;
+}
+.detail-list__price {
+  color: black;
+  font-weight: bold;
+  border-bottom: 2px solid black;
+  align-self: center;
+  font-size: 1.2em;
+}
+.detail-list__button {
+  border-radius: 20px;
+  background: MintCream;
+  border: 2px solid black;
+  font-size: 1.2em;
+  font-weight: bold;
+  align-self: center;
+}
+
+@media (min-width: 768px) {
+  .items {
+    display: flex;
+    justify-content: center;
+  }
+
+  .item-list {
+    flex-flow: row wrap;
+    justify-content: space-around;
+    max-width: 90%;
+  }
+  .item-list__image {
+    max-width: 19em;
+    background-size: cover;
+  }
+}
+@media (min-width: 1024px) {
+  .item-list__image {
+    max-width: 13em;
+    background-size: cover;
+  }
+  .item-list__title {
+    font-size: 0.9em;
+    text-align: center;
+  }
+  .item-list__image--modif {
+    max-width: 25em;
+  }
+  .item-list__description {
+    font-size: 1.2em;
+  }
+  .item-list__title--modif {
+    font-size: 1.8em;
+  }
+  .item-list__price--modif {
+    font-size: 1.8em;
+  }
+  .item-list__button {
+    font-size: 1.8em;
+  }
+}
+.feedback {
+  border: 0.3rem solid orange;
+  border-radius: 1rem;
+  border-style: dotted;
+  padding: 1rem;
+  margin: 0.5rem;
+  background-color: olive;
+}
+.feedback__icon {
+  font-size: 1.5rem;
+}
+.feedback__message {
+  display: inline;
+  color: white;
+  font-size: 1.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer {
+  display: flex;
+  align-self: flex-end;
+  background-image: url(https://www.desktopbackground.org/t/2015/12/10/1055168_rubber-ducks-illustration-vector-art-graphics_1024x1325_h.jpg);
+  background-size: contain;
+  width: 100%;
+  justify-items: center;
+  justify-content: space-evenly;
+  position: fixed;
+  bottom: 0;
+}
+.footer__title {
+  color: white;
+  align-self: center;
+  font-size: 1.25em;
+}
+
+@media (min-width: 768px) {
+  .footer {
+    width: 100%;
+  }
+  .footer__title {
+    align-self: center;
+    font-size: 1.8em;
+  }
+}
+.hide {
+  display: none;
+}
+
+/*# sourceMappingURL=index.css.map */

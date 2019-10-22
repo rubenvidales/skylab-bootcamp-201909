@@ -10,9 +10,18 @@ function handleRegister(name, surname, email, password) {
     debugger
 }
 
-// TODO login and search
+function handleLogin(email, password) {
+    debugger
+}
+
+// TODO search
+
+ReactDOM.render(<>
+    <Header />
+</>, document.getElementsByTagName('header')[0]);
 
 ReactDOM.render(<>
     <Landing onLogin={handleGoToLogin} onRegister={handleGoToRegister}  />
     <Register onRegister={handleRegister} />
-</>, document.getElementById('root'))
+    <Login onLogin={handleLogin} />
+</>, document.getElementsByTagName('main')[0])

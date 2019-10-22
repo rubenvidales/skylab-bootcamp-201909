@@ -1,6 +1,6 @@
 function Register({ onRegister }) {
-    return <section className="view register _hide">
-        <form onSubmit={function (event) {
+    return <section className="view register">
+        <form className="register__form" onSubmit={function (event) {
             event.preventDefault()
 
             const { name: { value: name }, surname: { value: surname }, email: { value: email }, password: { value: password } } = event.target

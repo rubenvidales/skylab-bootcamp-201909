@@ -1,4 +1,4 @@
-function Login({ onLogin, onBack }) {
+function Login({ onLogin, onBack,error }) {
     return <section className="view login">
         <form className="login__form" onSubmit={function (event) {
             event.preventDefault()
@@ -18,10 +18,6 @@ function Login({ onLogin, onBack }) {
             }}>Go back</a>
         </form>
 
-        <section className="feedback hide">
-            <span className="feedback__icon">🤡</span>
-            <p className="feedback__message">Come with me...</p>
-            <span className="feedback__icon">🎈</span>
-        </section>
+        {error && <Feedback message={error} />}
     </section>
 }

@@ -1,4 +1,4 @@
-function Register( {onRegister, onBack }) {
+function Register( {onRegister, onBack, error }) {
 
     return <section className="view register">
         <form className="register__form" onSubmit={function (event) {
@@ -21,10 +21,6 @@ function Register( {onRegister, onBack }) {
             }}>Go back</a>
         </form>
 
-        <section className="feedback hide">
-            <span className="feedback__icon">🤡</span>
-            <p className="feedback__message">Come with me...</p>
-            <span className="feedback__icon">🎈</span>
-        </section>
+        {error && <Feedback message={error} />}
     </section>
 }

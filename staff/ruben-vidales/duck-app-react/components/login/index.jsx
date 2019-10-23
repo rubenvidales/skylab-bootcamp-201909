@@ -1,4 +1,4 @@
-function Login({ onLogin, onBack,error }) {
+function Login({ onLogin, onBack, error }) {
     return <section className="view login">
         <form className="login__form" onSubmit={function (event) {
             event.preventDefault()

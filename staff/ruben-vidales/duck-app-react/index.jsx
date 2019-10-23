@@ -4,26 +4,19 @@ class App extends Component {
     constructor() {
         super()
 
-        this.state = { view: 'landing', error: undefined }
+        this.state = { view: 'search', error: undefined }
 
-        this.handleGoToRegister = this.handleGoToRegister.bind(this)
-        this.handleGoToLogin = this.handleGoToLogin.bind(this)
-        this.handleRegister = this.handleRegister.bind(this)
-        this.handleLogin = this.handleLogin.bind(this)
-        this.handleSearch = this.handleSearch.bind(this)
-        this.handleBackFromRegister = this.handleBackFromRegister.bind(this)
-        this.handleBackFromLogin = this.handleBackFromLogin.bind(this)
     }
 
-    handleGoToRegister() {
+    handleGoToRegister = () => {
         this.setState({ view: 'register' })
     }
 
-    handleGoToLogin() {
+    handleGoToLogin = () => {
         this.setState({ view: 'login' })
     }
 
-    handleRegister(name, surname, email, password) {
+    handleRegister = (name, surname, email, password) => {
         try {
             registerUser(name, surname, email, password, error => {
                 if (error) this.setState({ error: error.message })
@@ -34,7 +27,7 @@ class App extends Component {
         }
     }
 
-    handleLogin(email, password) {
+    handleLogin = (email, password) => {
         try {
             authenticateUser(email, password, error => {
                 if (error) this.setState({ error: error.message })
@@ -45,33 +38,32 @@ class App extends Component {
         }
     }
 
-    handleSearch(query) {
+    handleSearch = (query) => {
         try {
-            searchDucks(query, error => {
+            searchDucks(query, (error, ducks) => {
                 if (error) this.setState({ error: error.message })
-                else {}
+                else this.setState({ error: undefined, ducks })
             })
         } catch (error) {
             this.setState({ error: error.message })
         }
     }
 
-    handleBackFromRegister() {
-        this.setState({ view: 'landing', error: undefined })
+    handleDetail(id) {
+        console.log(id) // TODO show detail
     }
 
-    handleBackFromLogin() {
+    handleBackToLanding = () => {
         this.setState({ view: 'landing', error: undefined })
     }
 
     render() {
-        const { state: { view, error }, handleGoToRegister, handleGoToLogin, handleRegister, handleLogin, handleBackFromRegister, handleBackFromLogin } = this
-
+        const { state: { view, error, ducks }, handleGoToRegister, handleGoToLogin, handleRegister, handleBackToLanding, handleLogin, handleSearch, handleDetail } = this
         return <>
             {view === 'landing' && <Landing onLogin={handleGoToLogin} onRegister={handleGoToRegister} />}
-            {view === 'register' && <Register onRegister={handleRegister} onBack={handleBackFromRegister} error={error} />}
-            {view === 'login' && <Login onLogin={handleLogin} onBack={handleBackFromLogin} error={error} />}
-            {view === 'search' && <Search onSearch={this.handleSearch} />}
+            {view === 'register' && <Register onRegister={handleRegister} onBack={handleBackToLanding} error={error} />}
+            {view === 'login' && <Login onLogin={handleLogin} onBack={handleBackToLanding} error={error} />}
+            {view === 'search' && <Search onSubmit={handleSearch} results={ducks} error={error} onResultsRender={results => <Results items={results} onItemRender={item => <ResultItem item={item} key={item.id} onClick={handleDetail} />} />} />}
         </>
     }
 }

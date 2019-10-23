@@ -1,9 +1,11 @@
-function Search({ onSubmit, error }) {
+function Search({ onSubmit, results, error, onResultsRender }) {
     return <section className="ducks-panel view">
+        <h2 className="search__title">Search</h2>
+
         <form className="search__form form" onSubmit={function (event) {
             event.preventDefault()
 
-            const { query: { value: query } } = event.target
+            const query = event.target.query.value
 
             onSubmit(query)
         }}>
@@ -12,8 +14,9 @@ function Search({ onSubmit, error }) {
                 <button className="form__part-button">🔎</button>
             </div>
         </form>
-        <ul className="ducks-panel__list"></ul>
 
         {error && <Feedback message={error} />}
+
+        {results && onResultsRender(results)}
     </section>
 }

@@ -13,7 +13,7 @@ register.onSubmit = (name, surname, email, password) => {
     try {
         registerUser(name, surname, email, password, error => {
             if (error) {
-                register.feedback.render(error.message) 
+                register.feedback.render(error.message)
             } else {
                 register.hide()
                 landing.show()
@@ -82,18 +82,25 @@ results.onItemRender = () => {
     const item = new ResultItem(document.createElement('li'))
 
     item.onClick = id => {
-        retrieveDuck(id, (error, duck) => {
-            if (error) {
-                feedback.render(error.message)
-                feedback.show()
+        try {
+            retrieveDuck(id, (error, duck) => {
+                if (error) {
+                    feedback.render(error.message)
+                    feedback.show()
 
-                results.hide()
-            } else {
-                search.hide()
-                
-                detail.render(duck)
-            }
-        })
+                    results.hide()
+                } else {
+                    search.hide()
+
+                    detail.render(duck)
+                }
+            })
+        } catch (error) {
+            feedback.render(error.message)
+            feedback.show()
+
+            results.hide()
+        }
     }
 
     return item

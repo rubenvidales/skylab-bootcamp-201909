@@ -1,0 +1,13 @@
+class Feedback extends Component {
+    constructor(container) {
+        super(container)
+    }
+
+    render(text) {
+        const message = document.getElementsByClassName('feedback__message')[0]
+        message.innerText = text
+    
+    }
+
+}
+

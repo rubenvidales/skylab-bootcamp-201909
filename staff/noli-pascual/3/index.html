@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Duck App</title>
+    <link rel="stylesheet" href="style/index.css">
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
+</head>
+<body>
+    <section class="view">
+        <form class="search">
+            <span class="search__icon">🐣</span>
+            <input class="search__criteria" type="text" name="query" placeholder="criteria">
+            <button class="search__submit">🔍</button>
+        </form>
+        <ul class="results">
+        </ul>
+    </section>
+
+    <section class="view detail hide">
+        <h2 class="detail__title">Duck X</h2>
+        <img class="detail__image" src="https://fakeimg.pl/500x300/?text=Hello">
+        <p class="detail__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate neque omnis sunt dolor repellat incidunt voluptates odio eos consequatur corrupti. Accusantium porro minima molestias voluptatem dolor nobis! Perspiciatis, vero maiores!</p>
+        <a class="detail__store" href="#">Go to store</a>
+        <span class="detail__price">10€</span>
+        <a class="detail__back" href="#">Go back</a>
+    </section>
+
+    <script src="scripts/array-shuffle.js"></script>
+    <script src="scripts/helpers.js"></script>
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/business/retrieve-duck/index.js"></script>
+    <script src="scripts/business/search-ducks/index.js"></script>
+    <script src="scripts/components/search.js"></script>
+    <script src="scripts/components/results.js"></script>
+    <script src="scripts/components/result-item.js"></script>
+    <script src="scripts/components/detail.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>

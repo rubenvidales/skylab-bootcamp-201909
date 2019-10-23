@@ -1,14 +1,14 @@
-describe('logic - search ducks', function () {
-    it('should succeed on correct criteria (query)', function (done) {
+describe('logic - search ducks', function() {
+    it('should succeed on correct criteria (query)', function(done) {
         var query = 'blue';
 
-        searchDucks(query, function (error, ducks) {
+        searchDucks(query, function(error, ducks) {
             expect(error).toBeUndefined();
 
             expect(ducks).toBeDefined();
             expect(ducks.length).toBeGreaterThan(0);
 
-            ducks.forEach(function (duck) {
+            ducks.forEach(function(duck) {
                 expect(duck).toBeDefined();
                 expect(typeof duck.id).toBe('string');
                 expect(duck.id.length).toBeGreaterThan(0);
@@ -17,9 +17,9 @@ describe('logic - search ducks', function () {
                 expect(typeof duck.title).toBe('string');
                 expect(duck.title.length).toBeGreaterThan(0);
 
-                expect(duck.image).toBeDefined();
-                expect(typeof duck.image).toBe('string');
-                expect(duck.image.length).toBeGreaterThan(0);
+                expect(duck.imageUrl).toBeDefined();
+                expect(typeof duck.imageUrl).toBe('string');
+                expect(duck.imageUrl.length).toBeGreaterThan(0);
 
                 expect(duck.price).toBeDefined();
                 expect(typeof duck.price).toBe('string');
@@ -30,10 +30,10 @@ describe('logic - search ducks', function () {
         });
     });
 
-    it('should fail on incorrect criteria', function (done) {
+    it('should fail on incorrect criteria', function(done) {
         var query = 'asdfljasdf';
 
-        searchDucks(query, function (error, ducks) {
+        searchDucks(query, function(error, ducks) {
             expect(ducks).toBeUndefined();
 
             expect(error).toBeDefined();

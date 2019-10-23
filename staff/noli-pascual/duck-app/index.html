@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Duck App</title>
+    <link rel="stylesheet" href="style/index.css">
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
+</head>
+
+<body>
+    <header class = "header" >
+        <a><img class = "header__logo" src="patito.png" alt="patitas" srcset=""></a>
+        <h1 class = "header__title">DUCK APP</h1>
+        <section>
+            <p class = "header__userArea"></p>
+        </section>
+    </header>
+
+    <section class="view hide">
+        <form class = "register container">
+            
+            <input class="userName input" type="text" name="name" placeholder="enter username">
+            <input class="userSurname input" type="text" name="surname" placeholder="enter user Surname">
+            <input class="email input" type="text" name="email" placeholder="enter E-mail">
+            <input class="password input" type="password" name="password" placeholder="enter password">
+            <button type = "submit input" class="submit">Enviar</button>
+            <button class = "back-button" type = "button">Back</button>
+        </form>
+    </section>
+
+    <section class="view">
+       
+        <form class="login container">
+            <input class="login__email input" type="text" name="email" placeholder="enter E-mail">
+            <input class="login__password input" type="password" name="password" placeholder="enter password">
+            <button class="login__submit">Enviar</button>
+            <h4>Not Registered??</h4>
+            <div class="login__goRegister input">Register HERE</div>
+            
+
+        </form>
+        
+    </section>
+
+    <section class="view hide">
+        <form class="search">
+            <input class="search__criteria" type="text" name="query" placeholder="criteria">
+
+            <button class="search__submit">🔍</button>
+        </form>
+
+        <ul class="results"></ul>
+
+    </section>
+
+
+    <!-- The Modal -->
+    <section class="feedback hide">
+
+        <!-- Modal content -->
+        <div class="feedback__content">
+            
+            <span class = "feedback__close" class = "closeModal">&times;</span>
+
+            <h2>OOOPSSS!</h2>
+            <p class="feedback__message">Default error message</p>
+            
+        </div>  
+
+    </section> 
+
+
+    <section class="view detail hide">
+        <h2 class="detail__title">Duck X</h2>
+        <img class="detail__image" src="https://fakeimg.pl/500x300/?text=Hello">
+        <p class="detail__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate neque omnis
+            sunt dolor repellat incidunt voluptates odio eos consequatur corrupti. Accusantium porro minima molestias
+            voluptatem dolor nobis! Perspiciatis, vero maiores!</p>
+        <a class="detail__store" href="#">Go to store</a>
+        <span class="detail__price">10€</span>
+        <button type = "button" class = "detail__back" href="#">Back</button>
+    </section>
+
+    <script src="scripts/utils/array-shuffle.js"></script>
+    <script src="scripts/utils/fetch.js"></script>
+    <script src="scripts/utils/function-extend.js"></script>
+    <script src="scripts/logic/retrieve-duck/index.js"></script>
+    <script src="scripts/logic/search-ducks/index.js"></script>
+    <script src="scripts/logic/register-user/index.js"></script>
+    <script src="scripts/logic/authenticate-user/index.js"></script>
+    <script src="scripts/logic/retrieve-user/index.js"></script>
+    <script src="scripts/helpers/call.js"></script>
+    <script src="scripts/components/component.js"></script>
+    <script src="scripts/components/search.js"></script>
+    <script src="scripts/components/results.js"></script>
+    <script src="scripts/components/result-item.js"></script>
+    <script src="scripts/components/detail.js"></script>
+    <script src="scripts/components/feedback.js"></script>
+   
+    <script src="scripts/components/register.js"></script>
+    <script src="scripts/components/view.js"></script>
+    <script src="scripts/components/login.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>

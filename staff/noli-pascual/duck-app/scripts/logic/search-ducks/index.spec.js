@@ -17,9 +17,9 @@ describe('logic - search ducks', function () {
                 expect(typeof duck.title).toBe('string');
                 expect(duck.title.length).toBeGreaterThan(0);
 
-                expect(duck.image).toBeDefined();
-                expect(typeof duck.image).toBe('string');
-                expect(duck.image.length).toBeGreaterThan(0);
+                expect(duck.imageUrl).toBeDefined();
+                expect(typeof duck.imageUrl).toBe('string');
+                expect(duck.imageUrl.length).toBeGreaterThan(0);
 
                 expect(duck.price).toBeDefined();
                 expect(typeof duck.price).toBe('string');

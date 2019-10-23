@@ -7,41 +7,129 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/12f9d6a4c1.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./utils/style.css">
+    <link rel="stylesheet" href="./style/style.css">
     <title>Duck-App</title>
 </head>
 
 <body>
     <header class="header">
-        <img class="header__logo" src="./utils/rubber-duck.svg" alt="Duck logo">
+
+        <img class="header__logo" src="./style/rubber-duck.svg" alt="Duck logo">
         <h1>Duck-App</h1>
 
+        <section class="header__log log-bar hide">
+            <p class="log-bar__user">pepe</p>
+            <button class="log-bar__button">Sign out</button>
+        </section>
     </header>
 
-    <section class="search">
+    <section class="feedback">
+        <p class="feedback__message"></p>
 
-        <nav class="search__nav nav">
-            <form class="myForm" onsubmit="search(event)">
-                <input class="myForm__search" type="search" placeholder="Are you looking for a special Duck?"> <button> <i class="fas fa-search myForm__button" id="searchButton"></i></button>
+    </section>
+    <section class="register hide">
+        <p class="register__title">Join now:</p>
+        <form class="register__form" action="">
+            <p class="register__form__p">Name:</p>
+            <input type="text" name="name" id="name" placeholder="pepito">
+
+            <p class="register__form__p">Last name:</p>
+            <input type="text" name="lastName" id="lastName" placeholder="grillo">
+
+            <p class="register__form__p">Mail:</p>
+            <input type="email" name="mail" id="mail" placeholder="pepitogrillo@duck.com">
+
+            <p class="register__form__p">Password:</p>
+            <input type="password" name="password" id="password" placeholder="*****">
+
+            <p class="register__form__p">Age:</p>
+            <input type="number" name="age" id="age" placeholder="18">
+
+            <input type="button" class="register__form__login" value="Login">
+            <button class="register__form__register">Register</button>
+
+        </form>
+    </section>
+
+    <section class="login">
+        <p class="login__title">Please log in:</p>
+        <nav class="login__nav">
+            <form class="login__form" action="">
+                <input type="text" name="mail" id="mail" placeholder="pepitogrillo@duck.com">
+                <input type="password" name="password" id="password">
+                <input type="button" class="login__form__register" value="Register">
+                <button class="login__form__button">Login</button>
             </form>
         </nav>
 
+    </section>
+
+
+
+
+    <section class="search hide">
+        <nav class="search__nav nav">
+            <form class="myForm">
+                <input class="myForm__search" type="search" name="query" placeholder="Are you looking for a special Duck?"> <button> <i class="fas fa-search myForm__button" id="searchButton"></i></button>
+            </form>
+        </nav>
         <main class="search__main main"></main>
     </section>
 
-
-
-    <section class="result">
-        <header class="result__header header" onclick="goBack()">
-            <!-- <nav class="header__nav"> <i class="fas fa-arrow-circle-left"></i> Wanna come back?</nav> -->
+    <section class="result hide">
+        <header class="result__header header">
             <button class="header__nav"> <i class="fas fa-arrow-circle-left"></i> Wanna come back?</button>
         </header>
-
-        <main class="result__main main"> </main>
-
+        <main class="result__main main">
+            <article class="main__article article__specs">
+                <p class="article__title"></p>
+                <div class="article__specs__container">
+                    <img class="article__image">
+                    <p class="article__description"></p>
+                </div>
+                <p class="article__price"></p>
+            </article>
+        </main>
     </section>
-    <script src="./utils/main.js"></script>
 
+    <footer class="footer">
+        <summary class="footer__link"><a href="https://amsterdamduckstore.com/">Official Site!</a></summary>
+        <p class="footer__designer"><a href="https://github.com/programadopormartin/"> Designed by Martin Garcia Blanco</a></p>
+    </footer>
+
+
+
+    <!-- Utils -->
+    <script src="./scripts/utils/errors.js"></script>
+    <script src="./scripts/utils/array-shuffle.js"></script>
+    <script src="./scripts/utils/function-extend.js"></script>
+    <script src="./scripts/utils/fetch.js"></script>
+
+    <!-- Logic -->
+    <script src="./scripts/logic/retrieve-duck/index.js"></script>
+    <script src="./scripts/logic/search-ducks/index.js"></script>
+    <script src="./scripts/logic/authenticate-user/index.js"></script>
+    <script src="./scripts/logic/register/index.js"></script>
+    <script src="./scripts/logic/retrieve-user/index.js"></script>
+
+    <!-- helpers -->
+    <script src="scripts/helpers/call.js"></script>
+
+
+
+    <!-- components -->
+    <script src="./scripts/components/component.js"></script>
+    <script src="./scripts/components/log-bar.js"></script>
+    <script src="./scripts/components/feedback.js"></script>
+    <script src="./scripts/components/search.js"></script>
+    <script src="./scripts/components/result-item.js"></script>
+    <script src="./scripts/components/login.js"></script>
+    <script src="./scripts/components/register.js"></script>
+    <script src="./scripts/components/results.js"></script>
+    <script src="./scripts/components/detail.js"></script>
+
+    <script src="./scripts/helpers/call.js"></script>
+    <script src="./scripts/main.js"></script>
 </body>
 
 </html>

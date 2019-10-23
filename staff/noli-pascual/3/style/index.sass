@@ -1,0 +1,123 @@
+*
+    box-sizing: border-box
+    margin: 0
+
+// html, body
+//     height: 100%
+
+body
+    background-color: silver
+
+.show
+    diplay: block
+
+.hide
+    display: none
+
+.view
+    border: .3rem solid orange
+    border-radius: 1rem
+    border-style: dotted
+    background-color: yellow
+    width: 100vw
+    height: 100%
+    padding: 3vw
+    text-align: center
+
+.search
+    border: .3rem solid orange
+    border-radius: 1rem
+    border-style: dotted
+    padding: 1rem
+    margin: .5rem
+
+    &__icon
+        font-size: 1.5rem
+
+    &__criteria
+        border-radius: .5rem
+        padding: .5rem
+        font-size: 1rem
+    
+    &__submit
+        border-radius: .5rem
+        padding: .5rem
+
+.results
+    border: .3rem solid orange
+    border-radius: 1rem
+    border-style: dotted
+    padding: 1rem
+    margin: 0.5rem
+    list-style: none
+    colunns: 3
+
+    &__item
+        display: inline-block
+        border: .3rem solid orange
+        border-radius: 1rem
+        border-style: dotted
+        margin: 1rem
+
+.item
+    display: inline-block
+    background-color: pink
+    border: .3rem solid fuchsia
+    border-radius: 1rem
+    border-style: dotted
+    text-decoration: none
+    cursor: pointer
+    padding: .5rem
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+
+    &__title
+        color: fuchsia
+
+    &__image
+        display: block
+        border-radius: .5rem
+        margin: .5rem auto .5rem auto
+        max-width: 20vw
+
+    &__price
+        display: inline-block
+        border: .3rem solid white
+        border-radius: 1rem
+        border-style: dotted
+        color: white
+        background-color: red
+        padding: .5rem
+        font-size: 2rem
+
+.detail
+    background-color: skyblue
+    border: .3rem solid blue
+    border-radius: 1rem
+    border-style: dotted
+    text-decoration: none
+    padding: .5rem
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+
+    &__title
+        color: blue
+        font-size: 2rem
+
+    &__image
+        display: block
+        border-radius: 1rem
+        margin: .5rem auto .5rem auto
+        max-width: 80vw
+
+    &__description
+        color: blue
+
+    &__price
+        display: inline-block
+        border: .3rem solid white
+        border-radius: 1rem
+        border-style: dotted
+        color: white
+        background-color: red
+        padding: .5rem
+        font-size: 2rem
+        margin: .5rem

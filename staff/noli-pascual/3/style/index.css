@@ -1,0 +1,131 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  background-color: silver;
+}
+
+.show {
+  diplay: block;
+}
+
+.hide {
+  display: none;
+}
+
+.view {
+  border: 0.3rem solid orange;
+  border-radius: 1rem;
+  border-style: dotted;
+  background-color: yellow;
+  width: 100vw;
+  height: 100%;
+  padding: 3vw;
+  text-align: center;
+}
+
+.search {
+  border: 0.3rem solid orange;
+  border-radius: 1rem;
+  border-style: dotted;
+  padding: 1rem;
+  margin: 0.5rem;
+}
+.search__icon {
+  font-size: 1.5rem;
+}
+.search__criteria {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+.search__submit {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.results {
+  border: 0.3rem solid orange;
+  border-radius: 1rem;
+  border-style: dotted;
+  padding: 1rem;
+  margin: 0.5rem;
+  list-style: none;
+  colunns: 3;
+}
+.results__item {
+  display: inline-block;
+  border: 0.3rem solid orange;
+  border-radius: 1rem;
+  border-style: dotted;
+  margin: 1rem;
+}
+
+.item {
+  display: inline-block;
+  background-color: pink;
+  border: 0.3rem solid fuchsia;
+  border-radius: 1rem;
+  border-style: dotted;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.item__title {
+  color: fuchsia;
+}
+.item__image {
+  display: block;
+  border-radius: 0.5rem;
+  margin: 0.5rem auto 0.5rem auto;
+  max-width: 20vw;
+}
+.item__price {
+  display: inline-block;
+  border: 0.3rem solid white;
+  border-radius: 1rem;
+  border-style: dotted;
+  color: white;
+  background-color: red;
+  padding: 0.5rem;
+  font-size: 2rem;
+}
+
+.detail {
+  background-color: skyblue;
+  border: 0.3rem solid blue;
+  border-radius: 1rem;
+  border-style: dotted;
+  text-decoration: none;
+  padding: 0.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.detail__title {
+  color: blue;
+  font-size: 2rem;
+}
+.detail__image {
+  display: block;
+  border-radius: 1rem;
+  margin: 0.5rem auto 0.5rem auto;
+  max-width: 80vw;
+}
+.detail__description {
+  color: blue;
+}
+.detail__price {
+  display: inline-block;
+  border: 0.3rem solid white;
+  border-radius: 1rem;
+  border-style: dotted;
+  color: white;
+  background-color: red;
+  padding: 0.5rem;
+  font-size: 2rem;
+  margin: 0.5rem;
+}
+
+/*# sourceMappingURL=index.css.map */

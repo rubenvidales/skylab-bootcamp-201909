@@ -1,13 +1,19 @@
-function Search({ onSubmit, results, error, onResultsRender, user }) {
+function Search({ onSearch, onLogout, results, error, onResultsRender, user, id, token }) {
     return <section className="ducks-panel view">
+        <form className="search__logout-form" onSubmit={function (event) {
+            event.preventDefault()
+            onLogout()
+        }}>
+            <span className="search__user">Hi {user}!</span>
+            <button className="search__logout-button">🚪</button>
+        </form>
         <h2 className="search__title">Search</h2>
-        <h3 className="search__user">{user}</h3>
         <form className="search__form form" onSubmit={function (event) {
             event.preventDefault()
 
             const query = event.target.query.value
 
-            onSubmit(query)
+            onSearch(id, token, query)
         }}>
             <div className="form__part">
                 <input className="form__part-input" name="query" />

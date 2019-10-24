@@ -9,6 +9,7 @@ function ResultItem({ item: { id, title, image, price }, onClick }) {
             <h3 className="duck__title">{title}</h3>
             <img className="duck__image" src={image} />
             <p className="duck__price">{price}</p>
+            <p className="duck__fav">♡</p>
             </article>
         </a>
     </li>

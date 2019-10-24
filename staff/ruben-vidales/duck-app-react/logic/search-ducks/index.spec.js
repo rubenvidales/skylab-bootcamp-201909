@@ -1,8 +1,10 @@
 describe('logic - search ducks', function () {
     it('should succeed on correct criteria (query)', function (done) {
-        var query = 'blue';
+        var id = '5dadd59b0fb7b3000933c1cb'
+        var token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkYWRkNTliMGZiN2IzMDAwOTMzYzFjYiIsImlhdCI6MTU3MTkxNDE1MCwiZXhwIjoxNTcxOTE3NzUwfQ.azNieU5wyCM0LTv8c_4ZT-C_i3-GRZZLd4dES6KKFfs'
+        var query = 'blue'
 
-        searchDucks(query, function (error, ducks) {
+        searchDucks(id, token, query, function (error, ducks) {
             expect(error).toBeUndefined();
 
             expect(ducks).toBeDefined();
@@ -17,9 +19,9 @@ describe('logic - search ducks', function () {
                 expect(typeof duck.title).toBe('string');
                 expect(duck.title.length).toBeGreaterThan(0);
 
-                expect(duck.imageUrl).toBeDefined();
-                expect(typeof duck.imageUrl).toBe('string');
-                expect(duck.imageUrl.length).toBeGreaterThan(0);
+                expect(duck.image).toBeDefined();
+                expect(typeof duck.image).toBe('string');
+                expect(duck.image.length).toBeGreaterThan(0);
 
                 expect(duck.price).toBeDefined();
                 expect(typeof duck.price).toBe('string');
@@ -31,9 +33,11 @@ describe('logic - search ducks', function () {
     });
 
     it('should fail on incorrect criteria', function (done) {
+        var id = '5dadd59b0fb7b3000933c1cb'
+        var token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkYWRkNTliMGZiN2IzMDAwOTMzYzFjYiIsImlhdCI6MTU3MTkxNDE1MCwiZXhwIjoxNTcxOTE3NzUwfQ.azNieU5wyCM0LTv8c_4ZT-C_i3-GRZZLd4dES6KKFfs'
         var query = 'asdfljasdf';
 
-        searchDucks(query, function (error, ducks) {
+        searchDucks(id, token, query, function (error, ducks) {
             expect(ducks).toBeUndefined();
 
             expect(error).toBeDefined();

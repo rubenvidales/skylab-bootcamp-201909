@@ -12,7 +12,7 @@ ul {
 
 a {
   text-decoration: inherit;
-  color: inherit;
+  color: #666666;
 }
 
 h2 {
@@ -77,6 +77,13 @@ h3 {
 .search__user {
   text-align: center;
 }
+.search__logout-form {
+  text-align: center;
+  margin: 1em;
+}
+.search__logout-button {
+  margin: 0 0.5em;
+}
 
 .form {
   display: flex;
@@ -86,6 +93,9 @@ h3 {
 .form__part {
   display: flex;
   align-items: center;
+}
+.form__part-button {
+  margin: 0 0.5em;
 }
 
 .feedback {
@@ -142,6 +152,10 @@ h3 {
   width: 33%;
   font-size: 1.3em;
   font-weight: bold;
+}
+.duck__fav {
+  font-size: 2em;
+  margin: 0;
 }
 
 @media screen and (min-width: 420px) {

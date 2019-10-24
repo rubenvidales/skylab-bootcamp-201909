@@ -71,9 +71,13 @@ class App extends Component {
         }
     }
 
-    handleSearch = (query) => {
+    handleLogout = () => {
+        this.setState({ view: 'landing', error: undefined })
+    }
+
+    handleSearch = (id, token, query) => {
         try {
-            searchDucks(query, (error, ducks) => {
+            searchDucks(id, token, query, (error, ducks) => {
                 if (error) this.setState({ error: error.message })
                 else {
                     location.query = query
@@ -110,14 +114,14 @@ class App extends Component {
     }
 
     render() {
-        const { state: { view, error, ducks, duck, user, query }, handleGoToRegister, handleGoToLogin, handleRegister, handleBackToLanding, handleLogin, handleSearch, handleDetail, handleBackToSearch, handleFav } = this
+        const { state: { view, error, ducks, duck, user, query }, handleGoToRegister, handleGoToLogin, handleRegister, handleBackToLanding, handleLogin, handleLogout, handleSearch, handleDetail, handleBackToSearch, handleFav } = this
 
         return <>
             {view === 'landing' && <Landing onLogin={handleGoToLogin} onRegister={handleGoToRegister} />}
             {view === 'register' && <Register onRegister={handleRegister} onBack={handleBackToLanding} error={error} />}
             {view === 'login' && <Login onLogin={handleLogin} onBack={handleBackToLanding} error={error} />}
             {view === 'search' && <>
-                <Search onSubmit={handleSearch} results={ducks} error={error} onResultsRender={results => <Results items={results} onItemRender={item => <ResultItem item={item} key={item.id} onClick={handleDetail} onFav={handleFav} />} />} user={user} query={query} />
+                <Search onSearch={handleSearch} onLogout={handleLogout} id={sessionStorage.id} token={sessionStorage.token} results={ducks} error={error} onResultsRender={results => <Results items={results} onItemRender={item => <ResultItem item={item} key={item.id} onClick={handleDetail} onFav={handleFav} />} />} user={user} query={query} />
                 {error && <Feedback message={error} />}
             </>}
             {view === 'detail' && <Detail item={duck} onBack={handleBackToSearch} />}

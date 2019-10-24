@@ -1,20 +1,22 @@
 const { Component } = React
 
-const { id, token } = sessionStorage
-
 const { query } = location
+
+const { id, token } = sessionStorage
 
 class App extends Component {
     state = { view: id && token ? 'search' : 'landing', error: undefined, query }
 
     componentWillMount() {
-        const { id, token } = sessionStorage
-
         if (id && token)
             try {
-                retrieveUser(id, token, (error, { name }) => {
+                retrieveUser(id, token, (error, user) => {
                     if (error) this.setState({ error: error.message })
-                    else this.setState({ user: name })
+                    else {
+                        const { name } = user
+
+                        this.setState({ user: name })
+                    }
                 })
             } catch (error) {
                 this.setState({ error: error.message })
@@ -50,16 +52,22 @@ class App extends Component {
 
     handleLogin = (email, password) => {
         try {
-            authenticateUser(email, password, (error, { id, token }) => {
+            authenticateUser(email, password, (error, data) => {
                 if (error) this.setState({ error: error.message })
                 else
                     try {
+                        const { id, token } = data
+
                         sessionStorage.id = id
                         sessionStorage.token = token
 
-                        retrieveUser(id, token, (error, { name }) => {
+                        retrieveUser(id, token, (error, user) => {
                             if (error) this.setState({ error: error.message })
-                            else this.setState({ view: 'search', user: name })
+                            else {
+                                const { name } = user
+
+                                this.setState({ view: 'search', user: name })
+                            }
                         })
                     } catch (error) {
                         this.setState({ error: error.message })

@@ -15,7 +15,7 @@ class App extends Component {
     componentWillMount() {
         const { id, token } = sessionStorage
 
-        if (id && token)
+        if (id && token) 
             try {
                 retrieveUser(id, token, (error, { name }) => {
                     if (error) this.setState({ error: error.message })
@@ -72,7 +72,9 @@ class App extends Component {
     }
 
     handleLogout = () => {
-        this.setState({ view: 'landing', error: undefined })
+        delete sessionStorage.id
+        delete sessionStorage.token
+        this.setState({view: 'landing'})
     }
 
     handleSearch = (id, token, query) => {
@@ -90,9 +92,10 @@ class App extends Component {
         }
     }
 
-    handleDetail = (id) => {
+    handleDetail = (duckId) => {
+        const {id, token} = sessionStorage
         try {
-            retrieveDuck(id, (error, duck) => {
+            retrieveDuck(id, token, duckId, (error, duck) => {
                 if (error) this.setState({ error: error.message })
                 else this.setState({ view: 'detail', duck })
             })
@@ -109,8 +112,32 @@ class App extends Component {
         this.setState({ view: 'search' })
     }
 
-    handleFav = (id) => {
-        // TODO toggleFavDuck(user-id, user-token, id)
+    handleFav = (duckId) => {
+
+        const {id, token} = sessionStorage
+
+        try{
+            toogleFavDucks(id, token, duckId, error => {
+                if (error) this.setState({ error: error.message })
+                else {
+                    try {
+                        searchDucks(id, token, query, (error, ducks) => {
+                            if (error) this.setState({ error: error.message })
+                            else {
+                                location.query = query
+            
+                                this.setState({ error: undefined, ducks })
+                            }
+                        })
+                    } catch (error) {
+                        this.setState({ error: error.message })
+                    }
+                } 
+            })
+        }catch (error){
+            this.setState({ error: error.message })
+        }
+        
     }
 
     render() {
@@ -124,7 +151,7 @@ class App extends Component {
                 <Search onSearch={handleSearch} onLogout={handleLogout} id={sessionStorage.id} token={sessionStorage.token} results={ducks} error={error} onResultsRender={results => <Results items={results} onItemRender={item => <ResultItem item={item} key={item.id} onClick={handleDetail} onFav={handleFav} />} />} user={user} query={query} />
                 {error && <Feedback message={error} />}
             </>}
-            {view === 'detail' && <Detail item={duck} onBack={handleBackToSearch} />}
+            {view === 'detail' && <Detail item={duck} onBack={handleBackToSearch} onFav={handleFav} />}
         </>
     }
 }

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Breaking app</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <header class="header">
+        <img class="header__logo" src="images/logo.png" alt="logo Breaking App" />
+        <form class="header__form search-form">
+            <input class="search-form__input" type="text">
+            <button class="search-form__submit">Search</button>
+        </form>
+    </header>
+    <main>
+        <section class="landing">
+            <h3 class="landing__title">Welcome to the best Breaking Bad Wiki page 🧪</h3>
+            <p class="landing__options">Please, proceed to <a href="">Register</a> or <a href="">Login</a>.</p>
+        </section>
+        <section class="register">
+            <h2 class="register__title">Register</h2>
+            <form class="register__form">
+                <input class="register__field" type="text" name="name" placeholder="name" />
+                <input class="register__field" type="text" name="surname" placeholder="surname" />
+                <input class="register__field" type="email" name="email" placeholder="e-mail" />
+                <input class="register__field" type="password" name="password" placeholder="password" />
+                <div class="break"></div>
+                <button class="register__submit">Register me!</button>
+                <button class="register__goback">Go back</button>
+            </form>
+        </section>
+        <section class="login">
+            <h2 class="login__title">Login</h2>
+            <form class="login__form">
+                <input class="login__field" type="email" name="email" placeholder="e-mail" />
+                <input class="login__field" type="password" name="password" placeholder="password" />
+                <div class="break"></div>
+                <button class="login__submit">Go!</button>
+                <button class="login__goback">Go back</button>
+            </form>
+        </section>
+        <section class="home">
+            <button class="home__button button-characters">Characters</button>
+            <button class="home__button button-episodes">Episodes</button>
+            <article class="random-episode episode">
+                <h3 class="episode__title">Random Episode: Lorem Ipsum</h3>
+                <img class="episode__image" src="http://via.placeholder.com/300?text=season-image" alt="season image" />
+            </article>
+            <article class="random-character character">
+                <h3 class="character__title">Random Character: Lorem Ipsum</h3>
+                <img class="character__image" src="http://via.placeholder.com/300?text=season-image"
+                    alt="season image" />
+            </article>
+        </section>
+        <section class="seasons">
+            <h2 class="seasons__title">Seasons</h2>
+            <ul class="seasons__list">
+                <li class="seasons__list-item">
+                    <article class="season">
+                        <h3 class="season__title">Season 1</h3>
+                        <img class="season__image" src="http://via.placeholder.com/300?text=season-image"
+                            alt="season image" />
+                        <p class="season__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+                <li class="seasons__list-item">
+                    <article class="season">
+                        <h3 class="season__title">Season 2</h3>
+                        <img class="season__image" src="http://via.placeholder.com/300?text=season-image"
+                            alt="season image" />
+                        <p class="season__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+                <li class="seasons__list-item">
+                    <article class="season">
+                        <h3 class="season__title">Season 3</h3>
+                        <img class="season__image" src="http://via.placeholder.com/300?text=season-image"
+                            alt="season image" />
+                        <p class="season__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+                <li class="seasons__list-item">
+                    <article class="season">
+                        <h3 class="season__title">Season 4</h3>
+                        <img class="season__image" src="http://via.placeholder.com/300?text=season-image"
+                            alt="season image" />
+                        <p class="season__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+                <li class="seasons__list-item">
+                    <article class="season">
+                        <h3 class="season__title">Season 5</h3>
+                        <img class="season__image" src="http://via.placeholder.com/300?text=season-image"
+                            alt="season image" />
+                        <p class="season__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+            </ul>
+        </section>
+        <section class="episodes">
+            <h2 class="episodes__title">Episodes</h2>
+            <ul class="episodes__list">
+                <li class="episodes__list-item">
+                    <article class="episode">
+                        <h3 class="episode__title">Episode 1</h3>
+                        <img class="episode__image" src="http://via.placeholder.com/300?text=episode-image"
+                            alt="episode image" />
+                        <p class="episode__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+                <li class="episodes__list-item">
+                    <article class="episode">
+                        <h3 class="episode__title">Episode 2</h3>
+                        <img class="episode__image" src="http://via.placeholder.com/300?text=episode-image"
+                            alt="episode image" />
+                        <p class="episode__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+                <li class="episodes__list-item">
+                    <article class="episode">
+                        <h3 class="episode__title">Episode 3</h3>
+                        <img class="episode__image" src="http://via.placeholder.com/300?text=episode-image"
+                            alt="episode image" />
+                        <p class="episode__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+                <li class="episodes__list-item">
+                    <article class="episode">
+                        <h3 class="episode__title">Episode 4</h3>
+                        <img class="episode__image" src="http://via.placeholder.com/300?text=episode-image"
+                            alt="episode image" />
+                        <p class="episode__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+                <li class="episodes__list-item">
+                    <article class="episode">
+                        <h3 class="episode__title">Episode 5</h3>
+                        <img class="episode__image" src="http://via.placeholder.com/300?text=episode-image"
+                            alt="episode image" />
+                        <p class="episode__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+                <li class="episodes__list-item">
+                    <article class="episode">
+                        <h3 class="episode__title">Episode 6</h3>
+                        <img class="episode__image" src="http://via.placeholder.com/300?text=episode-image"
+                            alt="episode image" />
+                        <p class="episode__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+                <li class="episodes__list-item">
+                    <article class="episode">
+                        <h3 class="episode__title">Episode 7</h3>
+                        <img class="episode__image" src="http://via.placeholder.com/300?text=episode-image"
+                            alt="episode image" />
+                        <p class="episode__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+                <li class="episodes__list-item">
+                    <article class="episode">
+                        <h3 class="episode__title">Episode 8</h3>
+                        <img class="episode__image" src="http://via.placeholder.com/300?text=episode-image"
+                            alt="episode image" />
+                        <p class="episode__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+                <li class="episodes__list-item">
+                    <article class="episode">
+                        <h3 class="episode__title">Episode 9</h3>
+                        <img class="episode__image" src="http://via.placeholder.com/300?text=episode-image"
+                            alt="episode image" />
+                        <p class="episode__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+                <li class="episodes__list-item">
+                    <article class="episode">
+                        <h3 class="episode__title">Episode 10</h3>
+                        <img class="episode__image" src="http://via.placeholder.com/300?text=episode-image"
+                            alt="episode image" />
+                        <p class="episode__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+            </ul>
+        </section>
+        <section class="episode-detail">
+            <article class="episode-detail__bloc">
+                <h3 class="episode-detail__title">Episode Detail 1</h3>
+                <img class="episode-detail__image" src="http://via.placeholder.com/300?text=episode-image"
+                    alt="episode detail image" />
+                <p class="episode-detail__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                    blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                    saepe eum a adipisci facilis harum totam velit!</p>
+            </article>
+        </section>
+        <section class="characters">
+            <h2 class="characters__title">characters</h2>
+            <ul class="characters__list">
+                <li class="characters__list-item">
+                    <article class="character">
+                        <h3 class="character__title">character 1</h3>
+                        <img class="character__image" src="http://via.placeholder.com/300?text=character-image"
+                            alt="character image" />
+                        <p class="character__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+                <li class="characters__list-item">
+                    <article class="character">
+                        <h3 class="character__title">character 2</h3>
+                        <img class="character__image" src="http://via.placeholder.com/300?text=character-image"
+                            alt="character image" />
+                        <p class="character__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+                <li class="characters__list-item">
+                    <article class="character">
+                        <h3 class="character__title">character 3</h3>
+                        <img class="character__image" src="http://via.placeholder.com/300?text=character-image"
+                            alt="character image" />
+                        <p class="character__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+                <li class="characters__list-item">
+                    <article class="character">
+                        <h3 class="character__title">character 4</h3>
+                        <img class="character__image" src="http://via.placeholder.com/300?text=character-image"
+                            alt="character image" />
+                        <p class="character__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+                <li class="characters__list-item">
+                    <article class="character">
+                        <h3 class="character__title">character 5</h3>
+                        <img class="character__image" src="http://via.placeholder.com/300?text=character-image"
+                            alt="character image" />
+                        <p class="character__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+                <li class="characters__list-item">
+                    <article class="character">
+                        <h3 class="character__title">character 6</h3>
+                        <img class="character__image" src="http://via.placeholder.com/300?text=character-image"
+                            alt="character image" />
+                        <p class="character__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                            blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                            saepe eum a adipisci facilis harum totam velit!</p>
+                    </article>
+                </li>
+            </ul>
+        </section>
+        <section class="character-detail">
+            <article class="character-detail__bloc">
+                <h3 class="character-detail__title">character Detail 1</h3>
+                <h4 class="character-detail__nickname">character nickname</h4>
+                <img class="character-detail__image" src="http://via.placeholder.com/300?text=character-image"
+                    alt="character detail image" />
+                <h4 class="character-detail__birthday-title">Birthday:</h4>
+                <span class="character-detail__birthday-text">1-1-1900</span>
+                <h4 class="character-detail__status-title">Status:</h4>
+                <span class="character-detail__status-text">Status text</span>
+                <h4 class="character-detail__ocupation-title">Ocupation:</h4>
+                <ul class="character-detail__ocupation-list">
+                    <li class="character-detail__ocupation-item">Ocupation 1</li>
+                    <li class="character-detail__ocupation-item">Ocupation 2</li>
+                </ul>
+                <h4 class="character-detail__description-title">Description:</h4>
+                <p class="character-detail__description-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Optio
+                    blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
+                    saepe eum a adipisci facilis harum totam velit!</p>
+                <h4 class="character-detail__portayed-title">Portayed by:</h4>
+                <span class="character-detail__portrayed-text">Portayed text</span>
+            </article>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer__bloc">
+            <span class="footer__text">We are:</span>
+            <ul class="footer__list">
+                <li class="footer__list-item"><a class="footer__list-link" href="github.com/#">Isidro</a></li> -
+                <li class="footer__list-item"><a class="footer__list-link" href="github.com/#">Joan</a></li> -
+                <li class="footer__list-item"><a class="footer__list-link" href="github.com/#">Ruben</a></li>
+            </ul>
+            <span class="footer__text">from Heisenberg Dev Team</span>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+.episodes
+    &__list
+        display: flex
+        flex-wrap: wrap
+        justify-content: left
+        width: 94%
+        margin: 3%
+
+.episode
+    background-color: rgba(255,255,255,0.3)
+    border-radius: .5em
+    margin: .5em
+    &__image 
+        width: 90%
+        margin: 5%
+
+    &__description
+        width: 90%
+        margin: 5%
+
+.random-episode
+    width: 100%
+
+@media only screen and (min-width: 1000px) 
+    .random-episode
+        width: 50%
+
+    .episodes
+        &__list
+            &-item
+                width: 33%

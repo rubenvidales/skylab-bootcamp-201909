@@ -1,17 +1,5 @@
 describe('', () => {
-  
-
-   
-      call('GET', undefined, 'https://www.breakingbadapi.com/api/characters', undefined, result => {
-         if (result.error) done(new Error(result.error))
-         else {
-             const { data } = result
-             
-        }
-     })
-
        
-
    it('should type lement is correct', done => {
         
             characters(()=> {
@@ -67,45 +55,7 @@ describe('', () => {
        })
    })
 
-   describe('when fav already exists', () => {
-       beforeEach(done => {
-           call('PUT', token, `https://skylabcoders.herokuapp.com/api/user/${id}`, { favs: [dataId] }, result => {
-               result.error ? done(new Error(result.error)) : done()
-           })
-       })
-
-       it('should succeed on correct data id', done => {
-           retrievedata(id, token, dataId, (error, data) => {
-               expect(error).toBeUndefined()
    
-               expect(data).toBeDefined()
-               expect(data.id).toBe(dataId)
-   
-               expect(data.title).toBeDefined()
-               expect(typeof data.title).toBe('string')
-               expect(data.title.length).toBeGreaterThan(0)
-   
-               expect(data.nickname).toBeDefined()
-               expect(typeof data.nickname).toBe('string')
-               expect(data.nickname.length).toBeGreaterThan(0)
-   
-               expect(data.ocupation).toBeDefined()
-               expect(typeof data.ocupation).toBe('string')
-               expect(data.ocupation.length).toBeGreaterThan(0)
-   
-               expect(data.nickname).toBeDefined()
-               expect(typeof data.nickname).toBe('string')
-               expect(data.nickname.length).toBeGreaterThan(0)
-   
-               expect(data.status).toBeDefined()
-               expect(typeof data.status).toBe('string')
-               expect(data.status.length).toBeGreaterThan(0)
-   
-               expect(data.isFav).toBeTruthy()
-   
-               done()
-           })
-       })
    })
 
 })

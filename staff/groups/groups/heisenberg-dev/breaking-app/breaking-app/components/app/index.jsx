@@ -14,12 +14,18 @@ const App = (() => {
             this.setState({ view: 'login' })
         }
 
+        handleGoBackToLanding = () => {
+            this.setState({ view: 'landing' })
+        }
+
         render() {
-            const { state: { view }, handleGoToLogin, handleGoToRegister } = this
+            const { state: { view }, handleGoToLogin, handleGoToRegister, handleGoBackToLanding } = this
 
             return <>
                 {view === 'landing' && <Landing onLogin={handleGoToLogin} onRegister={handleGoToRegister} />}
-                {view === 'register' && <Register />}
+                {view === 'register' && <Register onBack={handleGoBackToLanding}/>}
+                {view === 'login' && <Login onBack={handleGoBackToLanding}/>}
+                {view === 'search' && <Search />}
             </>
         }
     }

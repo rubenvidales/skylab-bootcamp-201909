@@ -7,8 +7,8 @@ function listEpisodes(season, callback) {
         if (result.length === 0) return callback(new Error('No result for this query'))
 
         let breaking = []
-        result.forEach(function (episode) {
-            if (episode.series === 'Breaking Bad' && episode.season === season) {
+        result.map(function (episode) {
+            if (episode.series === 'Breaking Bad' && episode.season.trim() === season) {
                 breaking.push(episode)
             }
         })

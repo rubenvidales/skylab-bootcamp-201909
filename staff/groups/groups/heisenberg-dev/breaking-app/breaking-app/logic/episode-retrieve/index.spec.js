@@ -51,6 +51,9 @@ describe('logic - retrieve episode', function () {
 
         retrieveEpisodes(id, function (error, episode) {
 
+            expect(id).toBeDefined()
+            expect(typeof id).toBe('string')
+
             expect(episode).toBeUndefined();
 
             expect(error).toBeDefined();
@@ -64,19 +67,43 @@ describe('logic - retrieve episode', function () {
         })
     })
 
-    it('should fail on incorrect id or expression types', function() {
-        expect(function() { retrieveEpisodes(1); }).toThrowError(TypeError, '1 is not a string');
-        expect(function() { retrieveEpisodes(true); }).toThrowError(TypeError, 'true is not a string');
-        expect(function() { retrieveEpisodes([]); }).toThrowError(TypeError, ' is not a string');
-        expect(function() { retrieveEpisodes({}); }).toThrowError(TypeError, '[object Object] is not a string');
-        expect(function() { retrieveEpisodes(undefined); }).toThrowError(TypeError, 'undefined is not a string');
-        
-        expect(function() { retrieveEpisodes('red', 1); }).toThrowError(TypeError, '1 is not a function');
-        expect(function() { retrieveEpisodes('red', true); }).toThrowError(TypeError, 'true is not a function');
-        expect(function() { retrieveEpisodes('red', []); }).toThrowError(TypeError, ' is not a function');
-        expect(function() { retrieveEpisodes('red', {}); }).toThrowError(TypeError, '[object Object] is not a function');
-        expect(function() { retrieveEpisodes('red', undefined); }).toThrowError(TypeError, 'undefined is not a function');
-        expect(function() { retrieveEpisodes('red', null); }).toThrowError(TypeError, 'null is not a function');
-    });
+    it('should not retrieve information if the episode has an correct id (it\'s on the database) but the episode doesn\'t belong to the Breaking Bad series', function (done) {
+        let id = '100'
 
+        retrieveEpisodes(id, function (error, episode) {
+
+            expect(id).toBeDefined()
+            expect(typeof id).toBe('string')
+            expect(id.length).toBeGreaterThan(0)
+
+            expect(episode).toBeUndefined();
+
+            expect(error).toBeDefined();
+
+            expect(error.name).toBeDefined();
+            expect(typeof error.name).toBe('string');
+            expect(error.name.length).toBeGreaterThan(0);
+
+            done()
+
+        })
+    })
+
+    describe('should fail on incorrect id or expression types', function () {
+        it('should throw an error message if the id is not a string', function () {
+            expect(function () { retrieveEpisodes(1) }).toThrowError(TypeError, '1 is not a string')
+            expect(function () { retrieveEpisodes(true) }).toThrowError(TypeError, 'true is not a string')
+            expect(function () { retrieveEpisodes([]) }).toThrowError(TypeError, ' is not a string')
+            expect(function () { retrieveEpisodes({}) }).toThrowError(TypeError, '[object Object] is not a string')
+            expect(function () { retrieveEpisodes(undefined) }).toThrowError(TypeError, 'undefined is not a string')
+        })
+        it('should throw an error message if the callback is not a function', function () {
+            expect(function () { retrieveEpisodes('1', 1) }).toThrowError(TypeError, '1 is not a function')
+            expect(function () { retrieveEpisodes('1', true) }).toThrowError(TypeError, 'true is not a function')
+            expect(function () { retrieveEpisodes('1', []) }).toThrowError(TypeError, ' is not a function')
+            expect(function () { retrieveEpisodes('1', {}) }).toThrowError(TypeError, '[object Object] is not a function')
+            expect(function () { retrieveEpisodes('1', undefined) }).toThrowError(TypeError, 'undefined is not a function')
+            expect(function () { retrieveEpisodes('1', null) }).toThrowError(TypeError, 'null is not a function')
+        })
+    })
 })

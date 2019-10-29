@@ -181,6 +181,87 @@ ul {
     width: 15%;
   }
 }
+/* seasons */
+.seasons {
+  width: 94%;
+  margin: 3%;
+}
+.seasons__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.seasons__list-item {
+  width: 100%;
+}
+
+.season {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 0.5em;
+  margin: 0.5em;
+}
+.season__title {
+  width: 100%;
+}
+.season__image {
+  width: 44%;
+  margin: 3%;
+}
+.season__description {
+  width: 46%;
+  margin: 2%;
+}
+
+@media only screen and (min-width: 1000px) {
+  .seasons__list-item {
+    width: 50%;
+  }
+}
+/* episodes */
+.episodes__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  width: 94%;
+  margin: 3%;
+}
+
+.episode {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 0.5em;
+  margin: 0.5em;
+}
+.episode__image {
+  width: 90%;
+  margin: 5%;
+}
+.episode__description {
+  width: 90%;
+  margin: 5%;
+}
+
+.random-episode {
+  width: 100%;
+}
+
+@media only screen and (min-width: 1000px) {
+  .random-episode {
+    width: 50%;
+  }
+
+  .episodes__list-item {
+    width: 33%;
+  }
+}
+/* episode detail */
+.episode-detail {
+  width: 94%;
+  margin: 3%;
+}
+
 /* footer */
 .footer__bloc {
   margin: 1em;

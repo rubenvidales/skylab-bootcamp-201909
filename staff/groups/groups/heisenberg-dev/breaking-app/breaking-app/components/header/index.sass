@@ -1,0 +1,31 @@
+.header
+    &__logo
+        margin: .5em
+        max-width: 35%
+
+    &__form
+        margin: .5em
+
+.search-form
+    &__submit
+        width: 30%
+
+@media only screen and (min-width: 1000px) 
+    .header
+        &__logo
+            max-width: 20%
+
+    .search-form
+        &__input
+            width: 42%
+
+@media only screen and (min-width: 1920px) 
+    .search-form
+        &__input
+            width: 30%
+        &__submit
+            width: 15%
+
+    .header
+        &__logo
+            max-width: 15%

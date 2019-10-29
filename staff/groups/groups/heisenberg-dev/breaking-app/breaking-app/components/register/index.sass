@@ -1,0 +1,38 @@
+.register
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    &__title
+        width: 100%
+    &__form
+        display: flex
+        flex-wrap: wrap
+        justify-content: center
+        margin-bottom: .5em
+
+
+    &__field
+        width: 90%
+        margin: .5em
+
+    &__submit,
+    &__goback
+        width: 40%
+
+@media only screen and (min-width: 1000px) 
+    .register
+        &__field
+            width: 42%
+
+        &__submit,
+        &__goback
+            width: 30%
+
+@media only screen and (min-width: 1920px) 
+    .register
+        &__field
+            width: 18%
+
+        &__submit,
+        &__goback
+            width: 15%

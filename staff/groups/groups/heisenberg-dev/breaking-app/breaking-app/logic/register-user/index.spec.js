@@ -1,4 +1,4 @@
-describe('LOGIC - register user', () => {
+describe('logic - register user', () => {
     let name, surname, email, password
 
     beforeEach(() => {

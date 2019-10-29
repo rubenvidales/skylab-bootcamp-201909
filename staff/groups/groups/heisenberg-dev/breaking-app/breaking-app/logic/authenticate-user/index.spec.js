@@ -1,4 +1,4 @@
-describe('LOGIC - authenticate user', () => {
+describe('logic - authenticate user', () => {
     let name, surname, email, password
 
     beforeEach(done => {

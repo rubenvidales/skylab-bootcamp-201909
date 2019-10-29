@@ -1,10 +1,9 @@
-describe('LOGIC - Retrieve character details', () => {
+describe('logic - Retrieve character details', () => {
     it('Retrieve the details of a character by id', done =>{
         const id = '1';
         retrieveCharDetails(id, (error, result) =>{
             expect(error).toBeUndefined()
             expect(result).toBeDefined()
-            debugger
             expect(result.name.length).toBeGreaterThan(0)
             done()
         })

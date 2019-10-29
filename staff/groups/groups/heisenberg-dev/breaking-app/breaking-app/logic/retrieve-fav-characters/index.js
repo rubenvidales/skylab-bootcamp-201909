@@ -10,22 +10,6 @@ function retrieveFavCharacters(id, token, callback) {
 
         const { data: { favChars = [] } } = result
 
-        let counter = 0, error
-
-        if (favChars.length)
-            for (let i = 0; i < favChars.length && !error; i++) {
-                call('GET', undefined, `https://www.breakingbadapi.com/api/characters/${favChars[i]}`, undefined, result2 => {
-                    if (result2.error) return callback(error = new Error(result2.error))
-
-                    result2.image = result2.imageUrl
-
-                    delete result2.imageUrl
-
-                    favChars[i] = result2
-
-                    if (++counter === favChars.length) callback(undefined, favChars)
-                })
-            }
-        else callback(undefined, favChars)
+        callback(undefined, favChars)
     })
 }

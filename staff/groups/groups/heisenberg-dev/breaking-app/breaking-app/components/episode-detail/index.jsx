@@ -1,9 +1,9 @@
-function EpisodeDetail ({ episodedetail: {season, episode, title, air_date, characters}, onBackEpisodes, onBackSeasons }) {
+function EpisodeDetail ({ episodedetail: {season, episode, title, imageUrl, air_date, characters}, onBackEpisodes, onBackSeasons }) {
     return <section className="episode-detail">
         <article className="episode-detail__bloc">
             <p className="episode-detail__description">Season {season}, Episode {episode}</p>
             <h3 className="episode-detail__title">{title}</h3>
-            <img className="episode-detail__image" src="http://via.placeholder.com/300?text=episode-image"
+            <img className="episode-detail__image" src={imageUrl}
                 alt="episode detail image" />
             <p className="episode-detail__description">Air Date: {air_date}</p>
             <p className="episode-detail__description">Character List:</p>

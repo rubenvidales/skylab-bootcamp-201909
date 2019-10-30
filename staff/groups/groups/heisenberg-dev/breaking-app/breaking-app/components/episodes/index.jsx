@@ -15,7 +15,7 @@ function EpisodesList({ episodes, goToEpisode, onBackSeasons, onBackHome }) {
     </section>
 }
 
-function Episodes({ episode: { episode_id, title, episode }, goToEpisode }) {
+function Episodes({ episode: { episode_id, title, episode, imageUrl }, goToEpisode }) {
     return <li className="episodes__list-item">
         <article className="episode" onClick={event => {
             event.preventDefault()
@@ -23,7 +23,7 @@ function Episodes({ episode: { episode_id, title, episode }, goToEpisode }) {
         }}>
             <p className="episode__description">Episode {episode}</p>
             <h3 className="episode__title">{title}</h3>
-            <img className="episode__image" src="http://via.placeholder.com/300?text=episode-image"
+            <img className="episode__image" src={imageUrl}
                 alt="episode image" />
             <p className="episode__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
                 blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus

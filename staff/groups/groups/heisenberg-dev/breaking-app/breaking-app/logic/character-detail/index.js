@@ -6,6 +6,7 @@ function retrieveCharDetails(id, callback) {
     call('GET', undefined, 'https://www.breakingbadapi.com/api/characters/' + id, undefined, (result) => {
         if (result.name == 'error') return callback(new Error('Incorrect query'))
         if (result.length === 0) return callback(new Error('No result for this query'))
+
         callback(undefined, result[0])
     })
 }

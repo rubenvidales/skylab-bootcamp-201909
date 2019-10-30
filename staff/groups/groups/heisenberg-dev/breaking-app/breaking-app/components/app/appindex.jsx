@@ -116,9 +116,10 @@ const App = (() => {
             try {
                 const { id, token } = sessionStorage
 
-                searchCharacters(id, token, query, (error, character)=>{
+                searchCharacters(id, token, query, (error, item)=>{
                     if (error) return this.setState({ error: error.message })
-                    this.setState({ query, error: undefined, character })
+                    //this.setState({ query, error: undefined, character })
+                    else this.setState({ view: 'character-detail', item })
                 })
             } catch (error) {
                 this.setState({ error: error.message })
@@ -138,28 +139,24 @@ const App = (() => {
         }
         handleOnClickCharacter = char_id => {
             retrieveCharDetails(char_id, (error, item) => {
-                if (error) this.setState({ error: error.message })
-                else this.setState({ view: 'character-detail', item })
+                if (error) {
+                    this.setState({ error: error.message })
+                }else {
+                    console.log(item)
+                    this.setState({ view: 'character-detail', item })
+                }
             })
         }
 
         render() {
-<<<<<<< HEAD:staff/groups/groups/heisenberg-dev/breaking-app/breaking-app/components/app/appindex.jsx
-            const { state: { view, user, episodes, episodedetail }, handleGoToLogin, handleGoToRegister, handleGoBackToLanding, handleGoToProfile, handleGoToSearch, handleRegister, handleLogin, handleLogout, handleProfile, handleRetrieveUser, handleGoBackToHome, handleGoBackToSeasons, handleGoBackToEpisodes, handleGoToSeason, handleGoToEpisode, handleSearch } = this
-=======
 
-            const { state: { view, user, episodes, episodedetail, items, item }, handleGoToLogin, handleGoToRegister, handleGoBackToLanding, handleGoToProfile, handleGoToSearch, handleRegister, handleLogin, handleLogout, handleProfile, handleRetrieveUser, handleGoBackToHome, handleGoBackToSeasons, handleGoBackToEpisodes, handleGoToSeason, handleGoToEpisode, handleGoToCharacters, handleOnClickCharacter } = this
->>>>>>> breaking-app-develop:staff/groups/groups/heisenberg-dev/breaking-app/breaking-app/components/app/index.jsx
+            const { state: { view, user, episodes, episodedetail, items, item }, handleGoToLogin, handleGoToRegister, handleGoBackToLanding, handleGoToProfile, handleGoToSearch, handleRegister, handleLogin, handleLogout, handleProfile, handleRetrieveUser, handleGoBackToHome, handleGoBackToSeasons, handleGoBackToEpisodes, handleGoToSeason, handleGoToEpisode, handleGoToCharacters, handleOnClickCharacter, handleSearch } = this
 
             return <>
                 {view === 'landing' && <Landing onLogin={handleGoToLogin} onRegister={handleGoToRegister} />}
                 {view === 'register' && <Register onBack={handleGoBackToLanding} onRegister={handleRegister} />}
                 {view === 'login' && <Login onBack={handleGoBackToLanding} onLogin={handleLogin} />}
-<<<<<<< HEAD:staff/groups/groups/heisenberg-dev/breaking-app/breaking-app/components/app/appindex.jsx
-                {view === 'search' && <Search user={user} onEdit={handleGoToProfile} onLogout={handleLogout} onSubmit={handleSearch} />}
-=======
-                {view === 'search' && <Search user={user} onEdit={handleGoToProfile} onLogout={handleLogout} onBackSeasons={handleGoBackToSeasons} onBackCharacters={handleGoToCharacters}  />}
->>>>>>> breaking-app-develop:staff/groups/groups/heisenberg-dev/breaking-app/breaking-app/components/app/index.jsx
+                {view === 'search' && <Search user={user} onEdit={handleGoToProfile} onLogout={handleLogout} onBackSeasons={handleGoBackToSeasons} onBackCharacters={handleGoToCharacters} onSubmit={handleSearch}  />}
                 {view === 'profile' && <Profile onBack={handleGoToSearch} onEdit={handleProfile} data={handleRetrieveUser} />}
                 {view === 'characters' && <CharacterResults items={items} onBack={handleGoToSearch} onClickCharacter={handleOnClickCharacter} />}
                 {view === 'character-detail' && <CharacterDetail item={item} onBackCharacters={handleGoToCharacters} onBack={handleGoToSearch} />}

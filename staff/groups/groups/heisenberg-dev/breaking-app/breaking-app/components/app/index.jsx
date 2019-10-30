@@ -5,7 +5,7 @@ const App = (() => {
     const { id, token } = sessionStorage
 
     return class extends Component {
-        state = { view: 'search', episodes: null, episodedetail: null, items: null, item: null }
+        state = { view: 'landing', episodes: null, episodedetail: null, items: null, item: null }
 
         handleGoToRegister = () => {
             this.setState({ view: 'register' })

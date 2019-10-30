@@ -56,3 +56,8 @@ Jasmine Screenshot
 ## Errors and Bugs Founded
 
 The 'season' property of the object of the last episode of the first season it's not correctly expressed, because has a space at the beginning of the string, which differs with the rest of the arrays. For this reason, it doesn't appear in the list of the episodes of the first season.
+
+## Thanks to
+
++ José, Jorge & Manu for their help
++ Martín for their explanations of the The Movie DB 

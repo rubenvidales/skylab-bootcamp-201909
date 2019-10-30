@@ -3,7 +3,7 @@ describe('logic - retrieve episode', function () {
     it('should retrieve information if the episode has an correct id', function (done) {
         let id = '1'
 
-        retrieveEpisodes(id, function (error, episode) {
+        retrieveEpisode(id, function (error, episode) {
 
             expect(id).toBeDefined()
             expect(typeof id).toBe('string')
@@ -41,6 +41,10 @@ describe('logic - retrieve episode', function () {
             expect(typeof episode.series).toBe('string')
             expect(episode.series.length).toBeGreaterThan(0)
 
+            expect(episode.imageUrl).toBeDefined()
+            expect(typeof episode.imageUrl).toBe('string')
+            expect(episode.imageUrl.length).toBeGreaterThan(0)
+
             done()
 
         })
@@ -49,7 +53,7 @@ describe('logic - retrieve episode', function () {
     it('should not retrieve information if the episode has an incorrect id', function (done) {
         let id = 'a'
 
-        retrieveEpisodes(id, function (error, episode) {
+        retrieveEpisode(id, function (error, episode) {
 
             expect(id).toBeDefined()
             expect(typeof id).toBe('string')
@@ -70,7 +74,7 @@ describe('logic - retrieve episode', function () {
     it('should not retrieve information if the episode has an correct id (it\'s on the database) but the episode doesn\'t belong to the Breaking Bad series', function (done) {
         let id = '100'
 
-        retrieveEpisodes(id, function (error, episode) {
+        retrieveEpisode(id, function (error, episode) {
 
             expect(id).toBeDefined()
             expect(typeof id).toBe('string')

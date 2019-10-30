@@ -84,15 +84,21 @@ const App = (() => {
             this.setState({ view: 'landing' })
         }
 
+        handleRetrieveUser = () => {
+            //TODO
+            return retrieveUser(id)
+            
+        }
+
         render() {
-            const { state: { view, user }, handleGoToLogin, handleGoToRegister, handleGoBackToLanding, handleGoToProfile, handleGoToSearch, handleRegister, handleLogin, handleLogout, handleProfile } = this
+            const { state: { view, user }, handleGoToLogin, handleGoToRegister, handleGoBackToLanding, handleGoToProfile, handleGoToSearch, handleRegister, handleLogin, handleLogout, handleProfile, handleRetrieveUser } = this
 
             return <>
                 {view === 'landing' && <Landing onLogin={handleGoToLogin} onRegister={handleGoToRegister} />}
                 {view === 'register' && <Register onBack={handleGoBackToLanding} onRegister={handleRegister} />}
                 {view === 'login' && <Login onBack={handleGoBackToLanding} onLogin={handleLogin} />}
                 {view === 'search' && <Search user={user} onEdit={handleGoToProfile} onLogout={handleLogout} />}
-                {view === 'profile' && <Profile onBack={handleGoToSearch} onEdit={handleProfile} />}
+                {view === 'profile' && <Profile onBack={handleGoToSearch} onEdit={handleProfile} data={handleRetrieveUser} />}
             </>
         }
     }

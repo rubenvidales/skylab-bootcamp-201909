@@ -142,7 +142,6 @@ const App = (() => {
                 if (error) {
                     this.setState({ error: error.message })
                 }else {
-                    console.log(item)
                     this.setState({ view: 'character-detail', item })
                 }
             })

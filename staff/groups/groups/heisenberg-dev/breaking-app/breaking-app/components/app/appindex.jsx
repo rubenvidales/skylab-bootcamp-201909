@@ -110,6 +110,19 @@ const App = (() => {
             this.setState({ view: 'landing' })
         }
 
+        handleSearch = query => {
+            try {
+                const { id, token } = sessionStorage
+
+                searchCharacters(id, token, query, (error, character)=>{
+                    if (error) return this.setState({ error: error.message })
+                    this.setState({ query, error: undefined, character })
+                })
+            } catch (error) {
+                this.setState({ error: error.message })
+            }
+        }
+
         handleRetrieveUser = () => {
             //TODO
             return retrieveUser(id)
@@ -117,13 +130,13 @@ const App = (() => {
         }
 
         render() {
-            const { state: { view, user, episodes, episodedetail }, handleGoToLogin, handleGoToRegister, handleGoBackToLanding, handleGoToProfile, handleGoToSearch, handleRegister, handleLogin, handleLogout, handleProfile, handleRetrieveUser, handleGoBackToHome, handleGoBackToSeasons, handleGoBackToEpisodes, handleGoToSeason, handleGoToEpisode } = this
+            const { state: { view, user, episodes, episodedetail }, handleGoToLogin, handleGoToRegister, handleGoBackToLanding, handleGoToProfile, handleGoToSearch, handleRegister, handleLogin, handleLogout, handleProfile, handleRetrieveUser, handleGoBackToHome, handleGoBackToSeasons, handleGoBackToEpisodes, handleGoToSeason, handleGoToEpisode, handleSearch } = this
 
             return <>
                 {view === 'landing' && <Landing onLogin={handleGoToLogin} onRegister={handleGoToRegister} />}
                 {view === 'register' && <Register onBack={handleGoBackToLanding} onRegister={handleRegister} />}
                 {view === 'login' && <Login onBack={handleGoBackToLanding} onLogin={handleLogin} />}
-                {view === 'search' && <Search user={user} onEdit={handleGoToProfile} onLogout={handleLogout} />}
+                {view === 'search' && <Search user={user} onEdit={handleGoToProfile} onLogout={handleLogout} onSubmit={handleSearch} />}
                 {view === 'profile' && <Profile onBack={handleGoToSearch} onEdit={handleProfile} data={handleRetrieveUser} />}
                 {view === 'seasons' && <Seasons goToSeason={handleGoToSeason} onBackHome={handleGoBackToHome} />}
                 {view === 'episodes' && <EpisodesList episodes={episodes} goToEpisode={handleGoToEpisode} onBackSeasons={handleGoBackToSeasons} onBackHome={handleGoBackToHome} />}

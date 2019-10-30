@@ -20,4 +20,14 @@ describe('logic - season retrieve', function () {
             done()
         })
     })
+
+/*     it('should retrieve error if the season does not exists', () => {
+        let season = '21'
+        expect(() => seasonRetrieve(season, ()=>{} )).toThrowError(NotFoundError, 'resource not found')
+    }) */
+
+    it('should retrieve error if the season parameter is not valid', () => {
+        let season = ''
+        expect(() => seasonRetrieve(season)).toThrowError(ContentError, 'season is empty or blank')
+    })
 })

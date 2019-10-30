@@ -1,6 +1,4 @@
-
-
-function Search({ user, onEdit, onLogout, onBackCharacters, onBackSeasons, items }) {
+function Search({ user, onEdit, onLogout, onSubmit, onBackCharacters, onBackSeasons, items }) {
 
     return <section className="search">
 
@@ -18,10 +16,14 @@ function Search({ user, onEdit, onLogout, onBackCharacters, onBackSeasons, items
 
         }}>Log out</button>
 
-        <form className="search__form">
+        <form className="search__form" onSubmit={event => {
+            event.preventDefault()
 
-            <input className="search__form-input" type="text" />
+            const query = event.target.query.value
 
+            onSubmit(query)
+        }}>
+            <input className="search__form-input" type="text" name="query"/>
             <button className="search__form-submit">Search</button>
 
         </form>

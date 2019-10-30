@@ -5,7 +5,7 @@ const App = (() => {
 
     return class extends Component {
 
-        state = { view: 'seasons', episodes: null, episodedetail: null }
+        state = { view: 'landing', episodes: null, episodedetail: null }
 
         handleGoToRegister = () => {
             this.setState({ view: 'register' })

@@ -1,5 +1,9 @@
 function Seasons({ goToSeason, onBackHome }) {
     return <section className="seasons">
+        <button className="register__goback" onClick={event => { // cambiar class
+            event.preventDefault()
+            onBackHome()
+        }}>Go back to Search</button>
         <h2 className="seasons__title">Seasons</h2>
         <ul className="seasons__list">
             <li className="seasons__list-item">
@@ -68,9 +72,5 @@ function Seasons({ goToSeason, onBackHome }) {
                 </article>
             </li>
         </ul>
-        <button className="register__goback" onClick={event => { // cambiar class
-            event.preventDefault()
-            onBackHome()
-        }}>Go back to Home</button>
     </section>
 }

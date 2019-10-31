@@ -5,7 +5,7 @@ const App = (() => {
     const { id, token } = sessionStorage
 
     return class extends Component {
-        state = { view: 'search', episodes: null, episodedetail: null, items: null, item: null, seasons: null}
+        state = { view: 'landing', episodes: null, episodedetail: null, items: null, item: null, seasons: null}
 
         handleGoToRegister = () => {
             this.setState({ view: 'register' })
@@ -24,9 +24,9 @@ const App = (() => {
         handleGoBackToHome = () => {
             this.setState({ view: 'search' })
         }
-        //
-        handleGoBackToSeasons = season_number => {
-            seasonRetrieve(season_number, (error, seasons) => {
+        // //
+        handleGoBackToSeasons = () => {
+            seasonRetrieve((error, seasons) => {
                 if (error) this.setState({ error: error.message })
                 else this.setState({ view: 'seasons', seasons })
             })
@@ -34,7 +34,7 @@ const App = (() => {
         // handleGoBackToSeasons = () => {
         //     this.setState({ view: 'seasons' })
         // }
-        //
+        
         handleGoBackToEpisodes = () => {
             this.setState({ view: 'episodes' })
         }
@@ -124,7 +124,6 @@ const App = (() => {
 
                 searchCharacters(id, token, query, (error, item)=>{
                     if (error) return this.setState({ error: error.message })
-                    //this.setState({ query, error: undefined, character })
                     else this.setState({ view: 'character-detail', item })
                 })
             } catch (error) {
@@ -138,13 +137,13 @@ const App = (() => {
         }
 
         handleGoToCharacters = () => {
-            listCharacters((error, items) => {
+            listCharacters(id, token, (error, items) => {
                 if (error) this.setState({ error: error.message })
                 else this.setState({ view: 'characters', items })
             })
         }
-        handleOnClickCharacter = char_id => {
-            retrieveCharDetails(char_id, (error, item) => {
+        handleOnClickCharacter = charId => {
+            retrieveCharDetails(id, token, charId, (error, item) => {
                 if (error) {
                     this.setState({ error: error.message })
                 }else {
@@ -153,9 +152,29 @@ const App = (() => {
             })
         }
 
+        handleFavCharacter = (charId, origin) => {
+            try {
+                const {id, token } = sessionStorage
+                
+                favCharacterToogle(id, token, charId.toString(), error => {
+                    if (error) return this.setState({ error: error.message })
+                    else{
+                        if(origin === undefined){
+                            this.handleGoToCharacters()
+                        }else {
+                            this.handleOnClickCharacter(charId)
+                        }
+                    }
+                })
+            } catch (error) {
+                console.error(error.message)
+                this.setState({ error: error.message })
+            }
+        }
+
         render() {
 
-            const { state: { view, user, episodes, episodedetail, items, item, seasons }, handleGoToLogin, handleGoToRegister, handleGoBackToLanding, handleGoToProfile, handleGoToSearch, handleRegister, handleLogin, handleLogout, handleProfile, handleRetrieveUser, handleGoBackToHome, handleGoBackToSeasons, handleGoBackToEpisodes, handleGoToSeason, handleGoToEpisode, handleGoToCharacters, handleOnClickCharacter, handleSearch } = this
+            const { state: { view, user, episodes, episodedetail, items, item, seasons }, handleGoToLogin, handleGoToRegister, handleGoBackToLanding, handleGoToProfile, handleGoToSearch, handleRegister, handleLogin, handleLogout, handleProfile, handleRetrieveUser, handleGoBackToHome, handleGoBackToSeasons, handleGoBackToEpisodes, handleGoToSeason, handleGoToEpisode, handleGoToCharacters, handleOnClickCharacter, handleSearch, handleFavCharacter } = this
 
             return <>
                 {view === 'landing' && <Landing onLogin={handleGoToLogin} onRegister={handleGoToRegister} />}
@@ -163,8 +182,8 @@ const App = (() => {
                 {view === 'login' && <Login onBack={handleGoBackToLanding} onLogin={handleLogin} />}
                 {view === 'search' && <Search user={user} onEdit={handleGoToProfile} onLogout={handleLogout} onBackSeasons={handleGoBackToSeasons} onBackCharacters={handleGoToCharacters} onSubmit={handleSearch}  />}
                 {view === 'profile' && <Profile onBack={handleGoToSearch} onEdit={handleProfile} data={handleRetrieveUser} />}
-                {view === 'characters' && <CharacterResults items={items} onBack={handleGoToSearch} onClickCharacter={handleOnClickCharacter} />}
-                {view === 'character-detail' && <CharacterDetail item={item} onBackCharacters={handleGoToCharacters} onBack={handleGoToSearch} />}
+                {view === 'characters' && <CharacterResults items={items} onBack={handleGoToSearch} onClickCharacter={handleOnClickCharacter} onFavCharacter={handleFavCharacter} />}
+                {view === 'character-detail' && <CharacterDetail item={item} onBackCharacters={handleGoToCharacters} onBack={handleGoToSearch} onFav={handleFavCharacter}/>}
                 {view === 'seasons' && <Seasons seasons={seasons} goToSeason={handleGoToSeason} onBackHome={handleGoBackToHome} />}
                 {view === 'episodes' && <EpisodesList episodes={episodes} goToEpisode={handleGoToEpisode} onBackSeasons={handleGoBackToSeasons} onBackHome={handleGoBackToHome} />}
                 {view === 'episode-detail' && <EpisodeDetail episodedetail={episodedetail} onBackEpisodes={handleGoBackToEpisodes} onBackSeasons={handleGoBackToSeasons} />}

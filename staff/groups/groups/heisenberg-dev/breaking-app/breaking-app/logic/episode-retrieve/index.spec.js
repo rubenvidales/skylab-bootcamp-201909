@@ -45,6 +45,10 @@ describe('logic - retrieve episode', function () {
             expect(typeof episode.imageUrl).toBe('string')
             expect(episode.imageUrl.length).toBeGreaterThan(0)
 
+            expect(episode.plot).toBeDefined()
+            expect(typeof episode.plot).toBe('string')
+            expect(episode.plot.length).toBeGreaterThan(0)
+
             done()
 
         })

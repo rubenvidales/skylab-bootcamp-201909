@@ -1,7 +1,21 @@
+/**
+ * component tha paind on character an yours details
+ * @param {string} name of character
+ * @param {String} Birthday a chracter birthday
+ * @param {Array} occupation List of character's known occupation
+ * @param {string} img Character's image
+ * @param {string} Status Are they alive (or did Heisenberg get to them??)
+ * @param {String} nickname A known nickname they are referred as.
+ * @param {String} portrayed The actor / actress that portrayed the character
+ * @param {boolean} isFav if event click true o false
+ * @param {function} onClickCharacter event on click picture
+ * @param {function} onFav event on click image faouvorites
+ *  
+ */
+
 function CharacterDetail({ item: { name, birthday, occupation, img, status, nickname, portrayed, isFav }, onBackCharacters, onBack, onFav }) {
    return <section className="character-detail">
       <article className="character-detail__bloc">
-         
          <h3 className="character-detail__title">{name}</h3>
          <h4 className="character-detail__nickname">{nickname}</h4>
          <img className="character-detail__image" src={img} alt="character detail image" />
@@ -24,11 +38,10 @@ function CharacterDetail({ item: { name, birthday, occupation, img, status, nick
       <span className="detail__fav" onClick={event => {
          event.preventDefault()
          event.stopPropagation()
-
          onFav(id)
       }}>{isFav ? '🧡' : '💔'}</span>
       <p>
-      <button className="register__goback" onClick={event => { // cambiar class
+      <button className="register__goback" onClick={event => { 
             event.preventDefault()
             onBackCharacters() 
         }}>Go back to Characters</button>

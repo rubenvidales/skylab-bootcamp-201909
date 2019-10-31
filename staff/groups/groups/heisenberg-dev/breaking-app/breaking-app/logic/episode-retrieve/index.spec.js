@@ -1,4 +1,4 @@
-fdescribe('logic - retrieve episode', function () {
+describe('logic - retrieve episode', function () {
 
     it('should retrieve information if the episode has an correct id', function (done) {
         let id = '1'

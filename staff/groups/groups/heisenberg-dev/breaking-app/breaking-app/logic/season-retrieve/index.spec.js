@@ -1,4 +1,4 @@
-describe('logic - season retrieve', function () {
+fdescribe('logic - season retrieve', function () {
     it('should retrieve the information of a season', function (done) {
         let season = '1'
 

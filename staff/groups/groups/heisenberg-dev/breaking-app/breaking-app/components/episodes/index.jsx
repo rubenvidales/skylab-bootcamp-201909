@@ -11,7 +11,7 @@ function EpisodesList({ episodes, goToEpisode, onBackSeasons, onBackHome }) {
         <button className="register__goback" onClick={event => { // cambiar class
             event.preventDefault()
             onBackHome()
-        }}>Go back to Home</button>
+        }}>Go back to Search</button>
     </section>
 }
 

@@ -5,7 +5,7 @@ const App = (() => {
     const { id, token } = sessionStorage
 
     return class extends Component {
-        state = { view: 'landing', episodes: null, episodedetail: null, items: null, item: null }
+        state = { view: 'search', episodes: null, episodedetail: null, items: null, item: null, seasons: null}
 
         handleGoToRegister = () => {
             this.setState({ view: 'register' })
@@ -24,11 +24,17 @@ const App = (() => {
         handleGoBackToHome = () => {
             this.setState({ view: 'search' })
         }
-
-        handleGoBackToSeasons = () => {
-            this.setState({ view: 'seasons' })
+        //
+        handleGoBackToSeasons = season_number => {
+            seasonRetrieve(season_number, (error, seasons) => {
+                if (error) this.setState({ error: error.message })
+                else this.setState({ view: 'seasons', seasons })
+            })
         }
-
+        // handleGoBackToSeasons = () => {
+        //     this.setState({ view: 'seasons' })
+        // }
+        //
         handleGoBackToEpisodes = () => {
             this.setState({ view: 'episodes' })
         }
@@ -131,7 +137,7 @@ const App = (() => {
             return retrieveUser(id)
         }
 
-        handleGoToCharacters = items => {
+        handleGoToCharacters = () => {
             listCharacters((error, items) => {
                 if (error) this.setState({ error: error.message })
                 else this.setState({ view: 'characters', items })
@@ -149,7 +155,7 @@ const App = (() => {
 
         render() {
 
-            const { state: { view, user, episodes, episodedetail, items, item }, handleGoToLogin, handleGoToRegister, handleGoBackToLanding, handleGoToProfile, handleGoToSearch, handleRegister, handleLogin, handleLogout, handleProfile, handleRetrieveUser, handleGoBackToHome, handleGoBackToSeasons, handleGoBackToEpisodes, handleGoToSeason, handleGoToEpisode, handleGoToCharacters, handleOnClickCharacter, handleSearch } = this
+            const { state: { view, user, episodes, episodedetail, items, item, seasons }, handleGoToLogin, handleGoToRegister, handleGoBackToLanding, handleGoToProfile, handleGoToSearch, handleRegister, handleLogin, handleLogout, handleProfile, handleRetrieveUser, handleGoBackToHome, handleGoBackToSeasons, handleGoBackToEpisodes, handleGoToSeason, handleGoToEpisode, handleGoToCharacters, handleOnClickCharacter, handleSearch } = this
 
             return <>
                 {view === 'landing' && <Landing onLogin={handleGoToLogin} onRegister={handleGoToRegister} />}
@@ -159,7 +165,7 @@ const App = (() => {
                 {view === 'profile' && <Profile onBack={handleGoToSearch} onEdit={handleProfile} data={handleRetrieveUser} />}
                 {view === 'characters' && <CharacterResults items={items} onBack={handleGoToSearch} onClickCharacter={handleOnClickCharacter} />}
                 {view === 'character-detail' && <CharacterDetail item={item} onBackCharacters={handleGoToCharacters} onBack={handleGoToSearch} />}
-                {view === 'seasons' && <Seasons goToSeason={handleGoToSeason} onBackHome={handleGoBackToHome} />}
+                {view === 'seasons' && <Seasons seasons={seasons} goToSeason={handleGoToSeason} onBackHome={handleGoBackToHome} />}
                 {view === 'episodes' && <EpisodesList episodes={episodes} goToEpisode={handleGoToEpisode} onBackSeasons={handleGoBackToSeasons} onBackHome={handleGoBackToHome} />}
                 {view === 'episode-detail' && <EpisodeDetail episodedetail={episodedetail} onBackEpisodes={handleGoBackToEpisodes} onBackSeasons={handleGoBackToSeasons} />}
             </>

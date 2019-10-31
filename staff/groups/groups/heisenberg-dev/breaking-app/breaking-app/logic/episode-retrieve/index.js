@@ -8,7 +8,7 @@ function retrieveEpisode(id, callback) {
 
         if (result[0].series === 'Breaking Bad') {
 
-            const url = 'https://api.themoviedb.org/3/tv/1396/season/' + result[0].season.trim() + '/episode/' + result[0].episode.trim() + '/images?api_key=df85ebd060b729d2c1cd44580c111dea'
+            const url = 'https://api.themoviedb.org/3/tv/1396/season/' + result[0].season.trim() + '/episode/' + result[0].episode.trim() + '?api_key=df85ebd060b729d2c1cd44580c111dea'
 
             call('GET', undefined, url, undefined, result2 => {
                 if (result.name == 'error') return callback(new Error('Incorrect query'))
@@ -16,7 +16,8 @@ function retrieveEpisode(id, callback) {
 
                 let episode = result[0];
 
-                if (result2.stills.length > 0) episode.imageUrl = 'https://image.tmdb.org/t/p/original' + result2.stills[0].file_path
+                if (result2.still_path) episode.imageUrl = 'https://image.tmdb.org/t/p/original' + result2.still_path
+                if (result2.overview) episode.overview = result2.overview
 
                 callback(undefined, episode)
             })

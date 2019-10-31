@@ -11,11 +11,16 @@
  * @param {function} onClickCharacter event on click picture
  * @param {function} onFav event on click image faouvorites
  *  
- */
-
-function CharacterDetail({ item: { name, birthday, occupation, img, status, nickname, portrayed, isFav }, onBackCharacters, onBack, onFav }) {
-   return <section className="character-detail">
-      <article className="character-detail__bloc">
+ */function CharacterDetail({ item: { char_id, name, birthday, occupation, img, status, nickname, portrayed, isFav }, onBackCharacters, onBack, onFav }) {
+   return <><button className="register__goback" onClick={event => { // cambiar class
+      event.preventDefault()
+      onBackCharacters()
+   }}>Go back to Characters</button>
+      <button className="register__goback" href="" onClick={event => {
+         event.preventDefault()
+         onBack()
+      }}>Go back to Search</button>
+      <article className="character-detail">
          <h3 className="character-detail__title">{name}</h3>
          <h4 className="character-detail__nickname">{nickname}</h4>
          <img className="character-detail__image" src={img} alt="character detail image" />
@@ -34,20 +39,17 @@ function CharacterDetail({ item: { name, birthday, occupation, img, status, nick
                     saepe eum a adipisci facilis harum totam velit!</p>
          <h4 className="character-detail__portayed-title">Portayed by:</h4>
          <span className="character-detail__portrayed-text">{portrayed}</span>
-      </article>
-      <span className="detail__fav" onClick={event => {
-         event.preventDefault()
-         event.stopPropagation()
-         onFav(id)
-      }}>{isFav ? '🧡' : '💔'}</span>
-      <p>
-      <button className="register__goback" onClick={event => { 
+         <div className="break"></div>
+         <span className="character-detail__fav" onClick={event => {
             event.preventDefault()
-            onBackCharacters() 
-        }}>Go back to Characters</button>
-      <button className="register__goback" href="" onClick={event => {
-         event.preventDefault()
-         onBack()
-      }}>Go back to Search</button></p>
-   </section>
+            event.stopPropagation()
+
+            //Skyker easter egg
+            if (char_id == '3' && isFav === false) alert('WTF? Nobody loves Skyler')
+
+            onFav(char_id, true)
+         }}>{isFav ? '🧡' : '💔'}</span>
+
+      </article>
+   </>
 }

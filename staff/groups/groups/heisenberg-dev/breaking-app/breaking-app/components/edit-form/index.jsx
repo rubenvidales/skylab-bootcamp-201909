@@ -1,4 +1,4 @@
-function Form({ back, onAction, button, onData: { name, surname, email, password } }) {
+function Form({ back, onAction, button, onData: { name = '', surname, email, password } }) {
     return <form className="register__form" onSubmit={function (event) {
         event.preventDefault()
 

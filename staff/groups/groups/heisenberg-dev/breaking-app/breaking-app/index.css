@@ -202,6 +202,8 @@ ul {
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 0.5em;
   margin: 0.5em;
+  padding: 1em;
+  cursor: pointer;
 }
 .season__title {
   width: 100%;
@@ -233,6 +235,8 @@ ul {
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 0.5em;
   margin: 0.5em;
+  padding: 1em;
+  cursor: pointer;
 }
 .episode__image {
   width: 90%;
@@ -253,6 +257,15 @@ ul {
   }
 
   .episodes__list-item {
+    width: 50%;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .random-episode {
+    width: 33%;
+  }
+
+  .episodes__list-item {
     width: 33%;
   }
 }
@@ -261,6 +274,73 @@ ul {
   width: 94%;
   margin: 3%;
 }
+.episode-detail__image {
+  width: 100%;
+}
+
+@media only screen and (min-width: 1000px) {
+  .episode-detail__image {
+    width: 80%;
+  }
+}
+/* character list */
+.characters__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 94%;
+  margin: 3%;
+}
+.characters__list-item {
+  width: 100%;
+}
+
+.character {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 0.5em;
+  margin: 0.5em;
+  padding: 1em;
+}
+.character__image {
+  width: 90%;
+  margin: 5%;
+}
+.character__description {
+  width: 90%;
+  margin: 5%;
+}
+.character__fav {
+  font-size: 2em;
+}
+
+.random-character {
+  width: 100%;
+}
+
+@media only screen and (min-width: 1000px) {
+  .random-character {
+    width: 50%;
+  }
+
+  .characters__list {
+    justify-content: left;
+  }
+  .characters__list-item {
+    width: 33%;
+  }
+}
+/* character detail */
+.character-detail {
+  width: 94%;
+  margin: 3%;
+}
+.character-detail__image {
+  width: 100%;
+}
+.character-detail__fav {
+  font-size: 2em;
+  cursor: pointer;
+}
 
 /* footer */
 .footer__bloc {
@@ -268,6 +348,29 @@ ul {
 }
 .footer__list-item {
   display: inline;
+}
+
+/* button */
+.goToTopButton {
+  visibility: hidden;
+  margin: 0.5em;
+  box-shadow: 0px 1px 0px 0px #1c1b18;
+  background-color: #b0a84d;
+  border-radius: 0.5em;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  z-index: 99;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  font-size: 40px;
+}
+.goToTopButton:hover {
+  background-color: #ccc2a6;
 }
 
 /*# sourceMappingURL=index.css.map */

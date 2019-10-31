@@ -309,6 +309,9 @@ ul {
   width: 90%;
   margin: 5%;
 }
+.character__fav {
+  font-size: 2em;
+}
 
 .random-character {
   width: 100%;
@@ -333,6 +336,10 @@ ul {
 }
 .character-detail__image {
   width: 100%;
+}
+.character-detail__fav {
+  font-size: 2em;
+  cursor: pointer;
 }
 
 /* footer */

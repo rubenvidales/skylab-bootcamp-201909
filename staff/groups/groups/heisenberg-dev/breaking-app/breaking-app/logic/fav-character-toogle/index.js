@@ -3,7 +3,7 @@ function favCharacterToogle(id, token, favCharId, callback){
     if (!id.trim().length) throw new ContentError('id is empty or blank')
     if (typeof token !== 'string') throw new TypeError(token + ' is not a string')
     if (!token.trim().length) throw new ContentError('token is empty or blank')
-    if (typeof favCharId !== 'string') throw new TypeError(duckId + ' is not a string')
+    if (typeof favCharId !== 'string') throw new TypeError(favCharId + ' is not a string')
     if (!favCharId.trim().length) throw new ContentError('duck id is empty or blank')
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')
 

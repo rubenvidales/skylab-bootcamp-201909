@@ -1,4 +1,4 @@
-function Search({ user, onEdit, onLogout, onSubmit, onBackCharacters, onBackSeasons, items }) {
+function Search({ user, onEdit, onLogout, onSubmit, onBackCharacters, onBackSeasons, items, error }) {
 
     return <section className="search">
 
@@ -29,44 +29,28 @@ function Search({ user, onEdit, onLogout, onSubmit, onBackCharacters, onBackSeas
         </form>
 
         <section className="home">
-
             <button className="home__button button-characters" onClick={event => { // cambiar className
-
                 event.preventDefault()
-
                 onBackCharacters(items)
-
             }}>Characters</button>
 
             <button className="home__button button-episodes" onClick={event => { // cambiar className
-
                 event.preventDefault()
-
                 onBackSeasons()
-
             }}>Episodes</button>
 
+            {error && <Feedback message={error} />}
+
             <article className="random-episode episode">
-
                 <h3 className="episode__title">Random Episode: Lorem Ipsum</h3>
-
                 <img className="episode__image" src="http://via.placeholder.com/300?text=season-image" alt="season image" />
-
             </article>
 
             <article className="random-character character">
-
                 <h3 className="character__title">Random Character: Lorem Ipsum</h3>
-
-                <img className="character__image" src="http://via.placeholder.com/300?text=season-image"
-
-                    alt="season image" />
-
+                <img className="character__image" src="http://via.placeholder.com/300?text=season-image" alt="season image" />
             </article>
-
-        </section>
-
+        </section> 
     </section>
-
 }
 

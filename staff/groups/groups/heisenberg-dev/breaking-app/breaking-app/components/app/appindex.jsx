@@ -5,14 +5,29 @@ const App = (() => {
     const { id, token } = sessionStorage
 
     return class extends Component {
-        state = { view: 'landing', episodes: null, episodedetail: null, items: null, item: null }
+        state = { view: id && token ? 'search' : 'landing', error: undefined, episodes: null, episodedetail: null, items: null, item: null }
+
+        componentWillMount() {
+            if (id && token)
+                try {
+                    retrieveUser(id, token, (error, user) => {
+                        if (error) this.setState({ error: error.message })
+                        else {
+                            const { name } = user
+                            this.setState({ user: name })
+                        }
+                    })
+                } catch (error) {
+                    this.setState({ error: error.message })
+                }
+        }
 
         handleGoToRegister = () => {
-            this.setState({ view: 'register' })
+            this.setState({ view: 'register', error: undefined })
         }
 
         handleGoToLogin = () => {
-            this.setState({ view: 'login' })
+            this.setState({ view: 'login', error: undefined })
         }
 
         handleGoBackToLanding = () => {
@@ -22,7 +37,7 @@ const App = (() => {
         //
 
         handleGoBackToHome = () => {
-            this.setState({ view: 'search' })
+            this.setState({ view: 'search', error: undefined  })
         }
 
         handleGoBackToSeasons = () => {
@@ -54,7 +69,7 @@ const App = (() => {
         }
 
         handleGoToSearch = () => {
-            this.setState({ view: 'search' })
+            this.setState({ view: 'search', error: undefined }) //!!!! cambiar nueva versión
         }
 
         handleRegister = (name, surname, email, password) => {
@@ -84,7 +99,7 @@ const App = (() => {
                             if (error) return this.setState({ error: error.message })
 
                             const { name } = user
-                            this.setState({ view: 'search', user: name })
+                            this.setState({ view: 'search', user: name, error: undefined })
                         })
                     } catch (error) {
                         this.setState({ error: error.message })
@@ -118,7 +133,7 @@ const App = (() => {
 
                 searchCharacters(id, token, query, (error, item)=>{
                     if (error) return this.setState({ error: error.message })
-                    else this.setState({ view: 'character-detail', item })
+                    else this.setState({ view: 'character-detail', item,  })
                 })
             } catch (error) {
                 this.setState({ error: error.message })
@@ -168,13 +183,13 @@ const App = (() => {
 
         render() {
 
-            const { state: { view, user, episodes, episodedetail, items, item }, handleGoToLogin, handleGoToRegister, handleGoBackToLanding, handleGoToProfile, handleGoToSearch, handleRegister, handleLogin, handleLogout, handleProfile, handleRetrieveUser, handleGoBackToHome, handleGoBackToSeasons, handleGoBackToEpisodes, handleGoToSeason, handleGoToEpisode, handleGoToCharacters, handleOnClickCharacter, handleSearch, handleFavCharacter } = this
+            const { state: { view, user, episodes, episodedetail, items, item, error }, handleGoToLogin, handleGoToRegister, handleGoBackToLanding, handleGoToProfile, handleGoToSearch, handleRegister, handleLogin, handleLogout, handleProfile, handleRetrieveUser, handleGoBackToHome, handleGoBackToSeasons, handleGoBackToEpisodes, handleGoToSeason, handleGoToEpisode, handleGoToCharacters, handleOnClickCharacter, handleSearch, handleFavCharacter } = this
 
             return <>
                 {view === 'landing' && <Landing onLogin={handleGoToLogin} onRegister={handleGoToRegister} />}
-                {view === 'register' && <Register onBack={handleGoBackToLanding} onRegister={handleRegister} />}
-                {view === 'login' && <Login onBack={handleGoBackToLanding} onLogin={handleLogin} />}
-                {view === 'search' && <Search user={user} onEdit={handleGoToProfile} onLogout={handleLogout} onBackSeasons={handleGoBackToSeasons} onBackCharacters={handleGoToCharacters} onSubmit={handleSearch}  />}
+                {view === 'register' && <Register onBack={handleGoBackToLanding} onRegister={handleRegister} error={error} />}
+                {view === 'login' && <Login onBack={handleGoBackToLanding} onLogin={handleLogin} error={error} />}
+                {view === 'search' && <Search user={user} onEdit={handleGoToProfile} onLogout={handleLogout} onBackSeasons={handleGoBackToSeasons} onBackCharacters={handleGoToCharacters} onSubmit={handleSearch} error={error} />}
                 {view === 'profile' && <Profile onBack={handleGoToSearch} onEdit={handleProfile} data={handleRetrieveUser} />}
                 {view === 'characters' && <CharacterResults items={items} onBack={handleGoToSearch} onClickCharacter={handleOnClickCharacter} onFavCharacter={handleFavCharacter} />}
                 {view === 'character-detail' && <CharacterDetail item={item} onBackCharacters={handleGoToCharacters} onBack={handleGoToSearch} onFav={handleFavCharacter}/>}

@@ -373,4 +373,19 @@ ul {
   background-color: #ccc2a6;
 }
 
+/* feedback */
+.feedback {
+  width: 94%;
+  margin: 3%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  background-color: rgba(255, 0, 0, 0.3);
+  border-radius: 0.5em;
+  margin: 0.5em;
+}
+.feedback__message {
+  color: white;
+}
+
 /*# sourceMappingURL=index.css.map */

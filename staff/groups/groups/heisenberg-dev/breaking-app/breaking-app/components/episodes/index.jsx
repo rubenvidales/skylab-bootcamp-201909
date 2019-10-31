@@ -1,17 +1,17 @@
 function EpisodesList({ episodes, goToEpisode, onBackSeasons, onBackHome }) {
     return <section className="episodes">
+        <button className="register__goback" onClick={event => { 
+            event.preventDefault()
+            onBackSeasons()
+        }}>Go back to Seasons</button>
+        <button className="register__goback" onClick={event => { 
+            event.preventDefault()
+            onBackHome()
+        }}>Go back to Search</button>
         <h2 className="episodes__title">Episodes</h2>
         <ul className="episodes__list">
             {episodes.map(episode => <Episodes key={episode.episode_id} episode={episode} goToEpisode={goToEpisode} />)}
         </ul>
-        <button className="register__goback" onClick={event => { // cambiar class
-            event.preventDefault()
-            onBackSeasons()
-        }}>Go back to seasons</button>
-        <button className="register__goback" onClick={event => { // cambiar class
-            event.preventDefault()
-            onBackHome()
-        }}>Go back to Home</button>
     </section>
 }
 

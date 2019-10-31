@@ -181,6 +181,160 @@ ul {
     width: 15%;
   }
 }
+/* seasons */
+.seasons {
+  width: 94%;
+  margin: 3%;
+}
+.seasons__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.seasons__list-item {
+  width: 100%;
+}
+
+.season {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 0.5em;
+  margin: 0.5em;
+  padding: 1em;
+  cursor: pointer;
+}
+.season__title {
+  width: 100%;
+}
+.season__image {
+  width: 44%;
+  margin: 3%;
+}
+.season__description {
+  width: 46%;
+  margin: 2%;
+}
+
+@media only screen and (min-width: 1000px) {
+  .seasons__list-item {
+    width: 50%;
+  }
+}
+/* episodes */
+.episodes__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  width: 94%;
+  margin: 3%;
+}
+
+.episode {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 0.5em;
+  margin: 0.5em;
+  padding: 1em;
+  cursor: pointer;
+}
+.episode__image {
+  width: 90%;
+  margin: 5%;
+}
+.episode__description {
+  width: 90%;
+  margin: 5%;
+}
+
+.random-episode {
+  width: 100%;
+}
+
+@media only screen and (min-width: 1000px) {
+  .random-episode {
+    width: 50%;
+  }
+
+  .episodes__list-item {
+    width: 50%;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .random-episode {
+    width: 33%;
+  }
+
+  .episodes__list-item {
+    width: 33%;
+  }
+}
+/* episode list */
+.episode-detail {
+  width: 94%;
+  margin: 3%;
+}
+.episode-detail__image {
+  width: 100%;
+}
+
+@media only screen and (min-width: 1000px) {
+  .episode-detail__image {
+    width: 80%;
+  }
+}
+/* character list */
+.characters__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 94%;
+  margin: 3%;
+}
+.characters__list-item {
+  width: 100%;
+}
+
+.character {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 0.5em;
+  margin: 0.5em;
+  padding: 1em;
+}
+.character__image {
+  width: 90%;
+  margin: 5%;
+}
+.character__description {
+  width: 90%;
+  margin: 5%;
+}
+
+.random-character {
+  width: 100%;
+}
+
+@media only screen and (min-width: 1000px) {
+  .random-character {
+    width: 50%;
+  }
+
+  .characters__list {
+    justify-content: left;
+  }
+  .characters__list-item {
+    width: 33%;
+  }
+}
+/* character detail */
+.character-detail {
+  width: 94%;
+  margin: 3%;
+}
+.character-detail__image {
+  width: 100%;
+}
+
 /* footer */
 .footer__bloc {
   margin: 1em;

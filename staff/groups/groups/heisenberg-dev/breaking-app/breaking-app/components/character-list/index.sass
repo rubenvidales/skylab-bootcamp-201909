@@ -1,0 +1,35 @@
+.characters
+    &__list
+        display: flex
+        flex-wrap: wrap
+        justify-content: center
+        width: 94%
+        margin: 3%
+        &-item
+            width: 100%
+
+.character
+    background-color: rgba(255,255,255,0.3)
+    border-radius: .5em
+    margin: .5em
+    padding: 1em
+    &__image 
+        width: 90%
+        margin: 5%
+
+    &__description
+        width: 90%
+        margin: 5%
+
+.random-character
+    width: 100%
+
+@media only screen and (min-width: 1000px) 
+    .random-character
+        width: 50%
+
+    .characters
+        &__list
+            justify-content: left
+            &-item
+                width: 33%

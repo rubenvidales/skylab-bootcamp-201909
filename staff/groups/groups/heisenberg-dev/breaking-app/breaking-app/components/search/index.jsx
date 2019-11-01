@@ -1,3 +1,13 @@
+/**
+ * 
+ * @param {string} user name person is log in
+ * @param {function} onEdit event click to view changes data of user
+ * @param {function} onLogout event to go out of sesion
+ * @param {function} onSubmit event to update 
+ * @param {function} onBackCharacters event to return view characters view
+ * @param {function} onBackSeasons event to return seasons view
+ * @param {object} items shows the complete list of characters when you click on the button
+ */
 function Search({ user, onFavsList, onLogout, onSubmit, onBackCharacters, onBackSeasons, items, rdmChar, onClickCharacter, onFavCharacter, error }) {
     rdmChar = JSON.parse(sessionStorage.rdmChar)
 

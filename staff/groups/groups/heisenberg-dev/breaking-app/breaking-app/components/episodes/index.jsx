@@ -1,4 +1,12 @@
-function EpisodesList({ episodes, goToEpisode, onBackSeasons, onBackHome }) {
+/**
+ * 
+ * @param {string} episodes quantity of episodes
+ * @param {function} goToEpisode event to show view episode
+ * @param {function} onBackSeasons event to return back seasons
+ * @param {function} onBackHome event to return view home
+ */
+
+ function EpisodesList({ episodes, goToEpisode, onBackSeasons, onBackHome }) {
     return <section className="episodes">
         <button className="episodes__goback-seasons" onClick={event => { 
             event.preventDefault()

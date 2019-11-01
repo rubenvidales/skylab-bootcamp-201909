@@ -1,3 +1,18 @@
+/**
+ * Show detail character 
+ * @param {String} name A character's full name
+ * @param {String} birthday A character's birthday
+ * @param {Array} occupation List of character's known occupation
+ * @param {String} img Character's image
+ * @param {String} status Are they alive (or did Heisenberg get to them??)
+ * @param {String} nickname A known nickname they are referred as.
+ * @param {String} portrayed The actor / actress that portrayed the character
+ * @param {Boolean} isFav return if icon favorites is clicked
+ * @param {function} onBackCharacters return on view list charactes
+ * @param {function} onBack return on view list search
+ * @param {function} onFav even click favorites button
+ */
+
 function CharacterDetail({ item: { char_id, name, birthday, occupation, img, status, nickname, portrayed, isFav }, onBackCharacters, onBack, onFav }) {
    return <><button className="register__goback" onClick={event => { // cambiar class
       event.preventDefault()

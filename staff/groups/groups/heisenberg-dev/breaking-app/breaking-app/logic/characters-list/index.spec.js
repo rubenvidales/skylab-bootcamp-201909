@@ -1,4 +1,4 @@
-describe('logic - character-list', () => {
+describe('logic - character list', () => {
     let name, surname, email, password, id, token, charId = '1'
 
     beforeEach(done => {
@@ -37,13 +37,15 @@ describe('logic - character-list', () => {
             listCharacters(id, token, (error, data) =>{
                 expect(error).toBeUndefined()
                 expect(data).toBeDefined()
+
+                done()
             })
         })
     })
        
-/*    it('should type element is correct', done => {  
+    it('should type element is correct', done => {  
            
-    listCharacters(id, token, function (error, data) {
+        listCharacters(id, token, function (error, data) {
             
             expect(error).toBeUndefined()
             expect(data).toBeDefined()
@@ -83,5 +85,4 @@ describe('logic - character-list', () => {
            done()
         })
     })
-    */
 })

@@ -1,4 +1,10 @@
-function retrieveCharDetails(id, token, charId, callback) {
+/**
+ * 
+ * @param {string} id unique identificate character
+ * @param {function} callback return call
+ */
+
+ function retrieveCharDetails(id, token, charId, callback) {
     if (typeof id !== 'string') throw new TypeError(id + ' is not a string')
     if (!id.trim().length) throw new ContentError(id+' is empty or blank')
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')

@@ -1,3 +1,12 @@
+/**
+ * 
+ * @param {string} name name user
+ * @param {string} surname surname user
+ * @param {string} email post user
+ * @param {string} password string to pass
+ * @param {function} callback return call
+ */
+
 function registerUser(name, surname, email, password, callback) {
     if (typeof name !== 'string') throw new TypeError(name + ' is not a string')
     if (!name.trim().length) throw new ContentError('name is empty or blank')

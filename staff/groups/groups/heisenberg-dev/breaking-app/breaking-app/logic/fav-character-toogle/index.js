@@ -1,3 +1,11 @@
+/**
+ * 
+ * @param {string} id unique code identificate user
+ * @param {string} token the token of your session
+ * @param {string} favCharId the id of the character that you want to add or remove as favourite
+ * @param {function} callback the function that adds or removes a character as favourite
+ */
+
 function favCharacterToogle(id, token, favCharId, callback){
     if (typeof id !== 'string') throw new TypeError(id + ' is not a string')
     if (!id.trim().length) throw new ContentError('id is empty or blank')

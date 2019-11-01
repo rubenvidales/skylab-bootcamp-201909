@@ -1,4 +1,14 @@
-function CharacterItem({ item: { char_id: charId, name, img, isFav }, onClickCharacter, onFav }) {
+/**
+ * 
+ * @param {integer} char_id Unique Id per character
+ * @param {string} name A character's full name
+ * @param {string} img Character's image
+ * @param {boolean} isFav if image is clicked
+ * @param {function} onClickCharacter event on img character
+ * @param {function} onFav event on image favorite
+ */
+
+ function CharacterItem({ item: { char_id: charId, name, img, isFav }, onClickCharacter, onFav }) {
     return <li className="characters__list-item">
         <a href="" className="characters__list-link" onClick={event => {
             event.preventDefault()

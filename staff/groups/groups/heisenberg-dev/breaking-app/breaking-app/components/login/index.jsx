@@ -1,4 +1,10 @@
-function Login({ onBack, onLogin, error }) {
+/**
+ * 
+ * @param {function} onBack event return previous view
+ * @param {function} onLogin event to go login view
+ */
+
+ function Login({ onBack, onLogin, error }) {
     return <section className="login">
         <h2 className="login__title">Login</h2>
         <form className="login__form" onSubmit={function (event) {

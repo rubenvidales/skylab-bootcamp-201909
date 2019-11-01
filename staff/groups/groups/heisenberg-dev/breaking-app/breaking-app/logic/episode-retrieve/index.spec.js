@@ -1,6 +1,6 @@
 describe('logic - retrieve episode', function () {
 
-    it('should retrieve information if the episode has an correct id', function (done) {
+    it('should retrieve information if the episode has a correct id', function (done) {
         let id = '1'
 
         retrieveEpisode(id, function (error, episode) {
@@ -44,10 +44,6 @@ describe('logic - retrieve episode', function () {
             expect(episode.imageUrl).toBeDefined()
             expect(typeof episode.imageUrl).toBe('string')
             expect(episode.imageUrl.length).toBeGreaterThan(0)
-
-            expect(episode.plot).toBeDefined()
-            expect(typeof episode.plot).toBe('string')
-            expect(episode.plot.length).toBeGreaterThan(0)
 
             done()
 

@@ -22,7 +22,7 @@ Breaking App is an application designed for the lovers of the Breaking Bad TV se
 
 ### Activity Diagram
 
-![Activity Diagram](img/activity.png)
+![Activity Diagram](img/activity.jpg)
 
 ### Class Diagram
 

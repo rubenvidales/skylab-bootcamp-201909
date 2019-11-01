@@ -103,7 +103,7 @@ const App = (() => {
                             try {
                                 listCharacters(id, token, (error, result) => {
                                     const randomNumber = Math.floor(Math.random() * result.length);
-                                    const randomChar = result[randomNumber]         
+                                    const randomChar = result[randomNumber]
                                     sessionStorage.rdmChar = JSON.stringify(randomChar)
                                     this.setState({ view: 'search', user: name, rdmChar: randomChar, error: undefined })
                                 })
@@ -181,7 +181,8 @@ const App = (() => {
             }
         }
 
-        handleFavCharacter = (charId, origin) => {debugger
+        handleFavCharacter = (charId, origin) => {
+            debugger
             try {
                 const { id, token } = sessionStorage
 
@@ -200,21 +201,36 @@ const App = (() => {
             }
         }
 
+        handleGoToFavoritesList = () => {
+            try {
+                const { id, token } = sessionStorage
+                listFavCharacters(id, token, (error, items) => {
+                    if (error) this.setState({ error: error.message })
+                    else {
+                        this.setState({ view: 'fav-characters-list', items })
+                    }
+                })
+            } catch (error) {
+                this.setState({ error: error.message })
+            }
+        }
+
         render() {
 
-            const { state: { view, user, episodes, episodedetail, items, item, rdmChar, error, seasons }, handleGoToLogin, handleGoToRegister, handleGoBackToLanding, handleGoToProfile, handleGoToSearch, handleRegister, handleLogin, handleLogout, handleProfile, handleRetrieveUser, handleGoBackToHome, handleGoBackToSeasons, handleGoBackToEpisodes, handleGoToSeason, handleGoToEpisode, handleGoToCharacters, handleOnClickCharacter, handleSearch, handleFavCharacter } = this
+            const { state: { view, user, episodes, episodedetail, items, item, rdmChar, error, seasons }, handleGoToLogin, handleGoToRegister, handleGoBackToLanding, handleGoToFavoritesList, handleGoToSearch, handleRegister, handleLogin, handleLogout, handleProfile, handleRetrieveUser, handleGoBackToHome, handleGoBackToSeasons, handleGoBackToEpisodes, handleGoToSeason, handleGoToEpisode, handleGoToCharacters, handleOnClickCharacter, handleSearch, handleFavCharacter } = this
 
             return <>
                 {view === 'landing' && <Landing onLogin={handleGoToLogin} onRegister={handleGoToRegister} />}
                 {view === 'register' && <Register onBack={handleGoBackToLanding} onRegister={handleRegister} error={error} />}
                 {view === 'login' && <Login onBack={handleGoBackToLanding} onLogin={handleLogin} error={error} />}
-                {view === 'search' && <Search user={user} rdmChar={rdmChar} onClickCharacter={handleOnClickCharacter} onFavCharacter={handleFavCharacter} onEdit={handleGoToProfile} onLogout={handleLogout} onBackSeasons={handleGoBackToSeasons} onBackCharacters={handleGoToCharacters} onSubmit={handleSearch} error={error} />}
+                {view === 'search' && <Search user={user} rdmChar={rdmChar} onClickCharacter={handleOnClickCharacter} onFavCharacter={handleFavCharacter} onFavsList={handleGoToFavoritesList} onLogout={handleLogout} onBackSeasons={handleGoBackToSeasons} onBackCharacters={handleGoToCharacters} onSubmit={handleSearch} error={error} />}
                 {view === 'profile' && <Profile onBack={handleGoToSearch} onEdit={handleProfile} data={handleRetrieveUser} />}
                 {view === 'characters' && <CharacterResults items={items} onBack={handleGoToSearch} onClickCharacter={handleOnClickCharacter} onFavCharacter={handleFavCharacter} />}
                 {view === 'character-detail' && <CharacterDetail item={item} onBackCharacters={handleGoToCharacters} onBack={handleGoToSearch} onFav={handleFavCharacter} />}
                 {view === 'seasons' && <Seasons seasons={seasons} goToSeason={handleGoToSeason} onBackHome={handleGoBackToHome} />}
                 {view === 'episodes' && <EpisodesList episodes={episodes} goToEpisode={handleGoToEpisode} onBackSeasons={handleGoBackToSeasons} onBackHome={handleGoBackToHome} />}
                 {view === 'episode-detail' && <EpisodeDetail episodedetail={episodedetail} onBackEpisodes={handleGoBackToEpisodes} onBackSeasons={handleGoBackToSeasons} />}
+                {view === 'fav-characters-list' && <FavoritesList items={items} onBack={handleGoToSearch} onClickCharacter={handleOnClickCharacter} onFavCharacter={handleFavCharacter} />}
             </>
         }
     }

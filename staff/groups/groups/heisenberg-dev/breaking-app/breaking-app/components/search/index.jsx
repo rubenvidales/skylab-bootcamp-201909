@@ -1,4 +1,4 @@
-function Search({ user, onEdit, onLogout, onSubmit, onBackCharacters, onBackSeasons, items, rdmChar, onClickCharacter, onFavCharacter, error }) {
+function Search({ user, onFavsList, onLogout, onSubmit, onBackCharacters, onBackSeasons, items, rdmChar, onClickCharacter, onFavCharacter, error }) {
     rdmChar = JSON.parse(sessionStorage.rdmChar)
 
     return <section className="search">
@@ -7,9 +7,9 @@ function Search({ user, onEdit, onLogout, onSubmit, onBackCharacters, onBackSeas
 
             event.preventDefault()
 
-            onEdit()
+            onFavsList()
 
-        }}>Go to profile</button> <button className="search__button-logout" onClick={event => {
+        }}>Go to favorites list</button> <button className="search__button-logout" onClick={event => {
 
             event.preventDefault()
 
@@ -41,6 +41,7 @@ function Search({ user, onEdit, onLogout, onSubmit, onBackCharacters, onBackSeas
             }}>Episodes</button>
 
             {error && <Feedback message={error} />}
+            <h2 className="random-character__title">Random Character</h2>
             <ul>
                 <CharacterItem key={rdmChar.char_id} item={rdmChar} onClickCharacter={onClickCharacter} onFav={onFavCharacter} />
             

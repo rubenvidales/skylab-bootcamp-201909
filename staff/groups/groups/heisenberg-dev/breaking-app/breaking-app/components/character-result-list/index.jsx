@@ -1,6 +1,6 @@
 function CharacterResults({ items, onBack, onClickCharacter, onFavCharacter }) {
     return <section className="characters">
-        <button className="register__goback" onClick={event => { 
+        <button className="characters__goback" onClick={event => { 
             event.preventDefault()
             onBack()
         }}>Go back to Search</button>

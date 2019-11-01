@@ -8,11 +8,11 @@
 
  function EpisodesList({ episodes, goToEpisode, onBackSeasons, onBackHome }) {
     return <section className="episodes">
-        <button className="register__goback" onClick={event => { 
+        <button className="episodes__goback-seasons" onClick={event => { 
             event.preventDefault()
             onBackSeasons()
         }}>Go back to Seasons</button>
-        <button className="register__goback" onClick={event => { 
+        <button className="episodes__goback-home" onClick={event => { 
             event.preventDefault()
             onBackHome()
         }}>Go back to Search</button>

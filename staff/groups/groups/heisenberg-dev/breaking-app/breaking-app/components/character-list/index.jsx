@@ -23,7 +23,7 @@
 
                     //Skyker easter egg
                     if (charId == '3' && isFav === false) alert('WTF? Nobody loves Skyler')
-
+                    
                     onFav(charId.toString())
                 }}>{isFav ? '🧡' : '💔'}</span>
             </article>

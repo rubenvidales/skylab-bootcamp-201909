@@ -1,4 +1,4 @@
-function Login({ onBack, onLogin }) {
+function Login({ onBack, onLogin, error }) {
     return <section className="login">
         <h2 className="login__title">Login</h2>
         <form className="login__form" onSubmit={function (event) {
@@ -18,5 +18,6 @@ function Login({ onBack, onLogin }) {
                 onBack()
             }}>Go back</button>
         </form>
+    {error && <Feedback message={error} />}
     </section>
 }

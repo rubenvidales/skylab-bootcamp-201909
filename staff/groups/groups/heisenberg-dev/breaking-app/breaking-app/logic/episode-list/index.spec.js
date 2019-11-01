@@ -54,10 +54,12 @@ describe('logic - episode list', function () {
         })
     })
 
-    it('should retrieve an empty array if the number of season don\'t belong to a Breaking Bad season', function (done) {
+    it('should retrieve an empty array if the number of season don\'t belong to a Breaking Bad season', function () {
         let season = '6'
 
         listEpisodes(season, function (error, episodes) {
+            
+            expect(error).toBeDefined()
 
             expect(season).toBeDefined()
             expect(typeof season).toBe('string')
@@ -68,16 +70,18 @@ describe('logic - episode list', function () {
 
             expect(typeof episodes).toBe('object')
 
-            done()
+            // done()
 
         })
     })
 
-    it('should retrieve an empty array if the season string is not a number', function (done) {
+    it('should retrieve an empty array if the season string is not a number', function () {
         let season = 'a'
 
         listEpisodes(season, function (error, episodes) {
 
+            expect(error).toBeDefined()
+
             expect(season).toBeDefined()
             expect(typeof season).toBe('string')
             expect(season.length).toBeGreaterThan(0)
@@ -87,15 +91,17 @@ describe('logic - episode list', function () {
 
             expect(typeof episodes).toBe('object')
 
-            done()
+            // done()
 
         })
     })
 
-    it('should retrieve an empty array if the season string is empty', function (done) {
+    it('should retrieve an empty array if the season string is empty', function () {
         let season = ''
 
         listEpisodes(season, function (error, episodes) {
+
+            expect(error).toBeDefined()
 
             expect(season).toBeDefined()
             expect(typeof season).toBe('string')
@@ -106,7 +112,7 @@ describe('logic - episode list', function () {
 
             expect(typeof episodes).toBe('object')
 
-            done()
+            // done()
 
         })
     })

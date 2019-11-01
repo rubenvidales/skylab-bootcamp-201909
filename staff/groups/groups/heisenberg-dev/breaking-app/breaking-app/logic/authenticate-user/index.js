@@ -1,4 +1,11 @@
-function authenticateUser(email, password, callback) {
+/**
+ * 
+ * @param {string} email post user
+ * @param {string} password unique code pass
+ * @param {function} callback return call
+ */
+
+ function authenticateUser(email, password, callback) {
     if (typeof email !== 'string') throw new TypeError(email + ' is not a string')
     if (!email.trim().length) throw new ContentError('e-mail is empty or blank')
     if (typeof password !== 'string') throw new TypeError(password + ' is not a string')

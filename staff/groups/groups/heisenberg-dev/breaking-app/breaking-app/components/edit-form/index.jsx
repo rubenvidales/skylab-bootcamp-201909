@@ -1,3 +1,14 @@
+/**
+ * platform to register user
+ * @param {function} back return to search
+ * @param {function} onAction 
+ * @param {function} button sendf elements to register
+ * @param {object} onData contain elements register user
+ * @param {string} name name user
+ * @param {string} surname surmane register user
+ * @param {string} password unique code to in platform
+ */
+
 function Form({ back, onAction, button, onData: { name = '', surname, email, password } }) {
     return <form className="register__form" onSubmit={function (event) {
         event.preventDefault()

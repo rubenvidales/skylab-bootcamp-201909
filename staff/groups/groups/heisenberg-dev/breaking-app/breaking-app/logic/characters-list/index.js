@@ -1,4 +1,9 @@
-function listCharacters(id, token, callback) {
+/**
+ * Get all characters of api
+ * @param {funtion} callback return character
+ */
+
+ function listCharacters(id, token, callback) {
       if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')
 
       call('GET', undefined, 'https://www.breakingbadapi.com/api/characters', undefined, result => {

@@ -1,3 +1,9 @@
+/**
+ * 
+ * @param {String} id the id of your user
+ * @param {String} token the token of your session
+ * @param {Function} callback retrieve the information of your user
+ */
 function retrieveUser(id, token, callback) {
     if (typeof id !== 'string') throw new TypeError(id + ' is not a string')
     if (!id.trim().length) throw new ContentError('id is empty or blank')

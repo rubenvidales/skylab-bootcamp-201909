@@ -1,3 +1,11 @@
+/**
+ * show of characters attending to query
+ * @param {string} id determine a unique user
+ * @param {string} token authoritzation
+ * @param {string} query element to search
+ * @param {function} callback return call
+ */
+
 function searchCharacters(id, token, query, callback) {
   if (typeof query !== 'string') throw new TypeError(query + ' is not a string')
   if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')

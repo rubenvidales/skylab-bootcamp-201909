@@ -1,3 +1,9 @@
+/**
+ * 
+ * @param {String} season the number of season that you pick
+ * @param {Function} callback the call that recovers the episodes of the season you select
+ */
+
 function listEpisodes(season, callback) {
     if (typeof season !== 'string') throw new TypeError(season + ' is not a string')
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')

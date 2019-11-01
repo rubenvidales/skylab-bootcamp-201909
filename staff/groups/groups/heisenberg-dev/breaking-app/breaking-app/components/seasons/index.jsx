@@ -1,4 +1,10 @@
-function Seasons({ seasons, goToSeason, onBackHome }) {
+/**
+ * 
+ * @param {function} goToSeason  event to go season view
+ * @param {function} onBackHome  event to return season view
+ */
+
+ function Seasons({ seasons, goToSeason, onBackHome }) {
 
     return <section className="seasons">
         <button className="register__goback" onClick={event => { // cambiar class

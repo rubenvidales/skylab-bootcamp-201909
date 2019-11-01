@@ -1,3 +1,9 @@
+/**
+ * 
+ * @param {string} id unique code identificate season
+ * @param {function} callback return call
+ */
+
 function retrieveEpisode(id, callback) {
     if (typeof id !== 'string') throw new TypeError(id + ' is not a string')
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')

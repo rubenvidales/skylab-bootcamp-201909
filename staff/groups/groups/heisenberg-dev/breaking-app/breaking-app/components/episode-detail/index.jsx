@@ -1,4 +1,17 @@
-function EpisodeDetail({ episodedetail: { season, episode, title, imageUrl, air_date, characters, overview }, onBackEpisodes, onBackSeasons }) {
+/**
+ * show detail of episodes
+ * @param {integer} season The season that the episode belongs to
+ * @param {integer} episode The episode number of it's season
+ * @param {string} title The title of the episode
+ * @param {string} imageUrl data of another api: image of episode
+ * @param {string} air_date The original air date of the episode
+ * @param {array} characters Main characters that are associated with the episode
+ * @param {string} overview data of another api: summary of episode
+ * @param {function} onBackEpisodes event to return on list epidodes
+ * @param {function} onBackSeasons event to return list season
+ */
+
+ function EpisodeDetail({ episodedetail: { season, episode, title, imageUrl, air_date, characters, overview }, onBackEpisodes, onBackSeasons }) {
     return <section className="episode-detail">
         <button className="register__goback" onClick={event => { // cambiar class
             event.preventDefault()

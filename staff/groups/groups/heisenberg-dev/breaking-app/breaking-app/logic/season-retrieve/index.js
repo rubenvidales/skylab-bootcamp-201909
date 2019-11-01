@@ -1,3 +1,8 @@
+/**
+ * 
+ * @param {Function} callback call the seasons and make them appear
+ */
+
 function seasonRetrieve(callback) {
 
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')

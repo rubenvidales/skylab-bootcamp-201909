@@ -1,3 +1,10 @@
+/**
+ * 
+ * @param {function} back return previous view
+ * @param {function} onAction event to register user
+ * @param {string} button makes appear the 'Register' name on the button
+ */
+
 function RegisterForm({ back, onAction, button }) {
     return <form className="register__form" onSubmit={function (event) {
         event.preventDefault()

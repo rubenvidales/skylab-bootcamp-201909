@@ -182,7 +182,6 @@ const App = (() => {
         }
 
         handleFavCharacter = (charId, origin) => {
-            debugger
             try {
                 const { id, token } = sessionStorage
 

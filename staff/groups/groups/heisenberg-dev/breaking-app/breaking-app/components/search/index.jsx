@@ -1,5 +1,4 @@
-function Search({ user, onEdit, onLogout, onSubmit, onBackCharacters, onBackSeasons, items, error }) {
-
+function Search({ user, onEdit, onLogout, onSubmit, onBackCharacters, onBackSeasons, items, rdmChar, onClickCharacter, onFavCharacter, error }) {
     return <section className="search">
 
         <h3>Hi! {user}</h3> <button className="search__button-edit" onClick={event => {
@@ -23,7 +22,7 @@ function Search({ user, onEdit, onLogout, onSubmit, onBackCharacters, onBackSeas
 
             onSubmit(query)
         }}>
-            <input className="search__form-input" type="text" name="query"/>
+            <input className="search__form-input" type="text" name="query" />
             <button className="search__form-submit">Search</button>
 
         </form>
@@ -39,18 +38,21 @@ function Search({ user, onEdit, onLogout, onSubmit, onBackCharacters, onBackSeas
                 onBackSeasons()
             }}>Episodes</button>
 
-            {error && <Feedback message={error} />}
+          {error && <Feedback message={error} />}
+            <CharacterItem key={rdmChar.char_id} item={rdmChar} onClickCharacter={onClickCharacter} onFav={onFavCharacter} />
 
-            <article className="random-episode episode">
+{/*        <article className="random-episode episode">
                 <h3 className="episode__title">Random Episode: Lorem Ipsum</h3>
                 <img className="episode__image" src="http://via.placeholder.com/300?text=season-image" alt="season image" />
             </article>
 
             <article className="random-character character">
                 <h3 className="character__title">Random Character: Lorem Ipsum</h3>
-                <img className="character__image" src="http://via.placeholder.com/300?text=season-image" alt="season image" />
-            </article>
-        </section> 
+                <img className="character__image" src="http://via.placeholder.com/300?text=season-image alt="season image" />
+            </article> 
+*/}
+
+        </section>
     </section>
 }
 

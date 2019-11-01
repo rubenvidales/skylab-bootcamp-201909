@@ -1,6 +1,6 @@
 # Breaking App
 
-![Breaking App](breaking-logo.png)
+![Breaking App](img/breaking-logo.png)
 
 ## Intro
 
@@ -18,29 +18,29 @@ Breaking App is an application designed for the lovers of the Breaking Bad TV se
 
 ### Use Cases
 
-![Use Cases](use-cases.png)
+![Use Cases](img/use-cases.png)
 
 ### Activity Diagram
 
-![Activity Diagram](activity.png)
+![Activity Diagram](img/activity.png)
 
 ### Class Diagram
 
-![Class Diagram](class.png)
+![Class Diagram](img/class.png)
 
 ## Technical Description
 
 ### Blocks
 
-![Blocks](blocks.png)
+![Blocks](img/blocks.png)
 
 ### Components
 
-![Components](components.png)
+![Components](img/components.png)
 
 ### Data Model
 
-![Data Model](data-model.png)
+![Data Model](img/data-model.png)
 
 ### Code Coverage
 
@@ -53,11 +53,16 @@ Jasmine Screenshot
 + CSS with Sass
 + Tests made with Jasmine
 
-## Errors and Bugs Founded
+## Errors and Bugs
 
-The 'season' property of the object of the last episode of the first season it's not correctly expressed, because has a space at the beginning of the string, which differs with the rest of the arrays. For this reason, it doesn't appear in the list of the episodes of the first season.
+The 'season' property of the object of the last episode of the first season it's not correctly expressed, because has a space at the beginning of the string, which differs with the rest of the arrays. For this reason, we have to use the method 'trim' for make that the episode does the appearance.
 
-## Thanks to
+The list of characters it's not the same when you click on the list of characters that when you do search. That makes that the information it's not presented on the same way. For example, the occupation mark when you click on the character list.
 
-+ José, Jorge & Manu for their help
-+ Martín for their explanations of the The Movie DB 
+The IDs of the episodes and characters are presented only in numbers, which causes problems when you try to concatenate, for example, with the URLs. We have forced to use the method 'toString' for the numbers be identificated as strings and make the correct concatenations.
+
+## Thank you
+
++ to Jorge, Jose and Manu for their continous support.
++ to Martín and his group for the use of their API to fill the gaps of the information that don't appear in our API and the tips for its use.
+

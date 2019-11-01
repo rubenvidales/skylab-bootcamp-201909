@@ -1,0 +1,1 @@
+ReactDOM.render(<App />, document.getElementsByTagName('main')[0])

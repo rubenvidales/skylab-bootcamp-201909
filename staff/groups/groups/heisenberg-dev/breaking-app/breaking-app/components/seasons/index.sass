@@ -1,0 +1,37 @@
+.seasons
+    width: 94%
+    margin: 3%
+    &__list
+        display: flex
+        flex-wrap: wrap
+        justify-content: center
+
+    &__list-item 
+        width: 100%
+
+
+.season
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    background-color: rgba(255,255,255,0.3)
+    border-radius: .5em
+    margin: .5em
+    padding: 1em
+    cursor: pointer
+
+    &__title
+        width: 100%
+    &__image 
+        width: 44%
+        margin: 3%
+
+    &__description
+        width: 46%
+        margin: 2%
+
+@media only screen and (min-width: 1000px) 
+    .seasons
+        &__list
+            &-item 
+                width: 50%

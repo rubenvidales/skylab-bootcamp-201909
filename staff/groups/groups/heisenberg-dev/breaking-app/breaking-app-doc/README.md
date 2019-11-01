@@ -65,3 +65,4 @@ The IDs of the episodes and characters are presented only in numbers, which caus
 
 + to Jorge, Jose and Manu for their continous support.
 + to Martín and his group for the use of their API to fill the gaps of the information that don't appear in our API and the tips for its use.
+

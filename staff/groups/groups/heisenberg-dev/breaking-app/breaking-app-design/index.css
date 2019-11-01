@@ -1,0 +1,351 @@
+body {
+  background: #000000;
+  /*     background: linear-gradient(180deg, rgba(19,23,8,1) 7%, rgba(43,48,29,1) 49%, rgba(83,99,38,1) 100%)*/
+  background-image: url("images/bg.png");
+  background-position: center;
+  background-repeat: repeat-y;
+  color: #ffffff;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+  color: #B0A84D;
+  margin: 0.5em;
+}
+
+a {
+  color: #e5df95;
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+button {
+  margin: 0.5em;
+  box-shadow: 0px 1px 0px 0px #1c1b18;
+  background-color: #b0a84d;
+  border-radius: 0.5em;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 1em;
+  font-weight: bold;
+  padding: 0.4em 1em;
+  text-decoration: none;
+  border: 0;
+}
+button:hover {
+  background-color: #ccc2a6;
+}
+button:active {
+  position: relative;
+  top: 1px;
+}
+
+input {
+  background-color: #E4E6CB;
+  padding: 0.4em;
+  margin: 0.5em;
+  border: 0;
+  font-size: 1em;
+  border-radius: 0.2em;
+}
+
+ul {
+  list-style: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: 0;
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
+
+@media only screen and (min-width: 1000px) {
+  button {
+    margin: 1em;
+    padding: 0.8em 1em;
+  }
+}
+/* header */
+.header__logo {
+  margin: 0.5em;
+  max-width: 35%;
+}
+.header__form {
+  margin: 0.5em;
+}
+
+.search-form__submit {
+  width: 30%;
+}
+
+@media only screen and (min-width: 1000px) {
+  .header__logo {
+    max-width: 20%;
+  }
+
+  .search-form__input {
+    width: 42%;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .search-form__input {
+    width: 30%;
+  }
+  .search-form__submit {
+    width: 15%;
+  }
+
+  .header__logo {
+    max-width: 15%;
+  }
+}
+/* feedback */
+.feedback {
+  width: 94%;
+  margin: 3%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  background-color: rgba(255, 0, 0, 0.3);
+  border-radius: 0.5em;
+  margin: 0.5em;
+}
+.feedback__message {
+  color: red;
+}
+
+/* landing */
+/* register */
+.register {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.register__title {
+  width: 100%;
+}
+.register__form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 0.5em;
+}
+.register__field {
+  width: 90%;
+  margin: 0.5em;
+}
+.register__submit, .register__goback {
+  width: 40%;
+}
+
+@media only screen and (min-width: 1000px) {
+  .register__field {
+    width: 42%;
+  }
+  .register__submit, .register__goback {
+    width: 30%;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .register__field {
+    width: 18%;
+  }
+  .register__submit, .register__goback {
+    width: 15%;
+  }
+}
+/* login */
+.login__form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 0.5em;
+}
+.login__field {
+  width: 90%;
+  margin: 0.5em;
+}
+.login__submit, .login__goback {
+  width: 40%;
+}
+
+@media only screen and (min-width: 1000px) {
+  .login__field {
+    width: 42%;
+  }
+  .login__submit, .login__goback {
+    width: 30%;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .login__field {
+    width: 18%;
+  }
+  .login__submit, .login__goback {
+    width: 15%;
+  }
+}
+/* home */
+.home {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 94%;
+  margin: 3%;
+}
+.home__button {
+  width: 40%;
+  margin: 1em 0.5em;
+  padding: 1em;
+}
+
+@media only screen and (min-width: 1000px) {
+  .home__button {
+    width: 30%;
+    margin: 1em;
+    padding: 1.5em;
+  }
+}
+/* seasons */ 
+.seasons {
+  width: 94%;
+  margin: 3%;
+}
+.seasons__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.seasons__list-item {
+  width: 100%;
+}
+
+.season {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 0.5em;
+  margin: 0.5em;
+}
+.season__title {
+  width: 100%;
+}
+.season__image {
+  width: 44%;
+  margin: 3%;
+}
+.season__description {
+  width: 46%;
+  margin: 2%;
+}
+
+@media only screen and (min-width: 1000px) {
+  .seasons__list-item {
+    width: 50%;
+  }
+}
+/* episodes */
+.episodes__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  width: 94%;
+  margin: 3%;
+}
+
+.episode {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 0.5em;
+  margin: 0.5em;
+}
+.episode__image {
+  width: 90%;
+  margin: 5%;
+}
+.episode__description {
+  width: 90%;
+  margin: 5%;
+}
+
+.random-episode {
+  width: 100%;
+}
+
+@media only screen and (min-width: 1000px) {
+  .random-episode {
+    width: 50%;
+  }
+
+  .episodes__list-item {
+    width: 33%;
+  }
+}
+/* episode detail */
+.episode-detail {
+  width: 94%;
+  margin: 3%;
+}
+
+/* characters */
+.characters__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  width: 94%;
+  margin: 3%;
+}
+
+.character {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 0.5em;
+  margin: 0.5em;
+}
+.character__image {
+  width: 90%;
+  margin: 5%;
+}
+.character__description {
+  width: 90%;
+  margin: 5%;
+}
+
+.random-character {
+  width: 100%;
+}
+
+@media only screen and (min-width: 1000px) {
+  .random-character {
+    width: 50%;
+  }
+
+  .characters__list-item {
+    width: 33%;
+  }
+}
+/* character detail */
+.character-detail {
+  width: 94%;
+  margin: 3%;
+}
+
+/* footer */
+.footer__bloc {
+  margin: 1em;
+}
+.footer__list-item {
+  display: inline;
+}
+
+/*# sourceMappingURL=index.css.map */

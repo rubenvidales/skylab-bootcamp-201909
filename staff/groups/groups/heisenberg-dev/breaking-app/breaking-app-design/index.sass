@@ -1,0 +1,106 @@
+body
+    background: #000000
+    /*     background: linear-gradient(180deg, rgba(19,23,8,1) 7%, rgba(43,48,29,1) 49%, rgba(83,99,38,1) 100%)*/
+    background-image: url('images/bg.png')
+    background-position: center
+    background-repeat: repeat-y
+    color: #ffffff
+    text-align: center
+    font-family: Arial, Helvetica, sans-serif
+    margin: 0
+    box-sizing: border-box
+
+h1,
+h2,
+h3
+    color: #B0A84D
+    margin: .5em
+
+a
+    color: rgb(229, 223, 149)
+    text-decoration: none
+    font-weight: bolder
+
+button
+    margin: 0.5em
+    box-shadow: 0px 1px 0px 0px #1c1b18
+    background-color: #b0a84d
+    border-radius: .5em
+    display: inline-block
+    cursor: pointer
+    color: #ffffff
+    font-family: Arial
+    font-size: 1em
+    font-weight: bold
+    padding: .4em 1em
+    text-decoration: none
+    border: 0
+
+    &:hover 
+        background-color: #ccc2a6
+
+    &:active 
+        position: relative
+        top: 1px
+
+input
+    background-color: #E4E6CB
+    padding: .4em
+    margin: .5em
+    border: 0
+    font-size: 1em
+    border-radius: .2em
+
+ul 
+    list-style: none
+    margin-block-start: 0
+    margin-block-end: 0
+    margin-inline-start: 0
+    margin-inline-end: 0
+    padding-inline-start: 0
+
+.break
+    flex-basis: 100%
+    height: 0
+
+@media only screen and (min-width: 1000px) 
+    button
+        margin: 1em
+        padding: .8em 1em
+
+/* header */
+@import header.sass
+
+/* feedback */
+@import feedback.sass
+
+/* landing */
+
+
+/* register */
+@import register.sass
+
+/* login */
+@import login.sass
+
+/* home */
+@import home.sass
+
+/* seasons */ 
+@import seasons.sass
+
+/* episodes */
+@import episodes.sass
+
+/* episode detail */
+@import episode-detail.sass
+
+/* characters */
+@import characters.sass
+
+/* character detail */
+@import character-detail.sass
+
+/* footer */
+@import footer.sass
+

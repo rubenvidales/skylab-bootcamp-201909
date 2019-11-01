@@ -34,10 +34,8 @@ const App = (() => {
             this.setState({ view: 'landing' })
         }
 
-        //
-
         handleGoBackToHome = () => {
-            this.setState({ view: 'search', error: undefined  })
+            this.setState({ view: 'search', error: undefined })
         }
 
         handleGoBackToSeasons = () => {
@@ -68,7 +66,7 @@ const App = (() => {
         }
 
         handleGoToSearch = () => {
-            this.setState({ view: 'search', error: undefined }) //!!!! cambiar nueva versión
+            this.setState({ view: 'search', error: undefined })
         }
 
         handleRegister = (name, surname, email, password) => {
@@ -101,7 +99,7 @@ const App = (() => {
 
                             try {
                                 listCharacters(id, token, (error, result) => {
-                                    const randomNumber = Math.floor(Math.random()*result.length);
+                                    const randomNumber = Math.floor(Math.random() * result.length);
                                     const randomChar = result[randomNumber]
                                     this.setState({ view: 'search', user: name, rdmChar: randomChar, error: undefined })
                                 })
@@ -141,7 +139,7 @@ const App = (() => {
 
                 searchCharacters(id, token, query, (error, item) => {
                     if (error) return this.setState({ error: error.message })
-                    else this.setState({ view: 'character-detail', item,  })
+                    else this.setState({ view: 'character-detail', item, })
                 })
             } catch (error) {
                 this.setState({ error: error.message })
@@ -154,19 +152,29 @@ const App = (() => {
         }
 
         handleGoToCharacters = () => {
-            listCharacters(id, token, (error, items) => {
-                if (error) this.setState({ error: error.message })
-                else this.setState({ view: 'characters', items })
-            })
+            try {
+                const { id, token } = sessionStorage
+                listCharacters(id, token, (error, items) => {
+                    if (error) this.setState({ error: error.message })
+                    else this.setState({ view: 'characters', items })
+                })
+            } catch (error) {
+                this.setState({ error: error.message })
+            }
         }
         handleOnClickCharacter = charId => {
-            retrieveCharDetails(id, token, charId, (error, item) => {
-                if (error) {
-                    this.setState({ error: error.message })
-                } else {
-                    this.setState({ view: 'character-detail', item })
-                }
-            })
+            try {
+                const { id, token } = sessionStorage
+                retrieveCharDetails(id, token, charId, (error, item) => {
+                    if (error) {
+                        this.setState({ error: error.message })
+                    } else {
+                        this.setState({ view: 'character-detail', item })
+                    }
+                })
+            } catch (error) {
+                this.setState({ error: error.message })
+            }
         }
 
         handleFavCharacter = (charId, origin) => {
@@ -194,9 +202,9 @@ const App = (() => {
 
             return <>
                 {view === 'landing' && <Landing onLogin={handleGoToLogin} onRegister={handleGoToRegister} />}
-                {view === 'register' && <Register onBack={handleGoBackToLanding} onRegister={handleRegister} error={error}/>}
-                {view === 'login' && <Login onBack={handleGoBackToLanding} onLogin={handleLogin} error={error}/>}
-                {view === 'search' && <Search user={user} rdmChar={rdmChar} onClickCharacter={handleOnClickCharacter} onFavCharacter={handleFavCharacter} onEdit={handleGoToProfile} onLogout={handleLogout} onBackSeasons={handleGoBackToSeasons} onBackCharacters={handleGoToCharacters} onSubmit={handleSearch} error={error}/>}
+                {view === 'register' && <Register onBack={handleGoBackToLanding} onRegister={handleRegister} error={error} />}
+                {view === 'login' && <Login onBack={handleGoBackToLanding} onLogin={handleLogin} error={error} />}
+                {view === 'search' && <Search user={user} rdmChar={rdmChar} onClickCharacter={handleOnClickCharacter} onFavCharacter={handleFavCharacter} onEdit={handleGoToProfile} onLogout={handleLogout} onBackSeasons={handleGoBackToSeasons} onBackCharacters={handleGoToCharacters} onSubmit={handleSearch} error={error} />}
                 {view === 'profile' && <Profile onBack={handleGoToSearch} onEdit={handleProfile} data={handleRetrieveUser} />}
                 {view === 'characters' && <CharacterResults items={items} onBack={handleGoToSearch} onClickCharacter={handleOnClickCharacter} onFavCharacter={handleFavCharacter} />}
                 {view === 'character-detail' && <CharacterDetail item={item} onBackCharacters={handleGoToCharacters} onBack={handleGoToSearch} onFav={handleFavCharacter} />}

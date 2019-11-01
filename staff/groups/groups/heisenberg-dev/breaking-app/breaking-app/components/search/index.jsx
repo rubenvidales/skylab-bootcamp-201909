@@ -1,5 +1,4 @@
-function Search({ user, onEdit, onLogout, onSubmit, onBackCharacters, onBackSeasons, items }) {
-
+function Search({ user, onEdit, onLogout, onSubmit, onBackCharacters, onBackSeasons, items, rdmChar, onClickCharacter, onFavCharacter }) {
     return <section className="search">
 
         <h3>Hi! {user}</h3> <button className="search__button-edit" onClick={event => {
@@ -23,7 +22,7 @@ function Search({ user, onEdit, onLogout, onSubmit, onBackCharacters, onBackSeas
 
             onSubmit(query)
         }}>
-            <input className="search__form-input" type="text" name="query"/>
+            <input className="search__form-input" type="text" name="query" />
             <button className="search__form-submit">Search</button>
 
         </form>
@@ -46,7 +45,9 @@ function Search({ user, onEdit, onLogout, onSubmit, onBackCharacters, onBackSeas
 
             }}>Episodes</button>
 
-            <article className="random-episode episode">
+            <CharacterItem key={rdmChar.char_id} item={rdmChar} onClickCharacter={onClickCharacter} onFav={onFavCharacter} />
+
+{/*             <article className="random-episode episode">
 
                 <h3 className="episode__title">Random Episode: Lorem Ipsum</h3>
 
@@ -62,7 +63,7 @@ function Search({ user, onEdit, onLogout, onSubmit, onBackCharacters, onBackSeas
 
                     alt="season image" />
 
-            </article>
+            </article> */}
 
         </section>
 

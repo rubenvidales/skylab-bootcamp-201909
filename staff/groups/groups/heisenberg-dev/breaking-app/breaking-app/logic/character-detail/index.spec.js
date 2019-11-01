@@ -1,4 +1,4 @@
-fdescribe('logic - Retrieve character details', () => {
+describe('logic - Retrieve character details', () => {
 
     let name, surname, email, password, id, token, charId = '4'
 
@@ -26,14 +26,14 @@ fdescribe('logic - Retrieve character details', () => {
         })
     })
 
-    fdescribe('Check if the character is favourite for this user', () => {
+    describe('Check if the character is favourite for this user', () => {
         beforeEach(done => {
             call('PUT', token, `https://skylabcoders.herokuapp.com/api/user/${id}`, { favChars: [charId] }, result => {
                 result.error ? done(new Error(result.error)) : done()
             })
         })
 
-        fit('success if is favourite', done => {
+        it('success if is favourite', done => {
             retrieveCharDetails(id, token, charId, (error, result) =>{
                 expect(error).toBeUndefined()
                 expect(result).toBeDefined()

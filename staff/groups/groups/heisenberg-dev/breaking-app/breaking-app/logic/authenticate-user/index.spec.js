@@ -61,6 +61,4 @@ describe('logic - authenticate user', () => {
         expect(() => authenticateUser(email, password, undefined)).toThrowError(TypeError, 'undefined is not a function')
         expect(() => authenticateUser(email, password, null)).toThrowError(TypeError, 'null is not a function')
     })
-
-    // TODO other cases
 })

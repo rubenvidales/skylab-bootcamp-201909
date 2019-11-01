@@ -38,6 +38,4 @@ describe('logic - retrieve user', () => {
             done()
         })
     })
-
-    // TODO other cases
 })

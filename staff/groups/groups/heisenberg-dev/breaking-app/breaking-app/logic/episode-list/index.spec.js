@@ -54,69 +54,6 @@ describe('logic - episode list', function () {
         })
     })
 
-    it('should retrieve an empty array if the number of season don\'t belong to a Breaking Bad season', function () {
-        let season = '6'
-
-        listEpisodes(season, function (error, episodes) {
-            
-            expect(error).toBeDefined()
-
-            expect(season).toBeDefined()
-            expect(typeof season).toBe('string')
-            expect(season.length).toBeGreaterThan(0)
-
-            expect(episodes).toBeDefined()
-            expect(episodes.length).toEqual(0)
-
-            expect(typeof episodes).toBe('object')
-
-            // done()
-
-        })
-    })
-
-    it('should retrieve an empty array if the season string is not a number', function () {
-        let season = 'a'
-
-        listEpisodes(season, function (error, episodes) {
-
-            expect(error).toBeDefined()
-
-            expect(season).toBeDefined()
-            expect(typeof season).toBe('string')
-            expect(season.length).toBeGreaterThan(0)
-
-            expect(episodes).toBeDefined()
-            expect(episodes.length).toEqual(0)
-
-            expect(typeof episodes).toBe('object')
-
-            // done()
-
-        })
-    })
-
-    it('should retrieve an empty array if the season string is empty', function () {
-        let season = ''
-
-        listEpisodes(season, function (error, episodes) {
-
-            expect(error).toBeDefined()
-
-            expect(season).toBeDefined()
-            expect(typeof season).toBe('string')
-            expect(season.length).toEqual(0)
-
-            expect(episodes).toBeDefined()
-            expect(episodes.length).toEqual(0)
-
-            expect(typeof episodes).toBe('object')
-
-            // done()
-
-        })
-    })
-
     describe('should fail on incorrect season or expression types', function () {
         it('should throw an error message if the season is not a string', function () {
             expect(function () { listEpisodes(1) }).toThrowError(TypeError, '1 is not a string')

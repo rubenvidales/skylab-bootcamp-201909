@@ -103,7 +103,8 @@ const App = (() => {
                             try {
                                 listCharacters(id, token, (error, result) => {
                                     const randomNumber = Math.floor(Math.random() * result.length);
-                                    const randomChar = result[randomNumber]
+                                    const randomChar = result[randomNumber]         
+                                    sessionStorage.rdmChar = JSON.stringify(randomChar)
                                     this.setState({ view: 'search', user: name, rdmChar: randomChar, error: undefined })
                                 })
                             } catch (error) {
@@ -180,7 +181,7 @@ const App = (() => {
             }
         }
 
-        handleFavCharacter = (charId, origin) => {
+        handleFavCharacter = (charId, origin) => {debugger
             try {
                 const { id, token } = sessionStorage
 

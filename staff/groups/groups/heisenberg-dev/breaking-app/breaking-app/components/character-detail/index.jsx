@@ -34,11 +34,6 @@ function CharacterDetail({ item: { char_id, name, birthday, occupation, img, sta
          <ul className="character-detail__ocupation-list">
             {occupation.map((element) => <li key={element} className="character-detail__occupation-item" >{element}</li>)}
          </ul>
-         <h4 className="character-detail__description-title">Description:</h4>
-         <p className="character-detail__description-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-             Optio
-             blanditiis natus illo enim deserunt cupiditate et odio est porro eaque, impedit accusamus
-                    saepe eum a adipisci facilis harum totam velit!</p>
          <h4 className="character-detail__portayed-title">Portayed by:</h4>
          <span className="character-detail__portrayed-text">{portrayed}</span>
          <div className="break"></div>

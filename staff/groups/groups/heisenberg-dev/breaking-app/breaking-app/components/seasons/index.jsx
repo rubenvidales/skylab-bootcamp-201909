@@ -7,7 +7,7 @@
  function Seasons({ seasons, goToSeason, onBackHome }) {
 
     return <section className="seasons">
-        <button className="register__goback" onClick={event => { // cambiar class
+        <button className="seasons__goback" onClick={event => { // cambiar class
             event.preventDefault()
             onBackHome()
         }}>Go back to Search</button>
@@ -26,7 +26,9 @@ function Season({ season: { number, air_date, imageUrl, overview }, goToSeason }
             goToSeason(number.toString())
         }}>
             <h3 className="season__title">Season {number}</h3>
-            <p className="season__description">Air date: {air_date}<br /><br />{overview}</p>
+            <h4 className="season__airdate-title">Air date: </h4>
+            <span className="season__airdate-info">{air_date}</span>
+            <p className="season__overview">{overview}</p>
             <img className="season__image" src={imageUrl} alt="season image" />
         </article>
     </li>

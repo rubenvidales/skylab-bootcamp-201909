@@ -17,7 +17,6 @@
             <article className="character">
                 <h2 className="character__title">{name}</h2>
                 <img className="character__image" src={img} />
-                <p className="character_description">Lorem ipsum</p>
                 <span className="character__fav" onClick={event => {
                     event.preventDefault()
                     event.stopPropagation()

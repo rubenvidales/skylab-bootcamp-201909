@@ -18,6 +18,24 @@ body {
   text-align: center;
 }
 
+.feedback {
+  border: 0.3rem solid orange;
+  border-radius: 1rem;
+  border-style: dotted;
+  padding: 1rem;
+  margin: 1rem;
+  background-color: olive;
+}
+.feedback__icon {
+  font-size: 1.5rem;
+}
+.feedback__message {
+  display: inline;
+  color: white;
+  font-size: 1.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .landing {
   background-color: deeppink;
   border: 0.3rem solid darkviolet;
@@ -36,6 +54,30 @@ body {
   color: darkviolet;
   font-size: 1.2rem;
   margin: 0.5rem auto 0.5rem auto;
+}
+
+.register {
+  background-color: yellowgreen;
+  border: 0.3rem solid green;
+  border-radius: 1rem;
+  border-style: dotted;
+  text-decoration: none;
+  padding: 0.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.register__title {
+  color: green;
+  font-size: 2rem;
+  margin: 0.5rem auto 0.5rem auto;
+}
+.register__field {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+.register__submit {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -1,4 +1,4 @@
-module.exports = function (view) {
+module.exports = function ({body}) {
     return `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -12,13 +12,16 @@ module.exports = function (view) {
     
     <body>
     <header class="header">
-        <a class="logo-bloc" href="index.html">
+        <a class="logo-bloc" href="/">
             <img class="logo-bloc__img" src="logo.png" />
         </a>
     </header>
     <main>
-        ${view}
+        ${body}
     </main>
+    <footer>
+        <p class="footer__copyright">Ru for Skylab - 2019</p>
+    </footer>
     </body>
 </html>`
 }

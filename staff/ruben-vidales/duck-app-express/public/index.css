@@ -28,11 +28,68 @@ h3 {
   text-align: center;
 }
 
+.footer__copyright {
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.8em;
+}
+
+.feedback {
+  display: flex;
+  background-color: #d77;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+  align-items: center;
+  text-align: center;
+  margin-top: 1em;
+}
+.feedback__icon {
+  width: 25%;
+}
+
 .landing__options {
   text-align: center;
   font-size: 1.2em;
   margin: 0;
   padding: 0.6em;
+}
+
+.register {
+  padding: 0.6em;
+}
+.register__form {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+.register__title {
+  margin: 0;
+}
+.register__field {
+  margin: 0.5em;
+}
+.register__back {
+  margin: 1em;
+}
+
+.login {
+  padding: 0.6em;
+}
+.login__form {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+.login__title {
+  margin: 0;
+}
+.login__field {
+  margin: 0.5em;
+}
+.login__back {
+  margin: 1em;
 }
 
 /*# sourceMappingURL=index.css.map */

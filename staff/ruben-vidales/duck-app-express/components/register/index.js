@@ -2,7 +2,7 @@ const Feedback = require('../feedback')
 
 module.exports = function () {
     return `<section class="view register">
-    <form class="register__form">
+    <form class="register__form" method="post" action="/register">
         <h1 class="register__title">Register</h1>
         <input class="register__field" type="text" name="name" placeholder="name" />
         <input class="register__field" type="text" name="surname" placeholder="surname" />

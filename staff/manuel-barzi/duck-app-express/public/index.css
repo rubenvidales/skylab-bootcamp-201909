@@ -80,4 +80,28 @@ body {
   padding: 0.5rem;
 }
 
+.login {
+  background-color: tomato;
+  border: 0.3rem solid firebrick;
+  border-radius: 1rem;
+  border-style: dotted;
+  text-decoration: none;
+  padding: 0.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.login__title {
+  color: firebrick;
+  font-size: 2rem;
+  margin: 0.5rem auto 0.5rem auto;
+}
+.login__field {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+.login__submit {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
 /*# sourceMappingURL=index.css.map */

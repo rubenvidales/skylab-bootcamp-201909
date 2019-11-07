@@ -6,7 +6,9 @@ const View = require('./components/view')
 const Landing = require('./components/landing')
 const Register = require('./components/register')
 const Login = require('./components/login')
+
 const registerUser = require('./logic/register-user')
+const authenticateUser = require('./logic/authenticate-user')
 
 const { argv: [, , port = 8080] } = process
 
@@ -47,6 +49,9 @@ app.get('/login', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
+
+    debugger
+
     let content = ''
 
     req.on('data', chuck => content += chuck)
@@ -54,11 +59,14 @@ app.post('/login', (req, res) => {
     req.on('end', () => {
         const { email, password } = querystring.parse(content)
         try {
-            
+            authenticateUser(email, password, (error, credentials) => {
+                if (error) return res.send('error chungo!') // TODO
+
+                res.redirect('/search')
+            })
         } catch (error) {
-
+            // TODO handling
         }
-
     })
 })
 

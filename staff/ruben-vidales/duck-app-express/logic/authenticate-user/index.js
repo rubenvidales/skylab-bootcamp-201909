@@ -1,7 +1,7 @@
 const call = require('../../helpers/call')
 const { ContentError } = require('../../utils/errors')
 
-function authenticateUser(email, password, callback) {
+module.exports = function (email, password, callback) {
     if (typeof email !== 'string') throw new TypeError(email + ' is not a string')
     if (!email.trim().length) throw new ContentError('e-mail is empty or blank')
     if (typeof password !== 'string') throw new TypeError(password + ' is not a string')

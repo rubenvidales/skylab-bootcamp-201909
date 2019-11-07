@@ -1,8 +1,8 @@
 const Feedback = require('../feedback')
 
-module.exports = function () {
+module.exports = function ({path, error}) {
     return `<section class="view register">
-    <form class="register__form" method="post" action="/register">
+    <form class="register__form" method="post" action="${path}">
         <h1 class="register__title">Register</h1>
         <input class="register__field" type="text" name="name" placeholder="name" />
         <input class="register__field" type="text" name="surname" placeholder="surname" />
@@ -12,6 +12,6 @@ module.exports = function () {
         <a class="register__back" href="/">Go back</a>
     </form>
 
-    ${Feedback()}
+    ${error ? Feedback({ message: error }) : ''}
 </section>`
 }

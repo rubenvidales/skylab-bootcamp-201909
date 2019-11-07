@@ -1,14 +1,10 @@
 const express = require('express')
 
+const { View, Landing, Register, Login, Search } = require('./components')
+
+const { registerUser, authenticateUser } = require('./logic')
+
 const querystring = require('querystring')
-
-const View = require('./components/view')
-const Landing = require('./components/landing')
-const Register = require('./components/register')
-const Login = require('./components/login')
-
-const registerUser = require('./logic/register-user')
-const authenticateUser = require('./logic/authenticate-user')
 
 const { argv: [, , port = 8080] } = process
 
@@ -17,11 +13,11 @@ const app = express()
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-    res.send(View({ body: Landing({ register: '/register' }) }))
+    res.send(View({ body: Landing({ register: '/register', login: '/login' }) }))
 })
 
 app.get('/register', (req, res) => {
-    res.send(View({ body: Register() }))
+    res.send(View({ body: Register({ path: '/register' }) }))
 })
 
 app.post('/register', (req, res) => {
@@ -45,7 +41,7 @@ app.post('/register', (req, res) => {
 })
 
 app.get('/login', (req, res) => {
-    res.send(View({ body: Login() }))
+    res.send(View({ body: Login({ path: '/login' }) }))
 })
 
 app.post('/login', (req, res) => {
@@ -68,6 +64,10 @@ app.post('/login', (req, res) => {
             // TODO handling
         }
     })
+})
+
+app.get('/search', (req, res) => {
+    res.send(View({ body: Search({ path: '/search' }) }))
 })
 
 app.listen(port, () => console.log(`server running on port ${port}`))

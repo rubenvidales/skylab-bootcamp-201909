@@ -20,9 +20,9 @@ describe('logic - authenticate user', () => {
 
     it('should succeed on correct credentials', done => {
         authenticateUser(email, password, (error, response) => {
-            expect(error).not.to.exist
+            expect(error).to.be.undefined
 
-            expect(response).to.exist
+            expect(response).not.to.be.undefined
 
             const { id, token } = response
 

@@ -92,4 +92,31 @@ h3 {
   margin: 1em;
 }
 
+.search__title {
+  text-align: center;
+}
+.search__user {
+  text-align: center;
+}
+.search__logout-form {
+  text-align: center;
+  margin: 1em;
+}
+.search__logout-button {
+  margin: 0 0.5em;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.form__part {
+  display: flex;
+  align-items: center;
+}
+.form__part-button {
+  margin: 0 0.5em;
+}
+
 /*# sourceMappingURL=index.css.map */

@@ -32,7 +32,8 @@ app.post('/register', (req, res) => {
         try {
             registerUser(name, surname, email, password, error => {
                 if (error) res.send('error chungo!')
-                else res.send('depotamare')
+                //else res.send('depotamare')
+                else res.redirect('/login')
             })
         } catch (error) {
             // TODO handling

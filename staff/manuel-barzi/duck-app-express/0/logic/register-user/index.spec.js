@@ -3,7 +3,7 @@ const call = require('../../helpers/call')
 const registerUser = require('../register-user')
 const { ContentError } = require('../../utils/errors')
 
-false && describe('logic - register user', () => {
+describe('logic - register user', () => {
     let name, surname, email, password
 
     beforeEach(() => {

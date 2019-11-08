@@ -30,14 +30,17 @@ describe('logic - retrieve user', () => {
     })
 
     it('should succeed on correct user data', done => {
-        retrieveUser(id, token, (error, data) => {
-            expect(error).not.to.exist
 
-            expect(data).to.exist
-            expect(data.name).to.equal(name)
-            expect(data.surname).to.equal(surname)
-            expect(data.username).to.equal(email)
-            expect(data.password).not.to.exist
+debugger
+
+        retrieveUser(id, token)
+            .then(user  => {
+
+            expect(user).to.exist
+            expect(user.name).to.equal(name)
+            expect(user.surname).to.equal(surname)
+            expect(user.username).to.equal(email)
+            expect(user.password).not.to.exist
 
             done()
         })

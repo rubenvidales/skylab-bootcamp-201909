@@ -9,7 +9,7 @@ module.exports = function (id, token) {
 
     return new Promise((resolve, reject) => {
         call('GET', token, `https://skylabcoders.herokuapp.com/api/user/${id}`, undefined, result => {
-            result.error ? reject(new Error(result.error)) : resolve()
+            result.error ? reject(new Error(result.error)) : resolve(result.data)
         })
     })
 }

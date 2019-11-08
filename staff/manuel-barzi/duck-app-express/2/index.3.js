@@ -44,7 +44,7 @@ app.post('/login', bodyParser, (req, res) => {
             .then(credentials => {
                 const { id, token } = credentials
 
-                sessions[id] = { token }
+                sessions[id] = token
 
                 //console.dir(sessions)
 
@@ -66,11 +66,7 @@ app.get('/search', cookieParser, (req, res) => {
 
         if (!id) return res.redirect('/')
 
-        const session = sessions[id]
-
-        if (!session) return res.redirect('/')
-
-        const { token } = session
+        const token = sessions[id]
 
         if (!token) return res.redirect('/')
 
@@ -82,10 +78,8 @@ app.get('/search', cookieParser, (req, res) => {
 
                 if (!query) return res.send(View({ body: Search({ path: '/search', name, logout: '/logout' }) }))
 
-                session.query = query
-
                 return searchDucks(id, token, query)
-                    .then(ducks => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', results: ducks, favPath: '/fav', detailPath: '/ducks' }) })))
+                    .then(ducks => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', results: ducks, favPath: '/fav' }) })))
             })
             .catch(({ message }) => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', error: message }) })))
     } catch ({ message }) {
@@ -111,30 +105,20 @@ app.post('/fav', cookieParser, bodyParser, (req, res) => {
 
         if (!id) return res.redirect('/')
 
-        const session = sessions[id]
-
-        if (!session) return res.redirect('/')
-
-        const { token, query } = session
+        const token = sessions[id]
 
         if (!token) return res.redirect('/')
 
         toggleFavDuck(id, token, duckId)
-            .then(() => res.redirect(`/search?q=${query}`))
-            .catch(({ message }) => {
+            .then(() => {
+                res.send('TODO show results again')
+            })
+            .catch(({message}) => {
                 res.send('TODO error handling')
             })
-    } catch ({ message }) {
+    } catch (error) {
         res.send('TODO error handling')
     }
-})
-
-app.get('/ducks/:id', (req, res) => {
-    const { params: { id } } = req
-
-    // TODO control session, etc
-
-    res.send('TODO detail of duck ' + id)
 })
 
 app.listen(port, () => console.log(`server running on port ${port}`))

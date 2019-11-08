@@ -1,8 +1,9 @@
 const express = require('express')
 
 const { View, Landing, Register, Login, Search } = require('./components')
-
 const { registerUser, authenticateUser } = require('./logic')
+
+const { bodyParser, cookieParser } = require('./utils/middlewares')
 
 const querystring = require('querystring')
 
@@ -20,24 +21,16 @@ app.get('/register', (req, res) => {
     res.send(View({ body: Register({ path: '/register' }) }))
 })
 
-app.post('/register', (req, res) => {
-    let content = ''
-
-    req.on('data', chuck => content += chuck)
-
-    req.on('end', () => {
-        const { name, surname, email, password } = querystring.parse(content)
-        try {
-            registerUser(name, surname, email, password, error => {
-                if (error) res.send('error chungo!')
-                //else res.send('depotamare')
-                else res.redirect('/login')
-            })
-        } catch (error) {
-            // TODO handling
-        }
-
-    })
+app.post('/register', bodyParser, (req, res) => {
+    const { body: { name, surname, email, password } } = req
+debugger
+    try {
+        registerUser(name, surname, email, password)
+            .then(() => res.redirect('/'))
+            .catch(({ message }) => res.send(View({ body: Register({ path: '/register', error: message }) })))
+    } catch (error) {
+        res.send(View({ body: Register({ path: '/register', error: error.message }) }))
+    }
 })
 
 app.get('/login', (req, res) => {
@@ -45,8 +38,7 @@ app.get('/login', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-
-    debugger
+    const { body: { email, password } } = req
 
     let content = ''
 
@@ -68,6 +60,14 @@ app.post('/login', (req, res) => {
 
 app.get('/search', (req, res) => {
     res.send(View({ body: Search({ path: '/search' }) }))
+})
+
+app.get('/logout', (req, res) => {
+    res.setHeader('set-cookie', 'id=""; expires=Thu, 01 Jan 1970 00:00:00 GMT')
+    const { cookies: { id } } = req
+    if (!id) return res.redirect('/')
+    delete sessions[id]
+    res.redirect('/')
 })
 
 app.listen(port, () => console.log(`server running on port ${port}`))

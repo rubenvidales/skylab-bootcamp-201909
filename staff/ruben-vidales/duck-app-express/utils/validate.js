@@ -1,3 +1,5 @@
+const { ContentError } = require('./errors')
+
 const validate = {
     typeOf(type, target) {
         if (typeof target !== type) throw new TypeError(`${target} is not a ${type}`)
@@ -31,3 +33,5 @@ const validate = {
 validate.string.notVoid = function (name, target) {
     if (!target.trim().length) throw new ContentError(`${name} is empty or blank`)
 }
+
+module.exports = validate

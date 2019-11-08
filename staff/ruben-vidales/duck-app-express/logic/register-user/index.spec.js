@@ -13,14 +13,10 @@ describe('logic - register user', () => {
         password = `password-${Math.random()}`
     })
 
-    it('should succeed on correct credentials', done => {
-        registerUser(name, surname, email, password, (error, response) => {
-            expect(error).not.to.exist
-            expect(response).not.to.exist
-
-            done()
-        })
-    })
+    it('should succeed on correct credentials', () =>
+        registerUser(name, surname, email, password)
+            .then(response => { expect(response).to.be.undefined })
+    )
 
     describe('when user already exists', () => {
         beforeEach(done => {
@@ -30,19 +26,19 @@ describe('logic - register user', () => {
             })
         })
 
-        it('should fail on already existing user', done => {
-            registerUser(name, surname, email, password, (error, response) => {
-                expect(response).not.to.exist
-                expect(error).to.exist
-
-                expect(error.message).to.exist
-                expect(typeof error.message).to.equal('string')
-                expect(error.message.length).to.be.greaterThan(0)
-
-                done()
-            })
-
-        })
+        it('should fail on already existing user', () =>
+            registerUser(name, surname, email, password)
+                .then( () => {
+                    throw Error ('should not reach this point')
+                })
+                .catch( error => {
+                    expect(error).to.exist
+                    expect(error.message).to.exist
+                    expect(typeof error.message).to.equal('string')
+                    expect(error.message.length).to.be.gt(0)
+                    expect(error.message).to.equal(`user with username "${email}" already exists`)
+                })
+        )
     })
 
     it('should fail on incorrect name, surname, email, password, or expression type and content', () => {
@@ -85,13 +81,6 @@ describe('logic - register user', () => {
 
         expect(() => registerUser(name, surname, email, '')).to.throw(ContentError, 'password is empty or blank')
         expect(() => registerUser(name, surname, email, ' \t\r')).to.throw(ContentError, 'password is empty or blank')
-
-        expect(() => registerUser(name, surname, email, password, 1)).to.throw(TypeError, '1 is not a function')
-        expect(() => registerUser(name, surname, email, password, true)).to.throw(TypeError, 'true is not a function')
-        expect(() => registerUser(name, surname, email, password, [])).to.throw(TypeError, ' is not a function')
-        expect(() => registerUser(name, surname, email, password, {})).to.throw(TypeError, '[object Object] is not a function')
-        expect(() => registerUser(name, surname, email, password, undefined)).to.throw(TypeError, 'undefined is not a function')
-        expect(() => registerUser(name, surname, email, password, null)).to.throw(TypeError, 'null is not a function')
     })
 
     // TODO other cases

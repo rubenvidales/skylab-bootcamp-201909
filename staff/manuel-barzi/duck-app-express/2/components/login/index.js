@@ -1,6 +1,6 @@
 const Feedback = require('../feedback')
 
-module.exports = function ({ path }) {
+module.exports = function ({ path, error }) {
     return `<section class="view login">
     <form method="post" action="${path}">
         <h1 class="login__title">Login</h1>
@@ -9,6 +9,6 @@ module.exports = function ({ path }) {
         <button class="login__submit">🗝</button>
     </form>
 
-    ${Feedback({})}
+    ${error ? Feedback({ message: error }) : ''}
 </section>`
 }

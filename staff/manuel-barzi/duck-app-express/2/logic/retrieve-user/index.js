@@ -1,14 +1,15 @@
 const call = require('../../helpers/call')
-const { ContentError } = require('../../utils/errors')
+const validate = require('../../utils/validate')
 
-module.exports = function(id, token, callback) {
-    if (typeof id !== 'string') throw new TypeError(id + ' is not a string')
-    if (!id.trim().length) throw new ContentError('id is empty or blank')
-    if (typeof token !== 'string') throw new TypeError(token + ' is not a string')
-    if (!token.trim().length) throw new ContentError('token is empty or blank')
-    if (typeof callback !== 'function') throw new TypeError(callback +  ' is not a function')
+module.exports = function(id, token) {
+    validate.string(id)
+    validate.string.notVoid('id', id)
+    validate.string(token)
+    validate.string.notVoid('token', token)
 
-    call('GET', token, `https://skylabcoders.herokuapp.com/api/user/${id}`, undefined, result => {
-        result.error ? callback(new Error(result.error)) : callback(undefined, result.data)
+    return new Promise((resolve, reject) => {
+        call('GET', token, `https://skylabcoders.herokuapp.com/api/user/${id}`, undefined, result => {
+            result.error ? reject(new Error(result.error)) : resolve(result.data)
+        })
     })
 }

@@ -1,14 +1,15 @@
 const call = require('../../helpers/call')
-const { ContentError } = require('../../utils/errors')
+const validate = require('../../utils/validate')
 
 module.exports = function (email, password, callback) {
-    if (typeof email !== 'string') throw new TypeError(email + ' is not a string')
-    if (!email.trim().length) throw new ContentError('e-mail is empty or blank')
-    if (typeof password !== 'string') throw new TypeError(password + ' is not a string')
-    if (!password.trim().length) throw new ContentError('password is empty or blank')
-    if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')
+    validate.string(email)
+    validate.string.notVoid('e-mail', email)
+    validate.string(password)
+    validate.string.notVoid('password', password)
 
-    call('POST', undefined, 'https://skylabcoders.herokuapp.com/api/auth', { username: email, password }, result => {
-        result.error ? callback(new Error(result.error)) : callback(undefined, result.data)
+    return new Promise((resolve, reject) => {
+        call('POST', undefined, 'https://skylabcoders.herokuapp.com/api/auth', { username: email, password }, result => {
+            result.error ? reject(new Error(result.error)) : resolve(result.data)
+        })
     })
 }

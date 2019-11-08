@@ -2,7 +2,7 @@ const { expect } = require('chai')
 const call = require('../../helpers/call')
 const retrieveUser = require('../retrieve-user')
 
-describe('logic - retrieve user', () => {
+describe.only('logic - retrieve user', () => {
     let name, surname, email, password, id, token
 
     beforeEach(done => {
@@ -29,19 +29,16 @@ describe('logic - retrieve user', () => {
         })
     })
 
-    it('should succeed on correct user data', done => {
-        retrieveUser(id, token, (error, data) => {
-            expect(error).not.to.exist
-
-            expect(data).to.exist
-            expect(data.name).to.equal(name)
-            expect(data.surname).to.equal(surname)
-            expect(data.username).to.equal(email)
-            expect(data.password).not.to.exist
-
-            done()
-        })
-    })
+    it('should succeed on correct user data', () =>
+        retrieveUser(id, token)
+            .then(user => {
+                expect(user).to.exist
+                expect(user.name).to.equal(name)
+                expect(user.surname).to.equal(surname)
+                expect(user.username).to.equal(email)
+                expect(user.password).to.be.undefined
+            })
+    )
 
     // TODO other cases
 })

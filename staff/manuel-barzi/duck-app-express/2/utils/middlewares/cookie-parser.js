@@ -1,7 +1,7 @@
 const { parseCookie } = require('../parsers')
 
 module.exports = function (req, res, next) {
-    parseCookie(req)
+    req.cookies = parseCookie(req)
 
     next()
 }

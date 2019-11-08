@@ -62,7 +62,7 @@ app.post('/login', bodyParser, (req, res) => {
 
 app.get('/search', cookieParser, (req, res) => {
     try {
-        const { cookies: { id }, query: { q: query } } = req
+        const { cookies: { id } } = req
 
         if (!id) return res.redirect('/')
 
@@ -70,20 +70,25 @@ app.get('/search', cookieParser, (req, res) => {
 
         if (!token) return res.redirect('/')
 
-        let name
-
         retrieveUser(id, token)
             .then(user => {
-                name = user.name
+                const { name } = user
+
+                const { query: { q: query } } = req
 
                 if (!query) return res.send(View({ body: Search({ path: '/search', name, logout: '/logout' }) }))
 
-                return searchDucks(id, token, query)
-                    .then(ducks => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', results: ducks, favPath: '/fav' }) })))
+                try {
+                    searchDucks(id, token, query)
+                        .then(ducks => res.send(View({ body: `${Search({ path: '/search', query, name, logout: '/logout' })} ` })) /*TODO ${Results({items: ducks})}*/)
+                        .catch(({ message }) => res.send(View({ body: Search({ path: '/search', name, logout: '/logout', error: message }) })))
+                } catch ({ message }) {
+                    res.send(View({ body: Search({ path: '/search', name, logout: '/logout', error: message }) }))
+                }
             })
-            .catch(({ message }) => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', error: message }) })))
+            .catch(({ message }) => res.send(View({ body: Search({ path: '/search', name, logout: '/logout', error: message }) })))
     } catch ({ message }) {
-        res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', error: message }) }))
+        res.send(View({ body: Search({ path: '/search', name, logout: '/logout', error: message }) }))
     }
 })
 
@@ -97,22 +102,6 @@ app.post('/logout', cookieParser, (req, res) => {
     delete sessions[id]
 
     res.redirect('/')
-})
-
-app.post('/fav', cookieParser, bodyParser, (req, res) => {
-    try {
-        const { cookies: { id }, body: { id: duckId } } = req
-
-        if (!id) return res.redirect('/')
-
-        const token = sessions[id]
-
-        if (!token) return res.redirect('/')
-
-        res.send(`make fav duck ${duckId}`)
-    } catch (error) {
-        res.send('kaput')
-    }
 })
 
 app.listen(port, () => console.log(`server running on port ${port}`))

@@ -18,25 +18,22 @@ describe('logic - authenticate user', () => {
         })
     })
 
-    it('should succeed on correct credentials', done => {
-        authenticateUser(email, password, (error, response) => {
-            expect(error).not.to.exist
+    it('should succeed on correct credentials', () =>
+        authenticateUser(email, password)
+            .then(response => {
+                expect(response).to.exist
 
-            expect(response).to.exist
+                const { id, token } = response
 
-            const { id, token } = response
+                expect(id).to.exist
+                expect(typeof id).to.equal('string')
+                expect(id.length).to.be.greaterThan(0)
 
-            expect(id).to.exist
-            expect(typeof id).to.equal('string')
-            expect(id.length).to.be.greaterThan(0)
-
-            expect(token).to.exist
-            expect(typeof token).to.equal('string')
-            expect(token.length).to.be.greaterThan(0)
-
-            done()
-        })
-    })
+                expect(token).to.exist
+                expect(typeof token).to.equal('string')
+                expect(token.length).to.be.greaterThan(0)
+            })
+    )
 
     it('should fail on incorrect name, surname, email, password, or expression type and content', () => {
         expect(() => authenticateUser(1)).to.throw(TypeError, '1 is not a string')
@@ -58,13 +55,6 @@ describe('logic - authenticate user', () => {
 
         expect(() => authenticateUser(email, '')).to.throw(ContentError, 'password is empty or blank')
         expect(() => authenticateUser(email, ' \t\r')).to.throw(ContentError, 'password is empty or blank')
-
-        expect(() => authenticateUser(email, password, 1)).to.throw(TypeError, '1 is not a function')
-        expect(() => authenticateUser(email, password, true)).to.throw(TypeError, 'true is not a function')
-        expect(() => authenticateUser(email, password, [])).to.throw(TypeError, ' is not a function')
-        expect(() => authenticateUser(email, password, {})).to.throw(TypeError, '[object Object] is not a function')
-        expect(() => authenticateUser(email, password, undefined)).to.throw(TypeError, 'undefined is not a function')
-        expect(() => authenticateUser(email, password, null)).to.throw(TypeError, 'null is not a function')
     })
 
     // TODO other cases

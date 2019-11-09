@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>💣DUCKY-KILLA💣</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/staff/adrian-zhu/duck-app/work/try/style/img/ruben.jpg" type="image/x-icon">
+</head>
+<body>
+    <header class="header">            
+        <h1 class="header__title"><img src="style/img/kniff.png" class="header__chart-picture" alt="kniff"> Ducky-Killa <img src="style/img/kniff.png" class="header__chart-picture" alt="kniff"></h1>
+    </header>
+
+    <section class="view hide">
+        <form class="uploaded">
+            <input class="uploaded__input" placeholder="Visca Luca" name="query"j>
+            <button class="uploaded__button" ></button> 
+        </form>
+        <ul class="results"></ul>
+    </section>
+
+    <section class="feedback hide">
+        <span class="feedback__icon">🤡</span>
+        <p class="feedback__message">Wrong Message</p>
+        <span class="feedback__icon">🎈</span>
+    </section>
+
+    <section class="login__container login">
+        <form class="login__form form">
+            <h1>Welcome to Ducky-Killa</h1>
+            <input type="text" placeholder="Username" class="form__username input" name="email" autofocus>
+            <input type="password" placeholder="Password" class="form__pasword input" name="password">
+            <button type="submit">Entrar</button>
+        </form>
+        <a href="#" class="btn btn__new-account">Crear cuenta nueva</a>
+    </section>
+    <section class="register__container register hide">
+        <form class="register__form form">
+            <h1>Register</h1>
+            <input type="text" placeholder="Name" class="form__pasword input" name="name" autofocus required>  <!-- autofocus -->
+            <input type="text" placeholder="Surname" class="form__pasword input" name="surname"required> <!-- required => obligatorio -->
+            <input type="email" placeholder="Email" class="form__email input" name="email" required>
+            <input type="password" placeholder="Password" class="form__pasword input" name="password" required>
+            <button type="submit">Registrarse</button>
+        </form>
+        <a href="#" class="btn btn__login">login</a>
+    </section>
+
+    <section class="view detail hide">
+        <h2 class="detail__title">Duck X</h2>
+        <img class="detail__image" src="https://fakeimg.pl/500x300/?text=Hello">
+        <p class="detail__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate neque omnis
+            sunt dolor repellat incidunt voluptates odio eos consequatur corrupti. Accusantium porro minima molestias
+            voluptatem dolor nobis! Perspiciatis, vero maiores!</p>
+        <a class="detail__store" href="#">Go to store</a>
+        <span class="detail__price">10€</span>
+        <a class="detail__back" href="#">Go back</a>
+    </section>
+
+    <footer class="base">
+        <div class="base__copypath">
+            <p>@NO TE ENFADES RUBEN !!</p>
+        </div>
+    </footer>
+    
+    
+    <script src="scripts/utils/shuffle.js"></script>
+    <script src="scripts/utils/fetch.js"></script>
+    <script src="scripts/utils/function-extend.js"></script>
+    <script src="scripts/logic/register-user/index.js"></script>
+    <script src="scripts/logic/authenticate-user/index.js"></script>
+    <script src="scripts/logic/retrieve-duck/index.js"></script>
+    <script src="scripts/logic/retrieve-user/index.js"></script>
+    <script src="scripts/logic/search-ducks/index.js"></script>
+    <script src="scripts/helpers/call.js"></script>
+    <script src="scripts/components/component.js"></script>
+    <script src="scripts/components/search.js"></script>
+    <script src="scripts/components/results.js"></script>
+    <script src="scripts/components/result-item.js"></script>
+    <script src="scripts/components/detail.js"></script>
+    <script src="scripts/components/feedback.js"></script>
+    <script src="scripts/components/view.js"></script>
+    <script src="scripts/components/login.js"></script>
+    <script src="scripts/components/register.js"></script>
+    <script src="scripts/main.js"></script>
+    
+</body>
+</html>

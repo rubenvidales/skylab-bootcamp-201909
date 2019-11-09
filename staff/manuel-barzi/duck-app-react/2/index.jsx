@@ -8,7 +8,7 @@ class App extends Component {
     state = { view: id && token ? 'search' : 'landing', error: undefined, query }
 
     componentWillMount() {
-        if (id && token)
+        if (id && token) {
             try {
                 retrieveUser(id, token, (error, user) => {
                     if (error) this.setState({ error: error.message })
@@ -22,9 +22,10 @@ class App extends Component {
                 this.setState({ error: error.message })
             }
 
-        const { state: { query } } = this
+            const { state: { query } } = this
 
-        query && this.handleSearch(query)
+            query && this.handleSearch(query)
+        }
     }
 
     handleGoToRegister = () => {

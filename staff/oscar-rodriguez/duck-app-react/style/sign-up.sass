@@ -1,0 +1,33 @@
+.sign-up
+    padding: .2rem
+    border: 1px solid  #444343
+    border-radius: 1rem
+    width: 100%
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    cursor: pointer
+    &:hover
+        border: 1px solid whitesmoke
+
+    &__form
+        margin: .5rem 1rem .5rem 1rem
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        width: 100%
+        
+        & .label
+            width: 99%
+            font-size: 80%
+            > input
+                width: 100%
+                background: #ffa600a6
+                border: none
+                border-bottom: 1px solid tomato
+
+    &__button
+        @extend %button
+

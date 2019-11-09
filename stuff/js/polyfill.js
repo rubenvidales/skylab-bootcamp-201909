@@ -25,6 +25,26 @@ var a = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 console.log(a.shuffle());
 
+["adri-campo",
+"adrian-zhu",
+"aitor-parra",
+"cristian-astudillo",
+"diana-moreno",
+"elena-rodriguez",
+"fatima-mata",
+"isidro-alonso",
+"javier-sevilla",
+"joan-luis",
+"jose-rodriguez",
+"luka-bontempi",
+"marta-penya",
+"martin-garcia",
+"nacho-rivero",
+"noli-pascual",
+"oscar-rodriguez",
+"ruben-vidales",
+"xavier-navarro"].shuffle();
+
 // 2
 
 if (typeof Array.prototype.random === 'undefined')

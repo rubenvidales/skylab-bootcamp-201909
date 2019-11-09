@@ -1,7 +1,7 @@
 const call = require('../../helpers/call')
 const validate = require('../../utils/validate')
 
-module.exports = function (email, password, callback) {
+module.exports = function (email, password) {
     validate.string(email)
     validate.string.notVoid('e-mail', email)
     validate.string(password)

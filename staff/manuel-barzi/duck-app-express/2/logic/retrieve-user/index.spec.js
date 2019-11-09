@@ -2,7 +2,7 @@ const { expect } = require('chai')
 const call = require('../../helpers/call')
 const retrieveUser = require('../retrieve-user')
 
-describe.only('logic - retrieve user', () => {
+describe('logic - retrieve user', () => {
     let name, surname, email, password, id, token
 
     beforeEach(done => {

@@ -1,66 +1,91 @@
-describe('logic - retrieve duck', function() {
-    it('should succeed on correct duck id', function(done) {
-        var id = '5c3853aebd1bde8520e66e1b';
+const { expect } = require('chai')
+const call = require('../../helpers/call')
+const retrieveDuck = require('.')
 
-        retrieveDuck(id, function(error, duck) {
-            expect(error).toBeUndefined();
+describe('logic - retrieve duck', () => {
 
-            expect(duck).toBeDefined();
-            expect(duck.id).toBe(id);
+    let name, surname, email, password, id, token
 
-            expect(duck.title).toBeDefined();
-            expect(typeof duck.title).toBe('string');
-            expect(duck.title.length).toBeGreaterThan(0);
+    beforeEach(done => {
+        name = `name-${Math.random()}`
+        surname = `surname-${Math.random()}`
+        email = `email-${Math.random()}@mail.com`
+        password = `password-${Math.random()}`
 
-            expect(duck.imageUrl).toBeDefined();
-            expect(typeof duck.imageUrl).toBe('string');
-            expect(duck.imageUrl.length).toBeGreaterThan(0);
+        call('POST', undefined, 'https://skylabcoders.herokuapp.com/api/user', { name, surname, username: email, password }, result => {
+            if (result.error) done(new Error(result.error))
+            else {
+                call('POST', undefined, 'https://skylabcoders.herokuapp.com/api/auth', { username: email, password }, result => {
+                    if (result.error) done(new Error(result.error))
+                    else {
+                        const { data } = result
 
-            expect(duck.description).toBeDefined();
-            expect(typeof duck.description).toBe('string');
-            expect(duck.description.length).toBeGreaterThan(0);
+                        id = data.id
+                        token = data.token
 
-            expect(duck.link).toBeDefined();
-            expect(typeof duck.link).toBe('string');
-            expect(duck.link.length).toBeGreaterThan(0);
+                        done()
+                    }
+                })
+            }
+        })
+    })
 
-            expect(duck.price).toBeDefined();
-            expect(typeof duck.price).toBe('string');
-            expect(duck.price.length).toBeGreaterThan(0);
+    it('should succeed on correct duck id', () => {
+        var duckId = '5c3853aebd1bde8520e66e1b'
 
-            done();
-        });
-    });
+        return retrieveDuck(id, token, duckId)
+            .then((duck) => {
 
-    it('should fail on incorrect duck id', function(done) {
-        var id = '5c3853ABCd1bde8520e66e1b';
+                expect(duck).to.exist
+                expect(duck.id).to.equal(duckId)
 
-        retrieveDuck(id, function(error, duck) {
-            expect(duck).toBeUndefined();
+                expect(duck.title).to.exist
+                expect(typeof duck.title).to.equal('string')
+                expect(duck.title.length).to.be.gt(0)
 
-            expect(error).toBeDefined();
-            
-            expect(error.message).toBeDefined();
-            expect(typeof error.message).toBe('string');
-            expect(error.message.length).toBeGreaterThan(0);
+                expect(duck.image).to.exist
+                expect(typeof duck.image).to.equal('string')
+                expect(duck.image.length).to.be.gt(0)
 
-            done();
-        });
-    });
+                expect(duck.description).to.exist
+                expect(typeof duck.description).to.equal('string')
+                expect(duck.description.length).to.be.gt(0)
 
-    it('should fail on incorrect id or expression types', function() {
-        expect(function() { retrieveDuck(1); }).toThrowError(TypeError, '1 is not a string');
-        expect(function() { retrieveDuck(true); }).toThrowError(TypeError, 'true is not a string');
-        expect(function() { retrieveDuck([]); }).toThrowError(TypeError, ' is not a string');
-        expect(function() { retrieveDuck({}); }).toThrowError(TypeError, '[object Object] is not a string');
-        expect(function() { retrieveDuck(undefined); }).toThrowError(TypeError, 'undefined is not a string');
-        expect(function() { retrieveDuck(null); }).toThrowError(TypeError, 'null is not a string');
+                expect(duck.link).to.exist
+                expect(typeof duck.link).to.equal('string')
+                expect(duck.link.length).to.be.gt(0)
 
-        expect(function() { retrieveDuck('red', 1); }).toThrowError(TypeError, '1 is not a function');
-        expect(function() { retrieveDuck('red', true); }).toThrowError(TypeError, 'true is not a function');
-        expect(function() { retrieveDuck('red', []); }).toThrowError(TypeError, ' is not a function');
-        expect(function() { retrieveDuck('red', {}); }).toThrowError(TypeError, '[object Object] is not a function');
-        expect(function() { retrieveDuck('red', undefined); }).toThrowError(TypeError, 'undefined is not a function');
-        expect(function() { retrieveDuck('red', null); }).toThrowError(TypeError, 'null is not a function');
-    });
-});
+                expect(duck.price).to.exist
+                expect(typeof duck.price).to.equal('string')
+                expect(duck.price.length).to.be.gt(0)
+
+                expect(duck.isFav).not.to.be.undefined
+                expect(typeof duck.isFav).to.equal('boolean')
+            })
+    })
+
+    it('should fail on incorrect duck id', () => {
+        var duckId = '5c3853ABCd1bde8520e66e1b'
+
+        return retrieveDuck(id, token, duckId)
+            .then(() => {
+                throw Error('should no reach this point')
+            })
+            .catch((error) => {
+
+                expect(error).to.exist
+                expect(error.message).to.exist
+                expect(typeof error.message).to.equal('string')
+                expect(error.message.length).to.be.gt(0)
+            })
+    })
+
+    it('should fail on incorrect id or expression types',  () => {
+        expect( ()=> { retrieveDuck(id, token, 1) }).to.throw(TypeError, '1 is not a string')
+        expect( ()=> { retrieveDuck(id, token, true) }).to.throw(TypeError, 'true is not a string')
+        expect( ()=> { retrieveDuck(id, token, []) }).to.throw(TypeError, ' is not a string')
+        expect( ()=> { retrieveDuck(id, token, {}) }).to.throw(TypeError, '[object Object] is not a string')
+        expect( ()=> { retrieveDuck(id, token, undefined) }).to.throw(TypeError, 'undefined is not a string')
+        expect( ()=> { retrieveDuck(id, token, null) }).to.throw(TypeError, 'null is not a string')
+    })
+})

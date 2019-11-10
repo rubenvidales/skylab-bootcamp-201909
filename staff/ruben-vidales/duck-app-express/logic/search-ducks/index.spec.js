@@ -2,7 +2,7 @@ const { expect } = require('chai')
 const call = require('../../helpers/call')
 const searchDucks = require('.')
 
-describe.only('logic - search ducks', () => {
+describe('logic - search ducks', () => {
     let name, surname, email, password, id, token, duckId = '5c3853aebd1bde8520e66e1b'
 
     beforeEach(done => {

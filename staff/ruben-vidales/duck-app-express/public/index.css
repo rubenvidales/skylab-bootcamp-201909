@@ -45,6 +45,9 @@ h3 {
   text-align: center;
   margin-top: 1em;
 }
+.feedback__message {
+  width: 50%;
+}
 .feedback__icon {
   width: 25%;
 }

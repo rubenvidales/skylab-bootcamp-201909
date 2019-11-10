@@ -31,7 +31,9 @@ describe('logic - toggle fav duck', () => {
 
     it('should succeed on correct user and duck data', () => {
         return toggleFavDuck(id, token, duckId)
-            .then(() => {
+            .then( response => {
+                expect(response).to.be.undefined
+
                 call('GET', token, `https://skylabcoders.herokuapp.com/api/user/${id}`, undefined, result => {
                     if (result.error) return done(new Error(result.error))
 
@@ -53,7 +55,9 @@ describe('logic - toggle fav duck', () => {
 
         it('should succeed on correct user and duck data', () => {
             return toggleFavDuck(id, token, duckId)
-            .then( () => {
+            .then( response => {
+                expect(response).to.be.undefined
+
                 call('GET', token, `https://skylabcoders.herokuapp.com/api/user/${id}`, undefined, result => {
                     if (result.error) return done(new Error(result.error))
 

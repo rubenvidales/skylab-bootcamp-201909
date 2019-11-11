@@ -122,4 +122,80 @@ h3 {
   margin: 0 0.5em;
 }
 
+.ducks-panel__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.ducks-panel__list-item {
+  width: 100%;
+}
+
+.detail-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.duck {
+  background-color: #c3dadf;
+  border: 0.15em solid #488a97;
+  padding: 0.5em;
+  margin: 0.5em;
+  border-radius: 0.5em;
+  text-align: center;
+  cursor: pointer;
+}
+.duck__title {
+  text-transform: uppercase;
+}
+.duck__image {
+  width: 90%;
+  margin: 5% 5%;
+}
+.duck__price {
+  background: pink;
+  border: 0.2em solid red;
+  text-align: center;
+  margin: 1em 33%;
+  padding: 4% 1.5%;
+  width: 33%;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+.duck__fav {
+  font-size: 2em;
+  margin: 0;
+}
+
+@media screen and (min-width: 420px) {
+  .ducks-panel__list-item {
+    width: 50%;
+  }
+
+  .detail-panel {
+    width: 80%;
+    padding: 10%;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .ducks-panel__list {
+    width: 78vw;
+    margin: 2em 11vw;
+  }
+  .ducks-panel__list-item {
+    width: 25%;
+  }
+
+  .detail-panel {
+    width: 70vw;
+    padding: 2em 15vw;
+  }
+
+  .duck__image {
+    width: 80%;
+    margin: 2em 10%;
+  }
+}
+
 /*# sourceMappingURL=index.css.map */

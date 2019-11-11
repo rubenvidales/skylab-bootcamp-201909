@@ -2,15 +2,15 @@ module.exports = function ({ item: { id, title, image, price, isFav }, favPath, 
     return `<li class="results_item">
         <a href="${`${detailPath}/${id}`}" class="item">
             <article class="duck">
-            <h2 class="duck__title">${title}</h2>
-            <img class="duck__image" src=${image} />
-            <span class="duck__price">${price}</span>
-            <span class="duck__fav">
-                <form method="post" action="${favPath}">
+                <h2 class="duck__title">${title}</h2>
+                <img class="duck__image" src=${image} />
+                <p class="duck__paragraph">
+                <span class="duck__price">${price}</span>
+                </p>
+                <form class="duck__fav" method="post" action="${favPath}">
                     <input type="hidden" name="id" value="${id}">
                     <button type="submit">${isFav ? '🧡' : '💔'}</button>
                 </form>
-            </span>
             </article>
         </a>
     </li>`

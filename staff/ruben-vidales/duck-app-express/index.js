@@ -1,7 +1,7 @@
 const express = require('express')
 
-const { View, Landing, Register, Login, Search } = require('./components')
-const { retrieveUser, registerUser, authenticateUser, searchDucks } = require('./logic')
+const { View, Landing, Register, Login, Search, Detail } = require('./components')
+const { retrieveUser, registerUser, authenticateUser, searchDucks, retrieveDuck } = require('./logic')
 
 const { bodyParser, cookieParser } = require('./utils/middlewares')
 
@@ -41,7 +41,7 @@ app.get('/login', (req, res) => {
 
 app.post('/login', bodyParser, (req, res) => {
     const { body: { email, password } } = req
-debugger
+
     try {
         authenticateUser(email, password)
             .then(credentials => {
@@ -61,9 +61,6 @@ debugger
 })
 
 app.get('/search', cookieParser, (req, res) => {
-
-    debugger
-
     try {
         const { cookies: {id}, query: {q: query} } = req
         if(!id) return res.redirect('/')
@@ -90,6 +87,29 @@ app.get('/search', cookieParser, (req, res) => {
             .catch(({message}) => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', error: message }) })))
     } catch ({ message}) {
         res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', error: message }) }))
+    }
+})
+
+app.get( '/ducks/:id', cookieParser, bodyParser, (req, res) => {
+    try {
+        const { cookies: {id}, params: {id: duckId} } = req
+        if(!id) return res.redirect('/')
+
+        const session = sessions[id]
+        if(!session) return res.redirect('/')
+
+        const { token, query } = session
+        if(!token) return res.redirect('/')
+
+        retrieveDuck(id, token, duckId)
+            .then( duck => { res.send(View({ body: Detail({ item: duck })} )) 
+            })
+            .catch(({message}) => {
+                res.send(message)
+            })
+    } catch ({message}) {
+        //TODO
+        res.send(message)
     }
 })
 

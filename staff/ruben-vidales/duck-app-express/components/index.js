@@ -4,5 +4,6 @@ module.exports = {
     Login: require('./login'),
     Register: require('./register'),
     Search: require('./search'),
-    View: require('./view')
+    View: require('./view'),
+    Detail: require('./detail')
 }

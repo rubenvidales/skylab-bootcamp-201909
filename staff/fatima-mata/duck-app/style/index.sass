@@ -1,0 +1,80 @@
+@import flex-center
+@import header
+@import inputs
+@import register
+*
+    box-sizing: border-box
+body
+    font-family: Tahoma
+@import login
+.results
+    display: grid
+    grid-template-columns: repeat(3,1fr)
+    grid-gap: 1rem
+    background-color: #2e7f4d
+    padding: 0
+    .duck
+        display: grid
+        grid-template-areas: "title" "img" "price"
+        grid-auto-rows: 85px auto 60px
+        &__title
+            grid-area: title
+            font-family: Tahoma
+            color: #000
+            cursor: pointer
+        &__price
+            grid-area: price
+            color: #2e7f4d
+            font-weight: bold
+            @extend %flex-center
+        &__img
+            grid-area: img
+            width: 100%
+            max-width: 250px
+            margin: 0 auto
+            background-color: #5bdf94
+.details
+    display: grid
+    grid-template-areas: "title" "img" "description" "price" "back"
+    min-height: 70vh
+    background-color: #2e7f4d
+    &__title
+        grid-area: title
+        font-family: Tahoma
+    &__img
+        grid-area: img
+    &__description
+        grid-area: description
+    .go-home
+        grid-area: back
+    &__price
+        grid-area: price
+        &-tag
+            background-color:#5bdf94
+            padding: .5rem
+            border-radius: 0.4rem
+.footer
+    @extend %flex-center
+    background-color: #5bdf94
+    min-height: 15vh
+.img
+    width: 100%
+    max-width: 250px
+    align-items: center
+.price-tag
+    background-color: #5bdf94
+    padding: .5rem
+    border-radius: 0.4rem
+.btn
+    border: 1px solid
+    margin: 11px
+    padding: .5rem 1rem
+    border-radius: 10px
+    text-decoration: none
+    color: #000
+
+@import feedback
+.hidden
+    display: none
+
+    

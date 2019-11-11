@@ -1,0 +1,161 @@
+body {
+  background-color: #E6F0F2;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+.logo-bloc {
+  display: block;
+  text-align: center;
+}
+
+.landing__options {
+  text-align: center;
+  font-size: 1.2em;
+  margin: 0;
+  padding: 0.6em;
+}
+
+.register {
+  padding: 0.6em;
+}
+.register__form {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+.register__title {
+  margin: 0;
+}
+
+.login {
+  padding: 0.6em;
+}
+.login__form {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+.login__title {
+  margin: 0;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.form__part {
+  display: flex;
+  align-items: center;
+}
+
+.feedback {
+  display: flex;
+  background-color: #d77;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+  align-items: center;
+  text-align: center;
+  margin-top: 1em;
+}
+.feedback__icon {
+  width: 25%;
+}
+
+.ducks-panel__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.ducks-panel__list-item {
+  width: 100%;
+}
+
+.detail-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.duck {
+  background-color: #c3dadf;
+  border: 0.15em solid #488a97;
+  padding: 0.5em;
+  margin: 0.5em;
+  border-radius: 0.5em;
+  text-align: center;
+  cursor: pointer;
+}
+.duck__title {
+  text-transform: uppercase;
+  min-height: 4em;
+  font-size: 0.9em;
+}
+.duck__image {
+  width: 90%;
+  margin: 5% 5%;
+}
+.duck__price {
+  background: pink;
+  border: 0.2em solid red;
+  text-align: center;
+  margin: 1em 33%;
+  padding: 4% 1%;
+  position: relative;
+  width: 30%;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 420px) {
+  .ducks-panel__list-item {
+    width: 50%;
+  }
+
+  .detail-panel {
+    width: 80%;
+    padding: 10%;
+  }
+
+  .duck__title {
+    min-height: 4em;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .ducks-panel__list {
+    width: 78vw;
+    margin: 2em 11vw;
+  }
+  .ducks-panel__list-item {
+    width: 25%;
+  }
+
+  .detail-panel {
+    width: 70vw;
+    padding: 2em 15vw;
+  }
+
+  .duck__image {
+    width: 80%;
+    margin: 2em 10%;
+  }
+}
+.footer__copyright {
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.8em;
+}
+
+.hide {
+  display: none;
+}
+
+/*# sourceMappingURL=style.css.map */

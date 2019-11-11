@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style/index.css">
+    <script src="https://kit.fontawesome.com/80c46885ed.js"></script>
+    <title>SPA duck-app</title>
+</head>
+
+<body class="body__content">
+    <main class="main__content">
+        <h1 class="title">DUCKY APP STORE</h1>
+        <section class="landing _hide">
+            <div class="home">
+                <p class="home__welcome">Welcome to Ducky Store! </p>
+                <div class="home__options">
+                    <a href="" class="home__register">Sign Up</a>
+                    <a href="" class="home__login">Sign In</a>
+                </div>
+            </div>
+        </section>
+        <section class="login _hide">
+            <form class="form">
+                <input type="text" class="form__email" name="email" placeholder="e-mail">
+                <input type="password" class="form__password" name="password" placeholder="password">
+                <input type="submit" class="form__submit" name="login" value="Sign In!">
+                <div> <i class="fas fa-backward"></i></div>
+            </form>
+        </section>
+        <section class="register _hide">
+            <form class="form">
+                <input type="text" class="form__name" name="name" placeholder="name">
+                <input type="text" class="form__surname" name="surname" placeholder="surname">
+                <input type="text" class="form__email" name="email" placeholder="e-mail">
+                <input type="password" class="form__password" name="password" placeholder="password">
+                <input type="submit" class="form__submit" name="login" value="Sign Up!">
+                <div> <i class="fas fa-backward"></i></div>
+            </form>
+        </section>
+        <section class="feedback _hide">
+            <p class="feedback__message">Caption error</p>
+        </section>
+        <section class="search _hide">
+            <form class="navigation">
+                <input class="navigation__input" type="text" placeholder="Search..." name="q" autofocus>
+                <span>
+                    <i class="fas fa-search"></i>
+                </span>
+            </form>
+        </section>
+        <section class="results _hide">
+            <div class="results__content _hide">
+                <article class="article">
+                    <a href="">
+                        <img class="article__image" src="" alt="">
+                        <h3 class="article__title">duck</h3>
+                        <p class="article__price">8.95€</p>
+                    </a>
+                </article>
+                <article class="article">
+                    <a href="">
+                        <div class="article__image" src="" alt=""></div>
+                        <h3 class="article__title">duck</h3>
+                        <p class="article__price">8.95€</p>
+                    </a>
+                </article>
+                <article class="article">
+                    <a href="">
+                        <img class="article__image" src="" alt="">
+                        <h3 class="article__title">duck</h3>
+                        <p class="article__price">8.95€</p>
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <section id="details" class="details _hide">
+        </section>
+    </main>
+    <footer class="footer footer__information">
+        <p class="information__text">@Jose Rodríguez</p>
+
+    </footer>
+</body>
+
+</html>

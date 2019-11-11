@@ -1,0 +1,73 @@
+.ducks-panel
+    &__list
+        display: flex
+        flex-wrap: wrap
+        justify-content: center
+    &__list-item
+        width: 100%
+
+.detail-panel
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+
+.duck
+    background-color: #c3dadf
+    border: 0.15em solid #488a97
+    padding: .5em
+    margin: .5em
+    border-radius: .5em
+    text-align: center
+    cursor: pointer
+
+    &__title
+        text-transform: uppercase
+        min-height: 4em
+        font-size: .9em
+
+    &__image
+        width: 90%
+        margin: 5% 5%
+
+    &__price
+        background: pink
+        border: .2em solid red
+        text-align: center
+        margin: 1em 33%
+        padding: 4% 1%
+        position: relative
+        width: 30%
+        font-size: 1.3em
+        font-weight: bold
+
+
+@media screen and ( min-width: 420px )
+    .ducks-panel
+        &__list-item
+            width: 50% 
+
+    .detail-panel
+        width: 80%
+        padding: 10%
+    
+    .duck
+        &__title
+            min-height: 4em
+
+@media screen and ( min-width: 1000px )
+    .ducks-panel
+        &__list
+            width: 78vw
+            margin: 2em 11vw        
+                    
+            &-item
+                width: 25%
+
+    .detail-panel
+        width: 70vw
+        padding: 2em 15vw
+
+    .duck
+        &__image
+            width: 80%
+            margin: 2em 10%

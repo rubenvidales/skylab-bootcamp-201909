@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DUCKS APP</title>
+    <link rel="shortcut icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToE_EWPXTocetFkjSu0qMbP74W8krkE59H8vookVaUn0ocKVud&s" type="image/x-icon">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://kit.fontawesome.com/80c46885ed.js"></script> 
+</head>
+<body>
+    <div class="container">
+        <header class="header__container header">
+            <div class="header__shop">
+                <h1 class="header__title">🦆 DUCKS APP 🦆</h1>
+            </div>
+            <div class="header__search search">
+                <form action="" id="duck-search" class="search__form">
+                    <input type="search" class="search__input" name="search" placeholder="Search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </header>
+        <section class="register__container register hidden">
+            <form class="register__form form">
+                <h1>REGISTER</h1>
+                <input type="text" placeholder="Name" class="form__pasword input" name="name" autofocus required>
+                <input type="text" placeholder="Surname" class="form__pasword input" name="surname"required>
+                <input type="email" placeholder="Email" class="form__email input" name="email" required>
+                <input type="password" placeholder="Password" class="form__pasword input" name="password" required>
+                <button type="submit">Register</button>
+            </form>
+            <a href="#" class="btn btn__login">LOGIN</a>
+        </section>
+        <section class="login__container login">
+            <form class="login__form form">
+                <h1>LOGIN</h1>
+                <input type="text" placeholder="Username" class="form__username input" name="email" autofocus>
+                <input type="password" placeholder="Password" class="form__pasword input" name="password">
+                <button type="submit">ENTER</button>
+            </form>
+            <a href="#" class="btn btn__new-account">REGISTER</a>
+        </section>
+        <main class="main__container main" id="main">
+            <ul class="results" id="duck-list">
+                <li class="results__item">
+                    <a class="duck" href="#" data-duck-id="5c3853aebd1bde8520e66e11">
+                        <h2 class="duck__title">Guardian Angel White Rubber Duck</h2>
+                        <p class="duck__price"><span class="price-tag">8.95 €</span></p>
+                        <img class="duck__img" src="https://amsterdamduckstore.com/wp-content/uploads/2018/11/Guardian-Angel-White-Rubber-Duck-front-Amsterdam-Duck-Store-400x400.jpg">
+                    </a>
+                </li>
+                <li class="results__item">
+                    <a class="duck" href="#" data-duck-id="5c3853aebd1bde8520e66e12">
+                        <h2 class="duck__title">Fairy Rubber Duck</h2>
+                        <p class="duck__price"><span class="price-tag">8.95 €</span></p>
+                        <img class="duck__img" src="https://amsterdamduckstore.com/wp-content/uploads/2018/09/Fairy-Rubber-Duck-front-Amsterdam-Duck-Store-400x400.jpg">
+                    </a>
+                </li>
+                <li class="results__item">
+                    <a class="duck" href="#" data-duck-id="5c3853aebd1bde8520e66e13">
+                        <h2 class="duck__title">Ballet Dancer Rubber Duck</h2>
+                        <p class="duck__price"><span class="price-tag">8.95 €</span></p><img class="duck__img"
+                            src="https://amsterdamduckstore.com/wp-content/uploads/2018/07/Ballet-Dancer-Rubber-Duck-front-Amsterdam-Duck-Store--400x400.jpg">
+                    </a>
+                </li>
+                <li class="results__item">
+                    <a class="duck" href="#" data-duck-id="5c3853aebd1bde8520e66e14">
+                        <h2 class="duck__title">Snowman Rubber Duck</h2>
+                        <p class="duck__price"><span class="price-tag">8.95 €</span></p>
+                        <img class="duck__img" src="https://amsterdamduckstore.com/wp-content/uploads/2015/10/snowman-rubber-duck-front.jpg">
+                    </a></li>
+                <li class="results__item">
+                    <a class="duck" href="#" data-duck-id="5c3853aebd1bde8520e66e15">
+                        <h2 class="duck__title">Guardian Angel Pink Rubber Duck</h2>
+                        <p class="duck__price"><span class="price-tag">8.95 €</span></p>
+                        <img class="duck__img" src="https://amsterdamduckstore.com/wp-content/uploads/2018/11/Guardian-Angel-Ruber-Duck-front-Amsterdam-Duck-Store-400x400.jpg">
+                    </a>
+                </li>
+                <li class="results__item">
+                    <a class="duck" href="#" data-duck-id="5c3853aebd1bde8520e66e16">
+                        <h2 class="duck__title">Snowboard Rubber Duck</h2>
+                        <p class="duck__price"><span class="price-tag">8.95 €</span></p>
+                        <img class="duck__img" src="https://amsterdamduckstore.com/wp-content/uploads/2018/01/Sneowboard-rubber-duck-Amsterdam-Duck-Store.jpg">
+                    </a>
+                </li>
+            </ul>
+        </main>
+        <section class="detail__container detail">
+            <h1 class="detail__title">DUCK</h1>
+            <img src="" alt="">
+            <p class="detail__description"></p>
+            <p class="detail__price"><span class="price"></span></p> 
+        </section>
+        <section class="feedback hidden">
+            <a class="feedback__cross">X</a>
+            <div class="feedback__container">
+                <span class="feedback__icon">🤡</span>
+                <p class="feedback__message">Come with me...</p>
+                <span class="feedback__icon">🎈</span>
+            </div>
+        </section>
+        <footer class="footer__container footer">
+            <p class="copyright">© FÁTIMA MATA SKYLABCODERS</p>
+        </footer>
+    </div>
+</body>
+</html>

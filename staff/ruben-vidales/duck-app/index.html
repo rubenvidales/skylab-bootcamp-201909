@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Duck App</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+    <header class="header">
+        <a class="logo-bloc" href="index.html">
+            <img class="logo-bloc__img" src="img/logo.svg">
+        </a>
+    </header>
+    <main>
+        <!-- Landing -->
+        <section class="landing view">
+            <p class="landing__options">Please, proceed to <a href="">Register</a> or <a href="">Login</a>.</p>
+        </section>
+        <!-- Register -->
+        <section class="register view hide">
+            <form class="register__form">
+                <h2 class="register__title">Register</h2>
+                <input class="register__field" type="text" name="name" placeholder="name">
+                <input class="register__field" type="text" name="surname" placeholder="surname">
+                <input class="register__field" type="email" name="email" placeholder="e-mail">
+                <input class="register__field" type="password" name="password" placeholder="password">
+                <button class="register__submit">📨</button>
+                <a class="register__back" href="">Go back</a>
+            </form>
+            <section class="feedback hide">
+                <span class="feedback__icon">🤡</span>
+                <p class="feedback__message">Come with me...</p>
+                <span class="feedback__icon">🎈</span>
+            </section>
+        </section>
+        <!-- Login -->
+        <section class="login view hide">
+            <form class="login__form">
+                <h2 class="login__title">Login</h2>
+                <input class="login__field" type="email" name="email" placeholder="e-mail">
+                <input class="login__field" type="password" name="password" placeholder="password">
+                <button class="login__submit">🗝</button>
+                <a class="login__back" href="">Go back</a>
+            </form>
+            <section class="feedback hide">
+                <span class="feedback__icon">🤡</span>
+                <p class="feedback__message">Come with me...</p>
+                <span class="feedback__icon">🎈</span>
+            </section>
+        </section>
+        <!-- Feedback -->
+        <section class="feedback hide">
+            <span class="feedback__icon">🤡</span>
+            <p class="feedback__message">Come with me...</p>
+            <span class="feedback__icon">🎈</span>
+        </section>
+        <!-- List -->
+        <section class="ducks-panel view hide">
+            <form class="search__form form">
+                <div class="form__part">
+                    <input class="form__part-input" name="query">
+                    <button class="form__part-button">🔎</button>
+                </div>
+            </form>
+            <section class="global-feedback feedback hide">
+                <span class="feedback__icon">🤡</span>
+                <p class="feedback__message">Come with me...</p>
+                <span class="feedback__icon">🎈</span>
+            </section>
+            <ul class="ducks-panel__list"></ul>
+        </section>
+        <!-- Detail -->
+        <section class="detail-panel view hide">
+        </section>
+    </main>
+    <footer>
+        <p class="footer__copyright">Ru for Skylab - 2019</p>
+    </footer>
+</body>
+<script src="./scripts/utils/function-extend.js"></script>
+<script src="./scripts/utils/array-shuffle.js"></script>
+<script src="./scripts/utils/fetch.js"></script>
+<script src="./scripts/utils/errors.js"></script>
+<script src="./scripts/logic/search-ducks/index.js"></script>
+<script src="./scripts/logic/retrieve-duck/index.js"></script>
+<script src="./scripts/logic/register-user/index.js"></script>
+<script src="./scripts/logic/authenticate-user/index.js"></script>
+<script src="./scripts/components/component.js"></script>
+<script src="./scripts/components/results.js"></script>
+<script src="./scripts/components/result-item.js"></script>
+<script src="./scripts/components/search.js"></script>
+<script src="./scripts/components/detail.js"></script>
+<script src="./scripts/components/feedback.js"></script>
+<script src="./scripts/components/landing.js"></script>
+<script src="./scripts/components/register.js"></script>
+<script src="./scripts/components/login.js"></script>
+<script src="./scripts/helpers/call.js"></script>
+<script src="./scripts/main.js"></script>
+
+</html>

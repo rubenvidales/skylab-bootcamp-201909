@@ -1,26 +1,28 @@
 const call = require('../../helpers/call')
 const validate = require('../../utils/validate')
 
-function retrieveDuck(id, token, duckId) {
+module.exports = function (id, token, duckId) {
     validate.string(id)
-    validate.string.notVoid(id)
+    validate.string.notVoid('id', id)
+    validate.string(token)
+    validate.string.notVoid('token', token)
+    validate.string(duckId)
+    validate.string.notVoid('duckId', duckId)
 
-    call('GET', token, 'https://skylabcoders.herokuapp.com/api/user/' + id, undefined, function (result) {
-        const { data: { favs } } = result
-
-        call('GET', undefined, 'https://duckling-api.herokuapp.com/api/ducks/' + duckId, undefined, function (result) {
-            if (result.error)
-                callback(new Error(result.error))
-            else {
+    return new Promise((resolve, reject) => {
+        call('GET', undefined, `https://duckling-api.herokuapp.com/api/ducks/${duckId}`, undefined, result => {
+            if (result.error) return reject(new Error(result.error))
+    
+            call('GET', token, `https://skylabcoders.herokuapp.com/api/user/${id}`, undefined, result2 => {
+                if (result2.error) reject(new Error(result2.error))
+    
+                const { data: { favs = [] } } = result2
                 result.image = result.imageUrl
-
                 delete result.imageUrl
-
-                result.fav = favs.includes(result.id)
-
-                callback(undefined, result)
-            }
+                result.isFav = favs.includes(result.id)
+    
+                resolve(result)
+            })
         })
-
     })
 }

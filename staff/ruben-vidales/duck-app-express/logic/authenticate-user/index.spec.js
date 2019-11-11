@@ -20,7 +20,7 @@ describe('logic - authenticate user', () => {
 
     it('should succeed on correct credentials', () => {
 
-        authenticateUser(email, password)
+        return authenticateUser(email, password)
             .then((response) => {
                 expect(response).not.to.be.undefined
 

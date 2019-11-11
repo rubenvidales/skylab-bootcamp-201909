@@ -13,10 +13,10 @@ describe('logic - register user', () => {
         password = `password-${Math.random()}`
     })
 
-    it('should succeed on correct credentials', () =>
-        registerUser(name, surname, email, password)
+    it('should succeed on correct credentials', () =>{
+        return registerUser(name, surname, email, password)
             .then(response => { expect(response).to.be.undefined })
-    )
+    })
 
     describe('when user already exists', () => {
         beforeEach(done => {

@@ -100,6 +100,11 @@ h3 {
 }
 .search__user {
   text-align: center;
+  margin: 0;
+}
+.search__favlist-form {
+  text-align: center;
+  margin: 1em;
 }
 .search__logout-form {
   text-align: center;

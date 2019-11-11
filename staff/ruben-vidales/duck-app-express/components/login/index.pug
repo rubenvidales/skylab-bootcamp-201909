@@ -1,0 +1,14 @@
+extends ../view/index
+
+include ../feedback/index
+
+block body
+    section.view.login
+        form.login__form(method="post" action=path)
+            h1.login__title Login
+            input.login__field(type="email" name="email" placeholder="e-mail")
+            input.login__field(type="password" name="password" placeholder="password")
+            button.login__submit 🗝
+            a.login__back(href="/") Go Back!
+            if error
+                +feedback(error)

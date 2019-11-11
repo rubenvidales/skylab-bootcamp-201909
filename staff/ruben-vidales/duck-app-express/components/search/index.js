@@ -2,10 +2,13 @@ const Feedback = require('../feedback')
 const Results = require('../results')
 const ResultItem = require('../result-item')
 
-module.exports = function ({path, query, name, logout, error, results, favPath, detailPath}) {
+module.exports = function ({path, query, name, logout, error, results, favPath, detailPath, favListPath}) {
     return `<section class="ducks-panel view">
-    <form class="search__logout-form" method="post" action="${logout}">
-        <span class="search__user">${name}!</span>
+    <p class="search__user">Hi, ${name}!</p>
+    <form class="search__favlist-form" method="post" action="${favListPath}">
+        <button class="search__favlist-button">Fav List</button>
+    </form>
+    <form class="search__logout-form" method="post" action="${logout}">    
         <button class="search__logout-button">🚪</button>
     </form>
     <h2 class="search__title">Search</h2>

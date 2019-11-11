@@ -12,7 +12,7 @@ module.exports = function ({body}) {
     
     <body>
     <header class="header">
-        <a class="logo-bloc" href="/">
+        <a class="logo-bloc" href="/search">
             <img class="logo-bloc__img" src="/logo.png" />
         </a>
     </header>

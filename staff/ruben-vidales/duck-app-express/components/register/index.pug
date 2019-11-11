@@ -1,0 +1,16 @@
+extends ../view/index
+
+include ../feedback/index
+
+block body
+    section.view.register
+        form.register__form(method="post" action=path)
+            h1.register__title Register
+            input.register__field(type="text" name="name" placeholder="name")
+            input.register__field(type="text" name="surname" placeholder="surname")
+            input.register__field(type="email" name="email" placeholder="e-mail")
+            input.register__field(type="password" name="password" placeholder="password")
+            button.register__submit 📨
+            a.register__back(href="/") Go Back!
+            if error
+                +feedback(error)

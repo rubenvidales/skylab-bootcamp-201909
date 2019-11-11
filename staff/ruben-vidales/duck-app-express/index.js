@@ -1,7 +1,7 @@
 const express = require('express')
 
 const { View, Landing, Register, Login, Search, Detail } = require('./components')
-const { retrieveUser, registerUser, authenticateUser, searchDucks, toogleFavDucks, retrieveDuck } = require('./logic')
+const { retrieveUser, registerUser, authenticateUser, searchDucks, toogleFavDuck, retrieveDuck, retrieveFavDucks } = require('./logic')
 
 const bodyParser = require('body-parser')
 const session = require('express-session')
@@ -28,11 +28,13 @@ app.use(session({
 const formBodyParser = bodyParser.urlencoded({ extended: false })
 
 app.get('/', (req, res) => {
-    res.send(View({ body: Landing({ register: '/register', login: '/login' }) }))
+    //res.send(View({ body: Landing({ register: '/register', login: '/login' }) }))
+    res.render('landing', { register: '/register', login: '/login' })
 })
 
 app.get('/register', (req, res) => {
-    res.send(View({ body: Register({ path: '/register' }) }))
+    //res.send(View({ body: Register({ path: '/register' }) }))
+    res.render('register', { path: '/register' })
 })
 
 app.post('/register', formBodyParser, (req, res) => {
@@ -48,7 +50,8 @@ app.post('/register', formBodyParser, (req, res) => {
 })
 
 app.get('/login', (req, res) => {
-    res.send(View({ body: Login({ path: '/login' }) }))
+    //res.send(View({ body: Login({ path: '/login' }) }))
+    res.render('login', { path: '/login' })
 })
 
 app.post('/login', formBodyParser, (req, res) => {
@@ -85,14 +88,14 @@ app.get('/search', (req, res) => {
             .then(user => {
                 name = user.name
 
-                if (!query) return res.send(View({ body: Search({ path: '/search', name, logout: '/logout' }) }))
+                if (!query) return res.send(View({ body: Search({ path: '/search', name, logout: '/logout', favListPath: '/favDucks' }) }))
 
                 return searchDucks(id, token, query)
                     .then(ducks => {
                         session.query = query
                         session.view = 'search'
 
-                        session.save(() => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', results: ducks, favPath: '/fav', detailPath: '/ducks' }) })))
+                        session.save(() => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', results: ducks, favPath: '/fav', detailPath: '/ducks', favListPath: '/favDucks' }) })))
                     })
             })
             .catch(({ message }) => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', error: message }) })))
@@ -122,24 +125,43 @@ app.get('/ducks/:id', (req, res) => {
     }
 })
 
-
 app.post('/fav', formBodyParser, (req, res) => {
     try {
-        const { session, body: {id: duckId}, headers: {referer}} = req
-        if(!session) return res.redirect('/')
+        const { session, body: { id: duckId }, headers: { referer } } = req
+        if (!session) return res.redirect('/')
 
         const { userId: id, token } = session
-        if(!token) return res.redirect('/')
+        if (!token) return res.redirect('/')
 
-        toogleFavDucks(id, token, duckId)
-            .then(()=> res.redirect(referer))
-            .catch(({message}) => {
+        toogleFavDuck(id, token, duckId)
+            .then(() => res.redirect(referer))
+            .catch(({ message }) => {
                 res.send('TODO error handling')
             })
 
-    }catch({message}){
-        res.send('TODO error handling')
-    }    
+    } catch (error) {
+        res.send(error.message + 'TODO error handling')
+    }
+})
+
+app.post('/favDucks', formBodyParser, (req, res) => {
+    try {
+        const { session, headers: { referer } } = req
+        if (!session) return res.redirect('/')
+
+        const { userId: id, token } = session
+        if (!token) return res.redirect('/')
+
+        retrieveFavDucks(id, token)
+            .then(ducks => res.send(ducks))
+            .catch(({ message }) => {
+                res.send('TODO error handling')
+            })
+
+
+    } catch (error) {
+        res.send(error.message + 'TODO error handling')
+    }
 })
 
 app.post('/logout', (req, res) => {

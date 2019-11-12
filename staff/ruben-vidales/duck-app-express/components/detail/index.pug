@@ -9,9 +9,11 @@ block body
             img.duck__image(src=image)
             p.duck__description= description
             p.duck__paragraph
+                a.duck__link(href=link) Link to store
+            p.duck__paragraph
                 span.duck__price= price
             form.duck__fav(method="post" action=favPath)
-                input(type="hidden" name="id" value="#{id}")
+                input(type="hidden" name="id" value=id)
                 button(type="submit")= isFav ? '🧡' : '💔'
             p.duck__paragraph
                 a.duck__link(href=backPath) Go Back

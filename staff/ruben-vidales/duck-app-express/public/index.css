@@ -218,5 +218,12 @@ h3 {
     margin: 2em 10%;
   }
 }
+.favs__title {
+  text-align: center;
+}
+.favs__goback-link {
+  display: block;
+  text-align: center;
+}
 
 /*# sourceMappingURL=index.css.map */

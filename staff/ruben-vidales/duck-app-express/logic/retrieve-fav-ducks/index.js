@@ -21,6 +21,7 @@ module.exports = function (id, token) {
 
                         result2.image = result2.imageUrl
                         delete result2.imageUrl
+                        result2.isFav = true
                         favs[i] = result2
 
                         ++counter === favs.length && resolve(favs)

@@ -1,0 +1,14 @@
+extends ../view/index
+
+include ../feedback/index
+include ../results/index
+
+block body
+    section.ducks-favs.view
+        h2.favs__title Favorites
+        a.favs__goback-link(href=backPath) Go Back
+        if error
+            +feedback(error)
+
+        if results
+            +results(results, favPath, detailPath)

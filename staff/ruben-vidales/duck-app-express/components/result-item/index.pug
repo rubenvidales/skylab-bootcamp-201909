@@ -1,5 +1,5 @@
 mixin result-item(duck, detailPath, favPath)
-    - const {title, image, price, id} = duck
+    - const {title, image, price, id, isFav} = duck
         li.results__list-item
             a(href=detailPath+'/'+id class="item")
                 article.duck

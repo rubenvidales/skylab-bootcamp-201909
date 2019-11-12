@@ -108,6 +108,30 @@ app.get('/search', (req, res) => {
     }
 })
 
+
+app.get('/favDucks', formBodyParser, (req, res) => {   
+    try {
+        const { session, headers: { referer } } = req
+        if (!session) return res.redirect('/')
+
+        const { userId: id, token } = session
+        if (!token) return res.redirect('/')
+
+        retrieveFavDucks(id, token)
+            .then(ducks => {
+                //res.send(ducks)
+                res.render('favs', { results: ducks, detailPath: '/ducks', favPath: '/fav', backPath: '/search' })
+            })
+            .catch(({ message }) => {
+                res.send('TODO error handling')
+            })
+
+
+    } catch (error) {
+        res.send(error.message + 'TODO error handling')
+    }
+})
+
 app.get('/ducks/:id', (req, res) => {
     try {
         const { session, params: { id: duckId } } = req
@@ -118,9 +142,8 @@ app.get('/ducks/:id', (req, res) => {
 
         retrieveDuck(id, token, duckId)
             .then(duck => {
-                debugger
                 //res.send(View({ body: Detail({ item: duck, backPath: view === 'search' ? `/search?q=${query}` : '/', favPath: '/fav' }) }))
-                res.render('detail', {item: duck, favPath: '/fav', backPath: view === 'search' ? `/search?q=${query}` : '/' })
+                res.render('detail', { item: duck, favPath: '/fav', backPath: view === 'search' ? `/search?q=${query}` : '/' })
             })
             .catch(({ message }) => {
                 res.send(message)
@@ -150,27 +173,6 @@ app.post('/fav', formBodyParser, (req, res) => {
     }
 })
 
-app.post('/favDucks', formBodyParser, (req, res) => {
-    try {
-        const { session, headers: { referer } } = req
-        if (!session) return res.redirect('/')
-
-        const { userId: id, token } = session
-        if (!token) return res.redirect('/')
-
-        retrieveFavDucks(id, token)
-            .then(ducks => {
-                res.send(ducks)
-            })    
-            .catch(({ message }) => {
-                res.send('TODO error handling')
-            })
-
-
-    } catch (error) {
-        res.send(error.message + 'TODO error handling')
-    }
-})
 
 app.post('/logout', (req, res) => {
     const { session } = req

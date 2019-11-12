@@ -1,0 +1,24 @@
+extends ../view/index
+
+include ../feedback/index
+include ../results/index
+
+block body
+    section.ducks-panel.view
+        p.search__user 
+            | Hi,
+            = name
+            | !
+        form.search__favlist-form(method="post" action= favListPath)
+            button.search__favlist-button Favorites List
+        form.search__logout-form(method="post" action= logout) 
+            button.search__logout-button 🚪 
+        form.search__form.form(method="get", action= path)
+            div.form__part
+                input.form__part-input(name="q" placeholder="criteria")
+                button.form__part-button 🔎
+        if error
+            +feedback(error)
+
+        if results
+            +results(results, favPath, detailPath)

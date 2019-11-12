@@ -1,5 +1,7 @@
 module.exports = function ({ item: { id, title, image, link, description, price, isFav }, backPath, favPath }) {
-    return `<article class="duck">
+    return `
+    <section class="detail">
+    <article class="duck">
                 <h2 class="duck__title">${title}</h2>
                 <img class="duck__image" src=${image} />
                 <p class="duck__description">${description}</p>
@@ -16,5 +18,6 @@ module.exports = function ({ item: { id, title, image, link, description, price,
                 <p class="duck__paragraph">
                     <a class="duck__link" href="${backPath}">Go Back</a>
                 </p>
-            </article>`
+            </article>
+            </section>`
 }

@@ -1,5 +1,5 @@
 module.exports = function ({ item: { id, title, image, price, isFav }, favPath, detailPath }) {
-    return `<li class="results_item">
+    return `<li class="results__list-item">
         <a href="${`${detailPath}/${id}`}" class="item">
             <article class="duck">
                 <h2 class="duck__title">${title}</h2>

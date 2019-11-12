@@ -1,0 +1,6 @@
+include ../result-item/index
+
+mixin results(items, favPath, detailPath)
+    ul.results__list
+        each duck in items
+            +result-item( duck, detailPath, favPath )

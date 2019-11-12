@@ -1,0 +1,18 @@
+extends ../view/index
+
+
+block body
+    - const { id, title, price, link, image, description, isFav } = item
+    section.detail
+        article.duck
+            h2.duck__title= title
+            img.duck__image(src=image)
+            p.duck__description= description
+            p.duck__paragraph
+                span.duck__price= price
+            form.duck__fav(method="post" action=favPath)
+                input(type="hidden" name="id" value="#{id}")
+                button(type="submit")= isFav ? '🧡' : '💔'
+            p.duck__paragraph
+                a.duck__link(href=backPath) Go Back
+            

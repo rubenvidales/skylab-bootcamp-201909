@@ -88,18 +88,22 @@ app.get('/search', (req, res) => {
             .then(user => {
                 name = user.name
 
-                if (!query) return res.send(View({ body: Search({ path: '/search', name, logout: '/logout', favListPath: '/favDucks' }) }))
+                //if (!query) return res.send(View({ body: Search({ path: '/search', name, logout: '/logout', favListPath: '/favDucks' }) }))
+                if (!query) return res.render('search', { name: name, favListPath: '/favDucks', logout: '/logout', path: '/search' })
 
                 return searchDucks(id, token, query)
                     .then(ducks => {
                         session.query = query
                         session.view = 'search'
 
-                        session.save(() => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', results: ducks, favPath: '/fav', detailPath: '/ducks', favListPath: '/favDucks' }) })))
+                        //session.save(() => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', results: ducks, favPath: '/fav', detailPath: '/ducks', favListPath: '/favDucks' }) })))
+                        session.save(() => res.render('search', { name: name, query: query, favListPath: '/favDucks', logout: '/logout', path: '/search', results: ducks, detailPath: '/ducks', favPath: '/fav' }))
                     })
             })
+            //TODO
             .catch(({ message }) => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', error: message }) })))
     } catch ({ message }) {
+        //TODO
         res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', error: message }) }))
     }
 })
@@ -114,7 +118,9 @@ app.get('/ducks/:id', (req, res) => {
 
         retrieveDuck(id, token, duckId)
             .then(duck => {
-                res.send(View({ body: Detail({ item: duck, backPath: view === 'search' ? `/search?q=${query}` : '/', favPath: '/fav' }) }))
+                debugger
+                //res.send(View({ body: Detail({ item: duck, backPath: view === 'search' ? `/search?q=${query}` : '/', favPath: '/fav' }) }))
+                res.render('detail', {item: duck, favPath: '/fav', backPath: view === 'search' ? `/search?q=${query}` : '/' })
             })
             .catch(({ message }) => {
                 res.send(message)
@@ -153,7 +159,9 @@ app.post('/favDucks', formBodyParser, (req, res) => {
         if (!token) return res.redirect('/')
 
         retrieveFavDucks(id, token)
-            .then(ducks => res.send(ducks))
+            .then(ducks => {
+                res.send(ducks)
+            })    
             .catch(({ message }) => {
                 res.send('TODO error handling')
             })

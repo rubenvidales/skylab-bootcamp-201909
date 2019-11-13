@@ -1,0 +1,170 @@
+[
+    {
+        "id": "c1b7fcfa-deee-4a07-ae7b-8a7eb91847ca",
+        "name": "Pepito",
+        "surname": "Grillo",
+        "email": "pepito@grillo.com",
+        "username": "pepito",
+        "password": "123"
+    },
+    {
+        "id": "106892ba-eb1b-4183-82c0-08b854eeb1f0",
+        "name": "OMG",
+        "surname": "WTF",
+        "email": "OMG@WTF.com",
+        "username": "WTF",
+        "password": "123"
+    },
+    {
+        "id": "c3540ec3-9451-454d-a7f3-bb4bd492dc53",
+        "name": "basket",
+        "surname": "master",
+        "email": "master@nba.com",
+        "username": "nigga",
+        "password": "myNigga"
+    },
+    {
+        "id": "b0c96da8-2c96-4e3e-a639-7465ec2568e5",
+        "name": "Aitor",
+        "surname": "Nados",
+        "email": "em@em.com",
+        "username": "Aidos",
+        "password": "123"
+    },
+    {
+        "id": "2cf2924c-7318-4d03-8fec-76372d63213a",
+        "name": "Lucasito",
+        "surname": "Bontepillo",
+        "email": "Pepitillo@gmail.com",
+        "username": "LukitoPato",
+        "password": "LukitoPato"
+    },
+    {
+        "id": "36e749bc-ae9d-4970-9ad2-c3001616a976",
+        "name": "Noli",
+        "surname": "Pascual",
+        "email": "noli@gmail.com",
+        "username": "noli43",
+        "password": "123"
+    },
+    {
+        "id": "b46e964d-d42c-4232-9829-d45bd1dd4d86",
+        "name": "Luka",
+        "surname": "Bontempi",
+        "email": "luka@luka.com",
+        "username": "Lukaism",
+        "password": "123"
+    },
+    {
+        "id": "0c8e1fdf-8a42-4c14-b571-9b62a6588c93",
+        "name": "soyunpato",
+        "surname": "estresado",
+        "email": "elpatonovuelve@gmail.com",
+        "username": "crazyduck",
+        "password": "123"
+    },
+    {
+        "id": "45712a2a-40d7-49ea-afd6-3cbed3cbb8ea",
+        "name": "Jose",
+        "surname": "Rodriguez",
+        "email": "jmrodri@mail.com",
+        "username": "jechto",
+        "password": "123"
+    },
+    {
+        "id": "26529be7-8f98-4974-aed9-3c386eabaf0b",
+        "name": "Felipe",
+        "surname": "ElPreparao",
+        "email": "felipe@elhermoso.org",
+        "username": "FelipeVi",
+        "password": "123"
+    },
+    {
+        "id": "015a22c7-c7a6-4cbe-b15c-28732b04528a",
+        "name": "LucaNoteEnfades",
+        "surname": "Bontepillo",
+        "email": "NoseasLukaHombre@gmail.com",
+        "username": "LukaVa",
+        "password": "NoTeEnfades"
+    },
+    {
+        "id": "6e37bbb1-2519-49c7-bab0-77ae56048591",
+        "name": "hola",
+        "surname": "adeu",
+        "email": "hi@bye.com",
+        "username": "hibye",
+        "password": "123"
+    },
+    {
+        "id": "7be46d32-85c9-4dde-b17a-1400ab930600",
+        "name": "manueee",
+        "surname": "Loooopez",
+        "email": "gohome@now.com",
+        "username": "manueeLooopez",
+        "password": "12234"
+    },
+    {
+        "id": "a191972f-cb60-4b38-8cc5-16564bf83b65",
+        "name": "pedrosanchez",
+        "surname": "pabloiglesias",
+        "email": "pedropablo@haygobierno.com",
+        "username": "pedropablolove",
+        "password": "123"
+    },
+    {
+        "id": "48b332a0-9111-4dfe-807b-61f0939e8e20",
+        "name": "cafe",
+        "surname": "y",
+        "email": "cigarro@kk.com",
+        "username": "muñecodebarro",
+        "password": "123"
+    },
+    {
+        "id": "9996d036-6fa8-4076-9e99-45d333ec747b",
+        "name": "Cristian",
+        "surname": "Astudillo",
+        "email": "astudillo82@gmail.com",
+        "username": "castud",
+        "password": "123"
+    },
+    {
+        "id": "e8687344-49bd-45d8-8451-14f226ebdcd8",
+        "name": "Aitor",
+        "surname": "P",
+        "email": "tor1979@tormail.com",
+        "username": "Tor",
+        "password": "123"
+    },
+    {
+        "id": "41b0a9fe-8401-409f-82ad-68a7664338bc",
+        "name": "Po",
+        "surname": "John",
+        "email": "pojohn@mmm.com",
+        "username": "pojohn",
+        "password": "123"
+    },
+    {
+        "id": "72ca6a86-0041-46bb-9785-a00dd7a2b611",
+        "name": "Jaimito",
+        "surname": "Condrio",
+        "email": "em@em.com",
+        "username": "Aidobbs",
+        "password": "123"
+    },
+    {
+        "id": "be40e661-3807-4ce9-a1ee-1325ad97a5bb",
+        "name": "Chu",
+        "surname": "Chu",
+        "email": "chu-chu-chuli@gmail.com",
+        "username": "Chu-chu-chuli",
+        "password": "chuchu"
+    },
+    {
+        "id": "5a80cdd1-55b3-40de-a549-e513b21de148",
+        "name": "Pepito",
+        "surname": "Grillo",
+        "email": "pepito@grillo.com",
+        "username": "pepito2",
+        "password": "123"
+    }
+]

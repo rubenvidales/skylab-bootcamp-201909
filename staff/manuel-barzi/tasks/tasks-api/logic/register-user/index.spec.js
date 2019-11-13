@@ -3,16 +3,18 @@ const registerUser = require('.')
 const { ContentError } = require('../../utils/errors')
 const fs = require('fs').promises
 const path = require('path')
+const users = require('../../data/users')
+const { random } = Math
 
 describe('logic - register user', () => {
     let name, surname, email, username, password
 
     beforeEach(() => {
-        name = `name-${Math.random()}`
-        surname = `surname-${Math.random()}`
-        email = `email-${Math.random()}@mail.com`
-        username = `username-${Math.random()}`
-        password = `password-${Math.random()}`
+        name = `name-${random()}`
+        surname = `surname-${random()}`
+        email = `email-${random()}@mail.com`
+        username = `username-${random()}`
+        password = `password-${random()}`
     })
 
     it('should succeed on correct credentials', () =>
@@ -34,16 +36,21 @@ describe('logic - register user', () => {
                 expect(user.email).to.equal(email)
                 expect(user.username).to.equal(username)
                 expect(user.password).to.equal(password)
+
+                const { id } = user
+                expect(id).to.exist
+                expect(id).to.be.a('string')
+                expect(id).to.have.length.greaterThan(0)
             })
     )
 
-    describe.skip('when user already exists', () => {
-        beforeEach(done => {
-            
+    describe('when user already exists', () => {
+        beforeEach(() => {
+            users.push({ name, surname, email, username, password })
         })
 
         it('should fail on already existing user', () =>
-            registerUser(name, surname, email, password)
+            registerUser(name, surname, email, username, password)
                 .then(() => {
                     throw Error('should not reach this point')
                 })
@@ -53,7 +60,7 @@ describe('logic - register user', () => {
                     expect(error.message).to.exist
                     expect(typeof error.message).to.equal('string')
                     expect(error.message.length).to.be.greaterThan(0)
-                    expect(error.message).to.equal(`user with username "${email}" already exists`)
+                    expect(error.message).to.equal(`user with username ${username} already exists`)
                 })
         )
     })

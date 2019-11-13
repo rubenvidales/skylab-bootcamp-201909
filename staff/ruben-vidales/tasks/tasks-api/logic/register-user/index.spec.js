@@ -3,6 +3,7 @@ const registerUser = require('.')
 const { ContentError } = require('../../utils/errors')
 const fs = require('fs').promises
 const path = require('path')
+const users = require('../../data/users.json')
 
 describe('logic - register user', () => {
     let name, surname, email, username, password
@@ -37,9 +38,15 @@ describe('logic - register user', () => {
             })
     )
 
-    describe.skip('when user already exists', () => {
+    describe('when user already exists', () => {
         beforeEach(done => {
-            
+            name = `name-${Math.random()}`
+            surname = `surname-${Math.random()}`
+            email = `email-${Math.random()}@mail.com`
+            username = `username-${Math.random()}`
+            password = `password-${Math.random()}`
+            users.push({name, surname, email, username, password, lastAccess: new Date()})
+            done()
         })
 
         it('should fail on already existing user', () =>

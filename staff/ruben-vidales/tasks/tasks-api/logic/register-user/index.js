@@ -16,9 +16,11 @@ module.exports = function(name, surname, email, username, password) {
     validate.string.notVoid('password', password)
 
     return new Promise((resolve, reject) => {
-        users.push({ name, surname, email, username, password })
+        users.forEach(user => {
+            if(user.email === email) return reject(`User with username ${email} already exists`)
+        })
+        users.push({ name, surname, email, username, password, "lastAccess": new Date() })
 
-        // logic rules!!!!
 
         fs.writeFile(path.join(__dirname, '../../data/users.json'), JSON.stringify(users), error => error? reject(error) : resolve())
     })

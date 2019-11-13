@@ -1,12 +1,12 @@
 const { expect } = require('chai')
+const users = require('../../data/users')('test')
 const registerUser = require('.')
 const { ContentError } = require('../../utils/errors')
-const fs = require('fs').promises
-const path = require('path')
-const users = require('../../data/users')
 const { random } = Math
 
 describe('logic - register user', () => {
+    before(() => users.load())
+
     let name, surname, email, username, password
 
     beforeEach(() => {
@@ -22,12 +22,7 @@ describe('logic - register user', () => {
             .then(response => {
                 expect(response).to.be.undefined
 
-                return fs.readFile(path.join(__dirname, '../../data/users.json'))
-            })
-            .then(json => {
-                const users = JSON.parse(json)
-
-                const user = users.find(user => user.username === username)
+                const user = users.data.find(user => user.username === username)
 
                 expect(user).to.exist
 
@@ -46,7 +41,7 @@ describe('logic - register user', () => {
 
     describe('when user already exists', () => {
         beforeEach(() => {
-            users.push({ name, surname, email, username, password })
+            users.data.push({ name, surname, email, username, password })
         })
 
         it('should fail on already existing user', () =>

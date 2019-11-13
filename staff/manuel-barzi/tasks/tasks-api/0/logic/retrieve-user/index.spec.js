@@ -5,7 +5,7 @@ const users = require('../../data/users')
 const uuid = require('uuid/v4')
 const { NotFoundError } = require('../../utils/errors')
 
-describe.only('logic - retrieve user', () => {
+describe('logic - retrieve user', () => {
     let id, name, surname, email, username, password
 
     beforeEach(() => {

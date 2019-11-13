@@ -26,6 +26,6 @@ module.exports = function (name, surname, email, username, password) {
 
         users.push({ id, name, surname, email, username, password })
 
-        fs.writeFile(path.join(__dirname, '../../data/users.json'), JSON.stringify(users), error => error ? reject(error) : resolve())
+        fs.writeFile(path.join(__dirname, '../../data/users/index.json'), JSON.stringify(users), error => error ? reject(error) : resolve())
     })
 }

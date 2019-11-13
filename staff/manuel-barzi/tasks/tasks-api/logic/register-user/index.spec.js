@@ -1,8 +1,6 @@
 const { expect } = require('chai')
 const registerUser = require('.')
 const { ContentError } = require('../../utils/errors')
-const fs = require('fs').promises
-const path = require('path')
 const users = require('../../data/users')
 const { random } = Math
 
@@ -21,11 +19,6 @@ describe('logic - register user', () => {
         registerUser(name, surname, email, username, password)
             .then(response => {
                 expect(response).to.be.undefined
-
-                return fs.readFile(path.join(__dirname, '../../data/users.json'))
-            })
-            .then(json => {
-                const users = JSON.parse(json)
 
                 const user = users.find(user => user.username === username)
 

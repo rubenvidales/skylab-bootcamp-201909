@@ -5,7 +5,8 @@
         "surname": "Grillo",
         "email": "pepito@grillo.com",
         "username": "pepito",
-        "password": "123"
+        "password": "123",
+        "lastAccess": "2019-11-14T11:30:07.530Z"
     },
     {
         "id": "106892ba-eb1b-4183-82c0-08b854eeb1f0",
@@ -165,6 +166,22 @@
         "surname": "Grillo",
         "email": "pepito@grillo.com",
         "username": "pepito2",
+        "password": "123"
+    },
+    {
+        "id": "a45d4687-b085-4f43-b626-000d0bcaff18",
+        "name": "Pepito",
+        "surname": "Grillo",
+        "email": "pepito@grillo.com",
+        "username": "pepito-5",
+        "password": "123"
+    },
+    {
+        "id": "c3f558fd-80c6-4b84-8bfa-6b5b7a760980",
+        "name": "Pepito",
+        "surname": "Grillo",
+        "email": "pepito@grillo.com",
+        "username": "pepito-6",
         "password": "123"
     }
 ]

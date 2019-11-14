@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const { name, version } = require('./package.json')
+const jwt = require('jsonwebtoken')
 
 const api = express()
 

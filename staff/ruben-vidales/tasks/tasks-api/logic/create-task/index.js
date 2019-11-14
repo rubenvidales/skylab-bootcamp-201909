@@ -1,7 +1,8 @@
 const validate = require('../../utils/validate')
-const tasks = require('../../data/tasks')('test')
+const users = require('../../data/users')()
+const tasks = require('../../data/tasks')()
 const uuid = require('uuid/v4')
-const { ConflictError } = require('../../utils/errors')
+const { NotFoundError } = require('../../utils/errors')
 
 module.exports = function (user, title, description, status) {
     validate.string(user)
@@ -10,13 +11,20 @@ module.exports = function (user, title, description, status) {
     validate.string.notVoid('title', title)
     validate.string(description)
     validate.string.notVoid('description', description)
-    validate.string(status)
-    validate.string.notVoid('status', status)
-
 
     return new Promise((resolve, reject) => {
-        const id = uuid()
-        const insertedTask = {id, user, title, description, status, date: new Date()}
+        const user = user.data.find(user => user.id === id)
+
+        if (!user) return reject(new NotFoundError(`user with id ${id} not found`))
+
+        const task = {
+            id: uuid(),
+            user: id,
+            title,
+            description,
+            status: 'TODO',
+            date: new Date
+        }
 
         tasks.data.push(task)
 

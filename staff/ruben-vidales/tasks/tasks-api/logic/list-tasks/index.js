@@ -1,5 +1,6 @@
 const validate = require('../../utils/validate')
 const users = require('../../data/users')()
+const tasks = require('../../data/tasks')()
 const { NotFoundError } = require('../../utils/errors')
 
 module.exports = function (id) {
@@ -11,12 +12,10 @@ module.exports = function (id) {
 
         if (!user) return reject(new NotFoundError(`user with id ${id} not found`))
 
-        user.lastAccess = new Date
+        const _tasks = tasks.data.filter(({ user }) => user === id)
 
-        users.persist().then(() => {
-            const { name, surname, email, username } = user
+        _tasks.forEach(task => task.lastAccess = new Date)
 
-            resolve({ id, name, surname, email, username })
-        })
+        tasks.persist().then(() => resolve(_tasks)).catch(reject)
     })
 }

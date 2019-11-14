@@ -1,45 +1,45 @@
 const { expect } = require('chai')
-const taks = require('../../data/tasks')('test')
-const registerUser = require('.')
-const { ContentError } = require('../../utils/errors')
+const users = require('../../data/users')('test')
+const tasks = require('../../data/tasks')('test')
+const createTask = require('.')
 const { random } = Math
+const uuid = require('uuid')
 
 describe('logic - create task', () => {
-    before(() => tasks.load())
+    before(() => Promise.all([users.load(), tasks.load()]))
 
-    let user, title, description, status
+    let id, name, surname, email, username, password, title, description
 
     beforeEach(() => {
-        user = `user-${random()}`
+        id = uuid()
+        name = `name-${random()}`
+        surname = `surname-${random()}`
+        email = `email-${random()}@mail.com`
+        username = `username-${random()}`
+        password = `password-${random()}`
+
+        users.data.push({ id, name, surname, email, username, password })
+
         title = `title-${random()}`
-        despription = `description-${random()}`
-        status = `status-${random()}`
+        description = `description-${random()}`
     })
 
-    it('should succeed on correct credentials', () =>
-        createTask(user, title, description, status)
+    it('should succeed on correct user and task data', () =>
+        createTask(id, title, description)
             .then(taskId => {
                 expect(taskId).to.exist
                 expect(taskId).to.be.a('string')
                 expect(taskId).to.have.length.greaterThan(0)
 
-                const task = tasks.data.find(task => taskId === task)
+                const task = tasks.data.find(({ id }) => id === taskId)
 
                 expect(task).to.exist
-                expect(task.id).to.exist
-                expect(task.id).to.be.a('string')
-                expect(task.id).to.have.length.greaterThan(0)
-                expect(task.title).to.exist
-                expect(task.title).to.be.a('string')
-                expect(task.title).to.have.length.greaterThan(0)
-                expect(task.description).to.exist
-                expect(task.description).to.be.a('string')
-                expect(task.description).to.have.length.greaterThan(0)
-                expect(task.description).to.exist
-                expect(task.description).to.be.a('string')
-                expect(task.description).to.have.length.greaterThan(0)
-
-
+                expect(task.user).to.equal(id)
+                expect(task.title).to.equal(title)
+                expect(task.description).to.equal(description)
+                expect(task.status).to.equal('TODO')
+                expect(task.date).to.exist
+                expect(task.date).to.be.instanceOf(Date)
             })
     )
 })

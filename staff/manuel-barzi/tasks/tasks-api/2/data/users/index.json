@@ -1,1 +1,11 @@
-[]
+[
+    {
+        "id": "05eba466-987b-4e62-8f32-c18e8a9d7a55",
+        "name": "Pepito",
+        "surname": "Grillo",
+        "email": "pepito@grillo.com",
+        "username": "pepito",
+        "password": "123",
+        "lastAccess": "2019-11-14T15:12:33.649Z"
+    }
+]

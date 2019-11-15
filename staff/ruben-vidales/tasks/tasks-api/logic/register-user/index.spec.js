@@ -35,7 +35,7 @@ describe('logic - register user', () => {
                 const { id } = user
                 expect(id).to.exist
                 expect(id).to.be.a('string')
-                expect(id).to.have.length.gt(0)
+                expect(id).to.have.length.greaterThan(0)
             })
     )
 

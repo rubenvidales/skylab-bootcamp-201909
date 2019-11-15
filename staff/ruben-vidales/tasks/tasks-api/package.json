@@ -6,11 +6,11 @@
   "scripts": {
     "start": "node .",
     "debug": "node inspect .",
-    "test": "npx mocha logic/*/*.spec.js",
+    "test": "npx mocha logic/**/*.spec.js",
     "test-debug": "npx mocha inspect logic/*/*.spec.js"
   },
   "keywords": [],
-  "author": "Ruben Vidales",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",

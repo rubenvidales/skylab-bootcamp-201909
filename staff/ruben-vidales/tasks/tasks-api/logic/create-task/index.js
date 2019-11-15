@@ -4,16 +4,16 @@ const tasks = require('../../data/tasks')()
 const uuid = require('uuid/v4')
 const { NotFoundError } = require('../../utils/errors')
 
-module.exports = function (userId, title, description) {
-    validate.string(userId)
-    validate.string.notVoid('userId', userId)
+module.exports = function (id, title, description) {
+    validate.string(id)
+    validate.string.notVoid('id', id)
     validate.string(title)
     validate.string.notVoid('title', title)
     validate.string(description)
     validate.string.notVoid('description', description)
 
     return new Promise((resolve, reject) => {
-        const user = user.data.find(user => user.id === id)
+        const user = users.data.find(user => user.id === id)
 
         if (!user) return reject(new NotFoundError(`user with id ${id} not found`))
 
@@ -28,6 +28,6 @@ module.exports = function (userId, title, description) {
 
         tasks.data.push(task)
 
-        tasks.persist().then(()=> resolve(task.id)).catch(reject)
+        tasks.persist().then(() => resolve(task.id)).catch(reject)
     })
 }

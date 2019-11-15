@@ -4,7 +4,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const { name, version } = require('./package.json')
 const users = require('./data/users')()
-const { registerUser, authenticateUser, retrieveUser } = require('./logic')
+const tasks = require('./data/tasks')()
+const { registerUser, authenticateUser, retrieveUser, createTask, listTasks } = require('./logic')
 const { ConflictError, CredentialsError, NotFoundError } = require('./utils/errors')
 const jwt = require('jsonwebtoken')
 
@@ -88,6 +89,56 @@ api.get('/users', (req, res) => {
     }
 })
 
-users.load()
+api.post('/tasks', jsonBodyParser, (req, res) => {
+    const { headers: { authorization }, body: { title, description } } = req
+
+    try {
+        if (!authorization) throw new CredentialsError('no token provided')
+
+        const [, token] = authorization.split(' ')
+
+        const { sub: id } = jwt.verify(token, SECRET)
+
+        createTask(id, title, description)
+            .then(id => res.status(201).json({ id }))
+            .catch(error => {
+                const { message } = error
+
+                if (error instanceof NotFoundError)
+                    return res.status(404).json({ message })
+
+                res.status(500).json({ message })
+            })
+    } catch ({ message }) {
+        res.status(400).json({ message })
+    }
+})
+
+api.get('/tasks', (req, res) => {
+    const { headers: { authorization } } = req
+
+    try {
+        if (!authorization) throw new CredentialsError('no token provided')
+
+        const [, token] = authorization.split(' ')
+
+        const { sub: id } = jwt.verify(token, SECRET)
+
+        listTasks(id)
+            .then(tasks => res.json(tasks))
+            .catch(error => {
+                const { message } = error
+
+                if (error instanceof NotFoundError)
+                    return res.status(404).json({ message })
+
+                res.status(500).json({ message })
+            })
+    } catch ({ message }) {
+        res.status(400).json({ message })
+    }
+})
+
+Promise.all([users.load(), tasks.load()])
     .then(() => api.listen(PORT, () => console.log(`${name} ${version} up and running on port ${PORT}`)))
 

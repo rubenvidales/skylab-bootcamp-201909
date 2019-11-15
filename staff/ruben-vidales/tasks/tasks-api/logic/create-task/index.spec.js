@@ -24,7 +24,7 @@ describe('logic - create task', () => {
         description = `description-${random()}`
     })
 
-    it('should succeed on correct credentials', () =>
+    it('should succeed on correct user and task data', () =>
         createTask(id, title, description)
             .then(taskId => {
                 expect(taskId).to.exist

@@ -10,7 +10,7 @@
     "test-debug": "npx mocha inspect logic/*/*.spec.js"
   },
   "keywords": [],
-  "author": "Ruben Vidales",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",

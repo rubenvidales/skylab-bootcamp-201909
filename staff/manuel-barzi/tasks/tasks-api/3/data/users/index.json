@@ -1,0 +1,37 @@
+[
+    {
+        "id": "05eba466-987b-4e62-8f32-c18e8a9d7a55",
+        "name": "Pepito",
+        "surname": "Grillo",
+        "email": "pepito@grillo.com",
+        "username": "pepito",
+        "password": "123",
+        "lastAccess": "2019-11-14T15:12:33.649Z"
+    },
+    {
+        "id": "493bcc44-cd24-41b6-a740-efced8a49e4d",
+        "name": "Pepito",
+        "surname": "Grillo",
+        "email": "pepito@grillo.com",
+        "username": "pepito2",
+        "password": "123",
+        "lastAccess": "2019-11-14T15:45:24.666Z"
+    },
+    {
+        "id": "f0fc0b94-8937-4f12-b908-ca3aea7ebc42",
+        "name": "Pepito",
+        "surname": "Grillo",
+        "email": "pepito@grillo.com",
+        "username": "pepito3",
+        "password": "123"
+    },
+    {
+        "id": "72cc5e20-44e0-4169-8f34-95c7ca845b48",
+        "name": "Pepito",
+        "surname": "Grillo",
+        "email": "pepito@grillo.com",
+        "username": "pepito4",
+        "password": "123",
+        "lastAccess": "2019-11-14T16:00:05.915Z"
+    }
+]

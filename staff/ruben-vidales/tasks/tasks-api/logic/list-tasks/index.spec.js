@@ -5,7 +5,7 @@ const listTasks = require('.')
 const { random } = Math
 const uuid = require('uuid')
 
-describe.only('logic - list tasks', () => {
+describe('logic - list tasks', () => {
     before(() => Promise.all([users.load(), tasks.load()]))
 
     let id, name, surname, email, username, password, taskIds, titles, descriptions

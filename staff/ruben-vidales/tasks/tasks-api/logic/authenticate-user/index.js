@@ -2,7 +2,7 @@ const validate = require('../../utils/validate')
 const users = require('../../data/users')()
 const { CredentialsError } = require('../../utils/errors')
 
-module.exports = function (username, password){
+module.exports = function (username, password) {
     validate.string(username)
     validate.string.notVoid('username', username)
     validate.string(password)

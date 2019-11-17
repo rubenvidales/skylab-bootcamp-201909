@@ -1,40 +1,54 @@
+require('dotenv').config()
+const { env: { DB_URL_TEST } } = process
 const { expect } = require('chai')
-const users = require('../../data/users')('test')
-const tasks = require('../../data/tasks')('test')
 const createTask = require('.')
 const { random } = Math
-const uuid = require('uuid')
+const database = require('../../utils/database')
+const { ObjectId } = database
 
 describe('logic - create task', () => {
-    before(() => Promise.all([users.load(), tasks.load()]))
+    let client, users, tasks
 
-    let id, name, surname, email, username, password, title, description
+    before(() => {
+        client = database(DB_URL_TEST)
+        return client.connect()
+            .then(connection => {
+                const db = connection.db()
+
+                users = db.collection('users')
+                tasks = db.collection('tasks')
+            })
+    })
+
+    let userId, name, surname, email, username, password, title, description
 
     beforeEach(() => {
-        id = uuid()
         name = `name-${random()}`
         surname = `surname-${random()}`
         email = `email-${random()}@mail.com`
         username = `username-${random()}`
         password = `password-${random()}`
 
-        users.data.push({ id, name, surname, email, username, password })
-
-        title = `title-${random()}`
-        description = `description-${random()}`
+        return users.insertOne({ name, surname, email, username, password })
+            .then(result => {
+                userId = result.insertedId.toString()
+                title = `title-${random()}`
+                description = `description-${random()}`
+            })
     })
 
     it('should succeed on correct user and task data', () =>
-        createTask(id, title, description)
+        createTask(userId, title, description)
             .then(taskId => {
                 expect(taskId).to.exist
                 expect(taskId).to.be.a('string')
                 expect(taskId).to.have.length.greaterThan(0)
 
-                const task = tasks.data.find(({ id }) => id === taskId)
-
+                return tasks.findOne({ _id: ObjectId(taskId)})
+            })
+            .then(task => {
                 expect(task).to.exist
-                expect(task.user).to.equal(id)
+                expect(task.user.toString()).to.equal(userId)
                 expect(task.title).to.equal(title)
                 expect(task.description).to.equal(description)
                 expect(task.status).to.equal('TODO')
@@ -44,4 +58,5 @@ describe('logic - create task', () => {
     )
 
     // TODO other test cases
+    after(() => client.close())
 })

@@ -115,6 +115,10 @@ api.get('/tasks', tokenVerifier, (req, res) => {
     }
 })
 
-Promise.all([users.load(), tasks.load()])
-    .then(() => api.listen(PORT, () => console.log(`${name} ${version} up and running on port ${PORT}`)))
+api.delete('/tasks/:taskId', tokenVerifier, (req, res) => {
+    res.send('TODO')
+})
 
+database(DB_URL)
+    .connect()
+    .then(() => api.listen(PORT, () => console.log(`${name} ${version} up and running on port ${PORT}`)))

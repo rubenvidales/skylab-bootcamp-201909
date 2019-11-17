@@ -1,7 +1,7 @@
 const validate = require('../../utils/validate')
-const users = require('../../data/users')()
 const uuid = require('uuid/v4')
 const { ConflictError } = require('../../utils/errors')
+const database = require('../../utils/database')
 
 module.exports = function (name, surname, email, username, password) {
     validate.string(name)
@@ -16,15 +16,20 @@ module.exports = function (name, surname, email, username, password) {
     validate.string(password)
     validate.string.notVoid('password', password)
 
-    return new Promise((resolve, reject) => {
-        const user = users.data.find(user => user.username === username)
+    const client = database()
 
-        if (user) return reject(new ConflictError(`user with username ${username} already exists`))
+    return client.connect()
+        .then( connection => {
+            const users = connection.db().collection('users')
 
-        const id = uuid()
-
-        users.data.push({ id, name, surname, email, username, password })
-
-        users.persist().then(resolve).catch(reject)
-    })
+            return users.findOne( { username } )
+                .then (user => {
+                    if(user) throw new ConflictError(`user with username ${username} already exists`)
+                    
+                    return users.insertOne({ name, surname, email, username, password })
+                })
+                .then (result => {
+                    if (!result.insertedCount) throw Error ('failed to create user')
+                })
+        })
 }

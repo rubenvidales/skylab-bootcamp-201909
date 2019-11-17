@@ -3,13 +3,12 @@ require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const { name, version } = require('./package.json')
-const users = require('./data/users')()
-const tasks = require('./data/tasks')()
 const { registerUser, authenticateUser, retrieveUser, createTask, listTasks } = require('./logic')
 const { ConflictError, CredentialsError, NotFoundError } = require('./utils/errors')
 const jwt = require('jsonwebtoken')
-const { argv: [, , port], env: { SECRET, PORT = port || 8080 } } = process
+const { argv: [, , port], env: { SECRET, PORT = port || 8080, DB_URL } } = process
 const tokenVerifier = require('./utils/token/token-verifier')(SECRET)
+const database = require('./utils/database')
 
 const api = express()
 

@@ -5,7 +5,7 @@ const retrieveUser = require('.')
 const uuid = require('uuid/v4')
 const { NotFoundError } = require('../../utils/errors')
 
-describe('logic - retrieve user', () => {
+describe.skip('logic - retrieve user', () => {
     before(() => users.load())
 
     let id, name, surname, email, username, password

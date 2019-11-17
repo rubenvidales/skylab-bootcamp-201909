@@ -58,7 +58,6 @@ describe('logic - list tasks', () => {
     it('should succeed on correct user and task data', () =>
         listTasks(userId)
             .then(tasks => {
-                console.log(tasks)
                 expect(tasks).to.exist
                 expect(tasks).to.have.lengthOf(10)
 

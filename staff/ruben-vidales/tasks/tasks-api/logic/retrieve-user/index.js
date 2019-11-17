@@ -1,22 +1,33 @@
 const validate = require('../../utils/validate')
-const users = require('../../data/users')()
 const { NotFoundError } = require('../../utils/errors')
+const database = require('../../utils/database')
+const { ObjectId } = database
 
 module.exports = function (id) {
     validate.string(id)
     validate.string.notVoid('id', id)
 
-    return new Promise((resolve, reject) => {
-        const user = users.data.find(user => user.id === id)
+    const client = database()
 
-        if (!user) return reject(new NotFoundError(`user with id ${id} not found`))
+    return client.connect()
+        .then (connection => {
+            const users = connection.db().collection('users')
 
-        user.lastAccess = new Date
+            return users.findOne({ _id: ObjectId(id) })
+                .then( user => {
+                    if(!user) throw new NotFoundError(`user with id ${id} not found`)
+                    
+                    return users.updateOne({username: user.username},{$set:{lastAccess: new Date}})
+                        .then(result => {
+                            if (!result.modifiedCount) throw Error('could not update user')
 
-        users.persist().then(() => {
-            const { name, surname, email, username } = user
-
-            resolve({ id, name, surname, email, username })
+                            delete user.password
+                            return user
+                        })                   
+                })                
         })
-    })
+        //Syncronous error if ObjectId can not create the id
+        .catch( error => {
+            if (error) throw new NotFoundError(`user with id ${id} not found`)
+        })
 }

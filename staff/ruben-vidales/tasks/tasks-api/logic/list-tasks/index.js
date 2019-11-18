@@ -1,11 +1,12 @@
 const validate = require('../../utils/validate')
-const { NotFoundError } = require('../../utils/errors')
+const { NotFoundError, ContentError } = require('../../utils/errors')
 const database = require('../../utils/database')
 const { ObjectId } = database
 
 module.exports = function (userId) {
     validate.string(userId)
     validate.string.notVoid('userId', userId)
+    if (!ObjectId.isValid(userId)) throw new ContentError(`${userId} is not a valid id`)
 
     const client = database()
 
@@ -20,17 +21,21 @@ module.exports = function (userId) {
                 .then(user => {
                     if (!user) throw new NotFoundError(`User with id: ${userId} not found`)
 
-                    return tasks.find({ user: ObjectId(userId) }).toArray()
-                        .then(_tasks => {
-                            _tasks.forEach( task => {
-                                const last = new Date
-                                tasks.updateOne({ _id: task._id }, { $set: { lastAccess: last } })
+                    return tasks.find({ user: user._id }).toArray()
+                })
+                .then(_tasks => {
+                    const lastAccess = new Date
+                    const updates = _tasks.map(({ _id }) => tasks.updateOne({ _id }, { $set: { lastAccess } }))
 
-                                //Data sanitizing
+                    return Promise.all(updates)
+                        .then(() => {
+                            _tasks.forEach(task => {
                                 task.id = task._id.toString()
-                                task.user = task.user.toString()
-                                task.lastAccess = last
                                 delete task._id
+
+                                task.user = userId
+                                task.lastAccess = lastAccess
+
                             })
                             return _tasks
                         })

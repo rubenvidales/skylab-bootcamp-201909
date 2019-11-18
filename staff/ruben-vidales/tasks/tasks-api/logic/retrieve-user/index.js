@@ -26,7 +26,7 @@ module.exports = function (id) {
                         })                   
                 })                
         })
-        //Syncronous error if ObjectId can not create the id
+        //Asyncronous error if ObjectId can not create the id
         .catch( error => {
             if (error) throw new NotFoundError(`user with id ${id} not found`)
         })

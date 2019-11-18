@@ -2,6 +2,7 @@ require('dotenv').config()
 const { env: { DB_URL_TEST } } = process
 const { expect } = require('chai')
 const listTasks = require('.')
+const { NotFoundError, ContentError } = require('../../utils/errors')
 const { random } = Math
 const uuid = require('uuid')
 const database = require('../../utils/database')
@@ -30,12 +31,13 @@ describe.only('logic - list tasks', () => {
         password = `password-${random()}`
 
         return users.insertOne({ name, surname, email, username, password })
-            .then(result => {
-                userId = result.insertedId.toString()
-
+            .then(({ insertedId }) => userId = insertedId.toString())
+            .then(() => {
                 taskIds = []
                 titles = []
                 descriptions = []
+
+                const insertions = []
 
                 for (let i = 0; i < 5; i++) {
                     const task = {
@@ -45,15 +47,22 @@ describe.only('logic - list tasks', () => {
                         status: 'REVIEW',
                         date: new Date
                     }
+                    insertions.push(tasks.insertOne(task)
+                        .then(result => taskIds.push(result.insertedId.toString())))
 
-                    tasks.insertOne(task)
-                        .then(result => {
-                            if (!result.insertedCount) throw new Error(`Failed to create task`)
-                            taskIds.push(result.insertedId.toString())
-                            titles.push(task.title)
-                            descriptions.push(task.description)
-                        })
+                    titles.push(task.title)
+                    descriptions.push(task.description)
                 }
+
+                for (let i = 0; i < 5; i++)
+                    insertions.push(tasks.insertOne({
+                        user: ObjectId(),
+                        title: `title-${random()}`,
+                        description: `description-${random()}`,
+                        status: 'REVIEW',
+                        date: new Date
+                    }))
+                return Promise.all(insertions)
             })
     })
 
@@ -69,9 +78,6 @@ describe.only('logic - list tasks', () => {
                     expect(task.id).to.have.length.greaterThan(0)
                     expect(task.id).be.oneOf(taskIds)
 
-                    expect(task.id).to.exist
-                    expect(task.id).to.be.a('string')
-                    expect(task.id).to.have.length.greaterThan(0)
                     expect(task.user).to.equal(userId)
 
                     expect(task.title).to.exist
@@ -92,6 +98,21 @@ describe.only('logic - list tasks', () => {
                 })
             })
     )
+
+    it('should fail on incorrect user id', () => {
+        const wrongId = '123456789012'
+        return listTasks(wrongId)
+            .then(result => {
+                throw Error('should not reach this point')
+                expect(result).to.be.an.instanceOf(NotFoundError)
+            })
+            .catch(error => {
+                expect(error).to.exist
+                expect(error).to.be.an.instanceOf(NotFoundError)
+                expect(error.message).to.equal(`User with id: ${wrongId} not found`)
+            })
+
+    })
 
     // TODO other test cases
     after(() => client.close())

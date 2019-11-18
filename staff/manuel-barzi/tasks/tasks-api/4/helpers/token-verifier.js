@@ -1,4 +1,4 @@
-const extractToken = require('./extract-token')
+const extractToken = require('../utils/extract-token')
 const jwt = require('jsonwebtoken')
 
 module.exports = function (secret) {

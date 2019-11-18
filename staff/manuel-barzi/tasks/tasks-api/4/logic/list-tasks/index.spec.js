@@ -93,6 +93,9 @@ describe('logic - list tasks', () => {
                     expect(task.description).to.have.length.greaterThan(0)
                     expect(task.description).be.oneOf(descriptions)
 
+                    expect(task.date).to.exist
+                    expect(task.date).to.be.an.instanceOf(Date)
+
                     expect(task.lastAccess).to.exist
                     expect(task.lastAccess).to.be.an.instanceOf(Date)
                 })

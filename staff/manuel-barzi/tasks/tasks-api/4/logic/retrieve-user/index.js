@@ -19,8 +19,6 @@ module.exports = function (id) {
                 .then(user => {
                     if (!user) throw new NotFoundError(`user with id ${id} not found`)
 
-                    //return users.updateOne({ _id: ObjectId(id) }, { $set: { lastAccess: new Date } })
-
                     const lastAccess = new Date
 
                     return users.updateOne({ _id: ObjectId(id) }, { $set: { lastAccess }})

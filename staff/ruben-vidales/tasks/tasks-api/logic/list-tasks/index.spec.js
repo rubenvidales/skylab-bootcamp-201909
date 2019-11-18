@@ -5,9 +5,9 @@ const listTasks = require('.')
 const { random } = Math
 const uuid = require('uuid')
 const database = require('../../utils/database')
-const {ObjectId} = database
+const { ObjectId } = database
 
-describe('logic - list tasks', () => {
+describe.only('logic - list tasks', () => {
     let client, users, tasks
     before(() => {
         client = database(DB_URL_TEST)
@@ -47,10 +47,12 @@ describe('logic - list tasks', () => {
                     }
 
                     tasks.insertOne(task)
-
-                    taskIds.push(task.id)
-                    titles.push(task.title)
-                    descriptions.push(task.description)
+                        .then(result => {
+                            if (!result.insertedCount) throw new Error(`Failed to create task`)
+                            taskIds.push(result.insertedId.toString())
+                            titles.push(task.title)
+                            descriptions.push(task.description)
+                        })
                 }
             })
     })
@@ -59,7 +61,7 @@ describe('logic - list tasks', () => {
         listTasks(userId)
             .then(tasks => {
                 expect(tasks).to.exist
-                expect(tasks).to.have.lengthOf(10)
+                expect(tasks).to.have.lengthOf(5)
 
                 tasks.forEach(task => {
                     expect(task.id).to.exist
@@ -67,7 +69,10 @@ describe('logic - list tasks', () => {
                     expect(task.id).to.have.length.greaterThan(0)
                     expect(task.id).be.oneOf(taskIds)
 
-                    expect(task.user).to.equal(id)
+                    expect(task.id).to.exist
+                    expect(task.id).to.be.a('string')
+                    expect(task.id).to.have.length.greaterThan(0)
+                    expect(task.user).to.equal(userId)
 
                     expect(task.title).to.exist
                     expect(task.title).to.be.a('string')
@@ -78,6 +83,9 @@ describe('logic - list tasks', () => {
                     expect(task.description).to.be.a('string')
                     expect(task.description).to.have.length.greaterThan(0)
                     expect(task.description).be.oneOf(descriptions)
+
+                    expect(task.date).to.exist
+                    expect(task.date).to.be.an.instanceOf(Date)
 
                     expect(task.lastAccess).to.exist
                     expect(task.lastAccess).to.be.an.instanceOf(Date)

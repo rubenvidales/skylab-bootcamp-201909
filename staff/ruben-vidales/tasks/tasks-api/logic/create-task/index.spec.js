@@ -57,6 +57,29 @@ describe('logic - create task', () => {
             })
     )
 
+    it('should fail on incorrect user id, title or description data type', () => {
+        expect(() => createTask(1)).to.throw(TypeError, '1 is not a string')
+        expect(() => createTask(true)).to.throw(TypeError, 'true is not a string')
+        expect(() => createTask([])).to.throw(TypeError, ' is not a string')
+        expect(() => createTask({})).to.throw(TypeError, '[object Object] is not a string')
+        expect(() => createTask(undefined)).to.throw(TypeError, 'undefined is not a string')
+        expect(() => createTask(null)).to.throw(TypeError, 'null is not a string')
+
+        expect(() => createTask('123456789',1)).to.throw(TypeError, '1 is not a string')
+        expect(() => createTask('123456789',true)).to.throw(TypeError, 'true is not a string')
+        expect(() => createTask('123456789',[])).to.throw(TypeError, ' is not a string')
+        expect(() => createTask('123456789',{})).to.throw(TypeError, '[object Object] is not a string')
+        expect(() => createTask('123456789',undefined)).to.throw(TypeError, 'undefined is not a string')
+        expect(() => createTask('123456789',null)).to.throw(TypeError, 'null is not a string')
+
+        expect(() => createTask('123456789','123456789',1)).to.throw(TypeError, '1 is not a string')
+        expect(() => createTask('123456789','123456789',true)).to.throw(TypeError, 'true is not a string')
+        expect(() => createTask('123456789','123456789',[])).to.throw(TypeError, ' is not a string')
+        expect(() => createTask('123456789','123456789',{})).to.throw(TypeError, '[object Object] is not a string')
+        expect(() => createTask('123456789','123456789',undefined)).to.throw(TypeError, 'undefined is not a string')
+        expect(() => createTask('123456789','123456789',null)).to.throw(TypeError, 'null is not a string')
+    })
+
     // TODO other test cases
     after(() => client.close())
 })

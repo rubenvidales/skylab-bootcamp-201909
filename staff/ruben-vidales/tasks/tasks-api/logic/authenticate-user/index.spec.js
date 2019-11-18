@@ -8,8 +8,10 @@ const database = require('../../utils/database')
 
 describe('logic - authenticate user', () => {
     let client, users
+
     before(() => {
         client = database(DB_URL_TEST)
+
         return client.connect()
             .then(connection => users = connection.db().collection('users'))
     })
@@ -29,12 +31,12 @@ describe('logic - authenticate user', () => {
 
     it('should succeed on correct credentials', () =>
         authenticateUser(username, password)
-            .then(_id => {
-                expect(_id).to.exist
-                expect(typeof _id).to.equal('string')
-                expect(_id.length).to.be.greaterThan(0)
+            .then(userId => {
+                expect(userId).to.exist
+                expect(typeof userId).to.equal('string')
+                expect(userId.length).to.be.greaterThan(0)
 
-                expect(_id).to.equal(id)
+                expect(userId).to.equal(id)
             })
     )
 

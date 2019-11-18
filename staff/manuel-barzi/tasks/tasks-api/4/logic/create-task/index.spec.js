@@ -6,7 +6,7 @@ const { random } = Math
 const database = require('../../utils/database')
 const { ObjectId } = database
 
-describe.only('logic - create task', () => {
+describe('logic - create task', () => {
     let client, users, tasks
 
     before(() => {

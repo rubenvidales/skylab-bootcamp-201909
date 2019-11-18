@@ -1,5 +1,4 @@
 const validate = require('../../utils/validate')
-const uuid = require('uuid/v4')
 const { ConflictError } = require('../../utils/errors')
 const database = require('../../utils/database')
 

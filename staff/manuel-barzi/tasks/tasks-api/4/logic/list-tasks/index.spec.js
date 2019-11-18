@@ -1,54 +1,71 @@
+require('dotenv').config()
+const { env: { DB_URL_TEST } } = process
 const { expect } = require('chai')
-const users = require('../../data/users')('test')
-const tasks = require('../../data/tasks')('test')
+const database = require('../../utils/database')
 const listTasks = require('.')
 const { random } = Math
-const uuid = require('uuid')
+
+const { ObjectId } = database
 
 describe('logic - list tasks', () => {
-    before(() => Promise.all([users.load(), tasks.load()]))
+    let client, users, tasks
+
+    before(() => {
+        client = database(DB_URL_TEST)
+
+        return client.connect()
+            .then(connection => {
+                const db = connection.db()
+
+                users = db.collection('users')
+                tasks = db.collection('tasks')
+            })
+    })
 
     let id, name, surname, email, username, password, taskIds, titles, descriptions
 
     beforeEach(() => {
-        id = uuid()
         name = `name-${random()}`
         surname = `surname-${random()}`
         email = `email-${random()}@mail.com`
         username = `username-${random()}`
         password = `password-${random()}`
 
-        users.data.push({ id, name, surname, email, username, password })
+        return users.insertOne({ name, surname, email, username, password })
+            .then(({ insertedId }) => id = insertedId.toString())
+            .then(() => {
+                taskIds = []
+                titles = []
+                descriptions = []
 
-        taskIds = []
-        titles = []
-        descriptions = []
+                const insertions = []
 
-        for (let i = 0; i < 10; i++) {
-            const task = {
-                id: uuid(),
-                user: id,
-                title: `title-${random()}`,
-                description: `description-${random()}`,
-                status: 'REVIEW',
-                date: new Date
-            }
+                for (let i = 0; i < 10; i++) {
+                    const task = {
+                        user: ObjectId(id),
+                        title: `title-${random()}`,
+                        description: `description-${random()}`,
+                        status: 'REVIEW',
+                        date: new Date
+                    }
 
-            tasks.data.push(task)
+                    insertions.push(tasks.insertOne(task)
+                        .then(result => taskIds.push(result.insertedId.toString())))
 
-            taskIds.push(task.id)
-            titles.push(task.title)
-            descriptions.push(task.description)
-        }
+                    titles.push(task.title)
+                    descriptions.push(task.description)
+                }
 
-        for (let i = 0; i < 10; i++)
-            tasks.data.push({
-                id: uuid(),
-                user: uuid(),
-                title: `title-${random()}`,
-                description: `description-${random()}`,
-                status: 'REVIEW',
-                date: new Date
+                for (let i = 0; i < 10; i++)
+                    insertions.push(tasks.insertOne({
+                        user: ObjectId(),
+                        title: `title-${random()}`,
+                        description: `description-${random()}`,
+                        status: 'REVIEW',
+                        date: new Date
+                    }))
+
+                return Promise.all(insertions)
             })
     })
 
@@ -63,7 +80,7 @@ describe('logic - list tasks', () => {
                     expect(task.id).to.be.a('string')
                     expect(task.id).to.have.length.greaterThan(0)
                     expect(task.id).be.oneOf(taskIds)
-                    
+
                     expect(task.user).to.equal(id)
 
                     expect(task.title).to.exist
@@ -83,4 +100,6 @@ describe('logic - list tasks', () => {
     )
 
     // TODO other test cases
+
+    after(() => client.close())
 })

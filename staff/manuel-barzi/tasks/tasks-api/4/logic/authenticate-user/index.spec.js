@@ -6,7 +6,7 @@ const { ContentError, CredentialsError } = require('../../utils/errors')
 const { random } = Math
 const database = require('../../utils/database')
 
-describe.only('logic - authenticate user', () => {
+describe('logic - authenticate user', () => {
     let client, users
 
     before(() => {

@@ -4,17 +4,10 @@ const { expect } = require('chai')
 const authenticateUser = require('.')
 const { ContentError, CredentialsError } = require('../../utils/errors')
 const { random } = Math
-const database = require('../../utils/database')
+const { database, models: { User } } = require('../../data')
 
 describe('logic - authenticate user', () => {
-    let client, users
-
-    before(() => {
-        client = database(DB_URL_TEST)
-
-        return client.connect()
-            .then(db => users = db.collection('users'))
-    })
+    before(() => database.connect(DB_URL_TEST))
 
     let id, name, surname, email, username, password
 
@@ -25,9 +18,9 @@ describe('logic - authenticate user', () => {
         username = `username-${random()}`
         password = `password-${random()}`
 
-        return users.deleteMany()
-            .then(() => users.insertOne({ name, surname, email, username, password }))
-            .then(({ insertedId }) => id = insertedId.toString())
+        return User.deleteMany()
+            .then(() => User.create({ name, surname, email, username, password }))
+            .then(user => id = user.id)
     })
 
     it('should succeed on correct credentials', () =>
@@ -95,5 +88,5 @@ describe('logic - authenticate user', () => {
 
     // TODO other cases
 
-    after(() => users.deleteMany().then(client.close))
+    after(() => User.deleteMany().then(database.disconnect))
 })

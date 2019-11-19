@@ -1,13 +1,13 @@
-const mongoose = require('mongoose')
+const { connect, disconnect } = require('mongoose')
+const { ObjectId } = require('mongodb')
 
 module.exports = {
     database: {
         connect(url) {
-            mongoose.connect(url, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true })
+            return connect(url, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true })
         },
-        disconnect() {
-            mongoose.disconnect()
-        }
+        disconnect
     },
-    models: require('./models')
+    models: require('./models'),
+    ObjectId
 }

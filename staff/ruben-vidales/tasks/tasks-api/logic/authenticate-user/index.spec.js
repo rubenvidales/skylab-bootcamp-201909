@@ -1,22 +1,15 @@
 require('dotenv').config()
-const {env: { DB_URL_TEST }} = process
+const { env: { DB_URL_TEST } } = process
 const { expect } = require('chai')
 const authenticateUser = require('.')
 const { ContentError, CredentialsError } = require('../../utils/errors')
 const { random } = Math
-const database = require('../../utils/database')
+const { database, models: { User } } = require('../../data')
 
 describe('logic - authenticate user', () => {
-    let client, users
+    before(() => database.connect(DB_URL_TEST))
 
-    before(() => {
-        client = database(DB_URL_TEST)
-
-        return client.connect()
-            .then(connection => users = connection.db().collection('users'))
-    })
-
-    let id, name, surname, email, username, password
+    let userId, name, surname, email, username, password
 
     beforeEach(() => {
         name = `name-${random()}`
@@ -25,18 +18,21 @@ describe('logic - authenticate user', () => {
         username = `username-${random()}`
         password = `password-${random()}`
 
-        return users.insertOne({ name, surname, email, username, password })
-            .then(({insertedId}) => id = insertedId.toString())
+        return User.deleteMany()
+            .then(() => 
+                User.create({ name, surname, email, username, password })
+                    .then(user => userId = user.id)
+            )
     })
 
     it('should succeed on correct credentials', () =>
         authenticateUser(username, password)
-            .then(userId => {
-                expect(userId).to.exist
-                expect(typeof userId).to.equal('string')
-                expect(userId.length).to.be.greaterThan(0)
+            .then(_userId => {
+                expect(_userId).to.exist
+                expect(typeof _userId).to.equal('string')
+                expect(_userId.length).to.be.greaterThan(0)
 
-                expect(userId).to.equal(id)
+                expect(_userId).to.equal(userId)
             })
     )
 
@@ -93,5 +89,5 @@ describe('logic - authenticate user', () => {
     })
 
     // TODO other cases
-    after(() => client.close())
+    after(() => User.deleteMany().then(database.disconnect))
 })

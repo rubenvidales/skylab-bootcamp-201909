@@ -3,10 +3,8 @@ const { env: { DB_URL_TEST } } = process
 const { expect } = require('chai')
 const { random } = Math
 const retrieveUser = require('.')
-const uuid = require('uuid/v4')
 const { NotFoundError } = require('../../utils/errors')
 const database = require('../../utils/database')
-const { ObjectId } = database
 
 describe('logic - retrieve user', () => {
     let client, users
@@ -33,7 +31,8 @@ describe('logic - retrieve user', () => {
         return retrieveUser(id)
             .then(user => {
                 expect(user).to.exist
-                expect(ObjectId(user._id).toString()).to.equal(id)
+                expect(user.id).to.equal(id)
+                expect(user._id).to.not.exist
                 expect(user.name).to.equal(name)
                 expect(user.surname).to.equal(surname)
                 expect(user.email).to.equal(email)
@@ -43,7 +42,7 @@ describe('logic - retrieve user', () => {
     })
 
     it('should fail on wrong user id', () => {
-        const id = 'wrong'
+        const id = '012345678901234567890123'
 
         return retrieveUser(id)
             .then(() => {
@@ -55,6 +54,20 @@ describe('logic - retrieve user', () => {
                 expect(error.message).to.equal(`user with id ${id} not found`)
             })
     })
+
+    // it('should fail on not valid user id', () => {
+    //     const id = 'wrong'
+
+    //     return retrieveUser(id)
+    //         .then(() => {
+    //             throw Error('should not reach this point')
+    //         })
+    //         .catch(error => {
+    //             expect(error).to.exist
+    //             expect(error).to.be.an.instanceOf(NotFoundError)
+    //             expect(error.message).to.equal(`user with id ${id} not found`)
+    //         })
+    // })
 
     // TODO other cases
     after(() => client.close())

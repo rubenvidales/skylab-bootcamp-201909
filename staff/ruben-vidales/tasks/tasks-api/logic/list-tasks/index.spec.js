@@ -4,11 +4,10 @@ const { expect } = require('chai')
 const listTasks = require('.')
 const { NotFoundError, ContentError } = require('../../utils/errors')
 const { random } = Math
-const uuid = require('uuid')
 const database = require('../../utils/database')
 const { ObjectId } = database
 
-describe.only('logic - list tasks', () => {
+describe('logic - list tasks', () => {
     let client, users, tasks
     before(() => {
         client = database(DB_URL_TEST)

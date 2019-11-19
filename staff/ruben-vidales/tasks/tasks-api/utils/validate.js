@@ -1,10 +1,9 @@
 const { ContentError } = require('./errors')
-
-const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const { isTypeOf, isInstanceOf, isEmail } = require('./validators')
 
 const validate = {
     typeOf(type, target) {
-        if (typeof target !== type) throw new TypeError(`${target} is not a ${type}`)
+        if (!isTypeOf(target, type)) throw new TypeError(`${target} is not a ${type}`)
     },
 
     string(target) {
@@ -24,7 +23,7 @@ const validate = {
     },
 
     instanceOf(type, target) {
-        if (!(target instanceof type)) throw TypeError(`${target} is not a ${type.name}`)
+        if (!isInstanceOf(target, type)) throw TypeError(`${target} is not a ${type.name}`)
     },
 
     array(target) {
@@ -32,10 +31,11 @@ const validate = {
     },
 
     email(target) {
-        if (!EMAIL_REGEX.test(String(target).toLowerCase())) throw new ContentError(`${target} is not an e-mail`)
+        if (!isEmail(String(target).toLowerCase())) throw new ContentError(`${target} is not an e-mail`)
     },
+
     matches(name, target, ...values) {
-        if (!values.includes(target)) throw new ContentError(`${target} does not match any of the valid ${name} values: ${values}`)   
+        if (!values.includes(target)) throw new ContentError(`${target} does not match any of the valid ${name} values: ${values}`)
     }
 }
 

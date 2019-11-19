@@ -7,7 +7,7 @@ const { registerUser, authenticateUser, retrieveUser, createTask, listTasks, mod
 const { ConflictError, CredentialsError, NotFoundError } = require('./utils/errors')
 const jwt = require('jsonwebtoken')
 const { argv: [, , port], env: { SECRET, PORT = port || 8080, DB_URL } } = process
-const tokenVerifier = require('./utils/token/token-verifier')(SECRET)
+const tokenVerifier = require('./helpers/token-verifier')(SECRET)
 const database = require('./utils/database')
 const cors = require('./utils/cors')
 

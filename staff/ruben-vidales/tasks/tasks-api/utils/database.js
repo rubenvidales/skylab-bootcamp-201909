@@ -15,18 +15,18 @@ function database(url) {
 
             client.connect = function () {
                 return connection ?
-                    Promise.resolve(connection)
+                    connection
                     :
-                    connect().then(_connection => connection = _connection)
+                    connection = connect().then(connection => connection.db())
             }
 
-            // const close = client.close.bind(client) // 0
-            const close = client.close // 1
+            const close = client.close.bind(client) // 0
+            //const close = client.close // 1
 
             client.close = function() {
-                // close() // 0
+                close() // 0
                 // close.call(client) // 1
-                close.call(this) // 1
+                //close.call(this) // 1
 
                 client = undefined
             } 

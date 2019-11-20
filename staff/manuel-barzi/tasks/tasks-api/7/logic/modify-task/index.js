@@ -25,25 +25,24 @@ module.exports = function (id, taskId, title, description, status) {
         validate.matches('status', status, 'TODO', 'DOING', 'REVIEW', 'DONE')
     }
 
-    return User.findById(id)
-        .then(user => {
-            if (!user) throw new NotFoundError(`user with id ${id} not found`)
+    return (async () => {
+        const user = await User.findById(id)
 
-            return Task.findById(taskId)
-        })
-        .then(task => {
-            if (!task) throw new NotFoundError(`user does not have task with id ${taskId}`)
+        if (!user) throw new NotFoundError(`user with id ${id} not found`)
 
-            if (task.user.toString() !== id.toString()) throw new ConflictError(`user with id ${id} does not correspond to task with id ${taskId}`)
+        const task = await Task.findById(taskId)
 
-            const update = {}
+        if (!task) throw new NotFoundError(`user does not have task with id ${taskId}`)
 
-            title && (update.title = title)
-            description && (update.description = description)
-            status && (update.status = status)
-            update.lastAccess = new Date
+        if (task.user.toString() !== id.toString()) throw new ConflictError(`user with id ${id} does not correspond to task with id ${taskId}`)
 
-            return Task.updateOne({ _id: ObjectId(taskId) }, { $set: update })
-        })
-        .then(() => { })
+        const update = {}
+
+        title && (update.title = title)
+        description && (update.description = description)
+        status && (update.status = status)
+        update.lastAccess = new Date
+
+        await Task.updateOne({ _id: ObjectId(taskId) }, { $set: update })
+    })()
 }

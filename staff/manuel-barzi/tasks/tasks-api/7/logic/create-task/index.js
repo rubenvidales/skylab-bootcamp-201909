@@ -13,11 +13,13 @@ module.exports = function (id, title, description) {
     validate.string(description)
     validate.string.notVoid('description', description)
 
-    return User.findById(id)
-        .then(user => {
-            if (!user) throw new NotFoundError(`user with id ${id} not found`)
+    return (async () => {
+        const user = await User.findById(id)
 
-            return Task.create({ user: id, title, description })
-        })
-        .then(task => task.id)
+        if (!user) throw new NotFoundError(`user with id ${id} not found`)
+
+        const task = await Task.create({ user: id, title, description })
+
+        return task.id
+    })()
 }

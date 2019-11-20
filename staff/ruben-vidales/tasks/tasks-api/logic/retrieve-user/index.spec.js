@@ -11,60 +11,58 @@ describe('logic - retrieve user', () => {
 
     let id, name, surname, email, username, password
 
-    beforeEach(() => {
+    beforeEach(async () => {
         name = `name-${random()}`
         surname = `surname-${random()}`
         email = `email-${random()}@mail.com`
         username = `username-${random()}`
         password = `password-${random()}`
 
-        return User.deleteMany()
-            .then(() => User.create({ name, surname, email, username, password }))
-            .then(user => id = user.id)
+        await User.deleteMany()
+
+        const user = await User.create({ name, surname, email, username, password })
+        id = user.id
     })
 
-    it('should succeed on correct user id', () =>
-        retrieveUser(id)
-            .then(user => {
-                console.log(user)
-                expect(user).to.exist
-                expect(user.id).to.equal(id)
-                expect(user._id).to.not.exist
-                expect(user.name).to.equal(name)
-                expect(user.surname).to.equal(surname)
-                expect(user.email).to.equal(email)
-                expect(user.username).to.equal(username)
-                expect(user.password).to.be.undefined
-            })
-    )
+    it('should succeed on correct user id', async () => {
+        const user = await retrieveUser(id)
 
-/*     it('should fail on wrong user id', () => {
+        expect(user).to.exist
+        expect(user.id).to.equal(id)
+        expect(user._id).to.not.exist
+        expect(user.name).to.equal(name)
+        expect(user.surname).to.equal(surname)
+        expect(user.email).to.equal(email)
+        expect(user.username).to.equal(username)
+        expect(user.password).to.be.undefined
+    })
+
+    it('should fail on wrong user id', async () => {
         const id = '012345678901234567890123'
 
-        return retrieveUser(id)
-            .then(() => {
-                throw Error('should not reach this point')
-            })
-            .catch(error => {
-                debugger
-                expect(error).to.exist
-                expect(error).to.be.an.instanceOf(NotFoundError)
-                expect(error.message).to.equal(`user with id ${id} not found`)
-            })
-    }) */
+        try {
+            await retrieveUser(id)
+            throw Error('should not reach this point')
 
-/*     it('should fail on not valid user id', () => {
+        } catch (error) {
+            expect(error).to.exist
+            expect(error).to.be.an.instanceOf(NotFoundError)
+            expect(error.message).to.equal(`user with id ${id} not found`)
+        }
+    })
+
+/*     it('should fail on not valid user id', async() => {
         const id = 'wrong'
 
-        return retrieveUser(id)
-            .then(() => {
-                throw Error('should not reach this point')
-            })
-            .catch(error => {
-                expect(error).to.exist
-                expect(error).to.be.an.instanceOf(NotFoundError)
-                expect(error.message).to.equal(`user with id ${id} not found`)
-            })
+        try {
+            await retrieveUser(id)
+            
+            throw Error('should not reach this point')
+        } catch (error) {
+            expect(error).to.exist
+            expect(error).to.be.an.instanceOf(NotFoundError)
+            expect(error.message).to.equal(`user with id ${id} not found`)
+        }
     }) */
 
     // TODO other cases

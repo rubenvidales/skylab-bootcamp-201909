@@ -8,21 +8,16 @@ module.exports = function (id) {
     if (!ObjectId.isValid(id)) throw new ContentError(`${id} is not a valid id`)
 
     return (async () => {
-        debugger
-        let user = await User.findById(id)
+        const user = await User.findById(id)
         if (!user) throw new NotFoundError(`user with id ${id} not found`)
 
         user.lastAccess = new Date
 
-        user = await user.save()
+        await user.save()
 
-        user = user.toObject()
-        user.id = id
+        const { name, surname, email, username } = user.toObject()
 
-        delete user._id
-        delete user.password
-
-        return user
+        return { id, name, surname, email, username }
 
     })()
 }

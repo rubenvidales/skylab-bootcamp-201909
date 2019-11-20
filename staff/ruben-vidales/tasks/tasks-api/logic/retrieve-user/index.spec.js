@@ -4,15 +4,10 @@ const { expect } = require('chai')
 const { random } = Math
 const retrieveUser = require('.')
 const { NotFoundError } = require('../../utils/errors')
-const database = require('../../utils/database')
+const { database, models: { User } } = require('../../data')
 
 describe('logic - retrieve user', () => {
-    let client, users
-    before(() => {
-        client = database(DB_URL_TEST)
-        return client.connect()
-            .then(connection => users = connection.db().collection('users'))
-    })
+    before(() => database.connect(DB_URL_TEST))
 
     let id, name, surname, email, username, password
 
@@ -23,12 +18,13 @@ describe('logic - retrieve user', () => {
         username = `username-${random()}`
         password = `password-${random()}`
 
-        return users.insertOne({ name, surname, email, username, password })
-            .then(({ insertedId }) => id = insertedId.toString())
+        return User.deleteMany()
+            .then(() => User.create({ name, surname, email, username, password }))
+            .then(user => id = user.id)
     })
 
-    it('should succeed on correct user id', () => {
-        return retrieveUser(id)
+    it('should succeed on correct user id', () =>
+        retrieveUser(id)
             .then(user => {
                 expect(user).to.exist
                 expect(user.id).to.equal(id)
@@ -39,7 +35,7 @@ describe('logic - retrieve user', () => {
                 expect(user.username).to.equal(username)
                 expect(user.password).to.be.undefined
             })
-    })
+    )
 
     it('should fail on wrong user id', () => {
         const id = '012345678901234567890123'
@@ -49,26 +45,12 @@ describe('logic - retrieve user', () => {
                 throw Error('should not reach this point')
             })
             .catch(error => {
+                debugger
                 expect(error).to.exist
                 expect(error).to.be.an.instanceOf(NotFoundError)
                 expect(error.message).to.equal(`user with id ${id} not found`)
             })
     })
-
-    // it('should fail on not valid user id', () => {
-    //     const id = 'wrong'
-
-    //     return retrieveUser(id)
-    //         .then(() => {
-    //             throw Error('should not reach this point')
-    //         })
-    //         .catch(error => {
-    //             expect(error).to.exist
-    //             expect(error).to.be.an.instanceOf(NotFoundError)
-    //             expect(error.message).to.equal(`user with id ${id} not found`)
-    //         })
-    // })
-
     // TODO other cases
-    after(() => client.close())
+    after(() => User.deleteMany().then(database.disconnect))
 })

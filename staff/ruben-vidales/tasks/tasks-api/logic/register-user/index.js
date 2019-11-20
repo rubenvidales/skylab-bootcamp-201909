@@ -17,7 +17,6 @@ module.exports = function (name, surname, email, username, password) {
 
     return User.findOne({ username })
         .then(user => {
-            debugger
             if (user) throw new ConflictError(`user with username ${username} already exists`)
 
             return User.create({ name, surname, email, username, password })

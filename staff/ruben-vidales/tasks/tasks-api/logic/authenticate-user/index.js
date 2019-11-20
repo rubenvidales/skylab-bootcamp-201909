@@ -12,12 +12,9 @@ module.exports = function (username, password) {
         .then(user => {
             if (!user) throw new CredentialsError(`wrong credentials`)
 
-            const { _id } = user
+            user.lastAccess = new Date
 
-            return User.updateOne({ _id }, { $set: { lastAccess: new Date } })
-                .then(() => {
-                    return _id.toString()
-                })
+            return user.save().then(() => user.id)
         })
 
 }

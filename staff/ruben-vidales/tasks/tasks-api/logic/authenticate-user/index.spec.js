@@ -19,10 +19,8 @@ describe('logic - authenticate user', () => {
         password = `password-${random()}`
 
         return User.deleteMany()
-            .then(() => 
-                User.create({ name, surname, email, username, password })
-                    .then(user => userId = user.id)
-            )
+            .then(() => User.create({ name, surname, email, username, password }))
+            .then(user => userId = user.id)
     })
 
     it('should succeed on correct credentials', () =>

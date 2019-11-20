@@ -1,118 +1,94 @@
 require('dotenv').config()
 const { env: { DB_URL_TEST } } = process
 const { expect } = require('chai')
+const { database, ObjectId, models: { User, Task } } = require('../../data')
 const listTasks = require('.')
-const { NotFoundError, ContentError } = require('../../utils/errors')
 const { random } = Math
-const database = require('../../utils/database')
-const { ObjectId } = database
 
 describe('logic - list tasks', () => {
-    let client, users, tasks
-    before(() => {
-        client = database(DB_URL_TEST)
+    before(() => database.connect(DB_URL_TEST))
 
-        return client.connect()
-            .then(connection => {
-                const db = connection.db()
-                tasks = db.collection('tasks')
-                users = db.collection('users')
-            })
-    })
+    let userId, name, surname, email, username, password, taskIds, titles, descriptions
 
-    let name, surname, email, username, password, taskIds, titles, descriptions, userId
-
-    beforeEach(() => {
+    beforeEach(async () => {
         name = `name-${random()}`
         surname = `surname-${random()}`
         email = `email-${random()}@mail.com`
         username = `username-${random()}`
         password = `password-${random()}`
 
-        return users.insertOne({ name, surname, email, username, password })
-            .then(({ insertedId }) => userId = insertedId.toString())
-            .then(() => {
-                taskIds = []
-                titles = []
-                descriptions = []
+        await Promise.all([User.deleteMany(), Task.deleteMany()])
 
-                const insertions = []
+        const user = await User.create({ name, surname, email, username, password })
 
-                for (let i = 0; i < 5; i++) {
-                    const task = {
-                        user: ObjectId(userId),
-                        title: `title-${random()}`,
-                        description: `description-${random()}`,
-                        status: 'REVIEW',
-                        date: new Date
-                    }
-                    insertions.push(tasks.insertOne(task)
-                        .then(result => taskIds.push(result.insertedId.toString())))
+        userId = user.id
 
-                    titles.push(task.title)
-                    descriptions.push(task.description)
-                }
+        taskIds = []
+        titles = []
+        descriptions = []
 
-                for (let i = 0; i < 5; i++)
-                    insertions.push(tasks.insertOne({
-                        user: ObjectId(),
-                        title: `title-${random()}`,
-                        description: `description-${random()}`,
-                        status: 'REVIEW',
-                        date: new Date
-                    }))
-                return Promise.all(insertions)
-            })
+        const insertions = []
+
+        for (let i = 0; i < 10; i++) {
+            const task = {
+                user: userId,
+                title: `title-${random()}`,
+                description: `description-${random()}`,
+                status: 'REVIEW',
+                date: new Date
+            }
+
+            insertions.push(Task.create(task).then(task => taskIds.push(task.id)))
+
+            titles.push(task.title)
+            descriptions.push(task.description)
+        }
+
+        for (let i = 0; i < 10; i++)
+            insertions.push(Task.create({
+                user: ObjectId(),
+                title: `title-${random()}`,
+                description: `description-${random()}`,
+                status: 'REVIEW',
+                date: new Date
+            }))
+
+        await Promise.all(insertions)
     })
 
-    it('should succeed on correct user and task data', () =>
-        listTasks(userId)
-            .then(tasks => {
-                expect(tasks).to.exist
-                expect(tasks).to.have.lengthOf(5)
+    it('should succeed on correct user and task data', async () => {
+        const tasks = await listTasks(userId)
 
-                tasks.forEach(task => {
-                    expect(task.id).to.exist
-                    expect(task.id).to.be.a('string')
-                    expect(task.id).to.have.length.greaterThan(0)
-                    expect(task.id).be.oneOf(taskIds)
+        expect(tasks).to.exist
+        expect(tasks).to.have.lengthOf(10)
 
-                    expect(task.user).to.equal(userId)
+        tasks.forEach(task => {
+            expect(task.id).to.exist
+            expect(task.id).to.be.a('string')
+            expect(task.id).to.have.length.greaterThan(0)
+            expect(task.id).be.oneOf(taskIds)
 
-                    expect(task.title).to.exist
-                    expect(task.title).to.be.a('string')
-                    expect(task.title).to.have.length.greaterThan(0)
-                    expect(task.title).be.oneOf(titles)
+            expect(task.user).to.equal(userId)
 
-                    expect(task.description).to.exist
-                    expect(task.description).to.be.a('string')
-                    expect(task.description).to.have.length.greaterThan(0)
-                    expect(task.description).be.oneOf(descriptions)
+            expect(task.title).to.exist
+            expect(task.title).to.be.a('string')
+            expect(task.title).to.have.length.greaterThan(0)
+            expect(task.title).be.oneOf(titles)
 
-                    expect(task.date).to.exist
-                    expect(task.date).to.be.an.instanceOf(Date)
+            expect(task.description).to.exist
+            expect(task.description).to.be.a('string')
+            expect(task.description).to.have.length.greaterThan(0)
+            expect(task.description).be.oneOf(descriptions)
 
-                    expect(task.lastAccess).to.exist
-                    expect(task.lastAccess).to.be.an.instanceOf(Date)
-                })
-            })
-    )
+            expect(task.date).to.exist
+            expect(task.date).to.be.an.instanceOf(Date)
 
-    it('should fail on incorrect user id', () => {
-        const wrongId = '123456789012'
-        return listTasks(wrongId)
-            .then(result => {
-                throw Error('should not reach this point')
-                expect(result).to.be.an.instanceOf(NotFoundError)
-            })
-            .catch(error => {
-                expect(error).to.exist
-                expect(error).to.be.an.instanceOf(NotFoundError)
-                expect(error.message).to.equal(`User with id: ${wrongId} not found`)
-            })
-
-    })
+            expect(task.lastAccess).to.exist
+            expect(task.lastAccess).to.be.an.instanceOf(Date)
+        })
+})
 
     // TODO other test cases
-    after(() => client.close())
+
+    after(() => Promise.all([User.deleteMany(), Task.deleteMany()]).then(database.disconnect))
 })

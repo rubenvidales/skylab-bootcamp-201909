@@ -1,8 +1,10 @@
-const { Schema } = require('mongoose')
+const { Schema, ObjectId } = require('mongoose')
+const { isEmail } = require('../../utils/validators')
+const user = require('./user')
 
 module.exports =  new Schema({
     user: {
-        type: String,
+        type: ObjectId,
         required: true
     },
     title: {
@@ -15,10 +17,16 @@ module.exports =  new Schema({
     },
     status: {
         type: String,
-        required: true
+        required: true,
+        default: 'TODO',
+        enum: ['TODO', 'DOING', 'REVIEW', 'DONE']
     },
     date: {
         type: Date,
-        required: true
+        required: true,
+        default: Date.now
+    },
+    lastAccess: {
+        type: Date
     }
 })

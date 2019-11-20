@@ -1,7 +1,6 @@
 const validate = require('../../utils/validate')
-const database = require('../../utils/database')
+const { ObjectId, models: { User, Task } } = require('../../data')
 const { NotFoundError, ConflictError } = require('../../utils/errors')
-const { ObjectId } = database
 
 module.exports = function (userId, taskId, title, description, status) {
     validate.string(userId)
@@ -26,36 +25,22 @@ module.exports = function (userId, taskId, title, description, status) {
         validate.matches('status', status, 'TODO', 'DOING', 'REVIEW', 'DONE')
     }
 
-    const client = database()
+    return (async () => {
+        const user = await User.findById(userId)
+        if (!user) throw new NotFoundError(`user with id ${userId} not found`)
 
-    return client.connect()
-        .then(connection => {
-            const db = connection.db()
+        const task = await Task.findById(taskId)
 
-            const users = db.collection('users')
-            const tasks = db.collection('tasks')
+        if (!task) throw new NotFoundError(`user does not have task with id ${taskId}`)
+        if (task.user.toString() !== userId.toString()) throw new ConflictError(`user with id ${userId} does not correspond to task with id ${taskId}`)
 
-            return users.findOne({_id: ObjectId(userId)})
-                .then( user => {
-                    if(!user) throw new NotFoundError(`user with id ${userId} not found`)
+        const update = {}
 
-                    return tasks.findOne({ _id: ObjectId(taskId)})
-                })
-                .then(task => {
-                    if (!task) throw new NotFoundError(`user does not have task with id ${taskId}`)
+        title && (update.title = title)
+        description && (update.description = description)
+        status && (update.status = status)
+        update.lastAccess = new Date
 
-                    if(task.user.toString() !== userId.toString()) throw new ConflictError(`user with id ${userId} does not correspond to task with id ${taskId}`)
-                
-                    const update = {}
-
-                    title && (update.title = title)
-                    description && (update.description = description)
-                    status && (update.status = status)
-                    update.lastAccess = new Date
-
-                    return tasks.updateOne({_id: ObjectId(taskId)}, {$set: update })
-                })
-                .then(() => {})
-        })
-
+        await Task.updateOne({ _id: ObjectId(taskId) }, { $set: update })
+    })()
 }

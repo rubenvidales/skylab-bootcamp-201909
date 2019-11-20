@@ -23,44 +23,42 @@ describe('logic - authenticate user', () => {
             .then(user => userId = user.id)
     })
 
-    it('should succeed on correct credentials', () =>
-        authenticateUser(username, password)
-            .then(_userId => {
-                expect(_userId).to.exist
-                expect(typeof _userId).to.equal('string')
-                expect(_userId.length).to.be.greaterThan(0)
+    it('should succeed on correct credentials', async () => {
+        const _userId = await authenticateUser(username, password)
 
-                expect(_userId).to.equal(userId)
-            })
-    )
+        expect(_userId).to.exist
+        expect(typeof _userId).to.equal('string')
+        expect(_userId.length).to.be.greaterThan(0)
+        expect(_userId).to.equal(userId)
+    })
 
     describe('when wrong credentials', () => {
-        it('should fail on wrong username', () => {
+        it('should fail on wrong username', async () => {
             const username = 'wrong'
+            try {
+                await authenticateUser(username, password)
+                throw new Error('should not reach this point')
+            } catch (error) {
+                expect(error).to.exist
+                expect(error).to.be.an.instanceOf(CredentialsError)
 
-            return authenticateUser(username, password)
-                .then(() => { throw new Error('should not reach this point') })
-                .catch(error => {
-                    expect(error).to.exist
-                    expect(error).to.be.an.instanceOf(CredentialsError)
-
-                    const { message } = error
-                    expect(message).to.equal(`wrong credentials`)
-                })
+                const { message } = error
+                expect(message).to.equal(`wrong credentials`)
+            }
         })
 
-        it('should fail on wrong password', () => {
+        it('should fail on wrong password', async () => {
             const password = 'wrong'
 
-            return authenticateUser(username, password)
-                .then(() => { throw new Error('should not reach this point') })
-                .catch(error => {
-                    expect(error).to.exist
-                    expect(error).to.be.an.instanceOf(CredentialsError)
-
-                    const { message } = error
-                    expect(message).to.equal(`wrong credentials`)
-                })
+            try {
+                await authenticateUser(username, password)
+                throw new Error('should not reach this point')
+            } catch (error) {
+                expect(error).to.exist
+                expect(error).to.be.an.instanceOf(CredentialsError)
+                const { message } = error
+                expect(message).to.equal(`wrong credentials`)
+            }
         })
     })
 

@@ -26,6 +26,7 @@ describe('logic - retrieve user', () => {
     it('should succeed on correct user id', () =>
         retrieveUser(id)
             .then(user => {
+                console.log(user)
                 expect(user).to.exist
                 expect(user.id).to.equal(id)
                 expect(user._id).to.not.exist
@@ -37,7 +38,7 @@ describe('logic - retrieve user', () => {
             })
     )
 
-    it('should fail on wrong user id', () => {
+/*     it('should fail on wrong user id', () => {
         const id = '012345678901234567890123'
 
         return retrieveUser(id)
@@ -50,7 +51,22 @@ describe('logic - retrieve user', () => {
                 expect(error).to.be.an.instanceOf(NotFoundError)
                 expect(error.message).to.equal(`user with id ${id} not found`)
             })
-    })
+    }) */
+
+/*     it('should fail on not valid user id', () => {
+        const id = 'wrong'
+
+        return retrieveUser(id)
+            .then(() => {
+                throw Error('should not reach this point')
+            })
+            .catch(error => {
+                expect(error).to.exist
+                expect(error).to.be.an.instanceOf(NotFoundError)
+                expect(error.message).to.equal(`user with id ${id} not found`)
+            })
+    }) */
+
     // TODO other cases
     after(() => User.deleteMany().then(database.disconnect))
 })

@@ -1,5 +1,5 @@
 const { Schema } = require('mongoose')
-const { isEmail } = require('../../utils/validators')
+const { validators: { isEmail } } = require('tasks-util')
 
 module.exports =  new Schema({
     name: {

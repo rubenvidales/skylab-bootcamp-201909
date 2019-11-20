@@ -2,9 +2,10 @@ require('dotenv').config()
 const { env: { DB_URL_TEST } } = process
 const { expect } = require('chai')
 const registerUser = require('.')
-const { ContentError } = require('../../utils/errors')
 const { random } = Math
-const { database, models: { User } } = require('../../data')
+
+const { errors: { ContentError } } = require('tasks-util')
+const { database, models: { User } } = require('tasks-data')
 
 describe('logic - register user', () => {
     before(() => database.connect(DB_URL_TEST))

@@ -1,9 +1,10 @@
 require('dotenv').config()
 const { env: { DB_URL_TEST } } = process
 const { expect } = require('chai')
-const { database, ObjectId, models: { User, Task } } = require('../../data')
 const listTasks = require('.')
 const { random } = Math
+
+const { database, ObjectId, models: { User, Task } } = require('tasks-data')
 
 describe('logic - list tasks', () => {
     before(() => database.connect(DB_URL_TEST))

@@ -3,7 +3,8 @@ const { env: { DB_URL_TEST } } = process
 const { expect } = require('chai')
 const createTask = require('.')
 const { random } = Math
-const { database, models: { User, Task } } = require('../../data')
+
+const { database, models: { User, Task } } = require('tasks-data')
 
 describe('logic - create task', () => {
     before(() => database.connect(DB_URL_TEST))

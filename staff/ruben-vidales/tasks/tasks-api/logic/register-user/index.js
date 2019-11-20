@@ -1,6 +1,5 @@
-const validate = require('../../utils/validate')
-const { ConflictError } = require('../../utils/errors')
-const { models: { User } } = require('../../data')
+const { validate, errors: { ConflictError } } = require('tasks-util')
+const { models: { User } } = require('tasks-data')
 
 module.exports = function (name, surname, email, username, password) {
     validate.string(name)

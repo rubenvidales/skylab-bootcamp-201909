@@ -3,8 +3,9 @@ const { env: { DB_URL_TEST } } = process
 const { expect } = require('chai')
 const { random } = Math
 const retrieveUser = require('.')
-const { NotFoundError } = require('../../utils/errors')
-const { database, models: { User } } = require('../../data')
+
+const { errors: { NotFoundError } } = require('tasks-util')
+const { database, models: { User } } = require('tasks-data')
 
 describe('logic - retrieve user', () => {
     before(() => database.connect(DB_URL_TEST))

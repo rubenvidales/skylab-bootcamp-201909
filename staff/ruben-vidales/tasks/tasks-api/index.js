@@ -4,12 +4,12 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const { name, version } = require('./package.json')
 const { registerUser, authenticateUser, retrieveUser, createTask, listTasks, modifyTask, removeTask } = require('./logic')
-const { ConflictError, CredentialsError, NotFoundError } = require('./utils/errors')
 const jwt = require('jsonwebtoken')
 const { argv: [, , port], env: { SECRET, PORT = port || 8080, DB_URL } } = process
 const tokenVerifier = require('./helpers/token-verifier')(SECRET)
-const {database} = require('./data')
 const cors = require('./utils/cors')
+const { errors: { NotFoundError, ConflictError, CredentialsError } } = require('tasks-util')
+const { database } = require('tasks-data')
 
 const api = express()
 

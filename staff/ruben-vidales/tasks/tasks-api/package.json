@@ -17,7 +17,9 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.7.11"
+    "mongoose": "^5.7.11",
+    "tasks-data": "file:../tasks-data",
+    "tasks-util": "file:../tasks-util"
   },
   "devDependencies": {
     "chai": "^4.2.0",

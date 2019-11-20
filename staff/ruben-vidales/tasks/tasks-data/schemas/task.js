@@ -1,6 +1,4 @@
 const { Schema, ObjectId } = require('mongoose')
-const { isEmail } = require('../../utils/validators')
-const user = require('./user')
 
 module.exports =  new Schema({
     user: {

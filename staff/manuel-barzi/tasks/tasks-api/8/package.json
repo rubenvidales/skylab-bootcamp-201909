@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node .",
     "debug": "node inspect .",
+    "watch": "npx nodemon .",
     "test": "npx mocha logic/**/*.spec.js",
     "test-debug": "npx mocha inspect logic/*/*.spec.js"
   },
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^6.2.2"
+    "mocha": "^6.2.2",
+    "nodemon": "^2.0.0"
   }
 }

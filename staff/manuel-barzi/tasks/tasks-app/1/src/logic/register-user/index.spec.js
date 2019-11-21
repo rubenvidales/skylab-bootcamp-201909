@@ -1,12 +1,11 @@
-//require('dotenv').config()
-const { env: { REACT_APP_DB_URL_TEST: DB_URL_TEST } } = process
+const { env: { REACT_APP_TEST_DB_URL: TEST_DB_URL } } = process
 const registerUser = require('.')
 const { random } = Math
 const { errors: { ContentError } } = require('tasks-util')
 const { database, models: { User } } = require('tasks-data')
 
 describe('logic - register user', () => {
-    beforeAll(() => database.connect(DB_URL_TEST))
+    beforeAll(() => database.connect(TEST_DB_URL))
 
     let name, surname, email, username, password
 

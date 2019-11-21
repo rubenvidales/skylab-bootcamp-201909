@@ -1,0 +1,226 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  background-color: silver;
+}
+
+.view {
+  border: 0.3rem solid orange;
+  border-radius: 1rem;
+  border-style: dotted;
+  background-color: yellow;
+  width: 100vw;
+  height: 100%;
+  padding: 3vw;
+  text-align: center;
+}
+
+.feedback {
+  border: 0.3rem solid orange;
+  border-radius: 1rem;
+  border-style: dotted;
+  padding: 1rem;
+  margin: 1rem;
+  background-color: olive;
+}
+.feedback__icon {
+  font-size: 1.5rem;
+}
+.feedback__message {
+  display: inline;
+  color: white;
+  font-size: 1.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.landing {
+  background-color: deeppink;
+  border: 0.3rem solid darkviolet;
+  border-radius: 1rem;
+  border-style: dotted;
+  text-decoration: none;
+  padding: 0.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.landing__title {
+  color: darkviolet;
+  font-size: 2rem;
+  margin: 0.5rem auto 0.5rem auto;
+}
+.landing__options {
+  color: darkviolet;
+  font-size: 1.2rem;
+  margin: 0.5rem auto 0.5rem auto;
+}
+
+.register {
+  background-color: yellowgreen;
+  border: 0.3rem solid green;
+  border-radius: 1rem;
+  border-style: dotted;
+  text-decoration: none;
+  padding: 0.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.register__title {
+  color: green;
+  font-size: 2rem;
+  margin: 0.5rem auto 0.5rem auto;
+}
+.register__field {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+.register__submit {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.login {
+  background-color: tomato;
+  border: 0.3rem solid firebrick;
+  border-radius: 1rem;
+  border-style: dotted;
+  text-decoration: none;
+  padding: 0.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.login__title {
+  color: firebrick;
+  font-size: 2rem;
+  margin: 0.5rem auto 0.5rem auto;
+}
+.login__field {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+.login__submit {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.board {
+  border: 0.3rem solid orange;
+  border-radius: 1rem;
+  border-style: dotted;
+  text-decoration: none;
+  padding: 0.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.board__form {
+  margin: 0.5rem;
+}
+.board__title {
+  color: orange;
+  font-size: 2rem;
+  margin: 0.5rem auto 0.5rem auto;
+}
+.board__user {
+  display: inline-block;
+  color: gold;
+  font-size: 1.5rem;
+}
+.board__logout {
+  display: inline-block;
+  margin-left: 0.5rem;
+}
+.board__logout button {
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+.board__icon {
+  font-size: 1.5rem;
+}
+.board__criteria {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+.board__submit {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+.board__favs {
+  text-decoration: none;
+  color: orange;
+  margin-left: 0.5rem;
+}
+
+.task-list {
+  border: 0.3rem solid orange;
+  border-radius: 1rem;
+  border-style: dotted;
+  padding: 1rem;
+  margin: 0.5rem;
+  list-style: none;
+  colunns: 3;
+}
+.task-list__item {
+  display: inline-block;
+  border: 0.3rem solid orange;
+  border-radius: 1rem;
+  border-style: dotted;
+  margin: 1rem;
+}
+
+.task {
+  display: inline-block;
+  background-color: pink;
+  border: 0.3rem solid fuchsia;
+  border-radius: 1rem;
+  border-style: dotted;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 30vw;
+}
+.task--doing {
+  background-color: skyblue;
+}
+.task--review {
+  background-color: orange;
+}
+.task--done {
+  background-color: greenyellow;
+}
+.task__title {
+  color: fuchsia;
+}
+.task__description {
+  color: fuchsia;
+  padding: 0.5rem;
+  text-align: center;
+  margin: auto;
+  padding: 0;
+}
+.task__status {
+  display: inline-block;
+  border: 0.3rem solid white;
+  border-radius: 1rem;
+  border-style: dotted;
+  color: white;
+  padding: 0.5rem;
+  font-size: 2rem;
+}
+.task__action {
+  display: inline-block;
+  margin: 0.2rem;
+  font-size: 2rem;
+}
+.task__action button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=index.css.map */

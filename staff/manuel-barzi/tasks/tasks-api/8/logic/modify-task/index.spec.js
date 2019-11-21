@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { env: { DB_URL_TEST } } = process
+const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
 const modifyTask = require('.')
 const { random } = Math
@@ -9,7 +9,7 @@ const { database, ObjectId, models: { User, Task } } = require('tasks-data')
 arrayRandom()
 
 describe('logic - modify task', () => {
-    before(() => database.connect(DB_URL_TEST))
+    before(() => database.connect(TEST_DB_URL))
 
     const statuses = ['TODO', 'DOING', 'REVIEW', 'DONE']
     let id, name, surname, email, username, password, taskIds, titles, descriptions

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tasks App</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" href="../public/icon.png" type="image/x-icon">
+</head>
+
+<body>
+    <section class="view landing">
+        <h1 class="landing__title">Welcome to Tasks App 📝</h1>
+        <p class="landing__options">Please, proceed to <a href="#">Register</a> or <a href="#">Login</a>.</p>
+    </section>
+
+    <section class="view register">
+        <form>
+            <h1 class="register__title">Register</h1>
+            <input class="register__field" type="text" name="name" placeholder="name">
+            <input class="register__field" type="text" name="surname" placeholder="surname">
+            <input class="register__field" type="email" name="email" placeholder="e-mail">
+            <input class="register__field" type="password" name="password" placeholder="password">
+            <button class="register__submit">📨</button>
+        </form>
+
+        <section class="feedback">
+            <span class="feedback__icon">🤡</span>
+            <p class="feedback__message">Come with me...</p>
+            <span class="feedback__icon">🎈</span>
+        </section>
+    </section>
+
+    <section class="view login">
+        <form>
+            <h1 class="login__title">Login</h1>
+            <input class="login__field" type="email" name="email" placeholder="e-mail">
+            <input class="login__field" type="password" name="password" placeholder="password">
+            <button class="login__submit">🗝</button>
+        </form>
+
+        <section class="feedback">
+            <span class="feedback__icon">🤡</span>
+            <p class="feedback__message">Come with me...</p>
+            <span class="feedback__icon">🎈</span>
+        </section>
+    </section>
+
+    <section class="view board">
+        <h1 class="board__title">Task Board</h1>
+        <h2 class="board__user">Pepito</h2>
+        <a href="" class="board__favs">Favorites</a>
+        <form method="post" action="" class="board__logout"><button>Logout</button></form>
+        <form class="board__form">
+            <span class="board__icon">📝</span>
+            <input class="board__criteria" type="text" name="query" placeholder="criteria">
+            <button class="board__submit">🔍</button>
+        </form>
+
+        <section class="feedback">
+            <span class="feedback__icon">🤡</span>
+            <p class="feedback__message">Come with me...</p>
+            <span class="feedback__icon">🎈</span>
+        </section>
+
+        <ul class="task-list">
+            <li class="task-list__item">
+                <a href="#" class="task">
+                    <h2 class="task__title">This is a Super Task</h2>
+                    <p class="task__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis sint numquam nihil repudiandae officiis sed natus ullam eum obcaecati deserunt. Ipsum architecto, maxime cupiditate beatae nemo alias aut fuga culpa.</p>
+                    <span class="task__status">TODO</span>
+                    <span class="task__action">
+                        <form method="post" action="">
+                            <input type="hidden" name="id">
+                            <button type="submit" title="TODO">⏸</button>
+                        </form>
+                    </span>
+                    <span class="task__action">
+                        <form method="post" action="">
+                            <input type="hidden" name="id">
+                            <button type="submit" title="DOING">▶️</button>
+                        </form>
+                    </span>
+                    <span class="task__action">
+                        <form method="post" action="">
+                            <input type="hidden" name="id">
+                            <button type="submit" title="REVIEW">⏯</button>
+                        </form>
+                    </span>
+                    <span class="task__action">
+                        <form method="post" action="">
+                            <input type="hidden" name="id">
+                            <button type="submit" title="DONE">⏹</button>
+                        </form>
+                    </span>
+                </a>
+            </li>
+            <li class="task-list__item">
+                <a href="#" class="task task--doing">
+                    <h2 class="task__title">This is a Super Task</h2>
+                    <p class="task__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis sint numquam nihil repudiandae officiis sed natus ullam eum obcaecati deserunt. Ipsum architecto, maxime cupiditate beatae nemo alias aut fuga culpa.</p>
+                    <span class="task__status task__status--doing">DOING</span>
+                    <span class="task__action">
+                        <form method="post" action="">
+                            <input type="hidden" name="id">
+                            <button type="submit" title="TODO">⏸</button>
+                        </form>
+                    </span>
+                    <span class="task__action">
+                        <form method="post" action="">
+                            <input type="hidden" name="id">
+                            <button type="submit" title="DOING">▶️</button>
+                        </form>
+                    </span>
+                    <span class="task__action">
+                        <form method="post" action="">
+                            <input type="hidden" name="id">
+                            <button type="submit" title="REVIEW">⏯</button>
+                        </form>
+                    </span>
+                    <span class="task__action">
+                        <form method="post" action="">
+                            <input type="hidden" name="id">
+                            <button type="submit" title="DONE">⏹</button>
+                        </form>
+                    </span>
+                </a>
+            </li>
+            <li class="task-list__item">
+                <a href="#" class="task task--review">
+                    <h2 class="task__title">This is a Super Task</h2>
+                    <p class="task__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis sint numquam nihil repudiandae officiis sed natus ullam eum obcaecati deserunt. Ipsum architecto, maxime cupiditate beatae nemo alias aut fuga culpa.</p>
+                    <span class="task__status task__status--review">REVIEW</span>
+                    <span class="task__action">
+                        <form method="post" action="">
+                            <input type="hidden" name="id">
+                            <button type="submit" title="TODO">⏸</button>
+                        </form>
+                    </span>
+                    <span class="task__action">
+                        <form method="post" action="">
+                            <input type="hidden" name="id">
+                            <button type="submit" title="DOING">▶️</button>
+                        </form>
+                    </span>
+                    <span class="task__action">
+                        <form method="post" action="">
+                            <input type="hidden" name="id">
+                            <button type="submit" title="REVIEW">⏯</button>
+                        </form>
+                    </span>
+                    <span class="task__action">
+                        <form method="post" action="">
+                            <input type="hidden" name="id">
+                            <button type="submit" title="DONE">⏹</button>
+                        </form>
+                    </span>
+                </a>
+            </li>
+            <li class="task-list__item">
+                <a href="#" class="task task--done">
+                    <h2 class="task__title">This is a Super Task</h2>
+                    <p class="task__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis sint numquam nihil repudiandae officiis sed natus ullam eum obcaecati deserunt. Ipsum architecto, maxime cupiditate beatae nemo alias aut fuga culpa.</p>
+                    <span class="task__status">DONE</span>
+                    <span class="task__action">
+                        <form method="post" action="">
+                            <input type="hidden" name="id">
+                            <button type="submit" title="TODO">⏸</button>
+                        </form>
+                    </span>
+                    <span class="task__action">
+                        <form method="post" action="">
+                            <input type="hidden" name="id">
+                            <button type="submit" title="DOING">▶️</button>
+                        </form>
+                    </span>
+                    <span class="task__action">
+                        <form method="post" action="">
+                            <input type="hidden" name="id">
+                            <button type="submit" title="REVIEW">⏯</button>
+                        </form>
+                    </span>
+                    <span class="task__action">
+                        <form method="post" action="">
+                            <input type="hidden" name="id">
+                            <button type="submit" title="DONE">⏹</button>
+                        </form>
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </section>
+</body>
+
+</html>

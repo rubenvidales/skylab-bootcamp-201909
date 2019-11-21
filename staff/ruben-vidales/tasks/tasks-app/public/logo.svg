@@ -1,0 +1,18 @@
+<svg width="450" height="150" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="152" width="452" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect rx="6" id="svg_8" height="123.581406" width="36" y="13.209297" x="9.954638" stroke-width="1.5" fill="#325b84"/>
+  <rect rx="6" id="svg_9" height="47.581411" width="36" y="13.209297" x="52.050283" stroke-width="1.5" fill="#325b84"/>
+  <rect rx="6" id="svg_4" height="28.581412" width="36" y="13.209297" x="93.174829" stroke-width="1.5" fill="#325b84"/>
+  <text stroke="null" transform="matrix(1.053055763244629,0,0,1.053055763244629,-22.80154325067997,-7.55713027715683) " font-style="italic" font-weight="bold" xml:space="preserve" text-anchor="start" font-family="'League Gothic', sans-serif" font-size="76" id="svg_6" y="124.538265" x="90.5" stroke-width="0" fill="#191919">Task App</text>
+ </g>
+</svg>

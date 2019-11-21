@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Task App</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <header class="header">
+        <img class="header__img" src="../public/logo.svg">
+    </header>
+    <main class="main">
+        <section class="landing">
+            <p class="landing__text">Push on <a href="#">REGISTER</a> or <a href="#">LOGIN</a></p>
+        </section>
+        <section class="register">
+            <h3 class="register__title">Register</h3>
+            <section class="feedback">
+                <h4 class="feedback__title">Danger</h4>
+                <p class="feedback__text">Something is wrong!</p>
+            </section>
+            <form class="register__form">
+                <input class="register__field" type="text" name="name" placeholder="name">
+                <input class="register__field" type="text" name="surname" placeholder="surname">
+                <input class="register__field" type="email" name="email" placeholder="e-mail">
+                <input class="register__field" type="password" name="password" placeholder="password">
+                <div class="register__actions-block">
+                    <button class="register__submit">📨</button>
+                    <a class="register__back" href="">Go back</a>
+                </div>
+            </form>
+        </section>
+        <section class="login">
+            <h3 class="login__title">Login</h3>
+            <form class="login__form">
+                <input class="login__field" type="email" name="email" placeholder="e-mail">
+                <input class="login__field" type="password" name="password" placeholder="password">
+                <div class="register__actions-block">
+                    <button class="login__submit">🗝</button>
+                    <a class="login__back" href="">Go back</a>
+                </div>
+            </form>
+        </section>
+        <section class="tasks-panel">
+            <h3 class="tasks-panel__title">Tasks</h3>
+            <nav class="tasks-panel__nav">
+                <span class="tasks-panel__nav-item state-button">To Do</span>
+                <span class="tasks-panel__nav-item tasks-panel__nav-item--selected state-button">Doing</span>
+                <span class="tasks-panel__nav-item state-button">Review</span>
+                <span class="tasks-panel__nav-item state-button">Done!</span>
+            </nav>
+            <section class=tasks-panel__container>
+                <article class="task">
+                    <h5 class="task__date">11-11-2019 21:05</h5>
+                    <h3 class=task__title>Task Title</h3>
+                    <p class="task__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+                        necessitatibus nulla odit excepturi, dolorum ad, laudantium blanditiis fugiat vel ipsam facere
+                        officia fugit ratione consequatur ducimus asperiores repellat veritatis. Quia.</p>
+                    <nav>
+                        
+                    </nav>
+                </article>
+                <article class="task">
+                    <h5 class="task__date">11-11-2019 21:05</h5>
+                    <h3 class=task__title>Task Title</h3>
+                    <p class="task__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+                        necessitatibus nulla odit excepturi, dolorum ad, laudantium blanditiis fugiat vel ipsam facere
+                        officia fugit ratione consequatur ducimus asperiores repellat veritatis. Quia.</p>
+                </article>
+                <article class="task">
+                    <h5 class="task__date">11-11-2019 21:05</h5>
+                    <h3 class=task__title>Task Title</h3>
+                    <p class="task__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+                        necessitatibus nulla odit excepturi, dolorum ad, laudantium blanditiis fugiat vel ipsam facere
+                        officia fugit ratione consequatur ducimus asperiores repellat veritatis. Quia.</p>
+                </article>
+                <article class="task">
+                    <h5 class="task__date">11-11-2019 21:05</h5>
+                    <h3 class=task__title>Task Title</h3>
+                    <p class="task__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+                        necessitatibus nulla odit excepturi, dolorum ad, laudantium blanditiis fugiat vel ipsam facere
+                        officia fugit ratione consequatur ducimus asperiores repellat veritatis. Quia.</p>
+                </article>
+                <article class="task">
+                    <h5 class="task__date">11-11-2019 21:05</h5>
+                    <h3 class=task__title>Task Title</h3>
+                    <p class="task__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+                        necessitatibus nulla odit excepturi, dolorum ad, laudantium blanditiis fugiat vel ipsam facere
+                        officia fugit ratione consequatur ducimus asperiores repellat veritatis. Quia.</p>
+                </article>
+                <article class="task">
+                    <h5 class="task__date">11-11-2019 21:05</h5>
+                    <h3 class=task__title>Task Title</h3>
+                    <p class="task__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+                        necessitatibus nulla odit excepturi, dolorum ad, laudantium blanditiis fugiat vel ipsam facere
+                        officia fugit ratione consequatur ducimus asperiores repellat veritatis. Quia.</p>
+                </article>
+            </section>
+
+
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__text">Rubén V. - 2019</p>
+    </footer>
+</body>
+
+</html>

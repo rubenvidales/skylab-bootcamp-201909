@@ -1,0 +1,140 @@
+body
+    font-family: 'Roboto'
+    background-color: #D7DFFA
+    box-sizing: border-box
+    margin: 0
+
+a
+    text-decoration: none
+    color: #87774A
+    font-weight: bold
+
+h1, h2, h3, h4, h5
+    font-family: 'Roboto Slab'
+    font-size: 1.5em
+
+.feedback
+    background-color: #FF5751
+    text-align: center
+    text-transform: capitalize
+    border-radius: .5em
+    width: 80%
+    margin: 0 10%
+    &__title
+        color: #ffffff
+        padding: 1em
+        margin-bottom: 0
+    &__text
+        color: #ffffff
+        font-weight: bold
+        padding: 0 1em 1em
+        margin-top: 0
+
+.header
+    &__img 
+        width: 50%
+        margin: 1em 25%
+    &__title
+        text-align: center
+        margin-top: 0
+        color: #445387
+        text-transform: capitalize
+
+.landing
+    &__text
+        text-align: center
+
+.register
+    &__title
+        margin-bottom: .3em
+        color: #445387
+        text-align: center
+    &__form
+        display: flex
+        flex-flow: wrap
+        justify-content: center
+        align-items: center
+    &__field
+        padding: 1%
+        margin: 1%
+        width: 90%
+        border: .15em solid #445387
+        border-radius: .3em
+
+.login
+    &__title
+        margin-bottom: .3em
+        color: #445387
+        text-align: center
+    &__form
+        display: flex
+        flex-flow: wrap
+        justify-content: center
+        align-items: center
+    &__field
+        padding: 1%
+        margin: 1%
+        width: 90%
+        border: .15em solid #445387
+        border-radius: .3em
+
+.footer
+    &__text
+        text-align: center
+
+.tasks-panel
+    &__title
+        margin-bottom: .3em
+        color: #445387
+        text-align: center
+    &__nav
+        width: 90%
+        margin: 0 5%
+        display: flex
+        &-item
+            background-color: #e1e3ec
+            color: #445387 
+            width: 25%
+            display: block
+            float: left
+            text-align: center
+            border-radius: 1em 1em 0 0
+            padding: 1em 0
+            &--selected
+                color: #ffffff
+                background-color: #445387
+    &__container
+        width: 80%
+        margin: 0 5%
+        padding: 5%
+        background-color: #ffffff
+        border-radius: 0 0 .5em .5em
+        display: flex
+        flex-wrap: wrap
+
+.task
+    background-color: #e1e3ec
+    padding: 5%
+    margin: 2%
+    border-radius: .5em
+    &__date
+        color: #445387
+        text-align: right
+        margin: 0
+        font-size: 1em
+    &__title
+        color: #445387
+        text-align: center
+    &__text
+        color: #2d2f35
+
+@media screen and ( min-width: 420px )    
+    .tasks-panel
+        &__container
+            width: 86%
+            padding: 2%
+
+    .task    
+        width: 35%
+        padding: 5%
+        margin: 2.5%

@@ -1,0 +1,106 @@
+body {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Roboto";
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Roboto Slab";
+}
+
+h1 {
+  font-size: 2em;
+}
+
+.landing,
+.register,
+.login {
+  border: 1px solid black;
+}
+
+.hide {
+  display: none;
+}
+
+.landing {
+  text-align: center;
+  height: 100vh;
+}
+.landing__logo {
+  max-width: 40%;
+}
+.landing__register-form {
+  margin: 0.5em;
+  margin-top: 2em;
+}
+.landing__login-form {
+  margin: 0.5em;
+}
+
+.register {
+  text-align: center;
+  height: 100vh;
+}
+.register__logo {
+  padding-top: 20%;
+  max-width: 20%;
+}
+.register__form {
+  width: 80%;
+  margin-left: 10%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.register__form-input {
+  width: 80%;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+.register__form-input--separator {
+  margin-top: 2em;
+}
+.register__form-submit-button {
+  margin: 0.5em;
+}
+.register__form-cancel-button {
+  margin: 0.5em;
+  margin-top: 2em;
+}
+
+.login {
+  text-align: center;
+  height: 100vh;
+}
+.login__logo {
+  padding-top: 20%;
+  max-width: 20%;
+}
+.login__form {
+  width: 80%;
+  margin-left: 10%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.login__form-input {
+  width: 80%;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+.login__form-input--separator {
+  margin-top: 2em;
+}
+.login__form-submit-button {
+  margin: 0.5em;
+}
+.login__form-cancel-button {
+  margin: 0.5em;
+  margin-top: 2em;
+}
+
+/*# sourceMappingURL=index.css.map */

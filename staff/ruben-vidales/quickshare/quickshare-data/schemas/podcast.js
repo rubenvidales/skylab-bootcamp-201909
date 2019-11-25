@@ -13,15 +13,10 @@ module.exports = new Schema({
         type: String,
     },
     imageUrl: {
-        type: String
+        type: Date
     },
-    language: {
-        type: String,
-    },
-    podcasts: {
-        type: [{
-            type: ObjectId,
-            ref: 'Podcast'
-        }]
+    duration: {
+        type: Number,
+        default: 0
     }
 })

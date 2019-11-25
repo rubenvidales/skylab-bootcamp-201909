@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose')
+const { Schema, ObjectId } = require('mongoose')
 
 module.exports = new Schema({
     name: {
@@ -17,7 +17,22 @@ module.exports = new Schema({
         type: String,
         required: true
     },
-    lastAccess: {
-        type: Date
+    rssChannels: {
+        type: [{
+            type: ObjectId,
+            ref: 'RSSChannel'
+        }]
+    },
+    playlist: {
+        type: [{
+            type: ObjectId,
+            ref: 'Podcast'
+        }]
+    },
+    favs: {
+        type: [{
+            type: ObjectId,
+            ref: 'Podcast'
+        }]
     }
 })

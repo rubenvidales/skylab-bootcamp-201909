@@ -1,13 +1,39 @@
 .landing
     text-align: center
     height: 100vh
+    background: url('./images/background_mobile.jpg')
+    background-size: cover
+    display: flex
+    align-items: center
+    justify-content: center
+
+    &__container
+        background-color: rgba(255,255,255,.7)
+        width: 80%
+        border-radius: 1em
+
+    &__title
+        color: #222222
 
     &__logo
         max-width: 40%
 
-    &__register-form
-        margin: .5em
-        margin-top: 2em
+    &__register
+        &-form
+            margin: 1em
+        &-button
+            border: .18em solid #222222
+            padding: .8em
+            width: 50%
+            border-radius: .5em
+            background-color: inherit
 
-    &__login-form
-        margin: .5em
+    &__login
+        &-form
+            margin: 1em 1em 2em 1em
+        &-button
+            border: .18em solid #222222
+            padding: .8em
+            width: 50%
+            border-radius: .5em
+            background-color: inherit

@@ -1,9 +1,19 @@
 .login
     text-align: center
     height: 100vh
+    background: url('./images/background_mobile.jpg')
+    background-size: cover
+    display: flex
+    align-items: center
+    justify-content: center
+
+    &__container
+        background-color: rgba(255,255,255,.7)
+        width: 80%
+        border-radius: 1em
 
     &__logo
-        padding-top: 20%
+        margin: 2em auto 0
         max-width: 20%
 
     &__form
@@ -14,6 +24,7 @@
         flex-wrap: wrap
         align-items: center
         justify-content: center
+        margin-bottom: 2em
 
         &-input
             width: 80%
@@ -25,7 +36,22 @@
 
         &-submit-button
             margin: .5em
+            border: .18em solid #222222
+            padding-top:5px !important
+            padding-bottom:5px !important
+            padding-left:0px !important
+            padding-right:0px !important
+            width: 50%
+            border-radius: .5em
+            background-color: inherit
 
         &-cancel-button
             margin: .5em
-            margin-top: 2em
+            border: .18em solid #222222
+            padding-top:5px !important
+            padding-bottom:5px !important
+            padding-left:0px !important
+            padding-right:0px !important
+            width: 50%
+            border-radius: .5em
+            background-color: inherit

@@ -1,7 +1,7 @@
-const { validate, errors: { ConflictError } } = require('tasks-util')
-const { models: { User } } = require('tasks-data')
+const { validate, errors: { ConflictError } } = require('quickshare-util')
+const { models: { User } } = require('quickshare-data')
 
-module.exports = function (name, surname, email, username, password, rssChannels, playlist, favs) {
+module.exports = function (name, surname, email, username, password) {
     validate.string(name)
     validate.string.notVoid('name', name)
     validate.string(surname)
@@ -19,6 +19,6 @@ module.exports = function (name, surname, email, username, password, rssChannels
 
         if (user) throw new ConflictError(`user with username ${username} already exists`)
 
-        await User.create({ name, surname, email, username, password, rssChannels, playlist, favs })
+        await User.create({ name, surname, email, username, password })
     })()
 }

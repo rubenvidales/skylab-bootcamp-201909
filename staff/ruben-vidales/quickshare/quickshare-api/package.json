@@ -19,8 +19,8 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.11",
-    "tasks-data": "file:../quickshare-data/",
-    "tasks-util": "file:../quickshare-util/"
+    "quickshare-data": "file:../quickshare-data/",
+    "quickshare-util": "file:../quickshare-util/"
   },
   "devDependencies": {
     "chai": "^4.2.0",

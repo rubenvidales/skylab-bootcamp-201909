@@ -3,8 +3,8 @@ const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
 const authenticateUser = require('.')
 const { random } = Math
-const { errors: { ContentError, CredentialsError } } = require('tasks-util')
-const { database, models: { User } } = require('tasks-data')
+const { errors: { ContentError, CredentialsError } } = require('quickshare-util')
+const { database, models: { User } } = require('quickshare-data')
 
 describe('logic - authenticate user', () => {
     before(() => database.connect(TEST_DB_URL))

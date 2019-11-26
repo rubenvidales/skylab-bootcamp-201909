@@ -1,5 +1,4 @@
 require('dotenv').config()
-
 const express = require('express')
 const { name, version } = require('./package.json')
 const { argv: [, , port], env: { PORT = port || 8080, DB_URL } } = process

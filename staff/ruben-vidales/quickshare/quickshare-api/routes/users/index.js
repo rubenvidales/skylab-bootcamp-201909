@@ -11,7 +11,7 @@ const jsonBodyParser = bodyParser.json()
 const router = Router()
 
 router.get('/', jsonBodyParser, (req, res) => {
-    res.send('tests')
+    res.send('test')
 })
 
 module.exports = router

@@ -9,51 +9,86 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400|Roboto:300,400i,700&display=swap"
         rel="stylesheet">
     <link href="index.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d26a52ba08.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <section class="landing hide">
-        <div class="landing__container">
-            <h1 class="landing__title">QuickShare<br>Podcast</h1>
-            <img class="landing__logo" src="./images/quickshare_medium.png" />
-            <form class="landing__register-form" action="#" method="GET">
-                <input class="landing__register-button" type="submit" value="Register" />
-            </form>
-            <form class="landing__login-form" action="#" method="GET">
-                <input class="landing__login-button" type="submit" value="Login" />
-            </form>
-        </div>
-    </section>
-    <section class="register hide">
-        <div class="register__container">
-            <img class="register__logo" src="./images/quickshare_medium.png" />
-            <h2 class="register__title">Register</h2>
-            <form class="register__form" action="#">
-                <input type="text" class="register__form-input" name="username" placeholder="Username">
-                <input type="email" class="register__form-input" name="email" placeholder="Email">
-                <input type="text" class="register__form-input register__form-input--separator" name="name"
-                    placeholder="Name">
-                <input type="text" class="register__form-input" name="surname" placeholder="Surname">
-                <input type="password" class="register__form-input register__form-input--separator" name="password"
-                    placeholder="Password">
-                <input type="password" class="register__form-input" name="re_password" placeholder="Repeat Password">
-                <input class="register__form-submit-button" type="submit" value="Register" />
-                <button class="register__form-cancel-button" href="#">Cancel</button>
-            </form>
-        </div>
-    </section>
-    <section class="login">
-        <div class="login__container">
-            <img class="login__logo" src="./images/quickshare_medium.png" />
-            <h2 class="login__title">login</h2>
-            <form class="login__form" action="#">
-                <input type="text" class="login__form-input" name="username" placeholder="Username">
-                <input type="password" class="login__form-input" name="password" placeholder="Password">
-                <input class="login__form-submit-button" type="submit" value="Login" />
-                <button class="login__form-cancel-button" href="#">Cancel</button>
-            </form>
-        </div>
-    </section>
+    <main>
+        <section class="landing hide">
+            <div class="landing__container">
+                <h1 class="landing__title">QuickShare<br>Podcast</h1>
+                <img class="landing__logo" src="./images/quickshare_medium.png" />
+                <form class="landing__register-form" action="#" method="GET">
+                    <input class="landing__register-button" type="submit" value="Register" />
+                </form>
+                <form class="landing__login-form" action="#" method="GET">
+                    <input class="landing__login-button" type="submit" value="Login" />
+                </form>
+            </div>
+        </section>
+        <section class="register hide">
+            <div class="register__container">
+                <img class="register__logo" src="./images/quickshare_medium.png" />
+                <h2 class="register__title">Register</h2>
+                <form class="register__form" action="#">
+                    <input type="text" class="register__form-input" name="username" placeholder="Username">
+                    <input type="email" class="register__form-input" name="email" placeholder="Email">
+                    <input type="text" class="register__form-input register__form-input--separator" name="name"
+                        placeholder="Name">
+                    <input type="text" class="register__form-input" name="surname" placeholder="Surname">
+                    <input type="password" class="register__form-input register__form-input--separator" name="password"
+                        placeholder="Password">
+                    <input type="password" class="register__form-input" name="re_password"
+                        placeholder="Repeat Password">
+                    <input class="register__form-submit-button" type="submit" value="Register" />
+                    <button class="register__form-cancel-button" href="#">Cancel</button>
+                </form>
+            </div>
+        </section>
+        <section class="login hide">
+            <div class="login__container">
+                <img class="login__logo" src="./images/quickshare_medium.png" />
+                <h2 class="login__title">login</h2>
+                <form class="login__form" action="#">
+                    <input type="text" class="login__form-input" name="username" placeholder="Username">
+                    <input type="password" class="login__form-input" name="password" placeholder="Password">
+                    <input class="login__form-submit-button" type="submit" value="Login" />
+                    <button class="login__form-cancel-button" href="#">Cancel</button>
+                </form>
+            </div>
+        </section>
+        <section class="player">
+            <div class="player__container">
+                <header class="player__top">
+                    <i class="player__top-share-icon fas fa-share-alt fa-3x"></i>
+                    <img class="player__top-image"
+                        src="https://static-1.ivoox.com/canales/8/1/8/3/1141522943818_XXL.jpg" />
+                    <i class="player__top-fav-icon far fa-heart fa-3x"></i>
+                </header>
+                <h2 class="player__title">Podcast title</h2>
+                <h4 class="player__creator">Podcast creator</h4>
+                <h4 class="player__date">22/11/2020</h4>
+                <p class="player__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt,
+                    repudiandae consectetur voluptatem
+                    odio voluptas corporis maiores magnam aspernatur ullam, debitis amet temporibus quasi quaerat iusto
+                    sunt! Sunt facere odit dignissimos!</p>
+                <div class="player__slider-block">
+                    <input type="range" min="1" max="100" value="20" class="player__slider-bar" id="myRange">
+                </div>
+                <div class="player__controls">
+                    <i class="player__controls-rew fas fa-chevron-circle-left fa-3x"></i>
+                    <i class="player__controls-play fas fa-play-circle fa-5x"></i>
+                    <i class="player__controls-ff fas fa-chevron-circle-right fa-3x"></i>
+                </div>
+                <div class="player__footer">
+                    <span class="player__footer-opt"><i class="fas fa-list-ul fa-2x"></i></span>
+                    <span class="player__footer-opt"><i class="fas fa-heart fa-2x"></i></span>
+                    <span class="player__footer-opt"><i class="fas fa-podcast fa-2x"></i></span>
+                    <span class="player__footer-opt"><i class="far fa-edit fa-2x"></i></span>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 
 </html>

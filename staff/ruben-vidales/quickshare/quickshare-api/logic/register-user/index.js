@@ -1,7 +1,7 @@
 const { validate, errors: { ConflictError } } = require('tasks-util')
 const { models: { User } } = require('tasks-data')
 
-module.exports = function (name, surname, email, username, password) {
+module.exports = function (name, surname, email, username, password, rssChannels, playlist, favs) {
     validate.string(name)
     validate.string.notVoid('name', name)
     validate.string(surname)
@@ -19,6 +19,6 @@ module.exports = function (name, surname, email, username, password) {
 
         if (user) throw new ConflictError(`user with username ${username} already exists`)
 
-        await User.create({ name, surname, email, username, password })
+        await User.create({ name, surname, email, username, password, rssChannels, playlist, favs })
     })()
 }

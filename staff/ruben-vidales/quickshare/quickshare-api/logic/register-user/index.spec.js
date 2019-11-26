@@ -22,11 +22,8 @@ describe('logic - register user', () => {
     })
 
     it('should succeed on correct credentials', async () => {
-        debugger
         const response = await registerUser(name, surname, email, username, password)
         expect(response).to.be.undefined
-
-        debugger
 
         const user = await User.findOne({ username })
 
@@ -37,6 +34,7 @@ describe('logic - register user', () => {
         expect(user.email).to.equal(email)
         expect(user.username).to.equal(username)
         expect(user.password).to.equal(password)
+
     })
 
     describe('when user already exists', () => {

@@ -9,6 +9,10 @@ module.exports = new Schema({
         type: String,
         required: true
     },
+    rssChannel: {
+        type: ObjectId,
+        ref: 'RSSChannel'
+    },
     description: {
         type: String,
     },

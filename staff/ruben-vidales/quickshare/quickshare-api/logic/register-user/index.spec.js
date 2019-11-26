@@ -4,25 +4,61 @@ const { expect } = require('chai')
 const registerUser = require('.')
 const { random } = Math
 const { errors: { ContentError } } = require('quickshare-util')
-const { database, models: { User } } = require('quickshare-data')
+const { database, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
+const fs = require('fs')
+const util = require('util')
+let Parser = require('rss-parser')
+let parser = new Parser()
+
+const readFile = util.promisify(fs.readFile)
 
 describe('logic - register user', () => {
-    before(() => database.connect(TEST_DB_URL))
+    let feed
+    before(async() => {
+        database.connect(TEST_DB_URL)
+        xml = await readFile('./logic/register-user/rss_test.xml')
+        feed = await parser.parseString(xml)
+    })
 
     let name, surname, email, username, password
 
-    beforeEach(() => {
+    beforeEach(async() => {
         name = `name-${random()}`
         surname = `surname-${random()}`
         email = `email-${random()}@mail.com`
         username = `username-${random()}`
         password = `password-${random()}`
 
+        const insertions = []
+
+        const rss = {
+            title: feed.title,
+            url: feed.link,
+            description: feed.description,
+            imageUrl: feed.image.url,
+            language: feed.language
+        }
+
+        const {id: rssId} = await RSSChannel.create(rss)
+
+        //TODO: Save values in array to test with these
+
+        for(let i=0; i< 5;i++){
+            const podcast = {
+                title: feed.items[i].title,
+                url: feed.items[i].enclosure.url,
+                rssChanel: rssId,
+                description: feed.items[i].description
+                //TODO: add date to the model and change duration type¿?
+            }
+            insertions.push(Podcast.create(podcast).then(podcast => console.log(podcast.id)))
+        }
+
+        await Promise.all(insertions)
         return User.deleteMany()
     })
 
     it('should succeed on correct credentials', async () => {
-
         const response = await registerUser(name, surname, email, username, password)
         expect(response).to.be.undefined
 
@@ -38,7 +74,6 @@ describe('logic - register user', () => {
 
     })
 
-    /*
     describe('when user already exists', () => {
         beforeEach(() => User.create({ name, surname, email, username, password }))
 
@@ -102,7 +137,6 @@ describe('logic - register user', () => {
         expect(() => registerUser(name, surname, email, username, '')).to.throw(ContentError, 'password is empty or blank')
         expect(() => registerUser(name, surname, email, username, ' \t\r')).to.throw(ContentError, 'password is empty or blank')
     })
-    */
 
     // TODO other cases
 

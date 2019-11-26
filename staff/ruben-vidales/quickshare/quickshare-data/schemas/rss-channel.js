@@ -17,11 +17,5 @@ module.exports = new Schema({
     },
     language: {
         type: String,
-    },
-    podcasts: {
-        type: [{
-            type: ObjectId,
-            ref: 'Podcast'
-        }]
     }
 })

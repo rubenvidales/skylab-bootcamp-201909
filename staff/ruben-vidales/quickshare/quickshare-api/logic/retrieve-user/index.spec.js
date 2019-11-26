@@ -26,6 +26,7 @@ describe('logic - retrieve user', () => {
     })
 
     it('should succeed on correct user id', async () => {
+        
         const user = await retrieveUser(id)
 
         expect(user).to.exist
@@ -41,8 +42,9 @@ describe('logic - retrieve user', () => {
         expect(user.username).to.equal(username)
         expect(user.username).to.be.a('string')
         expect(user.password).to.be.undefined
-        expect(user.lastAccess).to.exist
-        expect(user.lastAccess).to.be.an.instanceOf(Date)
+        expect(user.rssChannels).to.be.an('array')
+        expect(user.playlist).to.be.an('array')
+        expect(user.favs).to.be.an('array')
     })
 
     it('should fail on wrong user id', async () => {

@@ -57,6 +57,33 @@ const Passport = model('Passport', passport)
 
 // demos
 
+// Promise.all([Person.deleteMany(), Cat.deleteMany(), Passport.deleteMany()])
+//     .then(() => Promise.all([Person.create({ name: 'Ruben', surname: 'Vidales', birthdate: new Date }), Person.create({ name: 'Hongda', surname: 'Vidales', birthdate: new Date })]))
+//     .then(([ruben, hongda]) => {
+//         return Cat.create({ name: 'Sucio' })
+//             .then(sucio => {
+//                 sucio.age = 15
+
+//                 sucio.owners.push(ruben._id, hongda._id)
+
+//                 return sucio.save()
+//             })
+//             .then(() => {
+//                 const sticker = new Sticker({ text: 'me gustan los mininos... mmmmmmu.... mu....' })
+
+//                 ruben.stickers.push(sticker)
+
+//                 return ruben.save()
+//             })
+//             .then(() => {
+//                 const passport = new Passport({ country: 'Argentina', number: 'che-boludo-123', person: hongda._id })
+
+//                 return passport.save()
+//             })
+//     })
+//     .then(() => mongoose.disconnect())
+
+
 Promise.all([Person.deleteMany(), Cat.deleteMany(), Passport.deleteMany()])
     .then(() => Promise.all([Person.create({ name: 'Ruben', surname: 'Vidales', birthdate: new Date }), Person.create({ name: 'Hongda', surname: 'Vidales', birthdate: new Date })]))
     .then(([ruben, hongda]) => {
@@ -68,17 +95,13 @@ Promise.all([Person.deleteMany(), Cat.deleteMany(), Passport.deleteMany()])
 
                 return sucio.save()
             })
-            .then(() => {
-                const sticker = new Sticker({ text: 'me gustan los mininos... mmmmmmu.... mu....' })
-
-                ruben.stickers.push(sticker)
-
-                return ruben.save()
-            })
-            .then(() => {
-                const passport = new Passport({ country: 'Argentina', number: 'che-boludo-123', person: hongda._id })
-
-                return passport.save()
+            // .then(({id}) => Cat.findById(id).populate('owners').lean())
+            // .then(sucio => {
+            //     debugger
+            // })
+            .then(({id}) => Cat.findById(id).populate('owners'))
+            .then(sucio => {
+                sucio = sucio.toObject()
+                debugger
             })
     })
-    .then(() => mongoose.disconnect())

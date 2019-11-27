@@ -3,7 +3,7 @@ const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
 const registerUser = require('.')
 const { random } = Math
-const { errors: { ContentError } } = require('quickshare-util')
+const { converter, errors: { ContentError } } = require('quickshare-util')
 const { database, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
 const fs = require('fs')
 const util = require('util')
@@ -52,7 +52,7 @@ describe('logic - register user', () => {
                 rssChannel: rssId,
                 description: feed.items[i].description,
                 publicationDate: feed.items[i].pubDate,
-                duration: 27
+                duration: converter.stringToSeconds(feed.items[i].itunes.duration)
             }
             insertions.push(Podcast.create(podcast).then(/* podcast => console.log(podcast.id) */))
         }

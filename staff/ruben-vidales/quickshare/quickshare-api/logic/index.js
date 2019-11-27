@@ -2,5 +2,6 @@ module.exports = {
     authenticateUser: require('./authenticate-user'),
     registerUser: require('./register-user'),
     retrieveUser: require('./retrieve-user'),
-    createRss: require('./create-rss')
+    createRss: require('./create-rss'),
+    createPodcast: require('./create-podcast')
 }

@@ -17,6 +17,9 @@ module.exports = new Schema({
         type: String,
     },
     imageUrl: {
+        type: String
+    },
+    publicationDate:{
         type: Date
     },
     duration: {

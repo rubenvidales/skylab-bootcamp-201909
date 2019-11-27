@@ -18,6 +18,8 @@ describe('logic - register user', () => {
         database.connect(TEST_DB_URL)
         xml = await readFile('./logic/register-user/rss_test.xml')
         feed = await parser.parseString(xml)
+        feed = await parser.parseURL('http://fapi-top.prisasd.com/podcast/podium/catastrofe_ultravioleta/itunestfp/podcast.xml')
+        console.log(feed)
     })
 
     let name, surname, email, username, password
@@ -47,15 +49,17 @@ describe('logic - register user', () => {
             const podcast = {
                 title: feed.items[i].title,
                 url: feed.items[i].enclosure.url,
-                rssChanel: rssId,
-                description: feed.items[i].description
-                //TODO: add date to the model and change duration type¿?
+                rssChannel: rssId,
+                description: feed.items[i].description,
+                publicationDate: feed.items[i].pubDate,
+                duration: 27
             }
-            insertions.push(Podcast.create(podcast).then(podcast => console.log(podcast.id)))
+            insertions.push(Podcast.create(podcast).then(/* podcast => console.log(podcast.id) */))
         }
 
         await Promise.all(insertions)
-        return User.deleteMany()
+        await Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()])
+        return
     })
 
     it('should succeed on correct credentials', async () => {
@@ -140,5 +144,5 @@ describe('logic - register user', () => {
 
     // TODO other cases
 
-    after(() => User.deleteMany().then(database.disconnect))
+    //after(() => Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()]).then(database.disconnect))
 })

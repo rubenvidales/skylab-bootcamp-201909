@@ -14,52 +14,20 @@ const readFile = util.promisify(fs.readFile)
 
 describe('logic - register user', () => {
     let feed
-    before(async() => {
+    before( () => {
         database.connect(TEST_DB_URL)
-        xml = await readFile('./logic/register-user/rss_test.xml')
-        feed = await parser.parseString(xml)
-        feed = await parser.parseURL('http://fapi-top.prisasd.com/podcast/podium/catastrofe_ultravioleta/itunestfp/podcast.xml')
-        console.log(feed)
     })
 
     let name, surname, email, username, password
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         name = `name-${random()}`
         surname = `surname-${random()}`
         email = `email-${random()}@mail.com`
         username = `username-${random()}`
         password = `password-${random()}`
 
-        const insertions = []
-
-        const rss = {
-            title: feed.title,
-            url: feed.link,
-            description: feed.description,
-            imageUrl: feed.image.url,
-            language: feed.language
-        }
-
-        const {id: rssId} = await RSSChannel.create(rss)
-
-        //TODO: Save values in array to test with these
-
-        for(let i=0; i< 5;i++){
-            const podcast = {
-                title: feed.items[i].title,
-                url: feed.items[i].enclosure.url,
-                rssChannel: rssId,
-                description: feed.items[i].description,
-                publicationDate: feed.items[i].pubDate,
-                duration: converter.stringToSeconds(feed.items[i].itunes.duration)
-            }
-            insertions.push(Podcast.create(podcast).then(/* podcast => console.log(podcast.id) */))
-        }
-
-        await Promise.all(insertions)
-        await Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()])
-        return
+        return User.deleteMany()
     })
 
     it('should succeed on correct credentials', async () => {
@@ -144,5 +112,5 @@ describe('logic - register user', () => {
 
     // TODO other cases
 
-    //after(() => Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()]).then(database.disconnect))
+    after(() => Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()]).then(database.disconnect))
 })

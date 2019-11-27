@@ -5,20 +5,23 @@ const registerUser = require('.')
 const { random } = Math
 const { errors: { ContentError } } = require('tasks-util')
 const { database, models: { User } } = require('tasks-data')
+const bcrypt = require('bcryptjs')
 
 describe('logic - register user', () => {
     before(() => database.connect(TEST_DB_URL))
 
-    let name, surname, email, username, password
+    let name, surname, email, username, password, hash
 
-    beforeEach(() => {
+    beforeEach(async () => {
         name = `name-${random()}`
         surname = `surname-${random()}`
         email = `email-${random()}@mail.com`
         username = `username-${random()}`
         password = `password-${random()}`
 
-        return User.deleteMany()
+        hash = await bcrypt.hash(password, 10)
+
+        await User.deleteMany()
     })
 
     it('should succeed on correct credentials', async () => {
@@ -34,11 +37,12 @@ describe('logic - register user', () => {
         expect(user.surname).to.equal(surname)
         expect(user.email).to.equal(email)
         expect(user.username).to.equal(username)
-        expect(user.password).to.equal(password)
+        expect(user.password).to.be.a('string')
+        expect(user.password).not.to.equal(password)
     })
 
     describe('when user already exists', () => {
-        beforeEach(() => User.create({ name, surname, email, username, password }))
+        beforeEach(() => User.create({ name, surname, email, username, password: hash }))
 
         it('should fail on already existing user', async () => {
             try {

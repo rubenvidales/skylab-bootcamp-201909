@@ -47,7 +47,7 @@ router.get('/', tokenVerifier, (req, res) => {
     }
 })
 
-router.patch('//:taskId', tokenVerifier, jsonBodyParser, (req, res) => {
+router.patch('/:taskId', tokenVerifier, jsonBodyParser, (req, res) => {
     try {
         const { id, params: { taskId }, body: { title, description, status } } = req
 

@@ -1,5 +1,5 @@
 const { ContentError } = require('./errors')
-const { isTypeOf, isInstanceOf, isEmail } = require('./validators')
+const { isTypeOf, isInstanceOf, isEmail, isUrl } = require('./validators')
 
 const validate = {
     typeOf(type, target) {
@@ -30,8 +30,16 @@ const validate = {
         this.instanceOf(Array, target)
     },
 
+    date(target) {
+        this.instanceOf(Date, target)
+    },
+
     email(target) {
         if (!isEmail(String(target).toLowerCase())) throw new ContentError(`${target} is not an e-mail`)
+    },
+
+    url(target) {
+        if (!isUrl(String(target).toLowerCase())) throw new ContentError(`${target} is not an url`)
     },
 
     matches(name, target, ...values) {

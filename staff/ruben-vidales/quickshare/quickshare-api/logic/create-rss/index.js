@@ -2,7 +2,6 @@ const { validate, errors: { NotFoundError, ContentError } } = require('quickshar
 const { ObjectId, models: { User, RSSChannel } } = require('quickshare-data')
 
 module.exports = function (userId, title, url, description, imageUrl, language) {
-    //TODO: Validate urls
     validate.string(userId)
     validate.string.notVoid('userId', userId)
     if (!ObjectId.isValid(userId)) throw new ContentError(`${userId} is not a valid id`)
@@ -12,6 +11,7 @@ module.exports = function (userId, title, url, description, imageUrl, language) 
 
     validate.string(url)
     validate.string.notVoid('url', url)
+    validate.url(url)
 
     validate.string(description)
     validate.string.notVoid('description', description)

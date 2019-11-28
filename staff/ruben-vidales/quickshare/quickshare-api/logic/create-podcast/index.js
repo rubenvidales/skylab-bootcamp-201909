@@ -8,6 +8,7 @@ module.exports = function (title, url, rssId, description, publicationDate, dura
 
     validate.string(url)
     validate.string.notVoid('url', url)
+    validate.url(url)
 
     validate.string(rssId)
     validate.string.notVoid('rssId', rssId)

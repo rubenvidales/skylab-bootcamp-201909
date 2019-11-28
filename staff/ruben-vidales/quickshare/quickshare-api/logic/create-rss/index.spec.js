@@ -27,7 +27,7 @@ describe('logic - create rss channel', () => {
 
         //TODO: Validate urls
         title = `rss-title-${random()}`
-        url = `rss-url-${random()}`
+        url = `www.rss-url-${random()}.com`
         description = `rss-description-${random()}`
         imageUrl = `rss-imageUrl-${random()}`
         language = `rss-language-${random()}`

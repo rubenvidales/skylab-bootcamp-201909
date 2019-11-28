@@ -26,9 +26,8 @@ describe('logic - create podcast', () => {
         const user = await User.create({ name, surname, email, username, password })
         userId = user.id
 
-        //TODO: Validate urls
         rssTitle = `rss-title-${random()}`
-        rssUrl = `rss-url-${random()}`
+        rssUrl = `www.rss-url-${random()}.com`
         rssDescription = `rss-description-${random()}`
         rssImageUrl = `rss-imageUrl-${random()}`
         rssLanguage = `rss-language-${random()}`
@@ -37,7 +36,7 @@ describe('logic - create podcast', () => {
         rssId = rss.id
 
         podcastTitle = `podcast-title-${random()}`
-        podcastUrl = `podcast-url-${random()}`
+        podcastUrl = `www.podcast-url-${random()}.com`
         podcastDescription = `podcast-description-${random()}`
         podcastPublicationDate = new Date()
         podcastDuration = floor(random() * 1000) + 1

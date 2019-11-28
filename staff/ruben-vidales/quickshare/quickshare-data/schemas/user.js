@@ -28,16 +28,11 @@ module.exports = new Schema({
             ref: 'RSSChannel'
         }]
     },
-    playlist: {
-        type: [{
-            type: ObjectId,
-            ref: 'Podcast'
-        }]
-    },
     favs: {
         type: [{
             type: ObjectId,
             ref: 'Podcast'
         }]
-    }
+    },
+    player: Player
 })

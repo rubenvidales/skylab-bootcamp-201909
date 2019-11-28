@@ -37,7 +37,6 @@ describe('logic - register user', () => {
         const user = await User.findOne({ username })
 
         expect(user).to.exist
-
         expect(user.name).to.equal(name)
         expect(user.surname).to.equal(surname)
         expect(user.email).to.equal(email)

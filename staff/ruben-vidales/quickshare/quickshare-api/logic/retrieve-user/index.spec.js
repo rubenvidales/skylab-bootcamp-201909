@@ -4,12 +4,12 @@ const { expect } = require('chai')
 const { random } = Math
 const retrieveUser = require('.')
 const { errors: { NotFoundError } } = require('quickshare-util')
-const { database, models: { User } } = require('quickshare-data')
+const { database, models: { User, Player } } = require('quickshare-data')
 
 describe('logic - retrieve user', () => {
     before(() => database.connect(TEST_DB_URL))
 
-    let id, name, surname, email, username, password
+    let id, name, surname, email, username, password, currentEpisode
 
     beforeEach(async () => {
         name = `name-${random()}`
@@ -18,9 +18,22 @@ describe('logic - retrieve user', () => {
         username = `username-${random()}`
         password = `password-${random()}`
 
+        currentEpisode = {
+            podcastId: '5dde31c43432f40aecd0e9f4',
+            position: 1200,
+            active: false
+        }
+
+        playlist = ['5dde31c43432f40aecd0e9f4','5dde31c43432f40aecd0e9f5']
+
         await User.deleteMany()
 
-        const user = await User.create({ name, surname, email, username, password })
+        const user = new User({ name, surname, email, username, password })
+        const player = new Player({currentEpisode, playlist})
+
+        user.player = player
+
+        await user.save()
 
         id = user.id
     })
@@ -43,7 +56,6 @@ describe('logic - retrieve user', () => {
         expect(user.username).to.be.a('string')
         expect(user.password).to.be.undefined
         expect(user.rssChannels).to.be.an('array')
-        expect(user.playlist).to.be.an('array')
         expect(user.favs).to.be.an('array')
     })
 

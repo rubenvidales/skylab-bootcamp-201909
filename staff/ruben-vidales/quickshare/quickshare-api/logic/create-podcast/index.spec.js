@@ -3,7 +3,7 @@ const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
 const createPodcast = require('.')
 const { floor, random } = Math
-const { converter, errors: { ContentError } } = require('quickshare-util')
+const { converter, errors: { ContentError, ConflictError } } = require('quickshare-util')
 const { ObjectId, database, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
 
 describe('logic - create podcast', () => {
@@ -56,26 +56,29 @@ describe('logic - create podcast', () => {
         expect(podcast.title).to.equal(podcastTitle)
         expect(podcast.url).to.equal(podcastUrl)
         expect(podcast.description).to.equal(podcastDescription)
-        expect(podcast.publicationDate).to.equal(podcastPublicationDate)
+        expect(podcast.publicationDate.toString()).to.equal(podcastPublicationDate.toString())
         expect(podcast.duration).to.equal(podcastDuration)
     })
 
-    /*     describe('when rss channel already exists', () => {
-            beforeEach(async() => {
-                const rss = await RSSChannel.create({ title, url, description, imageUrl, language })
-                await User.updateOne({ _id: ObjectId(userId) },{ $set: {rssChannels: rss.id} })
-            })
-    
-            it('should avoid to create another rss register', async () => {
-    
-                await createRss(userId, title, url, description, imageUrl, language)
-                const result = await RSSChannel.find({url})
-    
-                expect(result).to.exist
-                expect(result.length).to.equal(1)
-    
-            })
-        }) */
+    describe('when podcast already exists', () => {
+        beforeEach(async () => {
+            const rss = await Podcast.create({ title: podcastTitle, url: podcastUrl, rssChannel: rssId, description: podcastDescription, podcastPublicationDate, podcastDuration })
+        })
 
+        it('should fail on already existing podcast', async () => {
+            try {
+                await createPodcast(podcastTitle, podcastUrl, rssId, podcastDescription, podcastPublicationDate, podcastDuration)
+
+                throw Error('should not reach this point')
+            } catch (error) {
+                expect(error).to.exist
+
+                expect(error.message).to.exist
+                expect(typeof error.message).to.equal('string')
+                expect(error.message.length).to.be.greaterThan(0)
+                expect(error.message).to.equal(`podcast with url ${podcastUrl} already exists`)
+            }
+        })
+    })
     after(() => Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()]).then(database.disconnect))
 })

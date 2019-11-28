@@ -1,4 +1,5 @@
 const { Schema, ObjectId } = require('mongoose')
+const Player = require('./player')
 
 module.exports = new Schema({
     username: {

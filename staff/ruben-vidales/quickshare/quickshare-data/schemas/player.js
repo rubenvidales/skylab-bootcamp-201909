@@ -1,4 +1,5 @@
 const { ObjectId, Schema } = require('mongoose')
+const Player = require('./player')
 
 module.exports = new Schema({
     currentEpisode: {

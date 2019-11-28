@@ -30,7 +30,7 @@ module.exports = function (userId, title, url, description, imageUrl, language) 
         if(!rss){
             rss = await RSSChannel.create({title, url, description, imageUrl, language})
         }
-        const result = await User.updateOne({ _id: ObjectId(userId) }, { $set: {rssChannels: rss.id} })
+        const result = await User.updateOne({ _id: userId }, { $set: {rssChannels: rss.id} })
 
         return rss.id
     })()

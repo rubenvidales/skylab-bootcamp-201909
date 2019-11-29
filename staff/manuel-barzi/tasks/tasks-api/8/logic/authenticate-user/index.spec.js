@@ -5,11 +5,12 @@ const authenticateUser = require('.')
 const { random } = Math
 const { errors: { ContentError, CredentialsError } } = require('tasks-util')
 const { database, models: { User } } = require('tasks-data')
+const bcrypt = require('bcryptjs')
 
 describe('logic - authenticate user', () => {
     before(() => database.connect(TEST_DB_URL))
 
-    let id, name, surname, email, username, password
+    let id, name, surname, email, username, password, hash
 
     beforeEach(async () => {
         name = `name-${random()}`
@@ -18,9 +19,11 @@ describe('logic - authenticate user', () => {
         username = `username-${random()}`
         password = `password-${random()}`
 
+        hash = await bcrypt.hash(password, 10)
+
         await User.deleteMany()
 
-        const user = await User.create({ name, surname, email, username, password })
+        const user = await User.create({ name, surname, email, username, password: hash })
 
         id = user.id
     })
@@ -48,7 +51,7 @@ describe('logic - authenticate user', () => {
                 expect(error).to.be.an.instanceOf(CredentialsError)
 
                 const { message } = error
-                expect(message).to.equal(`wrong credentials`)
+                expect(message).to.equal('wrong credentials')
             }
         })
 
@@ -64,7 +67,7 @@ describe('logic - authenticate user', () => {
                 expect(error).to.be.an.instanceOf(CredentialsError)
 
                 const { message } = error
-                expect(message).to.equal(`wrong credentials`)
+                expect(message).to.equal('wrong credentials')
             }
         })
     })

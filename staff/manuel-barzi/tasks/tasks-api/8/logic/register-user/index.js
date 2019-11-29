@@ -1,5 +1,6 @@
 const { validate, errors: { ConflictError } } = require('tasks-util')
 const { models: { User } } = require('tasks-data')
+const bcrypt = require('bcryptjs')
 
 module.exports = function (name, surname, email, username, password) {
     validate.string(name)
@@ -19,6 +20,8 @@ module.exports = function (name, surname, email, username, password) {
 
         if (user) throw new ConflictError(`user with username ${username} already exists`)
 
-        await User.create({ name, surname, email, username, password })
+        const hash = await bcrypt.hash(password, 10)
+
+        await User.create({ name, surname, email, username, password: hash })
     })()
 }

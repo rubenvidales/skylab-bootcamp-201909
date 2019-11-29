@@ -5,7 +5,7 @@ const removePodcastToPlaylist = require('.')
 const { random } = Math
 const { database, ObjectId, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
 
-describe('logic - add podcast to playlist', () => {
+describe('logic - remove podcast to playlist', () => {
     before(() => database.connect(TEST_DB_URL))
 
     let name, surname, email, username, password, user

@@ -5,6 +5,7 @@ const registerUser = require('.')
 const { random } = Math
 const { converter, errors: { ContentError } } = require('quickshare-util')
 const { database, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
+const bcrypt = require('bcryptjs')
 const fs = require('fs')
 const util = require('util')
 let Parser = require('rss-parser')
@@ -27,6 +28,8 @@ describe('logic - register user', () => {
         username = `username-${random()}`
         password = `password-${random()}`
 
+        hash = await bcrypt.hash(password, 10)
+
         return User.deleteMany()
     })
 
@@ -41,12 +44,12 @@ describe('logic - register user', () => {
         expect(user.surname).to.equal(surname)
         expect(user.email).to.equal(email)
         expect(user.username).to.equal(username)
-        expect(user.password).to.equal(password)
+        expect(user.password).not.to.equal(password)
 
     })
 
     describe('when user already exists', () => {
-        beforeEach(() => User.create({ name, surname, email, username, password }))
+        beforeEach(() => User.create({ name, surname, email, username, password:hash }))
 
         it('should fail on already existing user', async () => {
             try {

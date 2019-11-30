@@ -5,6 +5,7 @@ const authenticateUser = require('.')
 const { random } = Math
 const { errors: { ContentError, CredentialsError } } = require('quickshare-util')
 const { database, models: { User } } = require('quickshare-data')
+const bcrypt = require('bcryptjs')
 
 describe('logic - authenticate user', () => {
     before(() => database.connect(TEST_DB_URL))
@@ -18,9 +19,11 @@ describe('logic - authenticate user', () => {
         username = `username-${random()}`
         password = `password-${random()}`
 
+        hash = await bcrypt.hash(password, 10)
+
         await User.deleteMany()
 
-        const user = await User.create({ name, surname, email, username, password })
+        const user = await User.create({ name, surname, email, username, password: hash })
 
         id = user.id
     })

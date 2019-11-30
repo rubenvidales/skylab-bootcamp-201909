@@ -3,7 +3,7 @@ const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
 const { random } = Math
 const retrievePlaylist = require('.')
-const { errors: { NotFoundError } } = require('quickshare-util')
+const { errors: { NotFoundError, ContentError } } = require('quickshare-util')
 const { database, models: { User, RSSChannel, Podcast, Player } } = require('quickshare-data')
 
 describe('logic - retrieve playlist', () => {
@@ -56,13 +56,13 @@ describe('logic - retrieve playlist', () => {
         await user.save()
     })
 
-/*     it('should succeed on correct user id and empty playlist', async () => {
+    it('should succeed on correct user id and empty playlist', async () => {
         const playlist = await retrievePlaylist(id)
         
         expect(playlist).to.exist
         expect(playlist).to.be.an('array')
         expect(playlist).to.have.lengthOf(0)
-    }) */
+    })
 
     it('should succeed on correct user id and playlist with podcasts', async () => {
         //Save the 
@@ -78,6 +78,13 @@ describe('logic - retrieve playlist', () => {
             expect(podcast).to.exist
             expect(podcast._id.toString()).be.oneOf(podcastIds)
         })
+    })
+
+    it('should fail on incorrect user id', async () => {
+        id = 'wrong'
+        expect(()=>{
+            retrievePlaylist(id)
+        }).to.throw(ContentError, `${id} is not a valid id`)
     })
 
     after(() => Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()]).then(database.disconnect))

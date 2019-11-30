@@ -29,7 +29,7 @@ describe('logic - create rss channel', () => {
         title = `rss-title-${random()}`
         url = `www.rss-url-${random()}.com`
         description = `rss-description-${random()}`
-        imageUrl = `rss-imageUrl-${random()}`
+        imageUrl = `wwww.rss-imageUrl-${random()}.com/image.jpg`
         language = `rss-language-${random()}`
     })
 

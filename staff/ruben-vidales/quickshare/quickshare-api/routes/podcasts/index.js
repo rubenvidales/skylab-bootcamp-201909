@@ -1,20 +1,20 @@
 const { Router } = require('express')
-const { createRss } = require('../../logic')
+const { createPodcast } = require('../../logic')
 const jwt = require('jsonwebtoken')
 const { env: { SECRET } } = process
 const tokenVerifier = require('../../helpers/token-verifier')(SECRET)
 const bodyParser = require('body-parser')
-const { errors: { ConflictError } } = require('quickshare-util')
+const { errors: { NotFoundError, ConflictError, CredentialsError } } = require('quickshare-util')
 
 const jsonBodyParser = bodyParser.json()
 
 const router = Router()
 
 router.post('/', jsonBodyParser, (req, res) => {
-    const { body: { userId, title, url, description, imageUrl, language } } = req
+    const { body: { title, url, rssId, description, publicationDate, duration } } = req
 
     try {
-        createRss( userId, title, url, description, imageUrl, language )
+        createPodcast( title, url, rssId, description, publicationDate, duration )
             .then(() => res.status(201).end())
             .catch(error => {
                 const { message } = error

@@ -5,7 +5,7 @@ const { argv: [, , port], env: { PORT = port || 8080, DB_URL } } = process
 const cors = require('./utils/cors')
 const { database } = require('quickshare-data')
 
-const { users, rssChannels } = require('./routes')
+const { users, rssChannels, podcasts } = require('./routes')
 
 const api = express()
 
@@ -17,6 +17,7 @@ api.options('*', cors, (req, res) => {
 
 api.use('/users', users)
 api.use('/rss', rssChannels)
+api.use('/podcasts', podcasts)
 
 database
     .connect(DB_URL)

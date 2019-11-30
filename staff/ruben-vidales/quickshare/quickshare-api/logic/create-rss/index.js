@@ -18,6 +18,7 @@ module.exports = function (userId, title, url, description, imageUrl, language) 
 
     validate.string(imageUrl)
     validate.string.notVoid('imageUrl', imageUrl)
+    validate.url(imageUrl)
 
     validate.string(language)
     validate.string.notVoid('language', language)
@@ -30,7 +31,7 @@ module.exports = function (userId, title, url, description, imageUrl, language) 
         if(!rss){
             rss = await RSSChannel.create({title, url, description, imageUrl, language})
         }
-        const result = await User.updateOne({ _id: userId }, { $set: {rssChannels: rss.id} })
+        const result = await User.updateOne({ _id: userId }, { $push: {rssChannels: rss.id} })
 
         return rss.id
     })()

@@ -17,10 +17,10 @@ module.exports = function (title, url, rssId, description, publicationDate, dura
     validate.string(description)
     validate.string.notVoid('description', description)
 
+    publicationDate = new Date(publicationDate)
     validate.date(publicationDate)
 
-    //validate.string(duration)
-    //validate.string.notVoid('duration', duration)
+    validate.number(duration)
 
     return (async () => {
         const rss = await RSSChannel.findById(rssId)

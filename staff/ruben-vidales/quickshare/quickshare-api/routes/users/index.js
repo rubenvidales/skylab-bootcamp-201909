@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { registerUser, authenticateUser, retrieveUser, listUserFavs, toogleFavPodcast } = require('../../logic')
+const { registerUser, authenticateUser, retrieveUser, listUserFavs, toogleFavPodcast, listUserRss } = require('../../logic')
 const jwt = require('jsonwebtoken')
 const { env: { SECRET } } = process
 const tokenVerifier = require('../../helpers/token-verifier')(SECRET)
@@ -109,6 +109,27 @@ router.post('/favs', tokenVerifier, jsonBodyParser, (req, res) => {
             res.status(500).json({ message })
         })
 
+    } catch (error) {
+        const { message } = error
+
+        res.status(400).json({ message })
+    }
+})
+
+router.get('/rss', tokenVerifier, (req, res) => {
+    try {
+        const { id } = req
+
+        listUserRss(id)
+            .then(rss => res.json(rss))
+            .catch(error => {
+                const { message } = error
+
+                if (error instanceof NotFoundError)
+                    return res.status(404).json({ message })
+
+                res.status(500).json({ message })
+            })
     } catch (error) {
         const { message } = error
 

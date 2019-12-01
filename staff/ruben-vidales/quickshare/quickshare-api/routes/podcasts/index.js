@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { createPodcast, listPodcastsByRss } = require('../../logic')
+const { createPodcast, listPodcastsByRss, retrievePodcast } = require('../../logic')
 const jwt = require('jsonwebtoken')
 const { env: { SECRET } } = process
 const tokenVerifier = require('../../helpers/token-verifier')(SECRET)
@@ -10,11 +10,32 @@ const jsonBodyParser = bodyParser.json()
 
 const router = Router()
 
-router.get('/:rssId', tokenVerifier, (req, res) => {
+router.get('/:podcastId', tokenVerifier,jsonBodyParser, (req, res) => {
     try {
-        const { params: {rssId} } = req
+        const { params: {podcastId} } = req
 
-        listPodcastsByRss(rssId)
+        retrievePodcast(podcastId)
+            .then(podcast => res.json(podcast))
+            .catch(error => {
+                const { message } = error
+
+                if (error instanceof NotFoundError)
+                    return res.status(404).json({ message })
+
+                res.status(500).json({ message })
+            })
+    } catch (error) {
+        const { message } = error
+
+        res.status(400).json({ message })
+    }
+})
+
+router.get('/', tokenVerifier,jsonBodyParser, (req, res) => {
+    try {
+        const { body: {rssChannel} } = req
+
+        listPodcastsByRss(rssChannel)
             .then(podcasts => res.json(podcasts))
             .catch(error => {
                 const { message } = error

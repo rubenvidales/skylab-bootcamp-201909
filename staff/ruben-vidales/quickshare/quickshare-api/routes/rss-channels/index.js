@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { createRss } = require('../../logic')
+const { listRss } = require('../../logic')
 const jwt = require('jsonwebtoken')
 const { env: { SECRET } } = process
 const tokenVerifier = require('../../helpers/token-verifier')(SECRET)
@@ -10,12 +10,31 @@ const jsonBodyParser = bodyParser.json()
 
 const router = Router()
 
-router.post('/', jsonBodyParser, (req, res) => {
-    const { body: { userId, title, url, description, imageUrl, language } } = req
+router.post('/', tokenVerifier, jsonBodyParser, (req, res) => {
+    const { id, body: { title, url, description, imageUrl, language } } = req
 
     try {
-        createRss( userId, title, url, description, imageUrl, language )
-            .then(() => res.status(201).end())
+        createRss( id, title, url, description, imageUrl, language )
+            .then(rssId => res.status(201).json(rssId))
+            .catch(error => {
+                const { message } = error
+
+                if (error instanceof ConflictError)
+                    return res.status(409).json({ message })
+
+                res.status(500).json({ message })
+            })
+    } catch ({ message }) {
+        res.status(400).json({ message })
+    }
+})
+
+router.get('/',tokenVerifier, jsonBodyParser, (req, res) => {
+    const { id, body: { title, url, description, imageUrl, language } } = req
+
+    try {
+        listRss( )
+            .then(rss => res.status(201).json(rss))
             .catch(error => {
                 const { message } = error
 

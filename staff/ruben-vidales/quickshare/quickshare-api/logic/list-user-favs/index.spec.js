@@ -1,12 +1,15 @@
 require('dotenv').config()
 const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
-const toogleFavPodcast = require('.')
+const listUserFavs = require('.')
 const { random } = Math
 const { database, ObjectId, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
 
-describe('logic - toogle user fav user', () => {
+describe('logic - list favs', () => {
     before(() => database.connect(TEST_DB_URL))
+
+    let id, name, surname, email, username, password, rssId, rssTitle, rssUrl,
+        podcastIds, podcastTitles, podcastUrls, podcastDurations 
 
     beforeEach(async () => {
         name = `name-${random()}`
@@ -54,43 +57,35 @@ describe('logic - toogle user fav user', () => {
         await user.save()
     })
 
-    it('when fav not exists: should succeed on correct user and podcast data', async () => {
-        //Take a random existing podcast in user
-        const randomPodcast = podcastIds[Math.floor(Math.random() * podcastIds.length)];
-        const user = await User.findById(id)
-        const index = user.favs.findIndex(fav => fav._id == randomPodcast)
-        user.favs.splice(index, 1)
-        await user.save()
+    it('should succeed on correct user', async () => {
 
-        const result = await toogleFavPodcast(id, randomPodcast)
+        const podcasts = await listUserFavs(id)
 
-        expect(result).to.exist
-        expect(result.length).to.equal(podcastIds.length)
-        expect(result).to.include(randomPodcast)
+        expect(podcasts).to.exist
+        expect(podcasts).to.have.lengthOf(10)
+
+        podcasts.forEach(podcast => {
+            expect(podcast.id).to.exist
+            expect(podcast.id).to.be.a('string')
+            expect(podcast.id).to.have.length.greaterThan(0)
+            expect(podcast.id).be.oneOf(podcastIds)
+
+            expect(podcast.title).to.exist
+            expect(podcast.title).to.be.a('string')
+            expect(podcast.title).to.have.length.greaterThan(0)
+            expect(podcast.title).be.oneOf(podcastTitles)
+
+            expect(podcast.url).to.exist
+            expect(podcast.url).to.be.a('string')
+            expect(podcast.url).to.have.length.greaterThan(0)
+            expect(podcast.url).be.oneOf(podcastUrls)
+
+            expect(podcast.duration).to.exist
+            expect(podcast.duration).to.be.a('number')
+            expect(podcast.duration).greaterThan(0)
+            expect(podcast.duration).be.oneOf(podcastDurations)
+        })
     })
-
-    it('when fav already exists: should succeed on correct user and podcast data', async () => {
-        //Take a random existing podcast in user
-        const randomPodcast = podcastIds[Math.floor(Math.random() * podcastIds.length)];
-
-        const result = await toogleFavPodcast(id, randomPodcast)
-
-        expect(result).to.exist
-        expect(result.length).to.equal(podcastIds.length - 1)
-        expect(result).to.not.include(randomPodcast)
-    })
-
-/*     it('should fail when the podcast does not exist', async () => {
-        //Take a random existing podcast in user
-        const randomPodcast = '5de050018797e967d7a14223';
-
-        const result = await toogleFavPodcast(id, randomPodcast)
-
-        expect(result).to.exist
-        expect(result.length).to.equal(podcastIds.length + 1)
-        expect(result).to.include(randomPodcast)
-    }) */
-
 
     after(() => Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()]).then(database.disconnect))
 })

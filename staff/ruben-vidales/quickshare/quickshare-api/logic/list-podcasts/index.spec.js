@@ -1,11 +1,11 @@
 require('dotenv').config()
 const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
-const listUserFavs = require('.')
+const listPodcasts = require('.')
 const { random } = Math
 const { database, ObjectId, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
 
-describe('logic - list favs', () => {
+describe('logic - list podcast by rss id', () => {
     before(() => database.connect(TEST_DB_URL))
 
     let id, name, surname, email, username, password, rssId, rssTitle, rssUrl,
@@ -28,6 +28,7 @@ describe('logic - list favs', () => {
 
         const rss = await RSSChannel.create({ title: rssTitle, url: rssUrl })
         rssId = rss.id
+        user.rssChannels.push(rss.id)
 
         podcastIds = []
         podcastTitles = []
@@ -57,10 +58,9 @@ describe('logic - list favs', () => {
         await user.save()
     })
 
-    it('should succeed on correct user and task data', async () => {
+    it('should succeed on correct rss id', async () => {
 
-        const podcasts = await listUserFavs(id)
-
+        const podcasts = await listPodcasts(rssId)
         expect(podcasts).to.exist
         expect(podcasts).to.have.lengthOf(10)
 

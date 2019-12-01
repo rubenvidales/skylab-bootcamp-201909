@@ -14,6 +14,9 @@ module.exports = function(userId, podcastId) {
         const user = await User.findById(userId)
         if (!user) throw new NotFoundError(`user with id ${userId} not found`)
 
+        const podcast = await Podcast.findById(podcastId)
+        if (!podcast) throw new NotFoundError(`podcast with id ${podcastId} not found`)
+
         const index = user.favs.findIndex(fav => fav._id == podcastId)
 
         index > -1 ? user.favs.splice(index, 1) : user.favs.push(podcastId)

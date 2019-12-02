@@ -1,5 +1,5 @@
 const { validate, errors: { NotFoundError, ContentError } } = require('quickshare-util')
-const { ObjectId, models: { User } } = require('quickshare-data')
+const { ObjectId, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
 
 module.exports = function (id) {
     validate.string(id)
@@ -11,8 +11,11 @@ module.exports = function (id) {
 
         if (!user) throw new NotFoundError(`user with id ${id} not found`)
 
-        const { name, surname, email, username, rssChannels, playlist, favs } = user.toObject()
+        await RSSChannel.populate(user, {path: 'rssChannels'})
+        await Podcast.populate(user, {path: 'favs'})
 
-        return { id, name, surname, email, username, rssChannels, playlist, favs  }
+        const { name, surname, email, username, rssChannels, playlist, favs, player } = user.toObject()
+
+        return { id, name, surname, email, username, rssChannels, playlist, favs, player }
     })()
 }

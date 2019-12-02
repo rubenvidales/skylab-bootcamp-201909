@@ -30,7 +30,7 @@ debugger
 })
 
 router.get('/',tokenVerifier, jsonBodyParser, (req, res) => {
-    const { id, body: { title, url, description, imageUrl, language } } = req
+    const { id } = req
 
     try {
         listRss()

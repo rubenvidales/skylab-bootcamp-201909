@@ -17,7 +17,7 @@ module.exports = function (title, url, rssId, description, publicationDate, dura
     validate.string(description)
     validate.string.notVoid('description', description)
 
-    publicationDate = new Date(publicationDate)
+    publicationDate = new Date(publicationDate+':00.000+00:00')
     validate.date(publicationDate)
 
     validate.number(duration)

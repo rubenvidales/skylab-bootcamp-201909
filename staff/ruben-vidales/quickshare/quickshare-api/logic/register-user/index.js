@@ -1,5 +1,5 @@
 const { validate, errors: { ConflictError } } = require('quickshare-util')
-const { models: { User } } = require('quickshare-data')
+const { models: { User, Player } } = require('quickshare-data')
 const bcrypt = require('bcryptjs')
 
 module.exports = function (name, surname, email, username, password) {
@@ -22,6 +22,6 @@ module.exports = function (name, surname, email, username, password) {
 
         const hash = await bcrypt.hash(password, 10)
 
-        await User.create({ name, surname, email, username, password:hash })
+        await User.create({ name, surname, email, username, password:hash, player: new Player() })
     })()
 }

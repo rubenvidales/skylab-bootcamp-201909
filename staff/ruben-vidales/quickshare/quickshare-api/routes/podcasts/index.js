@@ -31,11 +31,11 @@ router.get('/:podcastId', tokenVerifier,jsonBodyParser, (req, res) => {
     }
 })
 
-router.get('/', tokenVerifier,jsonBodyParser, (req, res) => {
+router.get('/rss/:rssId', tokenVerifier,jsonBodyParser, (req, res) => {
     try {
-        const { body: {rssChannel} } = req
+        const { params: {rssId} } = req
 
-        listPodcastsByRss(rssChannel)
+        listPodcastsByRss(rssId)
             .then(podcasts => res.json(podcasts))
             .catch(error => {
                 const { message } = error

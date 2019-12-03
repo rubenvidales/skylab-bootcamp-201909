@@ -22,7 +22,17 @@ module.exports = function(userId, podcastId) {
         index > -1 ? user.favs.splice(index, 1) : user.favs.push(podcastId)
 
         await user.save()
-        return user.favs
+        await Podcast.populate(user, {path: 'favs'})
+
+        const { favs } = user.toObject()
+
+        favs.forEach(fav => {
+          fav.id = fav._id.toString()
+          delete fav._id   
+          delete fav.__v           
+        })
+
+        return favs
     })()
 
 }

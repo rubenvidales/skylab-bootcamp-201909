@@ -30,6 +30,12 @@ module.exports = function (title, url, rssId, description, publicationDate, dura
         if (podcast) throw new ConflictError(`podcast with url ${url} already exists`)
 
         podcast = await Podcast.create({ title, url, rssChannel: rssId, description, publicationDate, duration })
-        return podcast.id
+        let pod = podcast.toObject()
+
+        pod.id = pod._id.toString()
+        delete pod._id   
+        delete pod.__v 
+
+        return pod
     })()
 }

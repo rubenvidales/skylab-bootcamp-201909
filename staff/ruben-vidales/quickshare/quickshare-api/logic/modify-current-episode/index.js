@@ -1,5 +1,5 @@
 const { validate, errors: { NotFoundError, ContentError } } = require('quickshare-util')
-const { ObjectId, models: { User, Player } } = require('quickshare-data')
+const { ObjectId, models: { User, Player, Podcast } } = require('quickshare-data')
 
 module.exports = function (userId, podcastId, position, active) {
     validate.string(userId)
@@ -36,5 +36,9 @@ module.exports = function (userId, podcastId, position, active) {
         }
 
         await user.save()
+
+        Podcast.populate(user,{path:'player.currentEpisode.podcastId'})
+
+        return user.player
     })()
 }

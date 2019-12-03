@@ -1,5 +1,6 @@
 const { Router } = require('express')
-const { registerUser, authenticateUser, retrieveUser, listUserFavs, toogleFavPodcast, listUserRss, modifyCurrentEpisode } = require('../../logic')
+const { registerUser, authenticateUser, retrieveUser, listUserFavs, toogleFavPodcast, listUserRss, modifyCurrentEpisode,
+    addPodcastToPlaylist, removePodcastToPlaylist, retrievePlaylist, reorderPlaylist } = require('../../logic')
 const jwt = require('jsonwebtoken')
 const { env: { SECRET } } = process
 const tokenVerifier = require('../../helpers/token-verifier')(SECRET)
@@ -99,15 +100,15 @@ router.post('/favs', tokenVerifier, jsonBodyParser, (req, res) => {
     const { id, body: { podcastId } } = req
     try {
         toogleFavPodcast(id, podcastId)
-        .then(favs => res.json(favs))
-        .catch(error => {
-            const { message } = error
+            .then(favs => res.json(favs))
+            .catch(error => {
+                const { message } = error
 
-            if (error instanceof NotFoundError)
-                return res.status(404).json({ message })
+                if (error instanceof NotFoundError)
+                    return res.status(404).json({ message })
 
-            res.status(500).json({ message })
-        })
+                res.status(500).json({ message })
+            })
 
     } catch (error) {
         const { message } = error
@@ -141,16 +142,99 @@ router.post('/player/current', tokenVerifier, jsonBodyParser, (req, res) => {
     const { id, body: { podcastId, position, active } } = req
     try {
         modifyCurrentEpisode(id, podcastId, position, active)
-        .then(favs => res.json(favs))
-        .catch(error => {
-            const { message } = error
+            .then(favs => res.json(favs))
+            .catch(error => {
+                const { message } = error
 
-            if (error instanceof NotFoundError)
-                return res.status(404).json({ message })
+                if (error instanceof NotFoundError)
+                    return res.status(404).json({ message })
 
-            res.status(500).json({ message })
-        })
+                res.status(500).json({ message })
+            })
 
+    } catch (error) {
+        const { message } = error
+
+        res.status(400).json({ message })
+    }
+})
+
+router.get('/:userId/player/playlist', tokenVerifier, jsonBodyParser, (req, res) => {
+    const { params: { userId } } = req
+
+    try {
+        retrievePlaylist(userId)
+            .then(playlist => res.json(playlist))
+            .catch(error => {
+                const { message } = error
+
+                if (error instanceof NotFoundError)
+                    return res.status(404).json({ message })
+
+                res.status(500).json({ message })
+            })
+    } catch (error) {
+        const { message } = error
+
+        res.status(400).json({ message })
+    }
+
+})
+
+router.post('/player/playlist', tokenVerifier, jsonBodyParser, (req, res) => {
+    const { id, body: { podcastId } } = req
+    try {
+        addPodcastToPlaylist(id, podcastId)
+            .then(playlist => res.json(playlist))
+            .catch(error => {
+                const { message } = error
+
+                if (error instanceof NotFoundError)
+                    return res.status(404).json({ message })
+
+                res.status(500).json({ message })
+            })
+
+    } catch (error) {
+        const { message } = error
+
+        res.status(400).json({ message })
+    }
+})
+
+router.delete('/player/playlist', tokenVerifier, jsonBodyParser, (req, res) => {
+    const { id, body: { podcastId } } = req
+    try {
+        removePodcastToPlaylist(id, podcastId)
+            .then(playlist => res.json(playlist))
+            .catch(error => {
+                const { message } = error
+
+                if (error instanceof NotFoundError)
+                    return res.status(404).json({ message })
+
+                res.status(500).json({ message })
+            })
+    } catch (error) {
+        const { message } = error
+
+        res.status(400).json({ message })
+    }
+})
+
+router.patch('/player/playlist', tokenVerifier, jsonBodyParser, (req, res) => {
+    const { id, body: { podcastId, movement } } = req
+    try {
+        reorderPlaylist(id, podcastId, movement)
+            .then(playlist => res.json(playlist))
+            .catch(error => {
+                const { message } = error
+
+                if (error instanceof NotFoundError)
+                    return res.status(404).json({ message })
+
+                res.status(500).json({ message })
+            })
     } catch (error) {
         const { message } = error
 

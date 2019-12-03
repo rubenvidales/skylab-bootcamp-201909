@@ -66,7 +66,6 @@ describe('logic - toogle user fav user', () => {
 
         expect(result).to.exist
         expect(result.length).to.equal(podcastIds.length)
-        expect(result).to.include(randomPodcast)
     })
 
     it('when fav already exists: should succeed on correct user and podcast data', async () => {
@@ -77,20 +76,7 @@ describe('logic - toogle user fav user', () => {
 
         expect(result).to.exist
         expect(result.length).to.equal(podcastIds.length - 1)
-        expect(result).to.not.include(randomPodcast)
     })
-
-/*     it('should fail when the podcast does not exist', async () => {
-        //Take a random existing podcast in user
-        const randomPodcast = '5de050018797e967d7a14223';
-
-        const result = await toogleFavPodcast(id, randomPodcast)
-
-        expect(result).to.exist
-        expect(result.length).to.equal(podcastIds.length + 1)
-        expect(result).to.include(randomPodcast)
-    }) */
-
 
     after(() => Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()]).then(database.disconnect))
 })

@@ -1,5 +1,5 @@
 const { validate, errors: { NotFoundError, ContentError } } = require('quickshare-util')
-const { ObjectId, models: { User, RSSChannel } } = require('quickshare-data')
+const { ObjectId, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
 
 module.exports = function (userId, podcastId) {
     validate.string(userId)
@@ -14,14 +14,13 @@ module.exports = function (userId, podcastId) {
         const user = await User.findById(userId)
         if (!user) throw new NotFoundError(`user with id ${userId} not found`)
 
-        if(user.player){
-            const index = user.player.playlist.findIndex(_podcastId => _podcastId == podcastId)
-            if(index === -1) user.player.playlist.push(podcastId)
-        }
-        else{
-            user.player = {playlist:[podcastId]}
-        } 
+        const index = user.player.playlist.findIndex(_podcastId => _podcastId == podcastId)
+        if(index === -1) user.player.playlist.push(podcastId)
+
         await user.save()
+
+        Podcast.populate(user, {path:'player.playlist'})
+
         return user.player.playlist
     })()
 }

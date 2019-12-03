@@ -14,7 +14,11 @@ module.exports = function (id) {
         await RSSChannel.populate(user, {path: 'rssChannels'})
         await Podcast.populate(user, {path: 'favs'})
 
+        const playerId = user.player.id
         const { name, surname, email, username, rssChannels, playlist, favs, player } = user.toObject()
+
+        player.id = playerId
+        delete player._id
 
         return { id, name, surname, email, username, rssChannels, playlist, favs, player }
     })()

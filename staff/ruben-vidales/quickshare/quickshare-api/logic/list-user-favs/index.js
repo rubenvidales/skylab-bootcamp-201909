@@ -11,7 +11,15 @@ module.exports = function(userId){
         if (!user) throw new NotFoundError(`user with id ${userId} not found`)
 
         await Podcast.populate(user, {path: 'favs'})
-        
-        return user.favs
+
+        const { favs } = user.toObject()
+
+        favs.forEach(fav => {
+          fav.id = fav._id.toString()
+          delete fav._id   
+          delete fav.__v           
+        })
+
+        return favs
     })()
 }

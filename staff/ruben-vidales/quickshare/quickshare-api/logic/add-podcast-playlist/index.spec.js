@@ -3,7 +3,7 @@ const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
 const addPodcastToPlaylist = require('.')
 const { random } = Math
-const { database, ObjectId, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
+const { database, ObjectId, models: { User, RSSChannel, Podcast, Player } } = require('quickshare-data')
 
 describe('logic - add podcast to playlist', () => {
     before(() => database.connect(TEST_DB_URL))
@@ -19,7 +19,7 @@ describe('logic - add podcast to playlist', () => {
 
         await Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()])
 
-        user = await new User({ name, surname, email, username, password })
+        user = await new User({ name, surname, email, username, password, player: new Player() })
         id = user.id
 
         rssTitle = `rss-title-${random()}`

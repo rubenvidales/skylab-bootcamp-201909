@@ -34,15 +34,12 @@ describe('logic - create rss channel', () => {
     })
 
     it('should succeed on correct user and rss channel data', async () => {
-        const rssId = await createRss(userId, title, url, description, imageUrl, language)
-
-        expect(rssId).to.exist
-        expect(rssId).to.be.a('string')
-        expect(rssId).to.have.length.greaterThan(0)
-
-        const rss = await RSSChannel.findById(rssId)
-
+        const rss = await createRss(userId, title, url, description, imageUrl, language)
         expect(rss).to.exist
+
+        expect(rss.id).to.exist
+        expect(rss.id).to.be.a('string')
+        expect(rss.id).to.have.length.greaterThan(0)
         expect(rss.title).to.equal(title)
         expect(rss.url).to.equal(url)
         expect(rss.description).to.equal(description)

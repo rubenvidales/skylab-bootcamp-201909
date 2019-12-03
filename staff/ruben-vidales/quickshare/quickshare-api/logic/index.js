@@ -13,6 +13,7 @@ module.exports = {
     listPodcastsByRss: require('./list-podcasts'),
     addPodcastToPlaylist: require('./add-podcast-playlist'),
     removePodcastToPlaylist: require('./remove-podcast-playlist'),
+    reorderPlaylist: require('./reorder-podcast-playlist'),
     retrievePlaylist: require('./retrieve-playlist'),
     modifyCurrentEpisode: require('./modify-current-episode')
 }

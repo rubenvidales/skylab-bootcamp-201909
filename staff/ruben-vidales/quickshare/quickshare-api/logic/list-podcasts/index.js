@@ -10,7 +10,13 @@ module.exports = function (rssId) {
         const rss = await RSSChannel.findById(rssId)
         if (!rss) throw new NotFoundError(`RSS channel with id ${rssId} not found`)
 
-        const podcasts = await Podcast.find({ rssChannel: rssId })
+        const podcasts = await Podcast.find({ rssChannel: rssId }).lean()
+
+        podcasts.forEach(podcast => {
+            podcast.id = podcast._id.toString()
+            delete podcast._id
+            delete podcast.__v
+        })
         
         return podcasts
     })()

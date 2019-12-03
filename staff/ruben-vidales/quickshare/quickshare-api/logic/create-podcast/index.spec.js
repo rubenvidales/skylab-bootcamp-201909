@@ -38,24 +38,21 @@ describe('logic - create podcast', () => {
         podcastTitle = `podcast-title-${random()}`
         podcastUrl = `www.podcast-url-${random()}.com`
         podcastDescription = `podcast-description-${random()}`
-        podcastPublicationDate = new Date()
+        podcastPublicationDate = '12/02/2019 11:11'
         podcastDuration = floor(random() * 1000) + 1
     })
 
     it('should succeed on correct user, rss channel and podcast data', async () => {
-        const podcastId = await createPodcast(podcastTitle, podcastUrl, rssId, podcastDescription, podcastPublicationDate, podcastDuration)
-
-        expect(podcastId).to.exist
-        expect(podcastId).to.be.a('string')
-        expect(podcastId).to.have.length.greaterThan(0)
-
-        const podcast = await Podcast.findById(podcastId)
+        const podcast = await createPodcast(podcastTitle, podcastUrl, rssId, podcastDescription, podcastPublicationDate, podcastDuration)
 
         expect(podcast).to.exist
+        expect(podcast.id).to.exist
+        expect(podcast.id).to.be.a('string')
+        expect(podcast.id).to.have.length.greaterThan(0)
         expect(podcast.title).to.equal(podcastTitle)
         expect(podcast.url).to.equal(podcastUrl)
         expect(podcast.description).to.equal(podcastDescription)
-        expect(podcast.publicationDate.toString()).to.equal(podcastPublicationDate.toString())
+        expect(podcast.publicationDate.toString()).to.equal(new Date(podcastPublicationDate+':00.000+00:00').toString())
         expect(podcast.duration).to.equal(podcastDuration)
     })
 

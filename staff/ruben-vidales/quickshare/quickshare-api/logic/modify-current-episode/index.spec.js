@@ -63,7 +63,6 @@ describe('logic - modify current episode', () => {
         await modifyCurrentEpisode(userId, randomPodcast, randomPosition, randomActive)
 
         const resultUser = await User.findById(userId)
-        debugger
         expect(resultUser).to.exist
 
         expect(resultUser.name).to.equal(name)

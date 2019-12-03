@@ -26,13 +26,20 @@ module.exports = function (userId, title, url, description, imageUrl, language) 
     return (async () => {
         const user = await User.findById(userId)
         if (!user) throw new NotFoundError(`user with id ${userId} not found`)
-        
-        let rss = await RSSChannel.findOne({url})
-        if(!rss){
-            rss = await RSSChannel.create({title, url, description, imageUrl, language})
-        }
-        const result = await User.updateOne({ _id: userId }, { $addToSet: {rssChannels: rss.id} })
 
-        return rss.id
+        let rss = await RSSChannel.findOne({ url })
+        if (!rss) {
+            rss = await RSSChannel.create({ title, url, description, imageUrl, language })
+        }
+        const result = await User.updateOne({ _id: userId }, { $addToSet: { rssChannels: rss.id } })
+
+        const rssChannel = rss.toObject()
+
+        rssChannel.id = rssChannel._id.toString()
+        delete rssChannel._id
+        delete rssChannel.__v
+
+        return rssChannel
+
     })()
 }

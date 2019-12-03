@@ -3,14 +3,14 @@ const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
 const authenticateUser = require('.')
 const { random } = Math
-const { errors: { ContentError, CredentialsError } } = require('tasks-util')
-const { database, models: { User } } = require('tasks-data')
+const { errors: { ContentError, CredentialsError } } = require('quickshare-util')
+const { database, models: { User } } = require('quickshare-data')
 const bcrypt = require('bcryptjs')
 
 describe('logic - authenticate user', () => {
     before(() => database.connect(TEST_DB_URL))
 
-    let id, name, surname, email, username, password, hash
+    let id, name, surname, email, username, password
 
     beforeEach(async () => {
         name = `name-${random()}`
@@ -51,7 +51,7 @@ describe('logic - authenticate user', () => {
                 expect(error).to.be.an.instanceOf(CredentialsError)
 
                 const { message } = error
-                expect(message).to.equal('wrong credentials')
+                expect(message).to.equal(`wrong credentials`)
             }
         })
 
@@ -67,7 +67,7 @@ describe('logic - authenticate user', () => {
                 expect(error).to.be.an.instanceOf(CredentialsError)
 
                 const { message } = error
-                expect(message).to.equal('wrong credentials')
+                expect(message).to.equal(`wrong credentials`)
             }
         })
     })

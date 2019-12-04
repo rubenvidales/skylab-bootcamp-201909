@@ -1,4 +1,4 @@
-.rss
+.playlist
     text-align: center
     height: 100vh
     display: flex
@@ -6,29 +6,23 @@
     background-color: #dddddd
 
     &__container
-        width: 80%
+        width: 90%
         margin-top: 5%
 
     &__title
-        margin-bottom: 0
-
-    &__url
-        margin-top: 0
         color: #365c80
 
     &__description
         text-align: justify
-        max-height: 15vh
-        overflow-y: scroll
 
     &__list
-        height: 50vh
+        height: 75vh
         overflow-y: scroll
         display: flex
         flex-direction: column
 
 
-.episode
+.pl-episode
     padding: .5em
     margin: .3em
     border: .1em solid #8a8a8a
@@ -36,21 +30,24 @@
     display: flex
 
     &__left-block
-        width: 75%
+        width: 70%
 
     &__right-block
-        width: 25%
+        width: 30%
         text-align: center
 
-    &__button-block
-        display: block
-        height: 100%
-        line-height: 2
-        color: #365c80
-
-        &--delete
-            color: #ad4545
+        &-buttons
+            display: block
+            height: 100%
             line-height: 2
+            color: #365c80
+            font-size: 1.2em 
+
+            &--delete
+                color: #ad4545
+                line-height: 2
+    &__button
+        margin: .2em
 
     &__title
         padding: 0

@@ -4,7 +4,7 @@ import "react-input-range/lib/css/index.css"
 import './index.sass'
 import FooterBar from '../FooterBar'
 
-export default function ({ onLogout }) {
+export default function ({ onPlaylist, onLogout }) {
 
     const [ rangeValue, setRangeValue ] = useState(50)
 
@@ -39,7 +39,7 @@ export default function ({ onLogout }) {
                 <i className="player__controls-play fas fa-play-circle fa-5x"></i>
                 <i className="player__controls-ff fas fa-chevron-circle-right fa-3x"></i>
             </div>
-            <FooterBar onLogout={onLogout}/>
+            <FooterBar onPlaylist={onPlaylist} onLogout={onLogout}/>
         </div>
     </section>
 }

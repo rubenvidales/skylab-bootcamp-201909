@@ -4,6 +4,7 @@ import Landing from '../Landing'
 import Register from '../Register'
 import Login from '../Login'
 import Player from '../Player'
+import Playlist from '../Playlist'
 import { registerUser, authenticateUser } from '../../logic'
 import { Route, withRouter, Redirect } from 'react-router-dom'
 
@@ -42,10 +43,20 @@ export default withRouter(function ({ history }) {
     }
 
 
+    async function handlePlaylist(){
+        try {
+            history.push('/playlist')
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+
     return <>
         <Route exact path="/" render={() => token ? <Redirect to="/player" /> : <Landing onRegister={handleGoToRegister} onLogin={handleGoToLogin} />} />
         <Route path="/register" render={() => token ? <Redirect to="/player" /> : <Register onRegister={handleRegister} onBack={handleGoBack} />} />
         <Route path="/login" render={() => token ? <Redirect to="/player" /> : <Login onLogin={handleLogin} onBack={handleGoBack} />} />
-        <Route path="/player" render={() => <Player onLogout={handleLogout} />} />
+        <Route path="/player" render={() => <Player onPlaylist={handlePlaylist} onLogout={handleLogout} />} />
+        <Route path="/playlist" render={() => <Playlist onPlaylist={handlePlaylist} onLogout={handleLogout} />} />
     </>
 })

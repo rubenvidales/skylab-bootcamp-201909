@@ -57,7 +57,7 @@
                 </form>
             </div>
         </section>
-        <section class="player">
+        <section class="player hide">
             <div class="player__container">
                 <header class="player__top">
                     <i class="player__top-share-icon fas fa-share-alt fa-3x"></i>
@@ -80,11 +80,305 @@
                     <i class="player__controls-play fas fa-play-circle fa-5x"></i>
                     <i class="player__controls-ff fas fa-chevron-circle-right fa-3x"></i>
                 </div>
-                <div class="player__footer">
-                    <span class="player__footer-opt"><i class="fas fa-list-ul fa-2x"></i></span>
-                    <span class="player__footer-opt"><i class="fas fa-heart fa-2x"></i></span>
-                    <span class="player__footer-opt"><i class="fas fa-podcast fa-2x"></i></span>
-                    <span class="player__footer-opt"><i class="far fa-edit fa-2x"></i></span>
+                <div class="footer">
+                    <span class="footer__option"><i class="fas fa-list-ul fa-2x"></i></span>
+                    <span class="footer__option"><i class="fas fa-heart fa-2x"></i></span>
+                    <span class="footer__option"><i class="fas fa-podcast fa-2x"></i></span>
+                    <span class="footer__option"><i class="far fa-edit fa-2x"></i></span>
+                    <span class="footer__option"><i class="fas fa-sign-out-alt fa-2x"></i></span>
+                </div>
+            </div>
+        </section>
+        <section class="channels hide">
+            <div class="channels__container">
+                <h2 class="channels__title">RSS Channels</h2>
+                <form class="channels__form" action="#">
+                    <input type="text" class="channels__form-input" name="url" placeholder="RSS url">
+                    <input class="channels__form-submit-button" type="submit" value="Add channel" />
+                </form>
+                <h3 class="channels__title">Added Channels</h3>
+                <section class="channels__list">
+                    <a class=" channels__list-link">
+                        <article class="channel">Channel name</article>
+                    </a>
+                    <a class=" channels__list-link">
+                        <article class="channel">Channel name</article>
+                    </a>
+                    <a class=" channels__list-link">
+                        <article class="channel">Channel name</article>
+                    </a>
+                    <a class=" channels__list-link">
+                        <article class="channel">Channel name</article>
+                    </a>
+                    <a class=" channels__list-link">
+                        <article class="channel">Channel name</article>
+                    </a>
+                    <a class=" channels__list-link">
+                        <article class="channel">Channel name</article>
+                    </a>
+                    <a class=" channels__list-link">
+                        <article class="channel">Channel name</article>
+                    </a>
+                    <a class=" channels__list-link">
+                        <article class="channel">Channel name</article>
+                    </a>
+                    <a class=" channels__list-link">
+                        <article class="channel">Channel name</article>
+                    </a>
+                    <a class=" channels__list-link">
+                        <article class="channel">Channel name</article>
+                    </a>
+                </section>
+                <div class="footer">
+                    <span class="footer__option"><i class="fas fa-list-ul fa-2x"></i></span>
+                    <span class="footer__option"><i class="fas fa-heart fa-2x"></i></span>
+                    <span class="footer__option"><i class="fas fa-podcast fa-2x"></i></span>
+                    <span class="footer__option"><i class="far fa-edit fa-2x"></i></span>
+                    <span class="footer__option"><i class="fas fa-sign-out-alt fa-2x"></i></span>
+                </div>
+            </div>
+        </section>
+        <section class="rss">
+            <div class="rss__container">
+                <h2 class="rss__title">RSS Channel Title</h2>
+                <h3 class="rss__url">http://www.url.com</h3>
+                <p class="rss__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. At, vitae in odio
+                    ad distinctio unde nihil
+                    ipsa error quidem harum vero! Possimus ab porro omnis aut eum molestias animi illum.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. At, vitae in odio
+                    ad distinctio unde nihil
+                    ipsa error quidem harum vero! Possimus ab porro omnis aut eum molestias animi illum.</p>
+                <section class="rss__list">
+                    <a class="episodes__list-link">
+                        <article class="episode">
+                            <div class="episode__left-block">
+                                <h4 class="episode__title">Episode title</h4>
+                                <p class="episode__date">04/12/2019</p>
+                            </div>
+                            <div class="episode__right-block">
+                                <span class="episode__button-block">
+                                    <i class="fas fa-plus"></i>
+                                </span>
+                            </div>
+                        </article>
+                        <article class="episode">
+                            <div class="episode__left-block">
+                                <h4 class="episode__title">Episode title</h4>
+                                <p class="episode__date">04/12/2019</p>
+                            </div>
+                            <div class="episode__right-block">
+                                <span class="episode__button-block--delete">
+                                    <i class="fas fa-times"></i>
+                                </span>
+                            </div>
+                        </article>
+                        <article class="episode">
+                            <div class="episode__left-block">
+                                <h4 class="episode__title">Episode title</h4>
+                                <p class="episode__date">04/12/2019</p>
+                            </div>
+                            <div class="episode__right-block">
+                                <span class="episode__button-block">
+                                    <i class="fas fa-plus"></i>
+                                </span>
+                            </div>
+                        </article>
+                        <article class="episode">
+                            <div class="episode__left-block">
+                                <h4 class="episode__title">Episode title</h4>
+                                <p class="episode__date">04/12/2019</p>
+                            </div>
+                            <div class="episode__right-block">
+                                <span class="episode__button-block">
+                                    <i class="fas fa-plus"></i>
+                                </span>
+                            </div>
+                        </article>
+                        <article class="episode">
+                            <div class="episode__left-block">
+                                <h4 class="episode__title">Episode title</h4>
+                                <p class="episode__date">04/12/2019</p>
+                            </div>
+                            <div class="episode__right-block">
+                                <span class="episode__button-block">
+                                    <i class="fas fa-plus"></i>
+                                </span>
+                            </div>
+                        </article>
+                        <article class="episode">
+                            <div class="episode__left-block">
+                                <h4 class="episode__title">Episode title</h4>
+                                <p class="episode__date">04/12/2019</p>
+                            </div>
+                            <div class="episode__right-block">
+                                <span class="episode__button-block">
+                                    <i class="fas fa-plus"></i>
+                                </span>
+                            </div>
+                        </article>
+                        <article class="episode">
+                            <div class="episode__left-block">
+                                <h4 class="episode__title">Episode title</h4>
+                                <p class="episode__date">04/12/2019</p>
+                            </div>
+                            <div class="episode__right-block">
+                                <span class="episode__button-block">
+                                    <i class="fas fa-plus"></i>
+                                </span>
+                            </div>
+                        </article>
+                    </a>
+                </section>
+                <div class="footer">
+                    <span class="footer__option"><i class="fas fa-list-ul fa-2x"></i></span>
+                    <span class="footer__option"><i class="fas fa-heart fa-2x"></i></span>
+                    <span class="footer__option"><i class="fas fa-podcast fa-2x"></i></span>
+                    <span class="footer__option"><i class="far fa-edit fa-2x"></i></span>
+                    <span class="footer__option"><i class="fas fa-sign-out-alt fa-2x"></i></span>
+                </div>
+            </div>
+        </section>
+        <section class="playlist hide">
+            <div class="playlist__container">
+                <h2 class="playlist__title">Name's playlist</h2>
+                <section class="playlist__list">
+                    <article class="pl-episode">
+                        <div class="pl-episode__left-block">
+                            <h4 class="pl-episode__title">Episode title</h4>
+                            <p class="pl-episode__date">04/12/2019</p>
+                        </div>
+                        <div class="pl-episode__right-block">
+                            <span class="pl-episode__right-block-buttons">
+                                <i class="pl-episode__button fas fa-chevron-up"></i>
+                                <i class="pl-episode__button fas fa-chevron-down"></i>
+                                <i class="pl-episode__button far fa-trash-alt"></i>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="pl-episode">
+                        <div class="pl-episode__left-block">
+                            <h4 class="pl-episode__title">Episode title</h4>
+                            <p class="pl-episode__date">04/12/2019</p>
+                        </div>
+                        <div class="pl-episode__right-block">
+                            <span class="pl-episode__right-block-buttons">
+                                <i class="pl-episode__button fas fa-chevron-up"></i>
+                                <i class="pl-episode__button fas fa-chevron-down"></i>
+                                <i class="pl-episode__button far fa-trash-alt"></i>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="pl-episode">
+                        <div class="pl-episode__left-block">
+                            <h4 class="pl-episode__title">Episode title</h4>
+                            <p class="pl-episode__date">04/12/2019</p>
+                        </div>
+                        <div class="pl-episode__right-block">
+                            <span class="pl-episode__right-block-buttons">
+                                <i class="pl-episode__button fas fa-chevron-up"></i>
+                                <i class="pl-episode__button fas fa-chevron-down"></i>
+                                <i class="pl-episode__button far fa-trash-alt"></i>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="pl-episode">
+                        <div class="pl-episode__left-block">
+                            <h4 class="pl-episode__title">Episode title</h4>
+                            <p class="pl-episode__date">04/12/2019</p>
+                        </div>
+                        <div class="pl-episode__right-block">
+                            <span class="pl-episode__right-block-buttons">
+                                <i class="pl-episode__button fas fa-chevron-up"></i>
+                                <i class="pl-episode__button fas fa-chevron-down"></i>
+                                <i class="pl-episode__button far fa-trash-alt"></i>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="pl-episode">
+                        <div class="pl-episode__left-block">
+                            <h4 class="pl-episode__title">Episode title</h4>
+                            <p class="pl-episode__date">04/12/2019</p>
+                        </div>
+                        <div class="pl-episode__right-block">
+                            <span class="pl-episode__right-block-buttons">
+                                <i class="pl-episode__button fas fa-chevron-up"></i>
+                                <i class="pl-episode__button fas fa-chevron-down"></i>
+                                <i class="pl-episode__button far fa-trash-alt"></i>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="pl-episode">
+                        <div class="pl-episode__left-block">
+                            <h4 class="pl-episode__title">Episode title</h4>
+                            <p class="pl-episode__date">04/12/2019</p>
+                        </div>
+                        <div class="pl-episode__right-block">
+                            <span class="pl-episode__right-block-buttons">
+                                <i class="pl-episode__button fas fa-chevron-up"></i>
+                                <i class="pl-episode__button fas fa-chevron-down"></i>
+                                <i class="pl-episode__button far fa-trash-alt"></i>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="pl-episode">
+                        <div class="pl-episode__left-block">
+                            <h4 class="pl-episode__title">Episode title</h4>
+                            <p class="pl-episode__date">04/12/2019</p>
+                        </div>
+                        <div class="pl-episode__right-block">
+                            <span class="pl-episode__right-block-buttons">
+                                <i class="pl-episode__button fas fa-chevron-up"></i>
+                                <i class="pl-episode__button fas fa-chevron-down"></i>
+                                <i class="pl-episode__button far fa-trash-alt"></i>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="pl-episode">
+                        <div class="pl-episode__left-block">
+                            <h4 class="pl-episode__title">Episode title</h4>
+                            <p class="pl-episode__date">04/12/2019</p>
+                        </div>
+                        <div class="pl-episode__right-block">
+                            <span class="pl-episode__right-block-buttons">
+                                <i class="pl-episode__button fas fa-chevron-up"></i>
+                                <i class="pl-episode__button fas fa-chevron-down"></i>
+                                <i class="pl-episode__button far fa-trash-alt"></i>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="pl-episode">
+                        <div class="pl-episode__left-block">
+                            <h4 class="pl-episode__title">Episode title</h4>
+                            <p class="pl-episode__date">04/12/2019</p>
+                        </div>
+                        <div class="pl-episode__right-block">
+                            <span class="pl-episode__right-block-buttons">
+                                <i class="pl-episode__button fas fa-chevron-up"></i>
+                                <i class="pl-episode__button fas fa-chevron-down"></i>
+                                <i class="pl-episode__button far fa-trash-alt"></i>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="pl-episode">
+                        <div class="pl-episode__left-block">
+                            <h4 class="pl-episode__title">Episode title</h4>
+                            <p class="pl-episode__date">04/12/2019</p>
+                        </div>
+                        <div class="pl-episode__right-block">
+                            <span class="pl-episode__right-block-buttons">
+                                <i class="pl-episode__button fas fa-chevron-up"></i>
+                                <i class="pl-episode__button fas fa-chevron-down"></i>
+                                <i class="pl-episode__button far fa-trash-alt"></i>
+                            </span>
+                        </div>
+                    </article>
+                </section>
+                <div class="footer">
+                    <span class="footer__option"><i class="fas fa-list-ul fa-2x"></i></span>
+                    <span class="footer__option"><i class="fas fa-heart fa-2x"></i></span>
+                    <span class="footer__option"><i class="fas fa-podcast fa-2x"></i></span>
+                    <span class="footer__option"><i class="far fa-edit fa-2x"></i></span>
+                    <span class="footer__option"><i class="fas fa-sign-out-alt fa-2x"></i></span>
                 </div>
             </div>
         </section>

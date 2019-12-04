@@ -175,12 +175,12 @@ h1 {
   text-align: center;
   height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
   background-color: #dddddd;
 }
 .player__container {
   width: 80%;
+  margin-top: 10%;
 }
 .player__top {
   display: flex;
@@ -263,7 +263,8 @@ h1 {
   color: #639fab;
   padding: 0.5em;
 }
-.player__footer {
+
+.footer {
   background-color: #365c80;
   color: #ffffff;
   position: absolute;
@@ -275,8 +276,234 @@ h1 {
   align-items: center;
   justify-content: center;
 }
-.player__footer-opt {
+.footer__option {
+  width: 20%;
+}
+
+.channels {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: #dddddd;
+}
+.channels__container {
+  width: 80%;
+  margin-top: 10%;
+}
+.channels__form {
+  width: 80%;
+  margin-left: 10%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+.channels__form-input {
+  width: 80%;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+.channels__form-input--separator {
+  margin-top: 2em;
+}
+.channels__form-submit-button {
+  margin: 0.5em;
+  border: 0.18em solid #222222;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  width: 50%;
+  border-radius: 0.5em;
+  background-color: inherit;
+}
+.channels__list {
+  height: 50vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+.channel {
+  padding: 1em;
+  margin: 0.3em;
+  border: 0.1em solid #8a8a8a;
+  border-radius: 0.2em;
+}
+
+.footer {
+  background-color: #365c80;
+  color: #ffffff;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 10%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer__option {
+  width: 20%;
+}
+
+.rss {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: #dddddd;
+}
+.rss__container {
+  width: 80%;
+  margin-top: 5%;
+}
+.rss__title {
+  margin-bottom: 0;
+}
+.rss__url {
+  margin-top: 0;
+  color: #365c80;
+}
+.rss__description {
+  text-align: justify;
+  max-height: 15vh;
+  overflow-y: scroll;
+}
+.rss__list {
+  height: 50vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+.episode {
+  padding: 0.5em;
+  margin: 0.3em;
+  border: 0.1em solid #8a8a8a;
+  border-radius: 0.2em;
+  display: flex;
+}
+.episode__left-block {
+  width: 75%;
+}
+.episode__right-block {
   width: 25%;
+  text-align: center;
+}
+.episode__button-block {
+  display: block;
+  height: 100%;
+  line-height: 2;
+  color: #365c80;
+}
+.episode__button-block--delete {
+  color: #ad4545;
+  line-height: 2;
+}
+.episode__title {
+  padding: 0;
+  margin: 0;
+}
+.episode__date {
+  padding: 0;
+  margin: 0;
+}
+
+.footer {
+  background-color: #365c80;
+  color: #ffffff;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 10%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer__option {
+  width: 20%;
+}
+
+.playlist {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: #dddddd;
+}
+.playlist__container {
+  width: 90%;
+  margin-top: 5%;
+}
+.playlist__title {
+  color: #365c80;
+}
+.playlist__description {
+  text-align: justify;
+}
+.playlist__list {
+  height: 75vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+.pl-episode {
+  padding: 0.5em;
+  margin: 0.3em;
+  border: 0.1em solid #8a8a8a;
+  border-radius: 0.2em;
+  display: flex;
+}
+.pl-episode__left-block {
+  width: 70%;
+}
+.pl-episode__right-block {
+  width: 30%;
+  text-align: center;
+}
+.pl-episode__right-block-buttons {
+  display: block;
+  height: 100%;
+  line-height: 2;
+  color: #365c80;
+  font-size: 1.2em;
+}
+.pl-episode__right-block-buttons--delete {
+  color: #ad4545;
+  line-height: 2;
+}
+.pl-episode__button {
+  margin: 0.2em;
+}
+.pl-episode__title {
+  padding: 0;
+  margin: 0;
+}
+.pl-episode__date {
+  padding: 0;
+  margin: 0;
+}
+
+.footer {
+  background-color: #365c80;
+  color: #ffffff;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 10%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer__option {
+  width: 20%;
 }
 
 .hide {
@@ -286,7 +513,9 @@ h1 {
 .landing,
 .register,
 .login,
-.player {
+.player,
+.channels,
+.rss {
   border: 1px solid black;
 }
 

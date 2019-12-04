@@ -1,0 +1,92 @@
+.rss
+    text-align: center
+    height: 100vh
+    display: flex
+    justify-content: center
+    background-color: #dddddd
+
+    &__container
+        width: 80%
+        margin-top: 10%
+
+    &__form
+        width: 80%
+        margin-left: 10%
+        display: flex
+        flex-direction: column
+        flex-wrap: wrap
+        align-items: center
+        justify-content: center
+        margin-bottom: 2em
+
+        &-input
+            width: 80%
+            padding: .5em
+            margin: .5em
+
+            &--separator
+                margin-top: 2em
+
+        &-submit-button
+            margin: .5em
+            border: .18em solid #222222
+            padding-top:5px !important
+            padding-bottom:5px !important
+            padding-left:0px !important
+            padding-right:0px !important
+            width: 50%
+            border-radius: .5em
+            background-color: inherit
+
+    &__list
+        height: 50vh
+        overflow-y: scroll
+        display: flex
+        flex-direction: column
+
+.episode
+    padding: .5em
+    margin: .3em
+    border: .1em solid #8a8a8a
+    border-radius: .2em
+    display: flex
+
+    &__left-block
+        width: 75%
+
+    &__right-block
+        width: 25%
+        text-align: center
+
+    &__button-block
+        display: block
+        height: 100%
+        line-height: 2
+        color: #365c80
+
+        &--delete
+            color: #ad4545
+
+    &__title
+        padding: 0
+        margin: 0
+
+    &__date
+        padding: 0
+        margin: 0
+
+
+    
+.footer
+    background-color: #365c80
+    color: #ffffff
+    position: absolute
+    left: 0
+    bottom: 0
+    height: 10%
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: center
+    &__option
+        width: 20%

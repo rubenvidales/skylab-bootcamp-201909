@@ -1,18 +1,23 @@
 import React from 'react'
 import './index.sass'
 
-export default function ({ handleGoToRegistrationPage }) {
+export default function ({ onRegister, onLogin }) {
     return <section className="landing">
-                <article className="landing__container container">
-                <h2 className="container__title">Time2Padel</h2>
-                    <div className="container__images images" onClick={event => {
-                        event.preventDefault()
-
-                        handleGoToRegistrationPage()
-                        }}>
-                        <img className="images__img1" src={process.env.PUBLIC_URL + '/img/iconopalapadel.png'}/>
-                        <img className="images__img2" src={process.env.PUBLIC_URL + '/img/iconopelotapadel.png'}/>
-                    </div>
-                </article>
-            </section>  
+        <div className="landing__container">
+            <h1 className="landing__title">QuickShare<br />Podcast</h1>
+            <img className="landing__logo" src="./images/quickshare_medium.png" alt="quickshare logo" />
+            <form className="landing__register-form" action="#" onSubmit={event => {
+                event.preventDefault()
+                onRegister()
+            }}>
+                <input className="landing__register-button" type="submit" value="Register" />
+            </form>
+            <form className="landing__login-form" action="#" onSubmit={event => {
+                event.preventDefault()
+                onLogin()
+            }}>
+                <input className="landing__login-button" type="submit" value="Login" />
+            </form>
+        </div>
+    </section>
 }

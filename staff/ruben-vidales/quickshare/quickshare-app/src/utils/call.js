@@ -1,12 +1,12 @@
 module.exports = function (url, { method = 'GET', headers, body } = {}) {
     return new Promise((resolve, reject) => {
         try {
-            var xhr = new XMLHttpRequest
+            var xhr = new XMLHttpRequest()
 
             xhr.open(method, url)
 
             xhr.onreadystatechange = function () {
-                if (this.readyState == 4) {
+                if (this.readyState === 4) {
                     if (this.status === 0) {
 
                         reject(new Error(`fail to call ${url}`))

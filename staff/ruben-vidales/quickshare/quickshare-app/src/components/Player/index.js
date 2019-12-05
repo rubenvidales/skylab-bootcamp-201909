@@ -39,7 +39,6 @@ export default function ({ onChannels, onPlaylist, onLogout }) {
                 <i className="player__controls-play fas fa-play-circle fa-5x"></i>
                 <i className="player__controls-ff fas fa-chevron-circle-right fa-3x"></i>
             </div>
-            <FooterBar onChannels={onChannels} onPlaylist={onPlaylist} onLogout={onLogout}/>
         </div>
     </section>
 }

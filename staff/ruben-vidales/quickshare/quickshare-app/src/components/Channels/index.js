@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import InputRange from 'react-input-range'
 import "react-input-range/lib/css/index.css"
 import './index.sass'
-import FooterBar from '../FooterBar'
 
-export default function ({ onPlayer, onPlaylist, onLogout }) {
+export default function () {
 
     return <section className="channels">
         <div className="channels__container">
@@ -46,7 +45,6 @@ export default function ({ onPlayer, onPlaylist, onLogout }) {
                     <article className="channel">Channel name</article>
                 </a>
             </section>
-            <FooterBar onPlayer={onPlayer} onPlaylist={onPlaylist} onLogout={onLogout} />
         </div>
     </section>
 }

@@ -1,24 +1,40 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import config from './config'
 import './index.sass'
+import { withRouter } from 'react-router-dom'
 
-export default function ({ onChannels, onPlayer, onPlaylist, onLogout }) {
+export default withRouter(function ({ history, onPath, onLogout }) {
+
+    const [view, setViews] = useState([true, true, false, true])
+
+    useEffect(() => {
+        const { pathname } = history.location
+
+        config.forEach(elem => {
+            if(pathname === elem.path) {
+                const visibility = elem.visibility
+                let arr = []
+            
+                for (const vis in visibility) {
+                    arr.push(visibility[vis])
+                }
+                setViews(arr)
+            }
+        })
+    }, [history.location])
+
     return <section className="footer">
-        <span className="footer__option" onClick={event => {
-            event.preventDefault()
-            onPlaylist()
-        }}><i className="fas fa-list-ul fa-2x"></i></span>
-        <span className="footer__option"><i className="fas fa-heart fa-2x"></i></span>
-        <span className="footer__option" onClick={event => {
-            event.preventDefault()
-            onPlayer()
-        }}><i className="far fa-play-circle fa-3x"></i></span>
-        <span className="footer__option" onClick={event => {
-            event.preventDefault()
-            onChannels()
-        }}><i className="fas fa-podcast fa-2x"></i></span>
+        {
+            config.map((elem, index) => {
+                return view[index] && <span className="footer__option" onClick={event => {
+                    event.preventDefault()
+                    onPath(elem.path)
+                }}><i className={elem.icon}></i></span>
+            })
+        }
         <span className="footer__option" onClick={event => {
             event.preventDefault()
             onLogout()
         }}><i className="fas fa-sign-out-alt fa-2x"></i></span>
     </section>
-}
+})

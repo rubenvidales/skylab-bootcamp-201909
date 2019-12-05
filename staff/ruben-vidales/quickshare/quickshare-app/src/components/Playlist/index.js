@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import "react-input-range/lib/css/index.css"
 import './index.sass'
 import FooterBar from '../FooterBar'
 
-export default function ({ onChannels, onPlayer, onPlaylist, onLogout }) {
-
+export default function ({ onRetrievePlaylist, onChannels, onPlayer, onPlaylist, onLogout }) {
+ 
     return <section className="playlist hide">
     <div className="playlist__container">
         <h2 className="playlist__title">Name's playlist</h2>
@@ -140,8 +140,7 @@ export default function ({ onChannels, onPlayer, onPlaylist, onLogout }) {
                 </div>
             </article>
         </section>
-        <FooterBar onChannels={onChannels} onPlayer={onPlayer} onPlaylist={onPlaylist} onLogout={onLogout}/>
-    </div>
+        </div>
 </section>
 
 }

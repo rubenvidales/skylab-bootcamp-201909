@@ -1,14 +1,15 @@
-const { env: { REACT_APP_TEST_DB_URL: TEST_DB_URL } } = process
+const { env: { REACT_APP_TEST_DB_URL: TEST_DB_URL, REACT_APP_TEST_SECRET: TEST_SECRET } } = process
 const createRss = require('.')
 const { random } = Math
 const { errors: { ContentError } } = require('quickshare-util')
-const { database, models: { User, RSSChannel } } = require('quickshare-data')
+const { database, models: { User, RSSChannel }, ObjectId } = require('quickshare-data')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
-describe('logic - register user', () => {
+describe('logic - create rss channel', () => {
     beforeAll(() => database.connect(TEST_DB_URL))
 
-    let userId, name, surname, email, username, password, rssId, title, url, description, imageUrl, language
+    let userId, token, name, surname, email, username, password, rssId, title, url, description, imageUrl, language
 
     beforeEach(async () => {
         name = `name-${random()}`
@@ -21,7 +22,8 @@ describe('logic - register user', () => {
 
         const user = await User.create({ name, surname, email, username, password })
         userId = user.id
-        
+        token = jwt.sign({ sub: userId }, TEST_SECRET)
+
 
         //TODO: Validate urls
         title = `rss-title-${random()}`
@@ -32,17 +34,18 @@ describe('logic - register user', () => {
     })
 
     it('should succeed on correct user and rss channel data', async () => {
-        const rss = await createRss(userId, title, url, description, imageUrl, language)
-        expect(rss).to.exist
+        const rss = await createRss(token, title, url, description, imageUrl, language)
+        debugger
+        expect(rss).toBeDefined()
 
-        expect(rss.id).to.exist
-        expect(rss.id).to.be.a('string')
-        expect(rss.id).to.have.length.greaterThan(0)
-        expect(rss.title).to.equal(title)
-        expect(rss.url).to.equal(url)
-        expect(rss.description).to.equal(description)
-        expect(rss.imageUrl).to.equal(imageUrl)
-        expect(rss.language).to.equal(language)
+        expect(rss.id).toBeDefined()
+        expect(typeof rss.id).toBe('string')
+        expect(rss.id.length).toBeGreaterThan(0)
+        expect(rss.title).toEqual(title)
+        expect(rss.url).toEqual(url)
+        expect(rss.description).toEqual(description)
+        expect(rss.imageUrl).toEqual(imageUrl)
+        expect(rss.language).toEqual(language)
     })
 
     describe('when rss channel already exists', () => {
@@ -53,11 +56,11 @@ describe('logic - register user', () => {
 
         it('should avoid to create another rss register', async () => {
 
-            await createRss(userId, title, url, description, imageUrl, language)
+            await createRss(token, title, url, description, imageUrl, language)
             const result = await RSSChannel.find({ url })
 
-            expect(result).to.exist
-            expect(result.length).to.equal(1)
+            expect(result).toBeDefined()
+            expect(result.length).toEqual(1)
 
         })
     })

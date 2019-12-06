@@ -2,9 +2,9 @@ const call = require('../../utils/call')
 const { validate, errors: { ConflictError } } = require('quickshare-util')
 const API_URL = process.env.REACT_APP_API_URL
 
-module.exports = function ( id, title, url, description, imageUrl, language ) {
-
-    console.log(id, title, url, description, imageUrl, language)
+module.exports = function ( token, title, url, description, imageUrl, language ) {
+    validate.string(token)
+    validate.string.notVoid('token', token)
     validate.string(title)
     validate.string.notVoid('title', title)
     validate.string(url)
@@ -26,7 +26,11 @@ module.exports = function ( id, title, url, description, imageUrl, language ) {
             },
             body: JSON.stringify({ title, url, description, imageUrl, language })
         })
-        if (res.status === 201) return
+        
+        if (res.status === 201) {
+            const rss = JSON.parse(res.body)
+            return rss
+        }
         
         if (res.status === 409) throw new ConflictError(JSON.parse(res.body).message)
 

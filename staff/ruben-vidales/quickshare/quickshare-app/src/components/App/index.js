@@ -7,24 +7,22 @@ import Player from '../Player'
 import Playlist from '../Playlist'
 import Channels from '../Channels'
 import FooterBar from '../FooterBar'
-import { registerUser, authenticateUser } from '../../logic'
+import { registerUser, authenticateUser, createRss, listRss } from '../../logic'
 import { Route, withRouter, Redirect } from 'react-router-dom'
 
 export default withRouter(function ({ history }) {
-
-    const [ viewFooter, setViewFooter ] = useState(undefined)
+    const [channels, setChannels] = useState([])
 
     const { token } = sessionStorage
 
     function handleGoToRegister() { history.push('/register') }
     function handleGoToLogin() { history.push('/login') }
-    function handleGoToPlayer() { history.push('/player') }
-    function handleGoToChannels() { history.push('/channels') }
-    function handleGoBack() { history.push('/') }
 
     function handleGoPath(path) {
         history.push(path)
     }
+
+    function handleGoBack() { history.push('/') }
 
     function handleLogout() {
         sessionStorage.clear()
@@ -53,15 +51,26 @@ export default withRouter(function ({ history }) {
         }
     }
 
-
-    async function handlePlaylist(){
+    async function handleAddRss(title, url, description, imageUrl, language) {
         try {
-            history.push('/playlist')
+            const { token } = sessionStorage
+            await createRss(token, title, url, description, imageUrl, language)
+
         } catch (error) {
-            console.error(error)
+            console.log(error)
         }
     }
 
+    async function handleListRss(){
+        try {
+            const { token } = sessionStorage
+            const channels = await listRss(token)
+            setChannels(channels)
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return <>
         <Route exact path="/" render={() => token ? <Redirect to="/player" /> : <Landing onRegister={handleGoToRegister} onLogin={handleGoToLogin} />} />
@@ -69,9 +78,9 @@ export default withRouter(function ({ history }) {
         <Route path="/login" render={() => token ? <Redirect to="/player" /> : <Login onLogin={handleLogin} onBack={handleGoBack} />} />
         <Route path="/player" render={() => <Player />} />
         <Route path="/playlist" render={() => <Playlist />} />
-        <Route path="/channels" render={() => <Channels />} />
+        <Route path="/channels" render={() => <Channels onAddRss={handleAddRss} onListRss={handleListRss} channels={channels}/>} />
 
-        {token && <FooterBar onPath={handleGoPath} onLogout={handleLogout}/>}
+        {token && <FooterBar onPath={handleGoPath} onLogout={handleLogout} />}
 
     </>
 })

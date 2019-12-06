@@ -2,12 +2,12 @@ const call = require('../../utils/call')
 const { validate, errors: { CredentialsError, NotFoundError } } = require('quickshare-util')
 const API_URL = process.env.REACT_APP_API_URL
 
-module.exports = function (token) {
+module.exports = function (token, userId) {
     validate.string(token)
     validate.string.notVoid('token', token)
 
     return (async () => {
-        const res = await call(`${API_URL}/users/rss`, {
+        const res = await call(`${API_URL}/users/${userId}/player/playlist`, {
             method: 'GET',
             headers: { Authorization: `Bearer ${token}` }
         })

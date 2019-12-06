@@ -7,12 +7,13 @@ module.exports = function (token, userId) {
     validate.string.notVoid('token', token)
 
     return (async () => {
-        const res = await call(`${API_URL}/users/${userId}/player/playlist`, {
+        const res = await call(`${API_URL}/users/player/playlist`, {
             method: 'GET',
             headers: { Authorization: `Bearer ${token}` }
         })
 
         if (res.status === 200) {
+            debugger
             const user = JSON.parse(res.body)
 
             user.lastAccess = new Date(user.lastAccess)

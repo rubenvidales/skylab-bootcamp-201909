@@ -11,6 +11,7 @@ module.exports = function (id) {
         if (!user) throw new NotFoundError(`user with id ${id} not found`)
 
         if(user.player){
+            await Podcast.populate(user, {path:'player.playlist'})
             return user.player.playlist
         }
         else{

@@ -8,7 +8,7 @@ export default function ({ onAddRss }) {
         <h2 className="channels__title">RSS Channels</h2>
         <form className="channels__form" onSubmit={event => {
             event.preventDefault()
-
+            onAddRss()
         }}>
             <input type="text" className="channels__form-input" name="url" placeholder="RSS url" />
             <input className="channels__form-submit-button" type="submit" value="Add channel" />

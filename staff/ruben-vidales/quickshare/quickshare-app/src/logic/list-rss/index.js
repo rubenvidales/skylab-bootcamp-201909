@@ -13,8 +13,11 @@ module.exports = function (token) {
         })
 
         if (res.status === 200) {
-            const rss = JSON.parse(res.body)
-            return rss
+            const user = JSON.parse(res.body)
+
+            user.lastAccess = new Date(user.lastAccess)
+
+            return user
         }
 
         if (res.status === 401) throw new CredentialsError(JSON.parse(res.body).message)

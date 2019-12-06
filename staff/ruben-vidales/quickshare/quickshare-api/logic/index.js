@@ -6,7 +6,7 @@ module.exports = {
     toogleFavPodcast: require('./toogle-fav-podcast'),
     listUserRss: require('./list-user-rss'),
     parseRss: require('./parse-rss'),
-    createRss: require('./create-rss'),
+    createRss: require('./create-channel'),
     retrieveRss: require('./retrieve-rss'),
     listRss: require('./list-rss'),
     createPodcast: require('./create-podcast'),

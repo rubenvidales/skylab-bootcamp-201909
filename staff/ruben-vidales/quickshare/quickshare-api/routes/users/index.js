@@ -159,11 +159,11 @@ router.post('/player/current', tokenVerifier, jsonBodyParser, (req, res) => {
     }
 })
 
-router.get('/:userId/player/playlist', tokenVerifier, jsonBodyParser, (req, res) => {
-    const { params: { userId } } = req
+router.get('/player/playlist', tokenVerifier, jsonBodyParser, (req, res) => {
+    const { id } = req
 
     try {
-        retrievePlaylist(userId)
+        retrievePlaylist(id)
             .then(playlist => res.json(playlist))
             .catch(error => {
                 const { message } = error

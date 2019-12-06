@@ -12,7 +12,14 @@ module.exports = function (id) {
 
         if(user.player){
             await Podcast.populate(user, {path:'player.playlist'})
-            return user.player.playlist
+            const { player:{playlist} } = user.toObject()
+
+            playlist.forEach(elem => {
+                elem.id = elem._id.toString()
+                delete elem._id
+                delete elem.__v
+            })
+            return playlist
         }
         else{
             return []

@@ -19,8 +19,14 @@ module.exports = function (userId, podcastId) {
 
         await user.save()
 
-        Podcast.populate(user, {path:'player.playlist'})
+        await Podcast.populate(user, {path:'player.playlist'})
+        const { player:{playlist} } = user.toObject()
 
-        return user.player.playlist
+        playlist.forEach(elem => {
+            elem.id = elem._id.toString()
+            delete elem._id
+            delete elem.__v
+        })
+        return playlist
     })()
 }

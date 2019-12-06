@@ -37,7 +37,7 @@ module.exports = function (userId, podcastId, position, active) {
 
         await user.save()
 
-        Podcast.populate(user,{path:'player.currentEpisode.podcastId'})
+        await Podcast.populate(user,{path:'player.currentEpisode.podcastId'})
 
         return user.player
     })()

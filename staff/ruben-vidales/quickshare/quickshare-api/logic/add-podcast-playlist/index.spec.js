@@ -66,7 +66,7 @@ describe('logic - add podcast to playlist', () => {
         expect(result).to.exist
         expect(result).to.be.an('array')
         expect(result.length).to.equal(1)
-        expect(result).to.contain(randomPodcast)
+        expect(result[0].id).to.equal(randomPodcast)
     })
 
     it('should succeed on correct user and podcast data and the podcast is not in the playlist: playlist with other podcasts', async () => {
@@ -78,8 +78,10 @@ describe('logic - add podcast to playlist', () => {
         expect(result).to.exist
         expect(result).to.be.an('array')
         expect(result.length).to.equal(2)
-        expect(result).to.contain(podcastIds[0])
-        expect(result).to.contain(podcastIds[1])
+
+        result.forEach(elem => {
+            expect(podcastIds).to.contain(elem.id)
+        })
     })
 
     it('should succeed on correct user and podcast data and the podcast is in the playlist', async () => {
@@ -91,7 +93,9 @@ describe('logic - add podcast to playlist', () => {
         expect(result).to.exist
         expect(result).to.be.an('array')
         expect(result.length).to.equal(1)
-        expect(result).to.contain(podcastIds[1])
+        result.forEach(elem => {
+            expect(podcastIds).to.contain(elem.id)
+        })
     })
 
     after(() => Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()]).then(database.disconnect))

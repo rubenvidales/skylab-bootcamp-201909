@@ -2,20 +2,13 @@ const call = require('../../utils/call')
 const { validate, errors: { ConflictError } } = require('quickshare-util')
 const API_URL = process.env.REACT_APP_API_URL
 
-module.exports = function ( token, title, url, description, imageUrl, language ) {
+module.exports = function ( token, url ) {
     validate.string(token)
     validate.string.notVoid('token', token)
-    validate.string(title)
-    validate.string.notVoid('title', title)
+
     validate.string(url)
     validate.url(url)
     validate.string.notVoid('url', url)
-    validate.string(description)
-    validate.string.notVoid('description', description)
-    validate.string(imageUrl)
-    validate.string.notVoid('imageUrl', imageUrl)
-    validate.string(language)
-    validate.string.notVoid('language', language)
 
     return (async () => {
         const res = await call(`${API_URL}/rss`, {
@@ -24,7 +17,7 @@ module.exports = function ( token, title, url, description, imageUrl, language )
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ title, url, description, imageUrl, language })
+            body: JSON.stringify({ url })
         })
         
         if (res.status === 201) {

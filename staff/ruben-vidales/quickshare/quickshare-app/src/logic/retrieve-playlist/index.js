@@ -13,12 +13,9 @@ module.exports = function (token, userId) {
         })
 
         if (res.status === 200) {
-            debugger
-            const user = JSON.parse(res.body)
+            const playlist = JSON.parse(res.body)
 
-            user.lastAccess = new Date(user.lastAccess)
-
-            return user
+            return playlist
         }
 
         if (res.status === 401) throw new CredentialsError(JSON.parse(res.body).message)

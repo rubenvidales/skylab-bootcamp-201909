@@ -1,7 +1,7 @@
 const { env: { REACT_APP_TEST_DB_URL: TEST_DB_URL, REACT_APP_TEST_SECRET: TEST_SECRET } } = process
 const retrievePlaylist = require('.')
 const { random } = Math
-const { errors: { CredentialsError, NotFoundError } } = require('quickshare-util')
+const { errors: { CredentialsError, NotFoundError, ContentError } } = require('quickshare-util')
 const { database, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
 const jwt = require('jsonwebtoken')
 require('../../helpers/jest-matchers')
@@ -77,17 +77,26 @@ describe('logic - retrieve playlist', () => {
         expect(playlist).toHaveLength(10)
         
         playlist.forEach(podcast => {
-            expect(podcast).to.exist
-            expect(podcast._id.toString()).be.oneOf(podcastIds)
+            expect(podcast).toBeDefined()
+            debugger
+            expect(podcast.id).toBeOneOf(podcastIds)
         })
     })
 
     it('should fail on incorrect user id', async () => {
         id = 'wrong'
-        expect(()=>{
-            retrievePlaylist(id)
-        }).to.throw(ContentError, `${id} is not a valid id`)
+        try {
+            await retrievePlaylist(id)(id)
+    
+            throw Error('should not reach this point')
+        } catch (error) {
+            expect(error).toBeDefined()
+            expect(error).toBeInstanceOf(TypeError)
+        }
     })
+
+
+
 
     afterAll(() => Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()]).then(database.disconnect))
 })

@@ -49,10 +49,10 @@ router.get('/',tokenVerifier, jsonBodyParser, (req, res) => {
 })
 
 router.post('/', tokenVerifier, jsonBodyParser, (req, res) => {
-    const { id, body: { title, url, description, imageUrl, language } } = req
+    const { id, body: { url } } = req
 
     try {
-        createRss( id, title, url, description, imageUrl, language )
+        createRss( id, url )
             .then(rssId => res.status(201).json(rssId))
             .catch(error => {
                 const { message } = error

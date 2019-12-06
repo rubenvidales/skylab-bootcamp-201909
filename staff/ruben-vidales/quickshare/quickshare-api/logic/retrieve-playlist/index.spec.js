@@ -76,7 +76,7 @@ describe('logic - retrieve playlist', () => {
         
         playlist.forEach(podcast => {
             expect(podcast).to.exist
-            expect(podcast._id.toString()).be.oneOf(podcastIds)
+            expect(podcast.id).be.oneOf(podcastIds)
         })
     })
 

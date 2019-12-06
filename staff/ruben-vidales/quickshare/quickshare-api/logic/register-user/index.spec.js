@@ -10,7 +10,6 @@ const fs = require('fs')
 const util = require('util')
 let Parser = require('rss-parser')
 let parser = new Parser()
-
 const readFile = util.promisify(fs.readFile)
 
 describe('logic - register user', () => {

@@ -7,13 +7,12 @@ import Player from '../Player'
 import Playlist from '../Playlist'
 import Channels from '../Channels'
 import FooterBar from '../FooterBar'
-import { registerUser, authenticateUser, createRss, listRss } from '../../logic'
+import { registerUser, authenticateUser, retrieveUser, createRss, listRss } from '../../logic'
 import { Route, withRouter, Redirect } from 'react-router-dom'
 
 export default withRouter(function ({ history }) {
+    const [name, setName] = useState('')
     const [channels, setChannels] = useState([])
-
-    const { token } = sessionStorage
 
     function handleGoToRegister() { history.push('/register') }
     function handleGoToLogin() { history.push('/login') }
@@ -27,6 +26,26 @@ export default withRouter(function ({ history }) {
     function handleLogout() {
         sessionStorage.clear()
         handleGoBack()
+    }
+
+    useEffect(() => {
+        const { token } = sessionStorage;
+
+        (async () => {
+            if (token) {
+                const { name } = await retrieveUser(token)
+
+                setName(name)
+
+                await retrieveChannels(token)
+            }
+        })()
+    }, [sessionStorage.token, channels])
+
+    async function retrieveChannels(token) {
+        const channels = await listRss(token)
+
+        setChannels(channels)
     }
 
     async function handleRegister(name, surname, email, username, password) {
@@ -51,11 +70,10 @@ export default withRouter(function ({ history }) {
         }
     }
 
-    async function handleAddRss(title, url, description, imageUrl, language) {
+    async function handleAddRss(url) {
         try {
             const { token } = sessionStorage
-            await createRss(token, title, url, description, imageUrl, language)
-
+            await createRss(token, url)
         } catch (error) {
             console.log(error)
         }
@@ -71,7 +89,7 @@ export default withRouter(function ({ history }) {
             console.log(error)
         }
     }
-
+    const { token } = sessionStorage
     return <>
         <Route exact path="/" render={() => token ? <Redirect to="/player" /> : <Landing onRegister={handleGoToRegister} onLogin={handleGoToLogin} />} />
         <Route path="/register" render={() => token ? <Redirect to="/player" /> : <Register onRegister={handleRegister} onBack={handleGoBack} />} />
@@ -81,6 +99,5 @@ export default withRouter(function ({ history }) {
         <Route path="/channels" render={() => <Channels onAddRss={handleAddRss} onListRss={handleListRss} channels={channels}/>} />
 
         {token && <FooterBar onPath={handleGoPath} onLogout={handleLogout} />}
-
     </>
 })

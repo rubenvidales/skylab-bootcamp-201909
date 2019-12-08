@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from 'react'
+import React, { useState }  from 'react'
 import "react-input-range/lib/css/index.css"
 import './index.sass'
 

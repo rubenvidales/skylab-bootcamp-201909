@@ -3,6 +3,7 @@ const { validate, errors: { CredentialsError } } = require('quickshare-util')
 const API_URL = process.env.REACT_APP_API_URL
 
 module.exports = function (username, password) {
+debugger
     validate.string(username)
     validate.string.notVoid('username', username)
     validate.string(password)

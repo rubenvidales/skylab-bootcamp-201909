@@ -50,10 +50,10 @@
             opacity: 0.7
             -webkit-transition: .2s
             transition: opacity .2s
+            margin-bottom: 2em
 
             &:hover               
                 opacity: 1
-
 
             &::-webkit-slider-thumb 
                 -webkit-appearance: none
@@ -70,6 +70,17 @@
                 border-radius: 50%
                 background: #1C5D99
                 cursor: pointer
+
+        &-current
+            font-size: 1.6em
+            font-weight: bold
+            margin: 1em
+            color: #365c80
+        &-duration
+            font-size: 1.6em
+            font-weight: bold
+            margin: 1em
+            color: #639fab
 
     &__controls
         display: flex

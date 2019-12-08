@@ -2,10 +2,11 @@ import React from 'react'
 import './index.sass'
 
 export default function ({channel}) {
-    console.log(channel)
+    const {title, url, description} = channel
+    //console.log(title, url, description)
     return <section class="rss">
     <div class="rss__container">
-        <h2 class="rss__title">RSS Channel Title</h2>
+        <h2 class="rss__title">{title}</h2>
         <h3 class="rss__url">http://www.url.com</h3>
         <p class="rss__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. At, vitae in odio
             ad distinctio unde nihil
@@ -14,8 +15,8 @@ export default function ({channel}) {
             ad distinctio unde nihil
             ipsa error quidem harum vero! Possimus ab porro omnis aut eum molestias animi illum.</p>
         <section class="rss__list">
-            <a class="episodes__list-link">
-                <article class="episode">
+            <ul class="episodes__list">
+                <li class="episode">
                     <div class="episode__left-block">
                         <h4 class="episode__title">Episode title</h4>
                         <p class="episode__date">04/12/2019</p>
@@ -25,8 +26,8 @@ export default function ({channel}) {
                             <i class="fas fa-plus"></i>
                         </span>
                     </div>
-                </article>
-                <article class="episode">
+                </li>
+                <li class="episode">
                     <div class="episode__left-block">
                         <h4 class="episode__title">Episode title</h4>
                         <p class="episode__date">04/12/2019</p>
@@ -36,8 +37,8 @@ export default function ({channel}) {
                             <i class="fas fa-times"></i>
                         </span>
                     </div>
-                </article>
-                <article class="episode">
+                </li>
+                <li class="episode">
                     <div class="episode__left-block">
                         <h4 class="episode__title">Episode title</h4>
                         <p class="episode__date">04/12/2019</p>
@@ -47,8 +48,8 @@ export default function ({channel}) {
                             <i class="fas fa-plus"></i>
                         </span>
                     </div>
-                </article>
-                <article class="episode">
+                </li>
+                <li class="episode">
                     <div class="episode__left-block">
                         <h4 class="episode__title">Episode title</h4>
                         <p class="episode__date">04/12/2019</p>
@@ -58,8 +59,8 @@ export default function ({channel}) {
                             <i class="fas fa-plus"></i>
                         </span>
                     </div>
-                </article>
-                <article class="episode">
+                </li>
+                <li class="episode">
                     <div class="episode__left-block">
                         <h4 class="episode__title">Episode title</h4>
                         <p class="episode__date">04/12/2019</p>
@@ -69,8 +70,8 @@ export default function ({channel}) {
                             <i class="fas fa-plus"></i>
                         </span>
                     </div>
-                </article>
-                <article class="episode">
+                </li>
+                <li class="episode">
                     <div class="episode__left-block">
                         <h4 class="episode__title">Episode title</h4>
                         <p class="episode__date">04/12/2019</p>
@@ -80,8 +81,8 @@ export default function ({channel}) {
                             <i class="fas fa-plus"></i>
                         </span>
                     </div>
-                </article>
-                <article class="episode">
+                </li>
+                <li class="episode">
                     <div class="episode__left-block">
                         <h4 class="episode__title">Episode title</h4>
                         <p class="episode__date">04/12/2019</p>
@@ -91,8 +92,8 @@ export default function ({channel}) {
                             <i class="fas fa-plus"></i>
                         </span>
                     </div>
-                </article>
-            </a>
+                </li>
+            </ul>
         </section>
         <div class="footer">
             <span class="footer__option"><i class="fas fa-list-ul fa-2x"></i></span>

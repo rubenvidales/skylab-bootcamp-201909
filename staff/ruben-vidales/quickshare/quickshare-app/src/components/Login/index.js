@@ -1,7 +1,8 @@
 import React from 'react'
 import './index.sass'
+import Feedback from '../Feedback'
 
-export default function ({ onLogin, onBack }) {
+export default function ({ error, onClose, onLogin, onBack }) {
     return <section className="login">
     <div className="login__container">
         <img className="login__logo" src="./images/quickshare_medium.png" alt="quickshare logo"/>
@@ -20,6 +21,7 @@ export default function ({ onLogin, onBack }) {
                 }}>Cancel</button>
         </form>
     </div>
+    {error && <Feedback message={error} onClose={onClose} />}
     </section>
 }
 

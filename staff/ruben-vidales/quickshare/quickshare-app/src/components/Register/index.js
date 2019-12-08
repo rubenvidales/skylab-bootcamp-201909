@@ -1,7 +1,8 @@
 import React from 'react'
 import './index.sass'
+import Feedback from '../Feedback'
 
-export default function ({ onRegister, onBack }) {
+export default function ({ error, onClose, onRegister, onBack }) {
     return <section className="register">
         <div className="register__container">
             <img className="register__logo" src="./images/quickshare_medium.png" alt="quickshare logo" />
@@ -29,5 +30,6 @@ export default function ({ onRegister, onBack }) {
                 }}>Cancel</button>
             </form>
         </div>
+        {error && <Feedback message={error} onClose={onClose} />}
     </section>
 }

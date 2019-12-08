@@ -1,6 +1,6 @@
-import React, { useState, Component, useRef } from 'react';
+import React, { Component } from 'react'
 import './index.sass'
-import { Route, withRouter, Redirect, useParams } from 'react-router-dom'
+const { converter } = require('quickshare-util')
 
 class Player extends Component {
     //export default withRouter(function ({ history }) {
@@ -10,6 +10,8 @@ class Player extends Component {
 
         this.state = {
             position: 0,
+            positionString: '00:00:00',
+            durationString: '00:00:00',
             audioFile: "http://www.ivoox.com/4x03-de-organizarse-o-intentarlo_mf_44029972_feed_1.mp3",
             is_playing: false,
             changing_position: false
@@ -34,6 +36,7 @@ class Player extends Component {
             if (player.paused) {
                 if (this.state.is_playing) {
                     player.play()
+                    this.setState({durationString: converter.secondsToString(parseInt(player.duration,10))})
                 }
             }
             else if (!this.state.is_playing) {
@@ -44,15 +47,14 @@ class Player extends Component {
                 this.setState({
                     changing_position: !this.state.changing_position
                 })
-                player.currentTime = player.duration * this.state.position / 10000
+                player.currentTime = parseInt(player.duration * this.state.position / 10000, 10)
             }
     
             if( this.state.is_playing ){
-                this.state.position = player.currentTime * 10000 / player.duration
-            }
+                this.state.position = parseInt(player.currentTime * 10000 / player.duration, 10)
+                this.state.positionString = converter.secondsToString(parseInt(player.currentTime,10))
+            }  
         }
-
-
 
         const playerClsName = {
             "player__controls-play": true,
@@ -81,6 +83,8 @@ class Player extends Component {
                 <div className="player__slider-block">
                     <input type="range" min="0" max="10000" value={this.state.position} className="player__slider-bar" 
                     id="myRange" onChange={this.handleChange}/>
+                    <span className="player__slider-current">{this.state.positionString}</span>
+                    <span className="player__slider-duration">{this.state.durationString}</span>
                 </div>
 
                 <div className="player__controls">

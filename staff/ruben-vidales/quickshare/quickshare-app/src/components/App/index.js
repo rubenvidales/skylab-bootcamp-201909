@@ -9,9 +9,10 @@ import Channels from '../Channels'
 import RssDetail from '../RssDetail'
 import FooterBar from '../FooterBar'
 import { registerUser, authenticateUser, retrieveUser, createRss, listRss, retrieveRss, retrievePlaylist } from '../../logic'
-import { Route, withRouter, Redirect, useParams } from 'react-router-dom'
+import { Route, withRouter, Redirect } from 'react-router-dom'
 
 export default withRouter(function ({ history }) {
+    const [error, setError] = useState()
     const [name, setName] = useState('')
     const [channels, setChannels] = useState([])
     const [channel, setChannel] = useState({})
@@ -46,7 +47,7 @@ export default withRouter(function ({ history }) {
         })()
     }, [sessionStorage.token, channels])
 
-    async function retrieveUserPlaylist(token){
+    async function retrieveUserPlaylist(token) {
         const playlist = await retrievePlaylist(token)
         setPlaylist(playlist)
     }
@@ -62,7 +63,8 @@ export default withRouter(function ({ history }) {
 
             history.push('/login')
         } catch (error) {
-            console.error(error)
+            const { message } = error
+            setError(message)
         }
     }
 
@@ -74,7 +76,8 @@ export default withRouter(function ({ history }) {
 
             history.push('/player')
         } catch (error) {
-            console.error(error)
+            const { message } = error
+            setError(message)
         }
     }
 
@@ -83,7 +86,8 @@ export default withRouter(function ({ history }) {
             const { token } = sessionStorage
             await createRss(token, url)
         } catch (error) {
-            console.log(error)
+            const { message } = error
+            setError(message)
         }
     }
 
@@ -94,31 +98,37 @@ export default withRouter(function ({ history }) {
             setChannels(channels)
 
         } catch (error) {
-            console.log(error)
+            const { message } = error
+            setError(message)
         }
     }
 
     async function handleRssDetail(id) {
         try {
             const { token } = sessionStorage
-            const channel = await retrieveRss(token,id)
+            const channel = await retrieveRss(token, id)
             setChannel(channel)
             history.push(`/rssDetail/${id}`)
         } catch (error) {
-            console.log(error)
+            const { message } = error
+            setError(message)
         }
+    }
+
+    function handleOnClose() {
+        setError(undefined)
     }
 
     const { token } = sessionStorage
     return <>
         <Route exact path="/" render={() => token ? <Redirect to="/player" /> : <Landing onRegister={handleGoToRegister} onLogin={handleGoToLogin} />} />
-        <Route path="/register" render={() => token ? <Redirect to="/player" /> : <Register onRegister={handleRegister} onBack={handleGoBack} />} />
-        <Route path="/login" render={() => token ? <Redirect to="/player" /> : <Login onLogin={handleLogin} onBack={handleGoBack} />} />
+        <Route path="/register" render={() => token ? <Redirect to="/player" /> : <Register error={error} onClose={handleOnClose} onRegister={handleRegister} onBack={handleGoBack} />} />
+        <Route path="/login" render={() => token ? <Redirect to="/player" /> : <Login error={error} onClose={handleOnClose} onLogin={handleLogin} onBack={handleGoBack} />} />
         <Route path="/player" render={() => <Player />} />
         <Route path="/playlist" render={() => <Playlist name={name} playlist={playlist} />} />
         <Route path="/channels" render={() => <Channels onAddRss={handleAddRss} onListRss={handleListRss} channels={channels} onChannelDetail={handleRssDetail} />} />
-        {/* <Route path="/rssDetail" render={() => <RssDetail channel={channel} />} /> */}
-        <Route path='/rssDetail/:id' render={ props => token ? <RssDetail rssId={props.match.params.id} channel={channel}/> : <Redirect to='/' />} />
+        <Route path="/rssDetail" render={() => <RssDetail channel={channel} />} />
+        {/* <Route path='/rssDetail/:id' render={props => token ? <RssDetail rssId={props.match.params.id} channel={channel} /> : <Redirect to='/' />} /> */}
 
         {token && <FooterBar onPath={handleGoPath} onLogout={handleLogout} />}
     </>

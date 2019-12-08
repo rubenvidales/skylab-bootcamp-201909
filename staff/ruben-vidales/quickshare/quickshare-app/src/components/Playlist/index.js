@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import './index.sass'
 
 export default function ({ name, playlist }) {
-
-    debugger
-
     return <section className="playlist">
         <div className="playlist__container">
             <h2 className="playlist__title">{name}'s playlist</h2>

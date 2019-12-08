@@ -18,7 +18,7 @@ module.exports = function (url) {
         let feed = {
             title: rawFeed.title,
             url: rawFeed.feedUrl,
-            description: JSON.parse(rawFeed.description.replace(/&quot;/g,'"')),
+            description: rawFeed.description,
             imageUrl: rawFeed.itunes.image,
             language: rawFeed.language,
             items: []

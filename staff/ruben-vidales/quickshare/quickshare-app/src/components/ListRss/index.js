@@ -1,12 +1,14 @@
 import React from 'react'
-import "react-input-range/lib/css/index.css"
 import './index.sass'
+import Rss from '../Rss'
 
-export default function ({ channels }) {
+export default function ({ channels, rssId, onChannelDetail }) {
     return <>
         <h3 className="channels__title">Added Channels</h3>
-        <section className="channels__list">
-            {channels.map(channel => <a className=" channels__list-link"><article className="channel">{channel.title}</article></a>)}
-        </section>
+        <ul className="channels__list">
+            {channels.map(channel => <li key={channel.id} className="channels__list-link">
+                <Rss channel={channel} rssId={rssId} onChannelDetail={onChannelDetail} />
+            </li>)}
+        </ul>
     </>
 }

@@ -6,13 +6,16 @@ import Login from '../Login'
 import Player from '../Player'
 import Playlist from '../Playlist'
 import Channels from '../Channels'
+import RssDetail from '../RssDetail'
 import FooterBar from '../FooterBar'
-import { registerUser, authenticateUser, retrieveUser, createRss, listRss } from '../../logic'
-import { Route, withRouter, Redirect } from 'react-router-dom'
+import { registerUser, authenticateUser, retrieveUser, createRss, listRss, retrieveRss, retrievePlaylist } from '../../logic'
+import { Route, withRouter, Redirect, useParams } from 'react-router-dom'
 
 export default withRouter(function ({ history }) {
     const [name, setName] = useState('')
     const [channels, setChannels] = useState([])
+    const [channel, setChannel] = useState({})
+    const [playlist, setPlaylist] = useState([])
 
     function handleGoToRegister() { history.push('/register') }
     function handleGoToLogin() { history.push('/login') }
@@ -38,13 +41,18 @@ export default withRouter(function ({ history }) {
                 setName(name)
 
                 await retrieveChannels(token)
+                await retrieveUserPlaylist(token)
             }
         })()
     }, [sessionStorage.token, channels])
 
+    async function retrieveUserPlaylist(token){
+        const playlist = await retrievePlaylist(token)
+        setPlaylist(playlist)
+    }
+
     async function retrieveChannels(token) {
         const channels = await listRss(token)
-
         setChannels(channels)
     }
 
@@ -79,7 +87,7 @@ export default withRouter(function ({ history }) {
         }
     }
 
-    async function handleListRss(){
+    async function handleListRss() {
         try {
             const { token } = sessionStorage
             const channels = await listRss(token)
@@ -89,14 +97,28 @@ export default withRouter(function ({ history }) {
             console.log(error)
         }
     }
+
+    async function handleRssDetail(id) {
+        try {
+            const { token } = sessionStorage
+            const channel = await retrieveRss(token,id)
+            setChannel(channel)
+            history.push(`/rssDetail/${id}`)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const { token } = sessionStorage
     return <>
         <Route exact path="/" render={() => token ? <Redirect to="/player" /> : <Landing onRegister={handleGoToRegister} onLogin={handleGoToLogin} />} />
         <Route path="/register" render={() => token ? <Redirect to="/player" /> : <Register onRegister={handleRegister} onBack={handleGoBack} />} />
         <Route path="/login" render={() => token ? <Redirect to="/player" /> : <Login onLogin={handleLogin} onBack={handleGoBack} />} />
         <Route path="/player" render={() => <Player />} />
-        <Route path="/playlist" render={() => <Playlist />} />
-        <Route path="/channels" render={() => <Channels onAddRss={handleAddRss} onListRss={handleListRss} channels={channels}/>} />
+        <Route path="/playlist" render={() => <Playlist name={name} playlist={playlist} />} />
+        <Route path="/channels" render={() => <Channels onAddRss={handleAddRss} onListRss={handleListRss} channels={channels} onChannelDetail={handleRssDetail} />} />
+        {/* <Route path="/rssDetail" render={() => <RssDetail channel={channel} />} /> */}
+        <Route path='/rssDetail/:id' render={ props => token ? <RssDetail rssId={props.match.params.id} channel={channel}/> : <Redirect to='/' />} />
 
         {token && <FooterBar onPath={handleGoPath} onLogout={handleLogout} />}
     </>

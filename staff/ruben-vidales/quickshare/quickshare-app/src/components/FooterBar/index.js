@@ -26,7 +26,7 @@ export default withRouter(function ({ history, onPath, onLogout }) {
     return <section className="footer">
         {
             config.map((elem, index) => {
-                return view[index] && <span className="footer__option" onClick={event => {
+                return view[index] && <span key={elem.name} className="footer__option" onClick={event => {
                     event.preventDefault()
                     onPath(elem.path)
                 }}><i className={elem.icon}></i></span>

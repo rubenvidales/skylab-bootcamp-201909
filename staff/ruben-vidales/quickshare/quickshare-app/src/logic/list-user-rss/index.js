@@ -12,6 +12,8 @@ module.exports = function (token) {
             headers: { Authorization: `Bearer ${token}` }
         })
 
+debugger
+
         if (res.status === 200) {
             const rss = JSON.parse(res.body)
             return rss

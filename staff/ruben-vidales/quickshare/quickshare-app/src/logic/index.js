@@ -4,5 +4,6 @@ module.exports = {
     retrieveUser: require('./retrieve-user'),
     createRss: require('./create-rss'),
     listRss: require('./list-user-rss'),
-    retrieveRss: require('./retrieve-rss')
+    retrieveRss: require('./retrieve-rss'),
+    retrievePlaylist: require('./retrieve-playlist')
 }

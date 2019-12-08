@@ -4,12 +4,12 @@ import './index.sass'
 import AddRss from '../AddRss'
 import ListRss from '../ListRss'
 
-export default function ({onAddRss, channels}) {
+export default function ({onAddRss, channels, rssId, onChannelDetail}) {
 
     return <section className="channels">
         <div className="channels__container">
             <AddRss onAddRss={onAddRss} />
-            <ListRss channels={channels}/>
+            <ListRss channels={channels} rssId={rssId} onChannelDetail={onChannelDetail}/>
         </div>
     </section>
 }

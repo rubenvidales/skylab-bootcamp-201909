@@ -451,6 +451,7 @@ h1 {
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
+  padding: 0;
 }
 
 .pl-episode {
@@ -470,13 +471,13 @@ h1 {
 .pl-episode__right-block-buttons {
   display: block;
   height: 100%;
-  line-height: 2;
+  line-height: 3;
   color: #365c80;
   font-size: 1.2em;
 }
 .pl-episode__right-block-buttons--delete {
   color: #ad4545;
-  line-height: 2;
+  line-height: 3;
 }
 .pl-episode__button {
   margin: 0.2em;
@@ -485,7 +486,93 @@ h1 {
   padding: 0;
   margin: 0;
 }
+.pl-episode__channel-title {
+  padding: 0;
+  margin: 0;
+}
 .pl-episode__date {
+  padding: 0;
+  margin: 0;
+}
+
+.footer {
+  background-color: #365c80;
+  color: #ffffff;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 10%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer__option {
+  width: 20%;
+}
+
+.favs {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: #dddddd;
+}
+.favs__container {
+  width: 90%;
+  margin-top: 5%;
+}
+.favs__title {
+  color: #365c80;
+}
+.favs__description {
+  text-align: justify;
+}
+.favs__list {
+  height: 75vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.fav-episode {
+  padding: 0.5em;
+  margin: 0.3em;
+  border: 0.1em solid #8a8a8a;
+  border-radius: 0.2em;
+  display: flex;
+}
+.fav-episode__left-block {
+  width: 70%;
+}
+.fav-episode__right-block {
+  width: 30%;
+  text-align: center;
+}
+.fav-episode__right-block-buttons {
+  display: block;
+  height: 100%;
+  line-height: 3;
+  color: #365c80;
+  font-size: 1.6em;
+}
+.fav-episode__right-block-buttons--delete {
+  color: #ad4545;
+  line-height: 2;
+}
+.fav-episode__button {
+  margin: 0.2em;
+}
+.fav-episode__title {
+  padding: 0;
+  margin: 0;
+}
+.fav-episode__channel-title {
+  padding: 0;
+  margin: 0;
+}
+.fav-episode__date {
   padding: 0;
   margin: 0;
 }
@@ -515,7 +602,8 @@ h1 {
 .login,
 .player,
 .channels,
-.rss {
+.rss,
+.favs {
   border: 1px solid black;
 }
 

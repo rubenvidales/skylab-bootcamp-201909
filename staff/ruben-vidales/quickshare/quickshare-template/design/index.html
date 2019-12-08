@@ -138,7 +138,7 @@
                 </div>
             </div>
         </section>
-        <section class="rss">
+        <section class="rss hide">
             <div class="rss__container">
                 <h2 class="rss__title">RSS Channel Title</h2>
                 <h3 class="rss__url">http://www.url.com</h3>
@@ -238,13 +238,14 @@
                 </div>
             </div>
         </section>
-        <section class="playlist hide">
+        <section class="playlist">
             <div class="playlist__container">
                 <h2 class="playlist__title">Name's playlist</h2>
-                <section class="playlist__list">
-                    <article class="pl-episode">
+                <ul class="playlist__list">
+                    <li class="pl-episode">
                         <div class="pl-episode__left-block">
-                            <h4 class="pl-episode__title">Episode title</h4>
+                            <h3 class="pl-episode__title">Episode title</h3>
+                            <h4 class="pl-episode__channel-title">Episode title</h4>
                             <p class="pl-episode__date">04/12/2019</p>
                         </div>
                         <div class="pl-episode__right-block">
@@ -254,10 +255,11 @@
                                 <i class="pl-episode__button far fa-trash-alt"></i>
                             </span>
                         </div>
-                    </article>
-                    <article class="pl-episode">
+                    </li>
+                    <li class="pl-episode">
                         <div class="pl-episode__left-block">
-                            <h4 class="pl-episode__title">Episode title</h4>
+                            <h3 class="pl-episode__title">Episode title</h3>
+                            <h4 class="pl-episode__channel-title">Episode title</h4>
                             <p class="pl-episode__date">04/12/2019</p>
                         </div>
                         <div class="pl-episode__right-block">
@@ -267,10 +269,11 @@
                                 <i class="pl-episode__button far fa-trash-alt"></i>
                             </span>
                         </div>
-                    </article>
-                    <article class="pl-episode">
+                    </li>
+                    <li class="pl-episode">
                         <div class="pl-episode__left-block">
-                            <h4 class="pl-episode__title">Episode title</h4>
+                            <h3 class="pl-episode__title">Episode title</h3>
+                            <h4 class="pl-episode__channel-title">Episode title</h4>
                             <p class="pl-episode__date">04/12/2019</p>
                         </div>
                         <div class="pl-episode__right-block">
@@ -280,10 +283,11 @@
                                 <i class="pl-episode__button far fa-trash-alt"></i>
                             </span>
                         </div>
-                    </article>
-                    <article class="pl-episode">
+                    </li>
+                    <li class="pl-episode">
                         <div class="pl-episode__left-block">
-                            <h4 class="pl-episode__title">Episode title</h4>
+                            <h3 class="pl-episode__title">Episode title</h3>
+                            <h4 class="pl-episode__channel-title">Episode title</h4>
                             <p class="pl-episode__date">04/12/2019</p>
                         </div>
                         <div class="pl-episode__right-block">
@@ -293,10 +297,11 @@
                                 <i class="pl-episode__button far fa-trash-alt"></i>
                             </span>
                         </div>
-                    </article>
-                    <article class="pl-episode">
+                    </li>
+                    <li class="pl-episode">
                         <div class="pl-episode__left-block">
-                            <h4 class="pl-episode__title">Episode title</h4>
+                            <h3 class="pl-episode__title">Episode title</h3>
+                            <h4 class="pl-episode__channel-title">Episode title</h4>
                             <p class="pl-episode__date">04/12/2019</p>
                         </div>
                         <div class="pl-episode__right-block">
@@ -306,73 +311,58 @@
                                 <i class="pl-episode__button far fa-trash-alt"></i>
                             </span>
                         </div>
-                    </article>
-                    <article class="pl-episode">
-                        <div class="pl-episode__left-block">
-                            <h4 class="pl-episode__title">Episode title</h4>
-                            <p class="pl-episode__date">04/12/2019</p>
+                    </li>
+                </ul>
+                <div class="footer">
+                    <span class="footer__option"><i class="fas fa-list-ul fa-2x"></i></span>
+                    <span class="footer__option"><i class="fas fa-heart fa-2x"></i></span>
+                    <span class="footer__option"><i class="fas fa-podcast fa-2x"></i></span>
+                    <span class="footer__option"><i class="far fa-edit fa-2x"></i></span>
+                    <span class="footer__option"><i class="fas fa-sign-out-alt fa-2x"></i></span>
+                </div>
+            </div>
+        </section>
+        <section class="favs hide">
+            <div class="favs__container">
+                <h2 class="favs__title">Name's favs</h2>
+                <ul class="favs__list">
+                    <li class="fav-episode">
+                        <div class="fav-episode__left-block">
+                            <h3 class="fav-episode__title">Episode title</h3>
+                            <h4 class="fav-episode__channel-title">Channel title</h4>
+                            <p class="fav-episode__date">04/12/2019</p>
                         </div>
-                        <div class="pl-episode__right-block">
-                            <span class="pl-episode__right-block-buttons">
-                                <i class="pl-episode__button fas fa-chevron-up"></i>
-                                <i class="pl-episode__button fas fa-chevron-down"></i>
-                                <i class="pl-episode__button far fa-trash-alt"></i>
+                        <div class="fav-episode__right-block">
+                            <span class="fav-episode__right-block-buttons">
+                                <i class="fav-episode__button fas fa-heart"></i>
                             </span>
                         </div>
-                    </article>
-                    <article class="pl-episode">
-                        <div class="pl-episode__left-block">
-                            <h4 class="pl-episode__title">Episode title</h4>
-                            <p class="pl-episode__date">04/12/2019</p>
+                    </li>
+                    <li class="fav-episode">
+                        <div class="fav-episode__left-block">
+                            <h3 class="fav-episode__title">Episode title</h3>
+                            <h4 class="fav-episode__channel-title">Channel title</h4>
+                            <p class="fav-episode__date">04/12/2019</p>
                         </div>
-                        <div class="pl-episode__right-block">
-                            <span class="pl-episode__right-block-buttons">
-                                <i class="pl-episode__button fas fa-chevron-up"></i>
-                                <i class="pl-episode__button fas fa-chevron-down"></i>
-                                <i class="pl-episode__button far fa-trash-alt"></i>
+                        <div class="fav-episode__right-block">
+                            <span class="fav-episode__right-block-buttons">
+                                <i class="fav-episode__button fas fa-heart"></i>
                             </span>
                         </div>
-                    </article>
-                    <article class="pl-episode">
-                        <div class="pl-episode__left-block">
-                            <h4 class="pl-episode__title">Episode title</h4>
-                            <p class="pl-episode__date">04/12/2019</p>
+                    </li>
+                    <li class="fav-episode">
+                        <div class="fav-episode__left-block">
+                            <h3 class="fav-episode__title">Episode title</h3>
+                            <h4 class="fav-episode__channel-title">Channel title</h4>
+                            <p class="fav-episode__date">04/12/2019</p>
                         </div>
-                        <div class="pl-episode__right-block">
-                            <span class="pl-episode__right-block-buttons">
-                                <i class="pl-episode__button fas fa-chevron-up"></i>
-                                <i class="pl-episode__button fas fa-chevron-down"></i>
-                                <i class="pl-episode__button far fa-trash-alt"></i>
+                        <div class="fav-episode__right-block">
+                            <span class="fav-episode__right-block-buttons">
+                                <i class="fav-episode__button fas fa-heart"></i>
                             </span>
                         </div>
-                    </article>
-                    <article class="pl-episode">
-                        <div class="pl-episode__left-block">
-                            <h4 class="pl-episode__title">Episode title</h4>
-                            <p class="pl-episode__date">04/12/2019</p>
-                        </div>
-                        <div class="pl-episode__right-block">
-                            <span class="pl-episode__right-block-buttons">
-                                <i class="pl-episode__button fas fa-chevron-up"></i>
-                                <i class="pl-episode__button fas fa-chevron-down"></i>
-                                <i class="pl-episode__button far fa-trash-alt"></i>
-                            </span>
-                        </div>
-                    </article>
-                    <article class="pl-episode">
-                        <div class="pl-episode__left-block">
-                            <h4 class="pl-episode__title">Episode title</h4>
-                            <p class="pl-episode__date">04/12/2019</p>
-                        </div>
-                        <div class="pl-episode__right-block">
-                            <span class="pl-episode__right-block-buttons">
-                                <i class="pl-episode__button fas fa-chevron-up"></i>
-                                <i class="pl-episode__button fas fa-chevron-down"></i>
-                                <i class="pl-episode__button far fa-trash-alt"></i>
-                            </span>
-                        </div>
-                    </article>
-                </section>
+                    </li>
+                </ul>
                 <div class="footer">
                     <span class="footer__option"><i class="fas fa-list-ul fa-2x"></i></span>
                     <span class="footer__option"><i class="fas fa-heart fa-2x"></i></span>

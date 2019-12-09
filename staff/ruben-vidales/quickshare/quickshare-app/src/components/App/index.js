@@ -45,11 +45,7 @@ export default withRouter(function ({ history }) {
         (async () => {
             if (token) {
                 const { name } = await retrieveUser(token)
-
                 setName(name)
-/* 
-                await retrieveChannels(token)
-                /*await retrieveUserPlaylist(token) */
             }
         })()
     }, [sessionStorage.token], channels)
@@ -122,12 +118,21 @@ export default withRouter(function ({ history }) {
         }
     }
 
-    async function handleFavsList(){
-        try {debugger
+    async function handleFavsList() {
+        try {
             const { token } = sessionStorage
             const favs = await retrieveFavsList(token)
             return favs
+        } catch (error) {
+            const { message } = error
+            setError(message)
+        }
+    }
 
+    //TODO
+    async function handleAddToPlaylist(id) {
+        try {
+            console.log(id)
         } catch (error) {
             const { message } = error
             setError(message)
@@ -143,8 +148,7 @@ export default withRouter(function ({ history }) {
         <Route path="/favs" render={() => <Favs name={name} onFavsList={handleFavsList} />} />
         <Route path="/playlist" render={() => <Playlist name={name} playlist={playlist} />} />
         <Route path="/channels" render={() => <Channels onAddRss={handleAddRss} onListRss={handleListRss} channels={channels} onChannelDetail={handleRssDetail} />} />
-{/*         <Route path="/rssDetail" render={() => <RssDetail channel={channel} />} /> */}
-        <Route path='/rssDetail/:id' render={props => token ? <RssDetail rssId={props.match.params.id} channel={channel} /> : <Redirect to='/' />} />
+        <Route path='/rssDetail/:id' render={props => token ? <RssDetail rssId={props.match.params.id} onAddToPlayList={handleAddToPlaylist} /> : <Redirect to='/' />} />
 
         {token && <FooterBar onPath={handleGoPath} onLogout={handleLogout} />}
     </>

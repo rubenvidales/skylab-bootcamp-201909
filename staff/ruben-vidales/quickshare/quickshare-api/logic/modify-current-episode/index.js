@@ -27,7 +27,7 @@ module.exports = function (userId, podcastId, position, active) {
                 await User.updateOne({ _id: ObjectId(userId) }, { $unset: { "player.currentEpisode.podcastId": "" } })
             }
             else {
-                user.player.currentEpisode.podcastId = podcastId
+                user.player.currentEpisode.podcast = podcastId
             }
         }
         position && (user.player.currentEpisode.position = position)
@@ -37,8 +37,12 @@ module.exports = function (userId, podcastId, position, active) {
 
         await user.save()
 
-        await Podcast.populate(user,{path:'player.currentEpisode.podcastId'})
+        //await Podcast.populate(user,{path:'player.currentEpisode.podcast'})
 
-        return user.player
+        const resUser = await user.toObject()
+
+        delete resUser.player._id
+
+        return resUser.player
     })()
 }

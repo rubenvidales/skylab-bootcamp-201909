@@ -16,11 +16,8 @@ module.exports = function (token, id) {
         })
 
         if (res.status === 201) {
-            const user = JSON.parse(res.body)
-
-            user.lastAccess = new Date(user.lastAccess)
-
-            return user
+            const channel = JSON.parse(res.body)
+            return channel
         }
 
         if (res.status === 401) throw new CredentialsError(JSON.parse(res.body).message)

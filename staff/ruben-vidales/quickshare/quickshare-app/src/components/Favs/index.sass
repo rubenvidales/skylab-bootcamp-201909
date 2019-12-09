@@ -1,0 +1,79 @@
+.favs
+    text-align: center
+    height: 100vh
+    display: flex
+    justify-content: center
+    background-color: #dddddd
+
+    &__container
+        width: 90%
+        margin-top: 5%
+
+    &__title
+        color: #365c80
+
+    &__description
+        text-align: justify
+
+    &__list
+        height: 75vh
+        overflow-y: scroll
+        display: flex
+        flex-direction: column
+        padding: 0
+
+
+.fav-episode
+    padding: .5em
+    margin: .3em
+    border: .1em solid #8a8a8a
+    border-radius: .2em
+    display: flex
+
+    &__left-block
+        width: 70%
+
+    &__right-block
+        width: 30%
+        text-align: center
+
+        &-buttons
+            display: block
+            height: 100%
+            line-height: 3
+            color: #365c80
+            font-size: 1.6em 
+
+            &--delete
+                color: #ad4545
+                line-height: 3
+    &__button
+        margin: .2em
+
+    &__title
+        padding: 0
+        margin: 0
+
+    &__channel-title
+        padding: 0
+        margin: 0
+
+    &__date
+        padding: 0
+        margin: 0
+
+
+    
+.footer
+    background-color: #365c80
+    color: #ffffff
+    position: absolute
+    left: 0
+    bottom: 0
+    height: 10%
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: center
+    &__option
+        width: 20%

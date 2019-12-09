@@ -60,9 +60,10 @@ describe('logic - modify current episode', () => {
         const randomPosition = Math.floor(Math.random() * 1000) + 1
         const randomActive = Math.random() >= 0.5
 
-        await modifyCurrentEpisode(userId, randomPodcast, randomPosition, randomActive)
+        const result = await modifyCurrentEpisode(userId, randomPodcast, randomPosition, randomActive)
 
-        const resultUser = await User.findById(userId)
+        let resultUser = await User.findById(userId)
+        resultUser = resultUser.toObject()
         expect(resultUser).to.exist
 
         expect(resultUser.name).to.equal(name)
@@ -77,7 +78,7 @@ describe('logic - modify current episode', () => {
         expect(resultUser.rssChannels).to.be.an('array')
         expect(resultUser.favs).to.be.an('array')
 
-        expect(resultUser.player.currentEpisode.podcastId.toString()).to.equal(randomPodcast)
+        expect(resultUser.player.currentEpisode.podcast.toString()).to.equal(randomPodcast)
         expect(resultUser.player.currentEpisode.position).to.equal(randomPosition)
         expect(resultUser.player.currentEpisode.active).to.equal(randomActive)
     })

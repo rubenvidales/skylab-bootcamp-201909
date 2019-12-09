@@ -1,8 +1,10 @@
 import React from 'react'
 import './index.sass'
 import Rss from '../Rss'
+import { registerUser, authenticateUser, retrieveUser, createRss, listRss, retrieveRss, retrievePlaylist, retrieveFavsList } from '../../logic'
+import { Route, withRouter, Redirect } from 'react-router-dom'
 
-export default function ({ channels, rssId, onChannelDetail }) {
+export default withRouter(function ({ channels, rssId, onChannelDetail }) {
     return <>
         <h3 className="channels__title">Added Channels</h3>
         <ul className="channels__list">
@@ -11,4 +13,4 @@ export default function ({ channels, rssId, onChannelDetail }) {
             </li>)}
         </ul>
     </>
-}
+})

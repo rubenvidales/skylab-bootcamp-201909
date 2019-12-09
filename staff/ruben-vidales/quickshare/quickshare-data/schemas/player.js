@@ -3,7 +3,7 @@ const Player = require('./player')
 
 module.exports = new Schema({
     currentEpisode: {
-        podcastId: {
+        podcast: {
             type: ObjectId,
             ref: 'Podcast'
         },

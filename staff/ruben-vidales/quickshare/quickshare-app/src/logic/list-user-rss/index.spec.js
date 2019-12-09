@@ -6,7 +6,7 @@ const { database, models: { User, RSSChannel, Podcast } } = require('quickshare-
 const jwt = require('jsonwebtoken')
 require('../../helpers/jest-matchers')
 
-describe('logic - list favs', () => {
+describe('logic - list user rss', () => {
     beforeAll(() => database.connect(TEST_DB_URL))
 
     let id, token, name, surname, email, username, password, rssIds, rssTitles, rssUrls

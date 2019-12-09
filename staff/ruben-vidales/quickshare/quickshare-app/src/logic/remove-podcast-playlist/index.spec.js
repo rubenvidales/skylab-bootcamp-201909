@@ -1,16 +1,16 @@
 const { env: { REACT_APP_TEST_DB_URL: TEST_DB_URL, REACT_APP_TEST_SECRET: TEST_SECRET } } = process
-const retrievePlaylist = require('.')
+const removeFromPlaylist = require('.')
 const { random } = Math
-const { errors: { CredentialsError, NotFoundError, ContentError } } = require('quickshare-util')
-const { database, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
+const { errors: { CredentialsError, NotFoundError } } = require('quickshare-util')
+const { database, models: { User, RSSChannel, Podcast, Player } } = require('quickshare-data')
 const jwt = require('jsonwebtoken')
 require('../../helpers/jest-matchers')
 
-describe('logic - retrieve playlist', () => {
+describe('logic - delete episodes from the users playlist', () => {
     beforeAll(() => database.connect(TEST_DB_URL))
 
-    let id, token, name, surname, email, username, password, user, rssId, rssTitle, rssUrl,
-    podcastIds, podcastTitles, podcastUrls, podcastDurations
+    let id, token, name, surname, email, username, password, rssId, rssTitle, rssUrl,
+        podcastIds, podcastTitles, podcastUrls, podcastDurations, user
 
     beforeEach(async () => {
         name = `name-${random()}`
@@ -21,7 +21,7 @@ describe('logic - retrieve playlist', () => {
 
         await Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()])
 
-        user = await new User({ name, surname, email, username, password })
+        user = await new User({ name, surname, email, username, password, player: new Player() })
         id = user.id
         token = jwt.sign({ sub: id }, TEST_SECRET)
 
@@ -55,44 +55,24 @@ describe('logic - retrieve playlist', () => {
             podcastDurations.push(_podcast.duration)
         }
         await Promise.all(insertions)
+
         await user.save()
     })
 
-    it('should succeed on correct user id and empty playlist', async () => {
-        const playlist = await retrievePlaylist(token)
-        
-        expect(playlist).toBeDefined()
-        expect(playlist).toBeType('array')
-        expect(playlist).toHaveLength(0)
-    })
-
-    it('should succeed on correct user id and playlist with podcasts', async () => {
-        //Save the 
-        user.player = {playlist:podcastIds}
+    it('should succeed on correct user and podcast data and the podcast is in the playlist', async () => {
+        user.player = { playlist: [podcastIds[1], podcastIds[2]] }
         await user.save()
 
-        const playlist = await retrievePlaylist(token)
-        expect(playlist).toBeDefined()
-        expect(playlist).toBeType('array')
-        expect(playlist).toHaveLength(10)
-        
-        playlist.forEach(podcast => {
-            expect(podcast).toBeDefined()
-            expect(podcast.id).toBeOneOf(podcastIds)
-        })
+        const result = await removeFromPlaylist(token, podcastIds[1])
+
+        expect(result).toBeDefined()
+        expect(result).toBeType('array')
+        expect(result.length).toEqual(1)
+        expect(result).toContain(podcastIds[2])
+        expect(result).not.toContain(podcastIds[1])
     })
 
-/*     it('should fail on incorrect user id', async () => {
-        id = 'wrong'
-        try {
-            await retrievePlaylist(id)(id)
-    
-            throw Error('should not reach this point')
-        } catch (error) {
-            expect(error).toBeDefined()
-            expect(error).toBeInstanceOf(TypeError)
-        }
-    }) */
+
 
     afterAll(() => Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()]).then(database.disconnect))
 })

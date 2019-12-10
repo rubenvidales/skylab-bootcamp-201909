@@ -16,6 +16,7 @@ module.exports = function (token, podcastId, position, active) {
             },
             body: JSON.stringify({ podcastId, position, active })
         })
+        debugger
 
         if (res.status === 200) {
             const playlist = JSON.parse(res.body)

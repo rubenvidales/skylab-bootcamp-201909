@@ -9,9 +9,8 @@ export default function ({ name, onFavsList }) {
         const { token } = sessionStorage;
 
         (async () => {
-            if (token) {debugger
+            if (token) {
                 const favs = await onFavsList(token)
-                debugger
                 setFavs(favs)
             }
         })()

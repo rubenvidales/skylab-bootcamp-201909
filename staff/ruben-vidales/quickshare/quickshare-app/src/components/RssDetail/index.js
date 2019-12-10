@@ -4,6 +4,7 @@ import { retrieveRss, listPodcastsByRss, retrievePlaylist } from '../../logic'
 import { Route, withRouter, Redirect } from 'react-router-dom'
 
 export default withRouter(function ({ history, onAddToPlayList }) {
+    const [render, setRender] = useState(true)
     const [channel, setChannel] = useState({})
     const [podcasts, setPodcasts] = useState([])
     const [playlist, setPlaylist] = useState([])
@@ -22,7 +23,7 @@ export default withRouter(function ({ history, onAddToPlayList }) {
                 setPlaylist(list)
             }
         })()
-    }, [sessionStorage.token])
+    }, [sessionStorage.token, render])
 
     const { title, imageUrl, description } = channel
 
@@ -58,7 +59,7 @@ export default withRouter(function ({ history, onAddToPlayList }) {
                             </div>
                             <div className="episode__right-block">
                                 <span className="episode__button-block">
-                                    {addable ? <i onClick={() => { onAddToPlayList(podcastId) }} className="fas fa-plus"></i> : null}
+                                    {addable ? <i onClick={() => { onAddToPlayList(podcastId); setRender(!render); }} className="fas fa-plus"></i> : null}
                                 </span>
                             </div>
                         </li>

@@ -8,6 +8,7 @@ module.exports = {
     addToPlaylist: require('./add-podcast-playlist'),
     removeFromPlaylist: require('./remove-podcast-playlist'),
     retrievePlaylist: require('./retrieve-playlist'),
+    reorderPodcastPlaylist: require('./reorder-podcast-playlist'),
     retrieveFavsList: require('./list-user-favs'),
     listPodcastsByRss: require('./list-podcasts'),
     modifyCurrentEpisode: require('./modify-current-episode')

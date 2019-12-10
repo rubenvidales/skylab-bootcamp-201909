@@ -9,7 +9,7 @@ import Channels from '../Channels'
 import RssDetail from '../RssDetail'
 import FooterBar from '../FooterBar'
 import Favs from '../Favs'
-import { registerUser, authenticateUser, retrieveUser, createRss, listRss, retrieveRss, retrievePlaylist, retrieveFavsList } from '../../logic'
+import { registerUser, authenticateUser, retrieveUser, createRss, listRss, retrieveRss, retrievePlaylist, retrieveFavsList, addToPlaylist, removeFromPlaylist, reorderPodcastPlaylist, modifyCurrentEpisode } from '../../logic'
 import { Route, withRouter, Redirect } from 'react-router-dom'
 
 export default withRouter(function ({ history }) {
@@ -18,6 +18,19 @@ export default withRouter(function ({ history }) {
     const [channels, setChannels] = useState([])
     const [channel, setChannel] = useState({})
     const [playlist, setPlaylist] = useState([])
+
+    useEffect(() => {
+        const { token } = sessionStorage;
+
+        (async () => {
+            if (token) {
+                const { name } = await retrieveUser(token)
+                setName(name)
+                const playlist = await retrievePlaylist(token)
+                setPlaylist(playlist)
+            }
+        })()
+    }, [sessionStorage.token, channels])
 
     /* routing handles*/
     function handleGoToRegister() { history.push('/register') }
@@ -38,17 +51,6 @@ export default withRouter(function ({ history }) {
     function handleOnClose() {
         setError(undefined)
     }
-
-    useEffect(() => {
-        const { token } = sessionStorage;
-
-        (async () => {
-            if (token) {
-                const { name } = await retrieveUser(token)
-                setName(name)
-            }
-        })()
-    }, [sessionStorage.token], channels)
 
     async function retrieveUserPlaylist(token) {
         const playlist = await retrievePlaylist(token)
@@ -129,10 +131,52 @@ export default withRouter(function ({ history }) {
         }
     }
 
-    //TODO
     async function handleAddToPlaylist(id) {
         try {
-            console.log(id)
+            const { token } = sessionStorage
+            const playlist = await addToPlaylist(token, id)
+        } catch (error) {
+            const { message } = error
+            setError(message)
+        }
+    }
+
+    async function handleDeleteFromPlaylist(id) {
+        try {
+            const { token } = sessionStorage
+            const playlist = await removeFromPlaylist(token, id)
+        } catch (error) {
+            const { message } = error
+            setError(message)
+        }
+    }
+
+    async function handleReoderPodcastPlaylist(id, move) {
+        try {
+            const { token } = sessionStorage
+            const playlist = await reorderPodcastPlaylist(token, id, move)
+        } catch (error) {
+            const { message } = error
+            setError(message)
+        }
+    }
+
+    async function handleRetrievePlaylist() {
+        try {
+            const { token } = sessionStorage
+            const playlist = await retrievePlaylist(token)
+            setPlaylist(playlist)
+        } catch (error) {
+            const { message } = error
+            setError(message)
+        }
+    }
+
+    async function handleModifyCurrentEpisode(podcastId, position, active) {
+        try {
+            const { token } = sessionStorage
+            const result = await modifyCurrentEpisode(token, podcastId, position, active)
+            return result
         } catch (error) {
             const { message } = error
             setError(message)
@@ -144,9 +188,9 @@ export default withRouter(function ({ history }) {
         <Route exact path="/" render={() => token ? <Redirect to="/player" /> : <Landing onRegister={handleGoToRegister} onLogin={handleGoToLogin} />} />
         <Route path="/register" render={() => token ? <Redirect to="/player" /> : <Register error={error} onClose={handleOnClose} onRegister={handleRegister} onBack={handleGoBack} />} />
         <Route path="/login" render={() => token ? <Redirect to="/player" /> : <Login error={error} onClose={handleOnClose} onLogin={handleLogin} onBack={handleGoBack} />} />
-        <Route path="/player" render={() => <Player />} />
+        <Route path="/player" render={() => <Player playlist={playlist} onModifyCurrent={handleModifyCurrentEpisode} />} />
         <Route path="/favs" render={() => <Favs name={name} onFavsList={handleFavsList} />} />
-        <Route path="/playlist" render={() => <Playlist name={name} playlist={playlist} />} />
+        <Route path="/playlist" render={() => <Playlist name={name} playlist={playlist} onReoder={handleReoderPodcastPlaylist} onDeleteFromPlaylist={handleDeleteFromPlaylist} />} />
         <Route path="/channels" render={() => <Channels onAddRss={handleAddRss} onListRss={handleListRss} channels={channels} onChannelDetail={handleRssDetail} />} />
         <Route path='/rssDetail/:id' render={props => token ? <RssDetail rssId={props.match.params.id} onAddToPlayList={handleAddToPlaylist} /> : <Redirect to='/' />} />
 

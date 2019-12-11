@@ -12,7 +12,6 @@ const router = Router()
 
 router.get('/:rssId',tokenVerifier, jsonBodyParser, (req, res) => {
     const { params: {rssId} } = req
-debugger
     try {
         retrieveRss(rssId)
             .then(rss => res.status(201).json(rss))

@@ -3,23 +3,17 @@ import "react-input-range/lib/css/index.css"
 import './index.sass'
 import AddRss from '../AddRss'
 import ListRss from '../ListRss'
-import { registerUser, authenticateUser, retrieveUser, createRss, listRss, retrieveRss, retrievePlaylist, retrieveFavsList } from '../../logic'
+import { listRss } from '../../logic'
 
 export default function ({ onAddRss, channels, rssId, onChannelDetail }) {
-
     const [_channels, setChannels] = useState([])
     useEffect(() => {
         const { token } = sessionStorage;
 
         (async () => {
             if (token) {
-                /*                 const { name } = await retrieveUser(token)
-                
-                                setName(name) */
-
                 const _channels = await listRss(token)
                 setChannels(_channels)
-                //await retrieveUserPlaylist(token)
             }
         })()
     }, [channels])

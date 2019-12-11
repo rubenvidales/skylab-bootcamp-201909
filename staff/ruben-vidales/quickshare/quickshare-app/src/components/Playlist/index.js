@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './index.sass'
-import { retrieveRss, listPodcastsByRss, retrievePlaylist } from '../../logic'
-import { Route, withRouter, Redirect } from 'react-router-dom'
+import { retrievePlaylist } from '../../logic'
+import { withRouter } from 'react-router-dom'
 
 export default withRouter(function ({ history, name, onDeleteFromPlaylist, onReoder }) {
     const [render, setRender] = useState(true)
@@ -26,8 +26,8 @@ export default withRouter(function ({ history, name, onDeleteFromPlaylist, onReo
                     let day = pubDate.getDate().toString()
                     let month = (pubDate.getMonth() + 1).toString()
                     let year = pubDate.getFullYear()
-                    month = month.length == 1 ? '0' + month : month
-                    day = day.length == 1 ? '0' + day : day
+                    month = month.length === 1 ? '0' + month : month
+                    day = day.length === 1 ? '0' + day : day
                     const dateString = month + '/' + day + '/' + year
 
                     return <li key={episode.id} className="pl-episode">

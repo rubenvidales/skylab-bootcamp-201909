@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Route, withRouter, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import './index.sass'
+import Feedback from '../Feedback'
 const { converter } = require('quickshare-util')
 
-export default withRouter(function ({ history, onModifyCurrent, onRetrieveChannel, onRetrievePlayer, onRetreivePodcast }) {
-    const [error, setError] = useState()
+export default withRouter(function ({ error, onClose, onModifyCurrent, onRetrieveChannel, onRetrievePlayer, onRetreivePodcast }) {
     const [playerState, setPlayerState] = useState({
         position: 0,
         current: 0,
@@ -27,13 +27,13 @@ export default withRouter(function ({ history, onModifyCurrent, onRetrieveChanne
             const { title, url, duration, publicationDate, description, rssChannel } = await onRetreivePodcast(podcast)
             const channel = await onRetrieveChannel(rssChannel)
             const a = await converter.secondsToString(parseInt(duration))
-            debugger
+
             const pubDate = new Date(publicationDate)
             let day = pubDate.getDate().toString()
             let month = (pubDate.getMonth() + 1).toString()
             let year = pubDate.getFullYear()
-            month = month.length == 1 ? '0' + month : month
-            day = day.length == 1 ? '0' + day : day
+            month = month.length === 1 ? '0' + month : month
+            day = day.length === 1 ? '0' + day : day
             const dateString = month + '/' + day + '/' + year
 
             setPlayerState(prevState => ({ ...prevState, playlist: playlist, position: (position * 10000 / duration), positionString: converter.secondsToString(parseInt(position, 10)), durationString: a, current: position, podcastId: podcast }))
@@ -42,45 +42,17 @@ export default withRouter(function ({ history, onModifyCurrent, onRetrieveChanne
         init()
     }, [])
 
-    //TODO: Este bucle no acaba de funcionar bien del todo (frie el navegador)
-    /*     let refresher
-        useEffect(() => {
-            if (typeof refresher !== 'number') refresher = setInterval(() => {
-                (async () => {
-                    const timeToSave = converter.stringToSeconds(playerState.positionString)
-                    onModifyCurrent(playerState.podcastId, timeToSave, undefined)
-                    if (playerState.isPlaying) {
-                        setPlayerState(prevState => ({ ...prevState, position: playerState.position + 1 }))
-                    }
-                })()
-            }, 1000);
-            return () => { clearInterval(refresher) }
-        }, [playerState]) */
-
     const changeEpisode = async (movement) => {debugger
         setPlayerState(prevState => ({ ...prevState, isPlaying: false }))
         let _playlist = playerState.playlist
-        const index = _playlist.findIndex(_podcastId => _podcastId == playerState.podcastId)
+        const index = _playlist.findIndex(_podcastId => _podcastId === playerState.podcastId)
 
         let newPosition = index + movement
 
         if ((newPosition >= 0) && (newPosition < _playlist.length)) {
 
-            const { id, title, url, duration, publicationDate, description, rssChannel } = await onRetreivePodcast(_playlist[newPosition])
+            const { id, title, url, description, rssChannel } = await onRetreivePodcast(_playlist[newPosition])
             const channel = await onRetrieveChannel(rssChannel)
-            // position: 0,
-            // current: 0,
-            // positionString: '00:00:00',
-            // durationString: '00:00:00',
-            // audioFile: '',
-            // podcastId: '',
-            // podcastTitle: '',
-            // publicationDate: '',
-            // podcastDescription: '',
-            // isPlaying: false,
-            // changingPosition: false,
-            // playlist: []
-
 
             setPlayerState(prevState => ({ ...prevState, podcastImage: channel.imageUrl, position: 0, current: 0, audioFile: url, podcastId: id, podcastTitle: title, podcastDescription: description, positionString: '00:00:00', durationString: '00:00:00' }))
         }
@@ -106,8 +78,6 @@ export default withRouter(function ({ history, onModifyCurrent, onRetrieveChanne
         if (player.paused && !player.ended) {
             debugger
             if (playerState.isPlaying) {
-                //player.currentTime = parseInt( (player.duration * playerState.position / 10000), 10)
-                let aux = ''
                 if (playerState.position > 0) {
                     player.currentTime = parseInt((player.duration * playerState.position / 10000), 10)
                 }
@@ -132,7 +102,7 @@ export default withRouter(function ({ history, onModifyCurrent, onRetrieveChanne
             playerState.positionString = converter.secondsToString(parseInt(player.currentTime, 10))
         }
 
-        //Refresco
+        //Refresh
         if (typeof refresher !== 'number') refresher = setInterval(() => {
             (async () => {
                 const timeToSave = converter.stringToSeconds(playerState.positionString)
@@ -203,6 +173,7 @@ export default withRouter(function ({ history, onModifyCurrent, onRetrieveChanne
         <audio ref={_player} autoPlay={playerState.playing}>
             <source src={playerState.audioFile} />
         </audio>
+        {error && <Feedback message={error} onClose={onClose} />}
     </section>
 })
 

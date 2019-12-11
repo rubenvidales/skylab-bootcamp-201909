@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './index.sass'
 import { retrieveRss, listPodcastsByRss, retrievePlaylist } from '../../logic'
-import { Route, withRouter, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 export default withRouter(function ({ history, onAddToPlayList }) {
     const [render, setRender] = useState(true)
@@ -30,7 +30,7 @@ export default withRouter(function ({ history, onAddToPlayList }) {
     return <section className="rss">
         <div className="rss__container">
             <h2 className="rss__title">{title}</h2>
-            <img src={imageUrl} className="rss__image" alt="channel image" />
+            <img src={imageUrl} className="rss__image" alt="channel reference img" />
             <p className="rss__description">{description}</p>
             <section className="rss__list">
                 <ul className="episodes__list">
@@ -39,15 +39,15 @@ export default withRouter(function ({ history, onAddToPlayList }) {
                         let day = pubDate.getDate().toString()
                         let month = (pubDate.getMonth() + 1).toString()
                         let year = pubDate.getFullYear()
-                        month = month.length == 1 ? '0' + month : month
-                        day = day.length == 1 ? '0' + day : day
+                        month = month.length === 1 ? '0' + month : month
+                        day = day.length === 1 ? '0' + day : day
                         const dateString = month + '/' + day + '/' + year
 
                         let podcastId = podcast.id
 
                         let addable = true
                         playlist.map(episode => {
-                            if (episode.id == podcastId) {
+                            if (episode.id === podcastId) {
                                 addable = false
                             }
                         })

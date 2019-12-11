@@ -1,8 +1,7 @@
 import React from 'react'
 import './index.sass'
 import Rss from '../Rss'
-import { registerUser, authenticateUser, retrieveUser, createRss, listRss, retrieveRss, retrievePlaylist, retrieveFavsList } from '../../logic'
-import { Route, withRouter, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 export default withRouter(function ({ channels, rssId, onChannelDetail }) {
     return <>

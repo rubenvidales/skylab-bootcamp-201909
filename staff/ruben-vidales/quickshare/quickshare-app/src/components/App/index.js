@@ -90,6 +90,7 @@ export default withRouter(function ({ history }) {
         try {
             const { token } = sessionStorage
             await createRss(token, url)
+            await handleListRss()
         } catch (error) {
             const { message } = error
             setError(message)
@@ -221,8 +222,8 @@ export default withRouter(function ({ history }) {
         <Route exact path="/" render={() => token ? <Redirect to="/player" /> : <Landing onRegister={handleGoToRegister} onLogin={handleGoToLogin} />} />
         <Route path="/register" render={() => token ? <Redirect to="/player" /> : <Register error={error} onClose={handleOnClose} onRegister={handleRegister} onBack={handleGoBack} />} />
         <Route path="/login" render={() => token ? <Redirect to="/player" /> : <Login error={error} onClose={handleOnClose} onLogin={handleLogin} onBack={handleGoBack} />} />
-        <Route path="/player" render={() => <Player playlist={playlist} onRetrieveChannel={handleRetrieveRssChannel} onRetreivePodcast={handleRetrievePodcast} onRetrievePlayer={handleRetrievePlayer} onModifyCurrent={handleModifyCurrentEpisode} />} />
-        <Route path="/favs" render={() => <Favs name={name} onFavsList={handleFavsList} />} />
+        <Route path="/player" render={() => <Player playlist={playlist}  error={error} onClose={handleOnClose} onRetrieveChannel={handleRetrieveRssChannel} onRetreivePodcast={handleRetrievePodcast} onRetrievePlayer={handleRetrievePlayer} onModifyCurrent={handleModifyCurrentEpisode} />} />
+{/*         <Route path="/favs" render={() => <Favs name={name} onFavsList={handleFavsList} />} /> */}
         <Route path="/playlist" render={() => <Playlist name={name} playlist={playlist} onReoder={handleReoderPodcastPlaylist} onDeleteFromPlaylist={handleDeleteFromPlaylist} />} />
         <Route path="/channels" render={() => <Channels onAddRss={handleAddRss} onListRss={handleListRss} channels={channels} onChannelDetail={handleRssDetail} />} />
         <Route path='/rssDetail/:id' render={props => token ? <RssDetail rssId={props.match.params.id} onAddToPlayList={handleAddToPlaylist} /> : <Redirect to='/' />} />

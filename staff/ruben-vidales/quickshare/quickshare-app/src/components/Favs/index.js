@@ -14,7 +14,7 @@ export default function ({ name, onFavsList }) {
                 setFavs(favs)
             }
         })()
-    }, [sessionStorage.token])
+    }, [onFavsList])
 
     return <section className="favs">
         <div className="favs__container">

@@ -9,7 +9,7 @@ import Channels from '../Channels'
 import RssDetail from '../RssDetail'
 import FooterBar from '../FooterBar'
 import Favs from '../Favs'
-import { registerUser, authenticateUser, retrieveUser, createRss, listRss, retrieveRss, retrievePlaylist, retrieveFavsList, addToPlaylist, removeFromPlaylist, reorderPodcastPlaylist, modifyCurrentEpisode } from '../../logic'
+import { registerUser, authenticateUser, retrieveUser, createRss, listRss, retrieveRss, retrievePlaylist, retrieveFavsList, addToPlaylist, removeFromPlaylist, retrievePodcast, reorderPodcastPlaylist, modifyCurrentEpisode } from '../../logic'
 import { Route, withRouter, Redirect } from 'react-router-dom'
 
 export default withRouter(function ({ history }) {
@@ -183,12 +183,45 @@ export default withRouter(function ({ history }) {
         }
     }
 
+    async function handleRetrievePlayer(){
+        try {
+            const { token } = sessionStorage
+            const {player} = await retrieveUser(token)
+            return player
+        } catch (error) {
+            const { message } = error
+            setError(message)
+        }
+    }
+
+    async function handleRetrievePodcast(id){
+        try {
+            const { token } = sessionStorage
+            const podcast = await retrievePodcast(token, id)
+            return podcast
+        } catch (error) {
+            const { message } = error
+            setError(message)
+        }
+    }
+
+    async function handleRetrieveRssChannel(id){
+        try {
+            const { token } = sessionStorage
+            const rss = await retrieveRss(token, id)
+            return rss
+        } catch (error) {
+            const { message } = error
+            setError(message)
+        }
+    }
+
     const { token } = sessionStorage
     return <>
         <Route exact path="/" render={() => token ? <Redirect to="/player" /> : <Landing onRegister={handleGoToRegister} onLogin={handleGoToLogin} />} />
         <Route path="/register" render={() => token ? <Redirect to="/player" /> : <Register error={error} onClose={handleOnClose} onRegister={handleRegister} onBack={handleGoBack} />} />
         <Route path="/login" render={() => token ? <Redirect to="/player" /> : <Login error={error} onClose={handleOnClose} onLogin={handleLogin} onBack={handleGoBack} />} />
-        <Route path="/player" render={() => <Player playlist={playlist} onModifyCurrent={handleModifyCurrentEpisode} />} />
+        <Route path="/player" render={() => <Player playlist={playlist} onRetrieveChannel={handleRetrieveRssChannel} onRetreivePodcast={handleRetrievePodcast} onRetrievePlayer={handleRetrievePlayer} onModifyCurrent={handleModifyCurrentEpisode} />} />
         <Route path="/favs" render={() => <Favs name={name} onFavsList={handleFavsList} />} />
         <Route path="/playlist" render={() => <Playlist name={name} playlist={playlist} onReoder={handleReoderPodcastPlaylist} onDeleteFromPlaylist={handleDeleteFromPlaylist} />} />
         <Route path="/channels" render={() => <Channels onAddRss={handleAddRss} onListRss={handleListRss} channels={channels} onChannelDetail={handleRssDetail} />} />

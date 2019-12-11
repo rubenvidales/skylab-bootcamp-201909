@@ -64,7 +64,7 @@ describe('logic - modify current episode in players user', () => {
         const randomPodcast = podcastIds[Math.floor(Math.random() * podcastIds.length)]
         const randomPosition = Math.floor(Math.random() * 1000) + 1
         const randomActive = Math.random() >= 0.5
-
+debugger
         await modifyCurrentEpisode(token, randomPodcast, randomPosition, randomActive)
 
         const resultUser = await User.findById(id)
@@ -82,7 +82,7 @@ describe('logic - modify current episode in players user', () => {
         expect(resultUser.rssChannels).toBeType('array')
         expect(resultUser.favs).toBeType('array')
 
-        expect(resultUser.player.currentEpisode.podcastId.toString()).toEqual(randomPodcast)
+        expect(resultUser.player.currentEpisode.podcast.toString()).toEqual(randomPodcast)
         expect(resultUser.player.currentEpisode.position).toEqual(randomPosition)
         expect(resultUser.player.currentEpisode.active).toEqual(randomActive)
     })
@@ -92,6 +92,9 @@ describe('logic - modify current episode in players user', () => {
         const randomPodcast = podcastIds[Math.floor(Math.random() * podcastIds.length)]
         const randomPosition = Math.floor(Math.random() * 1000) + 1
         const randomActive = Math.random() >= 0.5
+
+        const prevUser = await User.findById(id)
+        expect(prevUser).toBeDefined()
 
         await modifyCurrentEpisode(token, randomPodcast, null, randomActive)
 
@@ -110,10 +113,8 @@ describe('logic - modify current episode in players user', () => {
         expect(resultUser.rssChannels).toBeType('array')
         expect(resultUser.favs).toBeType('array')
 
-debugger
-
-        expect(resultUser.player.currentEpisode.podcastId.toString()).toEqual(randomPodcast)
-        expect(resultUser.player.currentEpisode.position).toEqual(randomPosition)
+        expect(resultUser.player.currentEpisode.podcast.toString()).toEqual(randomPodcast)
+        expect(resultUser.player.currentEpisode.position).toEqual(prevUser.player.currentEpisode.position)
         expect(resultUser.player.currentEpisode.active).toEqual(randomActive)
     })
 

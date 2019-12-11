@@ -1,25 +1,23 @@
 const call = require('../../utils/call')
 const { validate, errors: { CredentialsError, NotFoundError } } = require('quickshare-util')
-const { ObjectId } = require('quickshare-data')
 const API_URL = process.env.REACT_APP_API_URL
 
-module.exports = function (token, podcastId, position, active) {
+module.exports = function (token, id) {
     validate.string(token)
     validate.string.notVoid('token', token)
 
+    validate.string(id)
+    validate.string.notVoid('id', id)
+
     return (async () => {
-        const res = await call(`${API_URL}/users/player/current`, {
-            method: 'POST',
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ podcastId, position, active })
+        const res = await call(`${API_URL}/podcasts/${id}`, {
+            method: 'GET',
+            headers: { Authorization: `Bearer ${token}` }
         })
 
         if (res.status === 200) {
-            const playlist = JSON.parse(res.body)
-            return playlist
+            const podcast = JSON.parse(res.body)
+            return podcast
         }
 
         if (res.status === 401) throw new CredentialsError(JSON.parse(res.body).message)

@@ -1,3 +1,4 @@
+//Hide the favs compo to improve in future features
 export default [
     {
         name: 'playlist',
@@ -5,7 +6,7 @@ export default [
         icon :'fas fa-list-ul fa-2x',
         visibility: {
             playlist: false,
-            favs: true,
+            favs: false,
             player: true,
             channels: true
         }
@@ -27,7 +28,7 @@ export default [
         icon: 'far fa-play-circle fa-2x',
         visibility: {
             playlist: true,
-            favs: true,
+            favs: false,
             player: false,
             channels: true
         }
@@ -38,7 +39,7 @@ export default [
         icon: 'fas fa-podcast fa-2x',
         visibility: {
             playlist: true,
-            favs: true,
+            favs: false,
             player: true,
             channels: false
         }

@@ -14,12 +14,11 @@
         display: flex
         align-items: center
         justify-content: center
-        margin-top: 2em
         &-share-icon
             padding: .5em
             color: #365c80
         &-image
-            max-width: 50%
+            max-width: 35%
             border-radius: .4em
         &-fav-icon    
             padding: .5em
@@ -28,6 +27,8 @@
     &__title
         margin: .5em
         color: #222222
+        line-height: 1
+
     &__creator
         margin: .5em
         color: #365c80
@@ -36,6 +37,8 @@
 
     &__description
         text-align: justify
+        height: 12vh
+        overflow-y: scroll
 
     &__slider
         &-block

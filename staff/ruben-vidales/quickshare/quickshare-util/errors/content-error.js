@@ -1,3 +1,4 @@
+require('../polyfills/error-capture-stack-trace')
 module.exports = class ContentError extends Error {
     constructor(message) {
         super(message)

@@ -42,7 +42,7 @@ export default withRouter(function ({ error, onClose, onModifyCurrent, onRetriev
         init()
     }, [])
 
-    const changeEpisode = async (movement) => {debugger
+    const changeEpisode = async (movement) => {
         setPlayerState(prevState => ({ ...prevState, isPlaying: false }))
         let _playlist = playerState.playlist
         const index = _playlist.findIndex(_podcastId => _podcastId === playerState.podcastId)
@@ -76,7 +76,6 @@ export default withRouter(function ({ error, onClose, onModifyCurrent, onRetriev
             player.src = playerState.audioFile
         }
         if (player.paused && !player.ended) {
-            debugger
             if (playerState.isPlaying) {
                 if (playerState.position > 0) {
                     player.currentTime = parseInt((player.duration * playerState.position / 10000), 10)

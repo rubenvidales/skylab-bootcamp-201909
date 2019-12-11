@@ -64,7 +64,7 @@ describe('logic - modify current episode in players user', () => {
         const randomPodcast = podcastIds[Math.floor(Math.random() * podcastIds.length)]
         const randomPosition = Math.floor(Math.random() * 1000) + 1
         const randomActive = Math.random() >= 0.5
-debugger
+
         await modifyCurrentEpisode(token, randomPodcast, randomPosition, randomActive)
 
         const resultUser = await User.findById(id)

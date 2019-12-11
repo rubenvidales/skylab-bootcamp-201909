@@ -3,7 +3,6 @@ const { validate, errors: { ConflictError } } = require('quickshare-util')
 const API_URL = process.env.REACT_APP_API_URL
 
 module.exports = function (name, surname, email, username, password) {
-    debugger
     validate.string(name)
     validate.string.notVoid('name', name)
     validate.string(surname)

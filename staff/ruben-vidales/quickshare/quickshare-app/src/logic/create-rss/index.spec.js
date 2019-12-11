@@ -7,7 +7,6 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 describe('logic - create rss channel', () => {
-    debugger
     beforeAll(() => database.connect(TEST_DB_URL))
 
     let userId, token, name, surname, email, username, password, rssId, title, url, description, imageUrl, language
@@ -27,10 +26,8 @@ describe('logic - create rss channel', () => {
     })
 
     it('should succeed on correct user and rss channel data', async () => {
-        debugger
         url='https://www.ivoox.com/podcast-viviendo-del-cuento_fg_f1566301_filtro_1.xml'
         const rss = await createRss(token, url)
-        debugger
         expect(rss).toBeDefined()
 
         expect(rss.id).toBeDefined()

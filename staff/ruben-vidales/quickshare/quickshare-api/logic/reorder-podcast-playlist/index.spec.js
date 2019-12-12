@@ -63,7 +63,7 @@ describe('logic - reorder podcasts from playlist', () => {
         user.player = { playlist: [podcastIds[1], podcastIds[2]] }
         await user.save()
 
-        const result = await reorderPlaylist(id, podcastIds[1],-1)
+        const result = await reorderPlaylist(id, podcastIds[1], -1)
 
         expect(result).to.exist
         expect(result).to.be.an('array')
@@ -79,7 +79,7 @@ describe('logic - reorder podcasts from playlist', () => {
         user.player = { playlist: [podcastIds[1], podcastIds[2]] }
         await user.save()
 
-        const result = await reorderPlaylist(id, podcastIds[1],1)
+        const result = await reorderPlaylist(id, podcastIds[1], 1)
 
         expect(result).to.exist
         expect(result).to.be.an('array')
@@ -95,7 +95,7 @@ describe('logic - reorder podcasts from playlist', () => {
         user.player = { playlist: [podcastIds[1], podcastIds[2]] }
         await user.save()
 
-        const result = await reorderPlaylist(id, podcastIds[2],-1)
+        const result = await reorderPlaylist(id, podcastIds[2], -1)
 
         expect(result).to.exist
         expect(result).to.be.an('array')
@@ -103,6 +103,78 @@ describe('logic - reorder podcasts from playlist', () => {
 
         user.player.playlist[0] === aux1
         user.player.playlist[1] === aux2
+    })
+
+    it('should fail on not existing user id', async () => {
+        const notDefinedId = '012345678901234567890123'
+        const aux1 = podcastIds[1]
+        const aux2 = podcastIds[2]
+        user.player = { playlist: [podcastIds[1], podcastIds[2]] }
+        await user.save()
+
+        try {
+            await reorderPlaylist(notDefinedId,podcastIds[2], -1)
+
+            throw Error('should not reach this point')
+        } catch (error) {
+            expect(error).to.exist
+            expect(error).to.be.an.instanceOf(NotFoundError)
+            expect(error.message).to.equal(`user with id ${notDefinedId} not found`)
+        }
+    })
+
+    it('should fail on not valid user id', async () => {
+        const notValidId = 'WrongId'
+        const aux1 = podcastIds[1]
+        const aux2 = podcastIds[2]
+        user.player = { playlist: [podcastIds[1], podcastIds[2]] }
+        await user.save()
+
+        try {
+            await reorderPlaylist(notValidId, podcastIds[2], -1)
+
+            throw Error('should not reach this point')
+        } catch (error) {
+            expect(error).to.exist
+            expect(error).to.be.an.instanceOf(ContentError)
+            expect(error.message).to.equal(`${notValidId} is not a valid id`)
+        }
+    })
+
+    it('should fail on not existing podcast id', async () => {
+        const notDefinedId = '012345678901234567890123'
+        const aux1 = podcastIds[1]
+        const aux2 = podcastIds[2]
+        user.player = { playlist: [podcastIds[1], podcastIds[2]] }
+        await user.save()
+
+        try {
+            await reorderPlaylist(id, notDefinedId, -1)
+
+            throw Error('should not reach this point')
+        } catch (error) {
+            expect(error).to.exist
+            expect(error).to.be.an.instanceOf(NotFoundError)
+            expect(error.message).to.equal(`Podcast with id ${notDefinedId} in the playlist for the user with id ${id} not found`)
+        }
+    })
+
+    it('should fail on not valid user id', async () => {
+        const notValidId = 'WrongId'
+        const aux1 = podcastIds[1]
+        const aux2 = podcastIds[2]
+        user.player = { playlist: [podcastIds[1], podcastIds[2]] }
+        await user.save()
+
+        try {
+            await reorderPlaylist(id, notValidId, -1)
+
+            throw Error('should not reach this point')
+        } catch (error) {
+            expect(error).to.exist
+            expect(error).to.be.an.instanceOf(ContentError)
+            expect(error.message).to.equal(`${notValidId} is not a valid id`)
+        }
     })
 
     it('should fail on incorrect userId, podcastId, or expression type and content', () => {

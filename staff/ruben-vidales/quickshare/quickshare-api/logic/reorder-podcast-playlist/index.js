@@ -17,7 +17,7 @@ module.exports = function (userId, podcastId, movement) {
         if (!user) throw new NotFoundError(`user with id ${userId} not found`)
 
         const index = user.player.playlist.findIndex(_podcastId => _podcastId == podcastId)
-        if (index === -1) throw new NotFoundError(`Podcast in the playlist for the user with id ${userId} not found`)
+        if (index === -1) throw new NotFoundError(`Podcast with id ${podcastId} in the playlist for the user with id ${userId} not found`)
 
         let newPosition = index - movement
 

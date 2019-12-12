@@ -1,6 +1,20 @@
 const { validate, errors: { NotFoundError, ContentError } } = require('quickshare-util')
 const { ObjectId, models: { User, RSSChannel } } = require('quickshare-data')
 
+/**
+ * Create a RSSChannel using the information recieved from previous function (parse-rss)
+ * 
+ * @param {ObjectId} userId 
+ * @param {String} title
+ * @param {String} url
+ * @param {String} description
+ * @param {String} imageUrl
+ * @param {String} language
+
+ * @returns {RSSChannel} rssChannel 
+ * @author Ruben Vidales
+ * @version 1.0.0
+ */
 module.exports = function (userId, title, url, description, imageUrl, language) {
     validate.string(userId)
     validate.string.notVoid('userId', userId)

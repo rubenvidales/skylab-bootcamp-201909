@@ -2,6 +2,18 @@ const { validate, errors: { ConflictError } } = require('quickshare-util')
 const { models: { User, Player } } = require('quickshare-data')
 const bcrypt = require('bcryptjs')
 
+/**
+ * Register the user
+ * 
+ * @param {String} name
+ * @param {String} surname
+ * @param {String} email
+ * @param {String} username
+ * @param {String} password
+ * 
+ * @author Manuel Barzi/Ruben Vidales
+ * @version 1.0.0
+ */
 module.exports = function (name, surname, email, username, password) {
     validate.string(name)
     validate.string.notVoid('name', name)

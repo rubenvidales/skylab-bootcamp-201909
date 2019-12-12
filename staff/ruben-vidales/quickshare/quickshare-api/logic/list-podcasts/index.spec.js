@@ -4,7 +4,7 @@ const { expect } = require('chai')
 const listPodcasts = require('.')
 const { random } = Math
 const { database, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
-const { errors: { ContentError } } = require('quickshare-util')
+const { errors: { ContentError, NotFoundError } } = require('quickshare-util')
 
 describe('logic - list podcast by rss id', () => {
     before(() => database.connect(TEST_DB_URL))
@@ -96,6 +96,35 @@ describe('logic - list podcast by rss id', () => {
         expect(podcasts).to.be.an('array')
         expect(podcasts).to.have.lengthOf(0)
     })
+
+    it('should fail on wrong user id', async () => {
+        const id = '012345678901234567890123'
+
+        try {
+            await listPodcasts(id)
+
+            throw Error('should not reach this point')
+        } catch (error) {
+            expect(error).to.exist
+            expect(error).to.be.an.instanceOf(NotFoundError)
+            expect(error.message).to.equal(`RSS channel with id ${id} not found`)
+        }
+    })
+
+    it('should fail on not valid user id', async () => {
+        const id = 'wrongId'
+
+        try {
+            await listPodcasts(id)
+
+            throw Error('should not reach this point')
+        } catch (error) {
+            expect(error).to.exist
+            expect(error).to.be.an.instanceOf(ContentError)
+            expect(error.message).to.equal(`${id} is not a valid id`)
+        }
+    })
+
 
     it('should fail on incorrect userId, podcastId, or expression type and content', () => {
         expect(() => listPodcasts(1)).to.throw(TypeError, '1 is not a string')

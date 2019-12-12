@@ -6,7 +6,6 @@ const createRss = require('../create-rss')
 const createPodcast = require('../create-podcast')
 
 module.exports = function (userId, url) {
-    debugger
     validate.string(userId)
     validate.string.notVoid('userId', userId)
     if (!ObjectId.isValid(userId)) throw new ContentError(`${userId} is not a valid id`)

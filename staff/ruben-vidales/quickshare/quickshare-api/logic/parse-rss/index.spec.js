@@ -2,7 +2,8 @@ require('dotenv').config()
 const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
 const parseRss = require('.')
-const { database, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
+const { errors: { ContentError, NotFoundError } } = require('quickshare-util')
+
 describe('logic - Parse RSS', () => {
     it('should succeed on correct url', async () => {
         const validUrl = 'https://www.ivoox.com/podcast-viviendo-del-cuento_fg_f1566301_filtro_1.xml'
@@ -52,4 +53,20 @@ describe('logic - Parse RSS', () => {
             expect(item.imageUrl).to.have.length.greaterThan(0)
         })
     })
+
+    it('should succeed on correct url', async () => {
+        const notValidUrl = 'incorrect-formed-url'
+        
+        try {
+            const feed = await parseRss(notValidUrl)
+            throw new Error('should not reach this point')
+        } catch (error) {
+            expect(error).to.exist
+            expect(error).to.be.an.instanceOf(ContentError)
+
+            const { message } = error
+            expect(message).to.equal(`${notValidUrl} is not an url`)
+        }
+    })
+
 })

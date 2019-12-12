@@ -3,7 +3,8 @@ const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
 const listUserRss = require('.')
 const { random } = Math
-const { database, ObjectId, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
+const { database, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
+const { errors: { ContentError } } = require('quickshare-util')
 
 describe('logic - list favs', () => {
     before(() => database.connect(TEST_DB_URL))
@@ -67,6 +68,27 @@ describe('logic - list favs', () => {
             expect(rss.url).to.have.length.greaterThan(0)
             expect(rss.url).be.oneOf(rssUrls)
         })
+    })
+
+    it('should succeed on correct user: empty rss channels list', async () => {
+        await User.findById(id).updateOne({$set: { rssChannels: [] }})
+
+        const podcasts = await listUserRss(id)
+
+        expect(podcasts).to.exist
+        expect(podcasts).to.be.an('array')
+        expect(podcasts).to.have.lengthOf(0)
+    })
+
+    it('should fail on incorrect userId, or expression type and content', () => {
+        expect(() => listUserRss(1)).to.throw(TypeError, '1 is not a string')
+        expect(() => listUserRss(true)).to.throw(TypeError, 'true is not a string')
+        expect(() => listUserRss([])).to.throw(TypeError, ' is not a string')
+        expect(() => listUserRss({})).to.throw(TypeError, '[object Object] is not a string')
+        expect(() => listUserRss(undefined)).to.throw(TypeError, 'undefined is not a string')
+        expect(() => listUserRss(null)).to.throw(TypeError, 'null is not a string')
+        expect(() => listUserRss('')).to.throw(ContentError, 'userId is empty or blank')
+        expect(() => listUserRss(' \t\r')).to.throw(ContentError, 'userId is empty or blank')
     })
 
     after(() => Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()]).then(database.disconnect))

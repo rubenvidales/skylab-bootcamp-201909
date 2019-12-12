@@ -6,11 +6,6 @@ const { random } = Math
 const { converter, errors: { ContentError } } = require('quickshare-util')
 const { database, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
 const bcrypt = require('bcryptjs')
-const fs = require('fs')
-const util = require('util')
-let Parser = require('rss-parser')
-let parser = new Parser()
-const readFile = util.promisify(fs.readFile)
 
 describe('logic - register user', () => {
     let feed
@@ -110,8 +105,6 @@ describe('logic - register user', () => {
         expect(() => registerUser(name, surname, email, username, '')).to.throw(ContentError, 'password is empty or blank')
         expect(() => registerUser(name, surname, email, username, ' \t\r')).to.throw(ContentError, 'password is empty or blank')
     })
-
-    // TODO other cases
 
     after(() => Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()]).then(database.disconnect))
 })

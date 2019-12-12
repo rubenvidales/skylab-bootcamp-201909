@@ -68,5 +68,13 @@ describe('logic - list all rss channels', () => {
         })
     })
 
+    it('should succeed and return an empty array if no rss in the database', async () => {
+        await RSSChannel.deleteMany()
+
+        const rssChannels = await listRss()
+        expect(rssChannels).to.exist
+        expect(rssChannels).to.have.lengthOf(0)
+    })
+
     after(() => Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()]).then(database.disconnect))
 })

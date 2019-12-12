@@ -28,8 +28,6 @@ module.exports = function (userId, podcastId, movement) {
 
             user.player.playlist[index] = pivotElement
 
-            //It works but its correct¿?
-
             await User.updateOne({ _id: ObjectId(userId) }, { $unset: { "player.playlist": "" } })
             await User.updateOne({ _id: ObjectId(userId) }, { $set: { "player.playlist": user.player.playlist } })
         }

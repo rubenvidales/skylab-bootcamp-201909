@@ -8,7 +8,6 @@ module.exports = function (id) {
 
     return (async () => {
         const podcast = await Podcast.findById(id)
-
         if (!podcast) throw new NotFoundError(`podcast with id ${id} not found`)
 
         const { title, url, rssChannel, description, imageUrl, publicationDate, duration } = podcast.toObject()

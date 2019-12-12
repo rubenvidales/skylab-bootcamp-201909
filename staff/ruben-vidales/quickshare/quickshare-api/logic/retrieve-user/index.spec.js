@@ -73,7 +73,5 @@ describe('logic - retrieve user', () => {
         }
     })
 
-    // TODO other cases
-
     after(() => User.deleteMany().then(database.disconnect))
 })

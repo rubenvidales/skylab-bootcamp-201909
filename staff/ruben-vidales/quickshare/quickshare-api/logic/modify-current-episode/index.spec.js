@@ -3,7 +3,8 @@ const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
 const modifyCurrentEpisode = require('.')
 const { random } = Math
-const { database, ObjectId, models: { User, RSSChannel, Podcast, Player } } = require('quickshare-data')
+const { database, models: { User, RSSChannel, Podcast, Player } } = require('quickshare-data')
+const { errors: { ContentError } } = require('quickshare-util')
 
 describe('logic - modify current episode', () => {
     before(() => database.connect(TEST_DB_URL))
@@ -83,6 +84,106 @@ describe('logic - modify current episode', () => {
         expect(resultUser.player.currentEpisode.active).to.equal(randomActive)
     })
 
+    it('should succeed on correct data: only change randomPodcast', async () => {
+        //Take a random existing podcast in user
+        const randomPodcast = podcastIds[Math.floor(Math.random() * podcastIds.length)]
+
+        const user = await User.findById(userId)
+
+        const result = await modifyCurrentEpisode(userId, randomPodcast)
+
+        let resultUser = await User.findById(userId)
+        resultUser = resultUser.toObject()
+        expect(resultUser).to.exist
+
+        expect(resultUser.name).to.equal(name)
+        expect(resultUser.name).to.be.a('string')
+        expect(resultUser.surname).to.equal(surname)
+        expect(resultUser.surname).to.be.a('string')
+        expect(resultUser.email).to.equal(email)
+        expect(resultUser.email).to.be.a('string')
+        expect(resultUser.username).to.equal(username)
+        expect(resultUser.username).to.be.a('string')
+
+        expect(resultUser.rssChannels).to.be.an('array')
+        expect(resultUser.favs).to.be.an('array')
+
+        expect(resultUser.player.currentEpisode.podcast.toString()).to.equal(randomPodcast)
+        expect(resultUser.player.currentEpisode.position).to.equal(user.player.currentEpisode.position)
+        expect(resultUser.player.currentEpisode.active).to.equal(user.player.currentEpisode.active)
+    })
+
+    it('should succeed on correct data: change randomPodcast and randomPosition', async () => {
+        //Take a random existing podcast in user
+        const randomPodcast = podcastIds[Math.floor(Math.random() * podcastIds.length)]
+        const randomPosition = Math.floor(Math.random() * 1000) + 1
+
+        const user = await User.findById(userId)
+
+        const result = await modifyCurrentEpisode(userId, randomPodcast, randomPosition)
+
+        let resultUser = await User.findById(userId)
+        resultUser = resultUser.toObject()
+        expect(resultUser).to.exist
+
+        expect(resultUser.name).to.equal(name)
+        expect(resultUser.name).to.be.a('string')
+        expect(resultUser.surname).to.equal(surname)
+        expect(resultUser.surname).to.be.a('string')
+        expect(resultUser.email).to.equal(email)
+        expect(resultUser.email).to.be.a('string')
+        expect(resultUser.username).to.equal(username)
+        expect(resultUser.username).to.be.a('string')
+
+        expect(resultUser.rssChannels).to.be.an('array')
+        expect(resultUser.favs).to.be.an('array')
+
+        expect(resultUser.player.currentEpisode.podcast.toString()).to.equal(randomPodcast)
+        expect(resultUser.player.currentEpisode.position).to.equal(randomPosition)
+        expect(resultUser.player.currentEpisode.active).to.equal(user.player.currentEpisode.active)
+    })
+
+    it('should succeed on correct data: change randomPodcast and randomActive', async () => {
+        //Take a random existing podcast in user
+        const randomPodcast = podcastIds[Math.floor(Math.random() * podcastIds.length)]
+        const randomActive = Math.random() >= 0.5
+
+        const user = await User.findById(userId)
+
+        const result = await modifyCurrentEpisode(userId, randomPodcast, undefined, randomActive)
+
+        let resultUser = await User.findById(userId)
+        resultUser = resultUser.toObject()
+        expect(resultUser).to.exist
+
+        expect(resultUser.name).to.equal(name)
+        expect(resultUser.name).to.be.a('string')
+        expect(resultUser.surname).to.equal(surname)
+        expect(resultUser.surname).to.be.a('string')
+        expect(resultUser.email).to.equal(email)
+        expect(resultUser.email).to.be.a('string')
+        expect(resultUser.username).to.equal(username)
+        expect(resultUser.username).to.be.a('string')
+
+        expect(resultUser.rssChannels).to.be.an('array')
+        expect(resultUser.favs).to.be.an('array')
+
+        expect(resultUser.player.currentEpisode.podcast.toString()).to.equal(randomPodcast)
+        expect(resultUser.player.currentEpisode.position).to.equal(user.player.currentEpisode.position)
+        expect(resultUser.player.currentEpisode.active).to.equal(randomActive)
+    })
+
+
+    it('should fail on incorrect userId, title, url, description, or expression type and content', () => {
+        expect(() => modifyCurrentEpisode(1)).to.throw(TypeError, '1 is not a string')
+        expect(() => modifyCurrentEpisode(true)).to.throw(TypeError, 'true is not a string')
+        expect(() => modifyCurrentEpisode([])).to.throw(TypeError, ' is not a string')
+        expect(() => modifyCurrentEpisode({})).to.throw(TypeError, '[object Object] is not a string')
+        expect(() => modifyCurrentEpisode(undefined)).to.throw(TypeError, 'undefined is not a string')
+        expect(() => modifyCurrentEpisode(null)).to.throw(TypeError, 'null is not a string')
+        expect(() => modifyCurrentEpisode('')).to.throw(ContentError, 'userId is empty or blank')
+        expect(() => modifyCurrentEpisode(' \t\r')).to.throw(ContentError, 'userId is empty or blank')
+    })
 
     after(() => Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()]).then(database.disconnect))
 })

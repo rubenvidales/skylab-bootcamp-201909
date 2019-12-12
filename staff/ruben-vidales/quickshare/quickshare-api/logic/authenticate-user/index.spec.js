@@ -72,7 +72,7 @@ describe('logic - authenticate user', () => {
         })
     })
 
-    it('should fail on incorrect name, surname, email, password, or expression type and content', () => {
+    it('should fail on incorrect username, password, or expression type and content', () => {
         expect(() => authenticateUser(1)).to.throw(TypeError, '1 is not a string')
         expect(() => authenticateUser(true)).to.throw(TypeError, 'true is not a string')
         expect(() => authenticateUser([])).to.throw(TypeError, ' is not a string')

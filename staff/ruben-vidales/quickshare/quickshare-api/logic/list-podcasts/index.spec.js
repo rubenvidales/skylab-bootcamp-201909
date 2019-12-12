@@ -3,7 +3,8 @@ const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
 const listPodcasts = require('.')
 const { random } = Math
-const { database, ObjectId, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
+const { database, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
+const { errors: { ContentError } } = require('quickshare-util')
 
 describe('logic - list podcast by rss id', () => {
     before(() => database.connect(TEST_DB_URL))
@@ -85,6 +86,26 @@ describe('logic - list podcast by rss id', () => {
             expect(podcast.duration).greaterThan(0)
             expect(podcast.duration).be.oneOf(podcastDurations)
         })
+    })
+
+    it('should succeed on correct rss id: empty list', async () => {
+        await Podcast.deleteMany()
+
+        const podcasts = await listPodcasts(rssId)
+        expect(podcasts).to.exist
+        expect(podcasts).to.be.an('array')
+        expect(podcasts).to.have.lengthOf(0)
+    })
+
+    it('should fail on incorrect userId, podcastId, or expression type and content', () => {
+        expect(() => listPodcasts(1)).to.throw(TypeError, '1 is not a string')
+        expect(() => listPodcasts(true)).to.throw(TypeError, 'true is not a string')
+        expect(() => listPodcasts([])).to.throw(TypeError, ' is not a string')
+        expect(() => listPodcasts({})).to.throw(TypeError, '[object Object] is not a string')
+        expect(() => listPodcasts(undefined)).to.throw(TypeError, 'undefined is not a string')
+        expect(() => listPodcasts(null)).to.throw(TypeError, 'null is not a string')
+        expect(() => listPodcasts('')).to.throw(ContentError, 'rssId is empty or blank')
+        expect(() => listPodcasts(' \t\r')).to.throw(ContentError, 'rssId is empty or blank')
     })
 
     after(() => Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()]).then(database.disconnect))

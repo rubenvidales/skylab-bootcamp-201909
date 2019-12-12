@@ -6,6 +6,15 @@ const util = require('util')
 let Parser = require('rss-parser')
 let parser = new Parser()
 
+/**
+ * Parse the url file (RSS like XML) and returns the JSON sanitized object  
+ * 
+ * @param {String} url 
+ * 
+ * @returns {String} feed 
+ * @author Ruben Vidales
+ * @version 1.0.0
+ */
 module.exports = function (url) {
     validate.string(url)
     validate.string.notVoid('url', url)

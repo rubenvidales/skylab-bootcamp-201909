@@ -1,6 +1,15 @@
 const { validate, errors: { NotFoundError, ContentError } } = require('quickshare-util')
 const { ObjectId, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
 
+/**
+ * Retrieve the information of user 
+ * 
+ * @param {ObjectId} id
+ * 
+ * @returns {User} user
+ * @author Manuel Barzi/Ruben Vidales
+ * @version 1.0.0
+ */
 module.exports = function (id) {
     validate.string(id)
     validate.string.notVoid('id', id)

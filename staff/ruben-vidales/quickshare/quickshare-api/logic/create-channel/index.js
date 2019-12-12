@@ -5,6 +5,16 @@ const parseRss = require('../parse-rss')
 const createRss = require('../create-rss')
 const createPodcast = require('../create-podcast')
 
+/**
+ * Complete process to create a Channel (fist parse the file, then create the channel and the podcasts)
+ * 
+ * @param {ObjectId} userId 
+ * @param {String} url
+ * 
+ * @returns {RSSChannel} rss 
+ * @author Ruben Vidales
+ * @version 1.0.0
+ */
 module.exports = function (userId, url) {
     validate.string(userId)
     validate.string.notVoid('userId', userId)

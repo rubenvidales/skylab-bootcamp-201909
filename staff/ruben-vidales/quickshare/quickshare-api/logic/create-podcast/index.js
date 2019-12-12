@@ -1,8 +1,21 @@
 const { validate, errors: { NotFoundError, ContentError, ConflictError } } = require('quickshare-util')
 const { ObjectId, models: { RSSChannel, Podcast } } = require('quickshare-data')
 
+/**
+ * Create a Podcast using the information recieved from previous function (parse-rss)
+ * 
+ * @param {String} title 
+ * @param {String} url
+ * @param {ObjectId} rssId 
+ * @param {String} description
+ * @param {Date} publicationDate 
+ * @param {Number} duration
+ * 
+ * @returns {Podcast} pod 
+ * @author Ruben Vidales
+ * @version 1.0.0
+ */
 module.exports = function (title, url, rssId, description, publicationDate, duration) {
-    //TODO: Validate urls
     validate.string(title)
     validate.string.notVoid('title', title)
 

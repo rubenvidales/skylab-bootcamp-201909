@@ -1,0 +1,78 @@
+.rss
+    text-align: center
+    height: 100vh
+    display: flex
+    justify-content: center
+    background-color: #dddddd
+
+    &__container
+        width: 80%
+        margin-top: 5%
+
+    &__title
+        margin-bottom: 0
+
+    &__url
+        margin-top: 0
+        color: #365c80
+
+    &__description
+        text-align: justify
+        max-height: 15vh
+        overflow-y: scroll
+
+    &__list
+        padding: 0
+        height: 50vh
+        overflow-y: scroll
+        display: flex
+        flex-direction: column
+
+
+.episode
+    padding: .5em
+    margin: .3em
+    border: .1em solid #8a8a8a
+    border-radius: .2em
+    display: flex
+
+    &__left-block
+        width: 75%
+
+    &__right-block
+        width: 25%
+        text-align: center
+
+    &__button-block
+        display: block
+        height: 100%
+        line-height: 2
+        color: #365c80
+
+        &--delete
+            color: #ad4545
+            line-height: 2
+
+    &__title
+        padding: 0
+        margin: 0
+
+    &__date
+        padding: 0
+        margin: 0
+
+
+    
+.footer
+    background-color: #365c80
+    color: #ffffff
+    position: absolute
+    left: 0
+    bottom: 0
+    height: 10%
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: center
+    &__option
+        width: 20%

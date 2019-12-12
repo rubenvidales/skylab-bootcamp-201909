@@ -13,6 +13,17 @@ En los últimos años, la cantidad de podcasts que se publican ha crecido tanto 
 
 ## Functional Description
 
+Users can:
+
+- Register/Login in the app
+- Register new RSS channels (and the podcasts asociated to these)
+- Add the podcasts to the playlist
+- Reorder the playlist podcasts
+- Remove podcasts from the playlist
+- Play/Pause the audio of the playlist
+- Jump to next/previous podcast of the playlist
+
+
 ### Use Cases
 
 The first step for the user is the registration and creation of his profile, later the generated profile can also be edited.
@@ -38,5 +49,26 @@ In the user, in addition to his user data, we will also store the RSS channels h
 En el usuario, además de sus datos de usuario, almacenaremos también los canales RSS que él ha añadido y los podcast de estos, que ha marcado como favoritos.*
 
 ![Data Model](./images/datamodel.jpg)
+
+### Blocks
+
+![Block Diagram](./images/block-diagram.png)
+
+### Testing
+
+![Coverage report](https://img.shields.io/badge/Coverage-98.01%25-green.svg)
+
+![Test Coverage](./images/coverage.png)
+
+### Technologies
+
+Javascript, ReactJS, Node.js, Express, MongoDB & Mongoose
+
+## TODOs
+
+- Adapt to all types of devices
+- Edit the users profile
+- Add comments on the playline
+- Share the podcasts to other users
 
 

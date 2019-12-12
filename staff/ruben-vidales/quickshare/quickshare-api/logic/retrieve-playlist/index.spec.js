@@ -3,8 +3,8 @@ const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
 const { random } = Math
 const retrievePlaylist = require('.')
+const { database, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
 const { errors: { NotFoundError, ContentError } } = require('quickshare-util')
-const { database, models: { User, RSSChannel, Podcast, Player } } = require('quickshare-data')
 
 describe('logic - retrieve playlist', () => {
     before(() => database.connect(TEST_DB_URL))
@@ -85,6 +85,17 @@ describe('logic - retrieve playlist', () => {
         expect(()=>{
             retrievePlaylist(id)
         }).to.throw(ContentError, `${id} is not a valid id`)
+    })
+
+    it('should fail on incorrect playlist id, or expression type and content', () => {
+        expect(() => retrievePlaylist(1)).to.throw(TypeError, '1 is not a string')
+        expect(() => retrievePlaylist(true)).to.throw(TypeError, 'true is not a string')
+        expect(() => retrievePlaylist([])).to.throw(TypeError, ' is not a string')
+        expect(() => retrievePlaylist({})).to.throw(TypeError, '[object Object] is not a string')
+        expect(() => retrievePlaylist(undefined)).to.throw(TypeError, 'undefined is not a string')
+        expect(() => retrievePlaylist(null)).to.throw(TypeError, 'null is not a string')
+        expect(() => retrievePlaylist('')).to.throw(ContentError, 'id is empty or blank')
+        expect(() => retrievePlaylist(' \t\r')).to.throw(ContentError, 'id is empty or blank')
     })
 
     after(() => Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()]).then(database.disconnect))

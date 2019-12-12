@@ -1,4 +1,4 @@
-const { validate, errors: { NotFoundError, ContentError, ConflictError } } = require('quickshare-util')
+const { validate, errors: { NotFoundError, ContentError } } = require('quickshare-util')
 const { ObjectId, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
 
 module.exports = function (rssId) {
@@ -17,7 +17,6 @@ module.exports = function (rssId) {
             delete podcast._id
             delete podcast.__v
         })
-        
         return podcasts
     })()
 }

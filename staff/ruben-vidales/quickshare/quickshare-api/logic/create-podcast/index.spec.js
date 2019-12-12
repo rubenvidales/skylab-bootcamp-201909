@@ -4,7 +4,7 @@ const { expect } = require('chai')
 const createPodcast = require('.')
 const { floor, random } = Math
 const { converter, errors: { ContentError, ConflictError } } = require('quickshare-util')
-const { ObjectId, database, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
+const { database, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
 
 describe('logic - create podcast', () => {
     before(() => {
@@ -76,5 +76,44 @@ describe('logic - create podcast', () => {
             }
         })
     })
+
+    it('should fail on incorrect podcastTitle, podcastUrl, rssId, podcastDescription, or expression type and content', () => {
+        expect(() => createPodcast(1)).to.throw(TypeError, '1 is not a string')
+        expect(() => createPodcast(true)).to.throw(TypeError, 'true is not a string')
+        expect(() => createPodcast([])).to.throw(TypeError, ' is not a string')
+        expect(() => createPodcast({})).to.throw(TypeError, '[object Object] is not a string')
+        expect(() => createPodcast(undefined)).to.throw(TypeError, 'undefined is not a string')
+        expect(() => createPodcast(null)).to.throw(TypeError, 'null is not a string')
+        expect(() => createPodcast('')).to.throw(ContentError, 'title is empty or blank')
+        expect(() => createPodcast(' \t\r')).to.throw(ContentError, 'title is empty or blank')
+
+        expect(() => createPodcast(podcastTitle, 1)).to.throw(TypeError, '1 is not a string')
+        expect(() => createPodcast(podcastTitle, true)).to.throw(TypeError, 'true is not a string')
+        expect(() => createPodcast(podcastTitle, [])).to.throw(TypeError, ' is not a string')
+        expect(() => createPodcast(podcastTitle, {})).to.throw(TypeError, '[object Object] is not a string')
+        expect(() => createPodcast(podcastTitle, undefined)).to.throw(TypeError, 'undefined is not a string')
+        expect(() => createPodcast(podcastTitle, null)).to.throw(TypeError, 'null is not a string')
+        expect(() => createPodcast(podcastTitle, '')).to.throw(ContentError, 'url is empty or blank')
+        expect(() => createPodcast(podcastTitle, ' \t\r')).to.throw(ContentError, 'url is empty or blank')
+
+        expect(() => createPodcast(podcastTitle, podcastUrl, 1)).to.throw(TypeError, '1 is not a string')
+        expect(() => createPodcast(podcastTitle, podcastUrl, true)).to.throw(TypeError, 'true is not a string')
+        expect(() => createPodcast(podcastTitle, podcastUrl, [])).to.throw(TypeError, ' is not a string')
+        expect(() => createPodcast(podcastTitle, podcastUrl, {})).to.throw(TypeError, '[object Object] is not a string')
+        expect(() => createPodcast(podcastTitle, podcastUrl, undefined)).to.throw(TypeError, 'undefined is not a string')
+        expect(() => createPodcast(podcastTitle, podcastUrl, null)).to.throw(TypeError, 'null is not a string')
+        expect(() => createPodcast(podcastTitle, podcastUrl, '')).to.throw(ContentError, 'rssId is empty or blank')
+        expect(() => createPodcast(podcastTitle, podcastUrl, ' \t\r')).to.throw(ContentError, 'rssId is empty or blank')
+
+        expect(() => createPodcast(podcastTitle, podcastUrl, rssId, 1)).to.throw(TypeError, '1 is not a string')
+        expect(() => createPodcast(podcastTitle, podcastUrl, rssId, true)).to.throw(TypeError, 'true is not a string')
+        expect(() => createPodcast(podcastTitle, podcastUrl, rssId, [])).to.throw(TypeError, ' is not a string')
+        expect(() => createPodcast(podcastTitle, podcastUrl, rssId, {})).to.throw(TypeError, '[object Object] is not a string')
+        expect(() => createPodcast(podcastTitle, podcastUrl, rssId, undefined)).to.throw(TypeError, 'undefined is not a string')
+        expect(() => createPodcast(podcastTitle, podcastUrl, rssId, null)).to.throw(TypeError, 'null is not a string')
+        expect(() => createPodcast(podcastTitle, podcastUrl, rssId, '')).to.throw(ContentError, 'description is empty or blank')
+        expect(() => createPodcast(podcastTitle, podcastUrl, rssId, ' \t\r')).to.throw(ContentError, 'description is empty or blank')
+    })
+
     after(() => Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()]).then(database.disconnect))
 })

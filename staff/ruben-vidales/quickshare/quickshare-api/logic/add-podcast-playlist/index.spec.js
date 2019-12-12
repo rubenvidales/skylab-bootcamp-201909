@@ -3,7 +3,8 @@ const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
 const addPodcastToPlaylist = require('.')
 const { random } = Math
-const { database, ObjectId, models: { User, RSSChannel, Podcast, Player } } = require('quickshare-data')
+const { database, models: { User, RSSChannel, Podcast, Player } } = require('quickshare-data')
+const { errors: { NotFoundError, ContentError } } = require('quickshare-util')
 
 describe('logic - add podcast to playlist', () => {
     before(() => database.connect(TEST_DB_URL))
@@ -97,6 +98,43 @@ describe('logic - add podcast to playlist', () => {
             expect(podcastIds).to.contain(elem.id)
         })
     })
+
+    it('should fail if the podcast id does not exist but the id is correct formed', async () => {
+        //Take a random existing podcast in user
+        const wrongPodcastId = '5deed854a2d9e324445e38bd'
+
+        try {
+            const result = await addPodcastToPlaylist(id, wrongPodcastId)
+            throw new Error('should not reach this point')
+        } catch (error) {
+            expect(error).to.exist
+            expect(error).to.be.an.instanceOf(NotFoundError)
+
+            const { message } = error
+            expect(message).to.equal(`podcast with id ${wrongPodcastId} not found`)
+        }
+    })
+
+    it('should fail on incorrect userId, podcastId, or expression type and content', () => {
+        expect(() => addPodcastToPlaylist(1)).to.throw(TypeError, '1 is not a string')
+        expect(() => addPodcastToPlaylist(true)).to.throw(TypeError, 'true is not a string')
+        expect(() => addPodcastToPlaylist([])).to.throw(TypeError, ' is not a string')
+        expect(() => addPodcastToPlaylist({})).to.throw(TypeError, '[object Object] is not a string')
+        expect(() => addPodcastToPlaylist(undefined)).to.throw(TypeError, 'undefined is not a string')
+        expect(() => addPodcastToPlaylist(null)).to.throw(TypeError, 'null is not a string')
+        expect(() => addPodcastToPlaylist('')).to.throw(ContentError, 'userId is empty or blank')
+        expect(() => addPodcastToPlaylist(' \t\r')).to.throw(ContentError, 'userId is empty or blank')
+
+        expect(() => addPodcastToPlaylist(id, 1)).to.throw(TypeError, '1 is not a string')
+        expect(() => addPodcastToPlaylist(id, true)).to.throw(TypeError, 'true is not a string')
+        expect(() => addPodcastToPlaylist(id, [])).to.throw(TypeError, ' is not a string')
+        expect(() => addPodcastToPlaylist(id, {})).to.throw(TypeError, '[object Object] is not a string')
+        expect(() => addPodcastToPlaylist(id, undefined)).to.throw(TypeError, 'undefined is not a string')
+        expect(() => addPodcastToPlaylist(id, null)).to.throw(TypeError, 'null is not a string')
+        expect(() => addPodcastToPlaylist(id, '')).to.throw(ContentError, 'podcastId is empty or blank')
+        expect(() => addPodcastToPlaylist(id, ' \t\r')).to.throw(ContentError, 'podcastId is empty or blank')
+    })
+
 
     after(() => Promise.all([User.deleteMany(), RSSChannel.deleteMany(), Podcast.deleteMany()]).then(database.disconnect))
 })

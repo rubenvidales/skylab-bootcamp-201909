@@ -1,5 +1,5 @@
 const { validate, errors: { NotFoundError, ContentError, ConflictError } } = require('quickshare-util')
-const { ObjectId, models: { User, RSSChannel, Podcast } } = require('quickshare-data')
+const { ObjectId, models: { RSSChannel, Podcast } } = require('quickshare-data')
 
 module.exports = function (title, url, rssId, description, publicationDate, duration) {
     //TODO: Validate urls

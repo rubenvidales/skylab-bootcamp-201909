@@ -23,7 +23,12 @@ export default withRouter(function ({ error, onClose, onModifyCurrent, onRetriev
 
     useEffect(() => {
         async function init() {
-            const { currentEpisode: { position, podcast }, playlist } = await onRetrievePlayer()
+
+            let { currentEpisode: { position, podcast }, playlist } = await onRetrievePlayer()
+
+            if (!podcast && playlist.length) {
+                podcast = playlist[0]
+            } else if (!podcast && !playlist.length) return
             const { title, url, duration, publicationDate, description, rssChannel } = await onRetreivePodcast(podcast)
             const channel = await onRetrieveChannel(rssChannel)
             const a = await converter.secondsToString(parseInt(duration))
@@ -71,7 +76,7 @@ export default withRouter(function ({ error, onClose, onModifyCurrent, onRetriev
     const _player = useRef(null)
     useEffect(() => {
         const { current: player } = _player
-
+        if (!player) return
         if (player.currentSrc !== playerState.audioFile) {
             player.src = playerState.audioFile
         }
@@ -133,47 +138,57 @@ export default withRouter(function ({ error, onClose, onModifyCurrent, onRetriev
         return css.join(' ')
     }
 
-    return <section className="player">
-        <div className="player__container">
-            <header className="player__top">
-                {/* <i className="player__top-share-icon fas fa-share-alt fa-3x"></i> */}
-                <img className="player__top-image"
-                    src={playerState.podcastImage} alt="podcast-img" />
-                {/* <i className="player__top-fav-icon far fa-heart fa-3x"></i> */}
-            </header>
-            <h2 className="player__title">{playerState.podcastTitle}</h2>
-            <h4 className="player__date">{playerState.publicationDate}</h4>
-            <p className="player__description">{playerState.podcastDescription}</p>
+    if (playerState.playlist.length > 0) {
+        return <section className="player">
+            <div className="player__container">
+                <header className="player__top">
+                    {/* <i className="player__top-share-icon fas fa-share-alt fa-3x"></i> */}
+                    <img className="player__top-image"
+                        src={playerState.podcastImage} alt="podcast-img" />
+                    {/* <i className="player__top-fav-icon far fa-heart fa-3x"></i> */}
+                </header>
+                <h2 className="player__title">{playerState.podcastTitle}</h2>
+                <h4 className="player__date">{playerState.publicationDate}</h4>
+                <p className="player__description">{playerState.podcastDescription}</p>
 
-            <div className="player__slider-block">
-                <input type="range" min="0" max="10000" value={playerState.position} className="player__slider-bar"
-                    id="myRange" onChange={(event) => handleChange(event)} />
-                <span className="player__slider-current">{playerState.positionString}</span>
-                <span className="player__slider-duration">{playerState.durationString}</span>
-            </div>
+                <div className="player__slider-block">
+                    <input type="range" min="0" max="10000" value={playerState.position} className="player__slider-bar"
+                        id="myRange" onChange={(event) => handleChange(event)} />
+                    <span className="player__slider-current">{playerState.positionString}</span>
+                    <span className="player__slider-duration">{playerState.durationString}</span>
+                </div>
 
-            <div className="player__controls">
-                <i className="player__controls-rew fas fa-chevron-circle-left fa-3x" onClick={(event) => {
-                    event.preventDefault()
-                    changeEpisode(-1)
-                }
-                }></i>
-                <i className={classnames(playerClsName)} onClick={(event) => {
-                    event.preventDefault()
-                    tooglePlay()
-                }}></i>
-                <i className="player__controls-ff fas fa-chevron-circle-right fa-3x" onClick={(event) => {
-                    event.preventDefault()
-                    changeEpisode(+1)
-                }
-                }></i>
+                <div className="player__controls">
+                    <i className="player__controls-rew fas fa-chevron-circle-left fa-3x" onClick={(event) => {
+                        event.preventDefault()
+                        changeEpisode(-1)
+                    }
+                    }></i>
+                    <i className={classnames(playerClsName)} onClick={(event) => {
+                        event.preventDefault()
+                        tooglePlay()
+                    }}></i>
+                    <i className="player__controls-ff fas fa-chevron-circle-right fa-3x" onClick={(event) => {
+                        event.preventDefault()
+                        changeEpisode(+1)
+                    }
+                    }></i>
+                </div>
             </div>
-        </div>
-        <audio ref={_player} autoPlay={playerState.playing}>
-            <source src={playerState.audioFile} />
-        </audio>
-        {error && <Feedback message={error} onClose={onClose} />}
-    </section>
+            <audio ref={_player} autoPlay={playerState.playing}>
+                <source src={playerState.audioFile} />
+            </audio>
+            {error && <Feedback message={error} onClose={onClose} />}
+        </section>
+    } else {
+        return <section className="player">
+            <div className="player__container">
+                No podcasts in your playlist
+            </div>
+        </section>
+
+    }
+
 })
 
 
